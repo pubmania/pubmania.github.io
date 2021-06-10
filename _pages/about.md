@@ -28,6 +28,7 @@ demonstrated ability to influence senior management decisions. History
 of results and progressive career growth through hands-on leadership,
 elimination of barriers and teamwork skills.
 
+
 ------------------------------------------------------------------------
 
 KEY COMPETENCIES {#keycompetencies}
