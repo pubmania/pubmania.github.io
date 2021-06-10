@@ -95,8 +95,8 @@ analytics:
 # Site Author
 author:
   name             : "Ankit Mittal"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an **amazing** person."
+  avatar           : "/assets/images/profile_pix/profile_1.JPG" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  bio              : "Programme Manager by profession, Developer at heart !!!"
   location         : "United Kingdom"
   email            : 
   links:
@@ -280,6 +280,15 @@ defaults:
       layout: single
       author_profile: true
       read_time: true
-      comments: # true
+      comments: true
       share: true
       related: true
+
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+      #comments: true
