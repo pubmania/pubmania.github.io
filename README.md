@@ -1,2 +1,2 @@
-# pubmania.github.io
-I give what I take and then I try giving a bit more - My payback to the helpful open source community !!!
+# Getting it ready
+Following the guidance on https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
