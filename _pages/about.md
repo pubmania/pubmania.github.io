@@ -10,7 +10,7 @@ toc: true
 Ankit Mittal
 ============
 
-![Alt Text](/assets/images/profile_pix/profile_1.JPG)
+![Alt Text](../assets/images/profile_pix/profile_1.JPG)
 -------------------------------------------------------
 
 
