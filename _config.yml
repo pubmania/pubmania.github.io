@@ -95,7 +95,7 @@ analytics:
 # Site Author
 author:
   name             : "Ankit Mittal"
-  avatar           : "../assets/images/profile_pix/profile_1.JPG" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "../assets/images/profile_pix/profile_1.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Programme Manager by profession, Developer at heart !!!"
   location         : "United Kingdom"
   email            : 
