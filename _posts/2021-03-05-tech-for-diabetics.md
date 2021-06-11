@@ -6,6 +6,8 @@ date: 2021-03-05T17:50:00
 draft: false
 description: Tech for Diabetics
 last_modified_at: 2021-03-12T13:05:15
+excerpt: "As a diabetic there are a number of things we are not able to control
+but one thing we can do is keep tabs on our data"
 ---
 
 # Background
