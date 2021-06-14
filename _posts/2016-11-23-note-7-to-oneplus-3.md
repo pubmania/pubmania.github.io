@@ -42,18 +42,16 @@ I have listed below the things that I like and the things I hope it had:
 Features I Loved:
 
  1. Battery life
-
- * Superfast Chargingwith Dash Charger
- * Display and inbuilt Night mode
- * Ringer Switch
- * Inbuilt Colour control for LED Notification
- * Smooth minimal interface
- * No bloatware
- * Fingerprint Scanner doubles as Home button
- * Gesture support for flash light
- * Ability to swap Capacitive button functionality
- * Dual Sim Card capability - Allows me to carry one phone for both work and
-   personal numbers.
+ 1. Superfast Charging with Dash Charger
+ 1. Display and inbuilt Night mode
+ 1. Ringer Switch
+ 1. Inbuilt Colour control for LED Notification
+ 1. Smooth minimal interface
+ 1. No bloatware
+ 1. Fingerprint Scanner doubles as Home button
+ 1. Gesture support for flash light
+ 1. Ability to swap Capacitive button functionality
+ 1. Dual Sim Card capability - Allows me to carry one phone for both work and personal numbers.
 
 Sure all of the above can be pretty similar on all high end handsets but what
 makes it unique for OnePlus 3 is the price point of £329. That price is
@@ -66,11 +64,8 @@ definitely very good second only to Samsung and no other.
 
 Wishlist
 
- 1. Functional Stylus (Frankly no other manufacturer is tapping on this market.
-    God knows why?)
-
- * Note 7 had a good integration of Fingerprint Scanner with browser to login to
-   various sites. I miss that on OnePlus 3.
- * External Memory Card slot.
+1. Functional Stylus (Frankly no other manufacturer is tapping on this market. God knows why?)
+2. Note 7 had a good integration of Fingerprint Scanner with browser to login to various sites. I miss that on OnePlus 3.
+3. External Memory Card slot.
 
 Here's hoping that OnePlus 3 team will listen to my wishlist :).
