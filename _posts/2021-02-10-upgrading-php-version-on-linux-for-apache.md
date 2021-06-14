@@ -6,6 +6,7 @@ date: 2021-02-10T00:04:01
 draft: false
 description: Upgrading PHP version on Linux for Apache
 last_modified_at: 2021-02-10T00:14:40
+classes: "wide"
 ---
 
 1.  Install the Apache module for specific php version

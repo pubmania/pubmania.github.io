@@ -1,22 +1,24 @@
 /* ==========================================================================
-   Dark skin
+   Gold skin
    ========================================================================== */
 
 /* Colors */
 $background-color: #252a34 !default;
 $text-color: #eaeaea !default;
-$primary-color: #00adb5 !default;
+$muted-text-color: $text-color !default;
+$primary-color: #fed136 !default;
 $border-color: mix(#fff, $background-color, 20%) !default;
 $code-background-color: mix(#000, $background-color, 15%) !default;
 $code-background-color-dark: mix(#000, $background-color, 20%) !default;
 $form-background-color: mix(#000, $background-color, 15%) !default;
 $footer-background-color: mix(#000, $background-color, 30%) !default;
-$link-color: mix($primary-color, $text-color, 0%) !default;
-$link-color-hover: mix(#fff, $link-color, 25%) !default;
+$link-color: mix($primary-color, $primary-color, 100%) !default;
+$link-color-hover: #8bc34a !default;
 $link-color-visited: mix(#000, $link-color, 25%) !default;
 $masthead-link-color: $text-color !default;
 $masthead-link-color-hover: mix(#000, $text-color, 20%) !default;
 $navicon-link-color-hover: mix(#000, $background-color, 30%) !default;
+
 
 .author__urls.social-icons i,
 .author__urls.social-icons .svg-inline--fa,
@@ -27,4 +29,58 @@ $navicon-link-color-hover: mix(#000, $background-color, 30%) !default;
 
 .ais-search-box .ais-search-box--input {
   background-color: $form-background-color;
+}
+
+.toc .nav__title {
+    color: #f80729 !important;
+}
+
+.toc__menu a:hover {
+    color: $link-color-hover !important;
+}
+
+.sidebar .author__name {
+	color: $primary-color !important;
+}
+
+.site-title {
+	color: $primary-color !important;
+}
+
+.author__bio {
+	color: $link-color-hover !important;
+}
+
+.site-subtitle {
+	color: $link-color-hover !important;
+}
+
+.archive__item a {
+    color: $primary-color !important;
+}
+
+/*Image cropper div*/
+.image-cropper {
+   width: 220px;
+   height: 220px;
+   position: relative;
+   overflow: hidden;
+   border-radius: 50%;
+   border:2px solid #f00;
+}
+
+/* Center image inside of parent */
+img.center {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}
+
+/* For horizontal rectangles */
+img.horizontal {
+   height: 100%;
+   width: auto;
+   max-width: 9999px; /* max-content fall back */
+   max-width: max-content;
 }

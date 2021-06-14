@@ -8,12 +8,13 @@ last_modified_at: 2020-08-01T22:00:00
 toc: true 
 ---
 
-Ankit Mittal
-============
-
-![Alt Text](../assets/images/profile_pix/profile_1.jpg)
--------------------------------------------------------
-
+<h1>Ankit Mittal</h1>
+------------------------------------------------------------------------
+<div align="center">	
+	<div class="image-cropper">
+	  <img src="../assets/images/profile_pix/profile_1.jpg" class="horizontal center" />
+	</div>
+</div>
 
 ------------------------------------------------------------------------
 

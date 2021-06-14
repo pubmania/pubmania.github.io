@@ -12,7 +12,7 @@
 
 # theme                  : "minimal-mistakes-jekyll"
 # remote_theme           : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin    : "contrast" #"default" "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin    : "gold" #"default" "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise", "gold"
 
 # Site Settings
 locale                   : "en-GB"
@@ -21,9 +21,9 @@ title_separator          : "-"
 subtitle                 : "I give what I take and then I try giving a bit more - My payback to the helpful open source community !!!" # site tagline that appears below site title in masthead
 name                     : "Ankit Mittal"
 description              : "An amazing website."
-url                      : "https://pubmania.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : "https://mgw.dumatics.com" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+repository               : "pubmania/pubmania.github.io" # GitHub pubmania/pubmania.github.io e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
@@ -114,7 +114,7 @@ author:
       # url: "https://facebook.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url: "https://github.com/"
+      url: "https://github.com/pubmania"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url: "https://instagram.com/"
@@ -130,7 +130,7 @@ footer:
       # url:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url:
+      url: "https://github.com/pubmania"
     - label: "GitLab"
       icon: "fab fa-fw fa-gitlab"
       # url:
@@ -293,4 +293,6 @@ defaults:
     values:
       layout: single
       author_profile: true
+      toc: true
+      toc_sticky: true
       #comments: true
