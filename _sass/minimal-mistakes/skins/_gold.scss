@@ -2,6 +2,7 @@
    Gold skin
    ========================================================================== */
 
+
 /* Colors */
 $background-color: #252a34 !default;
 $text-color: #eaeaea !default;
@@ -87,4 +88,87 @@ img.horizontal {
 
 .image-white {
 	background-color: white;
+}
+
+/* custom notify boxes 
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url('//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css');*/
+.notice, .notice--primary, .notice--info, .notice--success, .notice--warning, .notice--error, .notice--danger {
+    padding:10px;
+    margin:10px 0;
+}
+.notice:before, .notice--primary:before, .notice--info:before, .notice--success:before, .notice--warning:before, .notice--error:before, .notice--danger:before {
+    font-family: 'Font Awesome 5 Free';
+    font-style:normal;
+    font-weight:900;
+    speak:none;
+    display:inline-block;
+    text-decoration:inherit;
+    width:1em;
+    margin-right:.2em;
+    text-align:center;
+    font-variant:normal;
+    text-transform:none;
+    line-height:1em;
+    margin-left:.2em;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+}
+
+.notice:before {
+    content:'\f05a';
+}
+.notice--primary:before {
+    content:'\f05a';
+}
+.notice--info:before {
+    content:'\f05a';
+}
+.notice--success:before {
+    content:'\f00c';
+}
+.notice--warning:before {
+    content:'\f071';
+}
+.notice--error:before {
+    content:'\f057';
+}
+.notice--danger:before {
+	content: '\f714';
+}
+
+.notice {
+    color: #FFFFFF !important;
+    background-color: $link-color-hover !important;
+	border-left: 2em solid $primary-color;
+}
+.notice--primary {
+    color: #FF0000 !important;
+    background-color: $primary-color !important;
+	border-left: 2em solid $link-color-hover;
+}	
+.notice--info {
+    color: #00529B !important;
+    background-color: #BDE5F8 !important;
+	border-left: 2em solid #00529B;
+}
+.notice--success {
+    color: #4F8A10 !important;
+    background-color: #DFF2BF !important;
+	border-left: 2em solid #4F8A10;
+}
+.notice--warning {
+    color: #9F6000 !important;
+    background-color: #FEEFB3 !important;
+	border-left: 2em solid #9F6000;
+}
+.notice--error {
+    color: #D8000C !important;
+    background-color: #FFD2D2 !important;
+	border-left: 2em solid #D8000C;
+}
+.notice--danger {
+    color: #FFFFFF !important;
+    background-color: #FF0000 !important;
+	border-left: 2em solid #FFFFFF;
 }

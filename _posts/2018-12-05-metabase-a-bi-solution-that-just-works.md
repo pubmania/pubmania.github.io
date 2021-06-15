@@ -44,7 +44,7 @@ your domain name is say *yourdomain.com* then the URL to access metabase
 will be *metabase .yourdomain .com*.
 
 {: .notice--info}
-<i class="fas fa-info-circle"></i> It is important that if you use a different subdomain name, please replace metabase with the subdomain name you have chosen in all Apache conf file samples in sections below.
+It is important that if you use a different subdomain name, please replace metabase with the subdomain name you have chosen in all Apache conf file samples in sections below.
 
 More detailed steps are available on previous post [HERE](/prosody-behind-apache-on-debian-stretch/#createasubdomainrecord)
 

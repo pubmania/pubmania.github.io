@@ -37,7 +37,7 @@ Lately I have been a bit frustrated because while I subscribe to Audible service
     d. This should then output the `activation_bytes` in last line - something like `hex:abc43opu` as shown below:
     ![activation\_byte](../assets/images/2020/05/2020-05-1919-46-13-1.png)
     
-    **<i class="fas fa-info-circle"></i>** Above steps are required only once. Keep the activation_bytes code that you obtain above safe as it can be used for converting all your audiobooks.
+    Above steps are required only once. Keep the activation_bytes code that you obtain above safe as it can be used for converting all your audiobooks.
     {: .notice--info}
 
 
