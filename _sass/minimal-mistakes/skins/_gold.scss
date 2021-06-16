@@ -19,7 +19,11 @@ $link-color-visited: mix(#000, $link-color, 25%) !default;
 $masthead-link-color: $text-color !default;
 $masthead-link-color-hover: mix(#000, $text-color, 20%) !default;
 $navicon-link-color-hover: mix(#000, $background-color, 30%) !default;
-
+$success-color: #3fa63f !default;
+$warning-color: #FF6F00 !default;
+$danger-color: #ee5f5b !default;
+$info-color: #3b9cba !default;
+$error-color: #DF1C44 !default;
 
 .author__urls.social-icons i,
 .author__urls.social-icons .svg-inline--fa,
@@ -90,14 +94,16 @@ img.horizontal {
 	background-color: white;
 }
 
-/* custom notify boxes 
-@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
-@import url('//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css');*/
-.notice, .notice--primary, .notice--info, .notice--success, .notice--warning, .notice--error, .notice--danger {
+/***********************************************************************************************/
+/* custom notify boxes - @import url('//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css');*/
+/***********************************************************************************************/
+
+.notice, .notice--primary, .notice--info, .notice--success, .notice--warning, .notice--error, .notice--danger, .notice--tip {
     padding:10px;
     margin:10px 0;
 }
-.notice:before, .notice--primary:before, .notice--info:before, .notice--success:before, .notice--warning:before, .notice--error:before, .notice--danger:before {
+
+.notice:before, .notice--primary:before, .notice--info:before, .notice--success:before, .notice--warning:before, .notice--error:before, .notice--danger:before, .notify--tip:before {
     font-family: 'Font Awesome 5 Free';
     font-style:normal;
     font-weight:900;
@@ -116,59 +122,51 @@ img.horizontal {
 }
 
 .notice:before {
-    content:'\f05a';
+    content:'\f249';
 }
-.notice--primary:before {
-    content:'\f05a';
+.notice--primary:before, .notice--tip:before {
+    content:'\f0eb';
 }
 .notice--info:before {
     content:'\f05a';
 }
 .notice--success:before {
-    content:'\f00c';
+    content:'\f058';
 }
 .notice--warning:before {
     content:'\f071';
 }
 .notice--error:before {
-    content:'\f057';
+    content:'\f188';
 }
 .notice--danger:before {
 	content: '\f714';
 }
 
-.notice {
-    color: #FFFFFF !important;
-    background-color: $link-color-hover !important;
-	border-left: 2em solid $primary-color;
+@mixin notice($notice-color) {
+  color: mix(#000000,$notice-color,40%) !important;
+  background-color: mix(#FFFFF0,$notice-color,80%) !important;
+  border-left: 2em solid $notice-color
 }
-.notice--primary {
-    color: #FF0000 !important;
-    background-color: $primary-color !important;
-	border-left: 2em solid $link-color-hover;
+
+.notice {
+    @include notice($link-color-hover);
+}
+.notice--primary, .notice--tip {
+    @include notice($primary-color);
 }	
 .notice--info {
-    color: #00529B !important;
-    background-color: #BDE5F8 !important;
-	border-left: 2em solid #00529B;
+    @include notice($info-color);
 }
 .notice--success {
-    color: #4F8A10 !important;
-    background-color: #DFF2BF !important;
-	border-left: 2em solid #4F8A10;
+    @include notice($success-color);
 }
 .notice--warning {
-    color: #9F6000 !important;
-    background-color: #FEEFB3 !important;
-	border-left: 2em solid #9F6000;
+    @include notice($warning-color);
 }
 .notice--error {
-    color: #D8000C !important;
-    background-color: #FFD2D2 !important;
-	border-left: 2em solid #D8000C;
+    @include notice($error-color);
 }
 .notice--danger {
-    color: #FFFFFF !important;
-    background-color: #FF0000 !important;
-	border-left: 2em solid #FFFFFF;
+    @include notice($danger-color);
 }

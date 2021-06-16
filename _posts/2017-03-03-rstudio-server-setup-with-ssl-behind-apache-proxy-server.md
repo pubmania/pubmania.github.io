@@ -1,7 +1,7 @@
 ---
 title: "Rstudio Server Setup with SSL behind Apache proxy server"
 slug: "rstudio-server-setup-with-ssl-behind-apache-proxy-server"
-toc: false
+toc: true
 classes: "wide"
 date: 2017-03-03T15:10:00
 draft: false

@@ -7,6 +7,7 @@ date: 2018-06-15T12:36:19
 draft: false
 description: Complete walk-through to set-up a self-hosted instant messaging
 last_modified_at: 2020-05-21T11:56:42
+classes: "wide"
 ---
 
 Genreal Guidance {#genrealguidance}

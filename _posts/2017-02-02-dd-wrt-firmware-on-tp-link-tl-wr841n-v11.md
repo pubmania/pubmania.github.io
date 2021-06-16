@@ -1,7 +1,7 @@
 ---
 title: "DD-WRT firmware on TP-LINK TL-WR841N v11"
 slug: "dd-wrt-firmware-on-tp-link-tl-wr841n-v11"
-toc: false
+toc: true
 classes: "wide"
 date: 2017-02-02T18:46:00
 draft: false
@@ -19,6 +19,7 @@ So I figured that if I have to just play around a bit, I might as well start wit
 
 I had read that TP-Link router and specifically TL-WR841n plays nicely with DD-WRT but it was only after I had my new toy did I realise that these things also come in hardware version and while interwebs is filled with instructions on installing DD-WRT for upto v9, when it comes to v11 in Europe, it can be a bit tricky to proceed. There are some instructions in forums<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> but nothing that walks one end to end hence this post.
 
+## Flash router with DD-WRT firmware
 There are two ways to ensure that the DD-WRT firmware gets flashed on the router:
 
 <ol>

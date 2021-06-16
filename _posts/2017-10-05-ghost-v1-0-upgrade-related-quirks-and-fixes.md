@@ -32,7 +32,9 @@ OK so the steps I took are as below:
 We will take the back-up from front end for all the posts and we will also backup on the server the entire directory where old instance of the blog is residing.
 To take backup of all the content and download it in a json file, open your ghost site on a browser, navidate to &quot;Settings&quot; and then click on &quot;Export&quot;.
 Next for the backup of folder on the server itself. To do this issue the following commands on the terminal.
-<pre><code class="language-bash">#Updateand upgrade the OS repo
+
+```bash
+#Updateand upgrade the OS repo
 sudo apt-get update
 sudo apt-get upgrade
 #Stop the ghost server
@@ -47,15 +49,18 @@ sudo mkdir ghost
 cd ghost
 # Give right privileges to the new directory
 sudo chown -R &lt;your username&gt;:www-data .
-</code></pre>
+```
+
 <h2 id="downloadandinstall">Download and Install</h2>
 As we are already in the right directory lets get on with installing the latest version of Ghost using npm.
-<pre><code class="language-bash">sudo npm install -g ghost-cli
+
+```bash
+sudo npm install -g ghost-cli
 #Make sure you are in the directory where new ghost is to be installed.
 #If you have followed all commands so far, you will already be in 
 #required the directory
 ghost install
-</code></pre>
+```
 
 {: .notice--warning}
 It is at this point that you will have to deviate from official guide if you have Apache instead of NGINX. You will be prompted by the installer that it could not find NGINX and do you still want to continue. Default is &quot;No&quot; so make sure you enter &quot;Y&quot; and then press enter.
@@ -63,6 +68,7 @@ It is at this point that you will have to deviate from official guide if you hav
 <img src="../assets/images/2017/10/nginx-not-found.PNG" alt="nginx-not-found" loading="lazy"><br>
 For me rest of the install went smoothly.<br>
 <img src="../assets/images/2017/10/finish-install-process.PNG" alt="finish-install-process" loading="lazy">
+
 <h2 id="setupwizard">Setup Wizard</h2>
 Immediately after the install is complete, you will be presented with following questions:
 
@@ -96,6 +102,7 @@ nano config.production.json
 ```
 You can change the port if you like but if it is different than the port you originally had for old version of ghost you can either change it here or you need to change Apache conf file in next step.
 If you do decide to change the port here, then there should be no need to carry out the next step - Configure Apache.
+
 <h2 id="configureapache">Configure Apache</h2>
 Assuming that the port in Ghost config file was <code>1234</code>, there will be some changes that you will need to make in Apache conf files like so:
 

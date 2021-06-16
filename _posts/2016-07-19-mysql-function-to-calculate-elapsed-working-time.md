@@ -2,7 +2,7 @@
 title: "MySQL function to calculate elapsed working time"
 slug: "mysql-function-to-calculate-elapsed-working-time"
 excerpt: "Find out the age of an incident in working minutes"
-toc: false
+toc: true
 date: 2016-07-19T16:25:30
 draft: false
 description: MySQL function to calculate elapsed working time
@@ -31,7 +31,7 @@ Assumption: It is assumed that opening and closing times are same on all working
 
 Function should take all the above five "given" as parameter and then calculate age of the incident.
 
-#### Example of problem
+## Example of problem
 
 Let's say an incident was logged on "Friday 10th June 2016 at 12:00" for a site in the "UK" which opens between 09:00 to 16:00. This incident was then closed on "Tuesday 14th June 2016 at 14:00".
 

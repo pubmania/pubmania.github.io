@@ -1,7 +1,7 @@
 ---
 title: "MySQL Function to calculate closing WorkDay date given elapsed working time"
 slug: "mysql-function-to-calculate-closing-workday-date-given-elapsed-working-time"
-toc: false
+toc: true
 date: 2018-02-20T20:29:30
 draft: false
 description: MySQL Function to calculate closing WorkDay date given elapsed working time

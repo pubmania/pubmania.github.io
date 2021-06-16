@@ -8,6 +8,7 @@ description: Tech for Diabetics
 last_modified_at: 2021-03-12T13:05:15
 excerpt: "As a diabetic there are a number of things we are not able to control
 but one thing we can do is keep tabs on our data"
+classes: "wide"
 ---
 
 # Background
@@ -18,8 +19,6 @@ would have meant meticulously noting down BG readings in a diary, today
 it is much much easier with all the apps and connected services. In this
 article, I aim to go through the list of technologies that I am aware of
 and use to keep on top of my diabetic data right from my phone.
-
-
 
 # Blood Glucose Meter
 

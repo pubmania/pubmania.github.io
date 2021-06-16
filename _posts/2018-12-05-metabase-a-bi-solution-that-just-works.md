@@ -6,6 +6,7 @@ date: 2018-12-05T14:35:02
 draft: false
 description: Metabase - A BI solution that just works
 last_modified_at: 2019-04-08T17:36:09
+classes: "wide"
 ---
 
 I like exploring new solutions and anything to do with data always piques my interest. I came across this nice tool through the [list of free self hosted software](https://github.com/Kickball/awesome-selfhosted).
@@ -144,8 +145,8 @@ Do bear in mind if you change the port as explained above, you will also need to
 
 Access your metabase using the subdomain url - *http:// metabase.yourdomain .com* and it should walk you through the initial configuration. If you do not want to add a database and just play with the tool, they have kindly provided a sample database.
 
-{: .notify--info}
-<i class="fas fa-info-circle"></i> It might be useful for you to create a "user" in your database that has "read only" access and then use that "user" when you configure metabase. Metabase will only ever need read access as it cannot be used to modify data in your database.
+{: .notice--info}
+It might be useful for you to create a "user" in your database that has "read only" access and then use that "user" when you configure metabase. Metabase will only ever need read access as it cannot be used to modify data in your database.
 
 
 # Enable SSL

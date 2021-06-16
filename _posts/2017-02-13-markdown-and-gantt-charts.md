@@ -18,7 +18,7 @@ There are few ways of using it and because it has been made to work with MarkDow
 
 <ol>
 <li><a href="#installcutemarked">CuteMarkEd</a></li>
-<li><a href="#installmermailcli">Install Mermaid CLI</a></li>
+<li><a href="#installmermaidcli">Install Mermaid CLI</a></li>
 <li><a href="#installmarkdownplus">Install Markdown Plus</a></li>
 <li><a href="#mermaidliveeditor">Mermaid Live Editor</a></li>
 </ol>
@@ -48,6 +48,7 @@ sudo mkdir -p /usr/local/share/icons
 sudo cp app/icons/scalable/cutemarked.svg /usr/local/share/icons/cutemarked.svg
 sudo apt-get install fcitx-libs-qt5
 ```
+
 Now there is a <a href="https://github.com/cloose/CuteMarkEd/issues/241">bug</a> in the tool which makes the Gantt charts appear as monochrome but fear not for there is a workaround for it.Once installed, open CuteMarkEd and add a snippet in the tool to ensure Gantt charts display properly. Steps below:
 <ol>
 <li>Enable diagram support by clicking <code>Extras->Options->Diagram Support</code><br>
