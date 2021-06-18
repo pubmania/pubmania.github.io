@@ -5,7 +5,8 @@ draft: false
 description: About the author 
 permalink: /about/ 
 last_modified_at: 2020-08-01T22:00:00
-toc: true 
+toc: true
+author_profile: true 
 ---
 
 <h1>Ankit Mittal</h1>
