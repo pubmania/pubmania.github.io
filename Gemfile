@@ -12,4 +12,3 @@ gem "rake", "~> 13.0"
 gem "jekyll-include-cache", "~> 0.2.1"
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 gem "webrick", "~> 1.7"
-gem 'jekyll-plantuml', '~> 1.3', '>= 1.3.4'
