@@ -9,10 +9,6 @@ description: Install Maitreya - Vedic Astrology Software on Ubuntu / Kbuntu
 last_modified_at: 2010-03-22T13:38:00
 ---
 
-{% plantuml %}
-[First] - [Second]
-{% endplantuml %}
-
 First I must thank the Maitreya developers for coming up with such a wonderful Vedic Astrology software that works on Linux. I am not aware of any other vedic astrology software that works on Linux.
 Next I have to say that the install instructions on the site (and in the tarball) are not written with a newbie in mind and I had to struggle a bit before I could get it to work. The compiling of source code is really similar for I guess all source codes in general on linux and in particular in Ubuntu / Kubuntu but thing is when you are new to the platform and probably have almost all required software in repositories you rarely come across a situation where you need to compile from a source code to install your favourite software. Anyway so without wasting time in chit-chat, below is the step by step installation of Maitreya 6 on Ubuntu / Kubuntu:
 <pre><code>1. Download Maitreya 6 tarball.
