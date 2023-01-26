@@ -14,6 +14,8 @@ classes: "wide"
 
 Recently I found myself in a scenario where I had access to Github Enterprise but was limited to a windows machine. Now I wanted to host JupyterLite on Github Enterprise so it can be used by some other people on my team. Challenge was the "Actions" on this instance of Github enterprise were disabled and so I had to build Jupyterlite locally and push it on Github. I figured while at it, I might as well enable the "Panel" and few other dependencies. The steps that worked for me are documented here. This is ofcourse assuming that Python is already installed on the device.
 
+The final hosted JupyterLite can be seen in action [here](https://mgw.dumatics.com/jupyterlite_panel_dist/lab/index.html).
+
 The steps below created a Jupyterlite instance that allows use of Panel using the `%pip install panel` magic command, and if used on Chrome or its derivatives it also allows exploring local file system.
 
 ## Create and activate Jupyterlite Environment
