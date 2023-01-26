@@ -12,13 +12,13 @@ classes: "wide"
 
 # JupyterLite on Github Enterprise with Panel enabled
 
-Recently I found myself in a scenario where I has access to Github Enterprise but was limited to windows machine. Now I wanted to host Jupyterlite on Github Enterprise so it can be used by some other people on my team. Challenge was the "Actions" on this instance of Github enterprise were disabled and so I had to build Jupyterlite locally and push it on Github. I figured while at it, I might as well enable the "Panel" and few other dependencies. Steps below worked wonderfully well. This is ofcourse assuming that Python is already installed on the device.
+Recently I found myself in a scenario where I had access to Github Enterprise but was limited to a windows machine. Now I wanted to host JupyterLite on Github Enterprise so it can be used by some other people on my team. Challenge was the "Actions" on this instance of Github enterprise were disabled and so I had to build Jupyterlite locally and push it on Github. I figured while at it, I might as well enable the "Panel" and few other dependencies. The steps that worked for me are documented here. This is ofcourse assuming that Python is already installed on the device.
 
 The steps below created a Jupyterlite instance that allows use of Panel using the `%pip install panel` magic command, and if used on Chrome or its derivatives it also allows exploring local file system.
 
 ## Create and activate Jupyterlite Environment
 
-```
+```bash
 mkdir panel_lite
 cd .\panel_lite\
 py -m venv panel_v
@@ -28,14 +28,14 @@ pip install --upgrade pip
 
 ## Install jupyterlite and other extensions
 
-```
+```bash
 pip install --pre jupyterlite
 pip install jupyter-bokeh ipython ipywidgets jupyterlab-drawio jupyterlab-markup jupyterlab-myst jupyterlab-pygments jupyterlite-p5-kernel jupyterlite-xeus-sqlite libarchive-c matplotlib matplotlib-inline matplotlib-venn myst-nb myst-parser nbconvert numpy openpyxl pandas pandocfilters pkginfo pyopenssl python-dateutil python-dotenv pyviz-comms pyxlsb scipy sql SQLAlchemy sqlparse tornado widgetsnbextension xlrd XlsxWriter zipp jupyterlab-filesystem-access
 ```
 
 ## Prepare build directory
 
-```
+```bash
 mkdir jupyterlite_panel
 cd .\jupyterlite_panel\
 mkdir pypi
@@ -46,7 +46,7 @@ wget "https://cdn.holoviz.org/panel/0.14.2/dist/wheels/panel-0.14.2-py3-none-any
 
 ## Make a record of all that you have installed.
 
-```
+```bash
 pip freeze > requirements.txt
 ```
 
@@ -56,7 +56,7 @@ If you have some existing notebooks or files you would want to include on the ho
 
 ## Build Jupyterlite and serve locally to test
 
-```
+```bash
 jupyter lite build --output-dir ./dist
 cd .\dist\
 py -m http.server 8000
@@ -65,7 +65,7 @@ deactivate
 
 The folder structure after build should look somewhat like below:
 
-```
+```bash
 panel_lite:.
 ├───.cache
 ├───dist
@@ -95,9 +95,11 @@ panel_lite:.
 Github Desktop is the easiest way to do it. 
 
 Open Github desktop and create new reporsitory:
+
 ![Create New Repository](../assets/images/2023/01/1.png)
 
 On Github desktop point the Local Path field to `\panel_lite\jupyterlite_panel\dist` and do the initial commit and push to origin.
+
 ![Provide Local Path](../assets/images/2023/01/2.png)
 
 ## Host Jupyterlite as Github pages
@@ -114,3 +116,6 @@ On Github desktop point the Local Path field to `\panel_lite\jupyterlite_panel\d
 * select Branch: master (or main) and root as source.
 * Click Save and the message should be displayed in green box with the URL to access Jupyterlite.
 
+## Finally open the URL to access JupyterLite
+
+![JupyterLite hosted on Github Enterprise](../assets/images/2023/01/7.png)
