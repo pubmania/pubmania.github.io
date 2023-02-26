@@ -5,7 +5,7 @@ toc: true
 date: 2023-01-25T17:50:00
 draft: false
 description: JupyterLite on Github Enterprise with Panel enabled
-last_modified_at: 2021-03-12T13:05:15
+last_modified_at: 2023-01-25T17:50:00
 excerpt: "Steps to build JupyterLite on windows powershell with Panel and local file access and to host it on restricted Github Enterprise."
 classes: "wide"
 ---
