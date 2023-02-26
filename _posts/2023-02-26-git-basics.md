@@ -12,7 +12,7 @@ classes: "wide"
 
 # Basics of Git 
 
-Recently, I was asked to help people understand what is this whole business with GIT and I ran a few sessions on the topic specifically keeping in mind that my audience consisted of tech enthusiasts with minimal tech background. The content below is how I explained and as it went down well, so I figured it may be helpful to someone else too; hence this post. :)
+Recently, I was asked to help people understand what is this whole business with GIT and I ran a few sessions on the topic specifically keeping in mind that my audience consisted of tech enthusiasts with minimal tech background. The content below is how I explained and as it went down well, I figured it may be helpful to someone else too; hence this post. :)
 
 ## Version Control System
 
