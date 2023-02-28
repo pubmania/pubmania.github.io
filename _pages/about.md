@@ -79,7 +79,7 @@ PROFESSIONAL EXPERIENCE {#professionalexperience}
     programme for two well known high street banks.
 -   Delivered MPCS (Managed Print Cloud Service) for several 
     organisations including two international logistics provider, 
-    a UK govt. organisation, a nordics postal service
+    a UK govt. organisation and Nordics postal service provider.
 -   Delivered MPS (Managed Print Service) for two of the 
     well known Financial Institute in the UK with a global 
     presence across all continents with key focus on 
