@@ -93,7 +93,7 @@ This command ensures that git now makes the latest changes baseline and still ke
 
 ## Revert
 
-Now reverting to a previosu version requires that we know the commit id git applied to previous commits and then identify the exact commit id to which we want git to revert to. This can be achieved by checking git logs, so the sequence to git revert will be like so:
+Now reverting to a previous version requires that we know the commit id that git applied to previous commits and then identify the exact commit id to which we want git to revert to. This can be achieved by checking git logs, so the sequence to git revert will be like so:
 
 ```bash
 # Find the commit id to revert to
