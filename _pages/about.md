@@ -4,7 +4,7 @@ date: 2008-07-01T08:41:00
 draft: false
 description: About the author 
 permalink: /about/ 
-last_modified_at: 2020-08-01T22:00:00
+last_modified_at: 2023-02-28T18:40:00
 toc: true
 author_profile: true 
 ---
@@ -49,17 +49,21 @@ KEY COMPETENCIES {#keycompetencies}
     non-technical stakeholders and decision makers to ensure constant
     and timely flow of relevant information across the project.
 -   Experience of working and managing projects in both accelerated
-    (Agile) as well as controlled (waterfall) development models.
--   Managing multiple projects with team size of 4 to 80 team members
-    with budgets of up to 8M GBP.
--   International and domestic background in delivery of efficiency
-    changes and transformation programmes.
--   Over 10 years of Business Transformation Programme and Project
-    Management experience in the UK spanning across Financial Services
+    (Agile) as well as controlled (waterfall) development models 
+    and delivering in traditional on-prem as well as DevOps driven 
+    cloud deployments
+-   Managing multiple projects and programmes with large remote 
+    team size (80+)and budgets of up to 12M GBP.
+-   Over 13 years of Business Transformation Programme and Project
+    Management experience spanning across Financial Services
     (Insurance and Banking), Aero-space, Manufacturing, Printing and
     FMCG sectors.
--   Proven technical expertise in database technologies (MSSQL, MySQL,
-    Talend and various BI Suites)
+-   Proven technical expertise in database technologies (MSSQL, MySQL
+    and various BI Suites), web technologies and using Python 
+    for data analysis
+-   Thorough knowledge of DevOps methodology and associated technologies
+    (Git, Github, GitLab, Ansible, Puppet, Jenkins, Selenium, Kubernetes) 
+    and platforms (Azure, AWS).
 
 ------------------------------------------------------------------------
 
@@ -68,33 +72,36 @@ PROFESSIONAL EXPERIENCE {#professionalexperience}
 
 ------------------------------------------------------------------------
 
-### Client: HP and a leading High Street Bank, UK through IT Alliance. {#clienthpandaleadinghighstreetbankukthroughitalliance}
+### Client: HP, various Govt. and Financial institutes across UK and Europe through IT Alliance. {#clienthpvariousgovtandfinancialinstituesacrossukandeuropethroughitalliance}
 ***Role: Senior Project Manager/Programme Manager/Management Consultant, 11/2014 --Till Date***
 
--   Responsible for the programme to deliver MPS (Managed Print
-    Service - a service offering from HP) for the leading Financial
-    Institute in UK with a global presence across all continents with
-    key focus on EMEA, APAC and United States.
--   Reporting to Programme Board, tracking day to day progress of whole
-    programme portfolio at bank and small projects within HP.
--   Matrix managed a team of 10 country project managers, 3 technical
-    consultants, 6 technicians, 2 PMO support staff, 2 Helpdesk
-    Operations Managers, 3 developers and 4 project support officers.
--   Engaged with operational and technical stakeholders from both
-    banking and HP to deploy printing as a service, associated process
-    changes, embedding the Print helpdesk and implement changes with
-    benefit tracking.
--   Delivered new process within HP to benefit tracking at 84% saving
-    with an overall reduction in effort of nearly 25 man-days each
-    month.
+-   Responsible for Print Modernisation and Transformation 
+    programme for two well known high street banks.
+-   Delivered MPCS (Managed Print Cloud Service) for several 
+    organisations including two international logistics provider, 
+    a UK govt. organisation, a nordics postal service
+-   Delivered MPS (Managed Print Service) for two of the 
+    well known Financial Institute in the UK with a global 
+    presence across all continents with key focus on 
+    EMEA, APAC and United States.
+-   Driven the creation and maintenance of Knowledge Base
+    for North West Europe Market for print business operations 
+    while capturing, creating and implementing business processes 
+    delivering better customer experience and improved team 
+    satisfaction. 
 -   Outlined and delivered the complete PMO governance process in line
     with programme management best practices.
--   Managed end to end delivery of the bespoke MI Solution to complement
-    the MPS delivery and contributed in identifying process changes
-    based on the MI gathered.
--   Brought to table the technical expertise coupled with strong
-    management which helped in delivering solutions that meet customer
-    expectation both contractually and operationally.
+-   Matrix managed large teams - typically including a team of 
+    upto 2 - 10 country project managers, 3 technical
+    consultants, 2 - 20 technicians, 2 PMO support staff, 2 - 4 Helpdesk
+    Operations Managers, 3 - 6 developers and 2 - 4 project support officers.
+-   Engaged with operational and technical stakeholders from 
+    multiple organisations to deploy Print Modernisation and 
+    Transformation programmes as well as associated process changes, 
+    embedding the helpdesk and implementing changes with benefit tracking.
+-   Delivered new processes within HP to benefit tracking at 84% saving
+    with an overall reduction in effort of nearly 25 man-days each
+    month.
 
 ------------------------------------------------------------------------
 
