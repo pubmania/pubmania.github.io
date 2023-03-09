@@ -1,14 +1,19 @@
 source "https://rubygems.org"
 
-gem "jekyll", "~> 4.2"
-
-gem "jekyll-paginate", "~> 1.1"
-gem "jekyll-sitemap", "~> 1.4"
-
-gem "jekyll-gist", "~> 1.5"
-gem "jekyll-feed", "~> 0.13.0"
+gem "github-pages", group: :jekyll_plugins
 gem "rake", "~> 13.0"
-
-gem "jekyll-include-cache", "~> 0.2.1"
-gem 'wdm', '>= 0.1.0' if Gem.win_platform?
+gem "tzinfo-data"
+gem "wdm", "~> 0.1.0" if Gem.win_platform?
 gem "webrick", "~> 1.7"
+
+# If you have any plugins, put them here!
+group :jekyll_plugins do
+  gem "jekyll-paginate"
+  gem "jekyll-sitemap"
+  gem "jekyll-gist"
+  gem "jekyll-feed"
+  gem "jemoji"
+  gem "jekyll-include-cache"
+  gem "jekyll-algolia"
+  gem "jekyll-spaceship"
+end

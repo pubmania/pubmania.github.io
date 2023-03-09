@@ -222,7 +222,9 @@ plugins:
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
+  - jemoji
   - jekyll-include-cache
+  - jekyll-spaceship
 
 # mimic GitHub Pages with --safe
 whitelist:
