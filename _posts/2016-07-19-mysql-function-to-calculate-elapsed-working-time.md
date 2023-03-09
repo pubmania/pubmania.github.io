@@ -218,15 +218,7 @@ Select (`WORKDAY_TIME_DIFF_HOLIDAY_TABLE`('UK','2016-06-10 12:00:00','2016-06-14
 
 # Complete Flowchart
 
-This chart was made using [PlantText](http://www.planttext.com)
-
-<div class="image-white">
-<img src="../assets//images/2018/01/Workday-Time-Diff.svg">
-</div>
-
-## Chart Code
-
-```bash
+```plantuml!
 @startuml
 scale 0.8
 'skinparam monochrome true
