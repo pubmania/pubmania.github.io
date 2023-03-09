@@ -226,7 +226,7 @@ This chart was made using [PlantText](http://www.planttext.com)
 
 ## Chart Code
 
-```
+```bash
 @startuml
 scale 0.8
 'skinparam monochrome true
