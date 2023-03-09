@@ -222,6 +222,7 @@ Select (`WORKDAY_TIME_DIFF_HOLIDAY_TABLE`('UK','2016-06-10 12:00:00','2016-06-14
 @startuml
 scale 0.8
 'skinparam monochrome true
+!theme cerulean
 skinparam handwritten true
 skinparam shadowing false
 'title Workday Time Difference Function
@@ -231,6 +232,7 @@ start
 - closeddatetime in 'YYYY-MM-DD hh:mm' format,
 - starttime in 'hh:mm' format,
 - endtime in 'hh:mm' format;
+
 :Set @starttime = starttime
 Set @endtime = endtime
 Set @assigneddate = assigneddatetime
@@ -238,62 +240,87 @@ Set @closeddate = closeddatetime
 Set @timecount = 0
 Set @timevar1 = @assigneddate
 Set @nextdate = @assigneddate
-Set @timevar2 = null;
-:Select time_to_sec(timediff
-(@endtime,@starttime))/3600 
-into @maxhoursaday;
+Set @timevar2 = null
+Set @param_country = param_country;
+
+:Select time_to_sec(timediff(@endtime,@starttime))/3600 into @maxhoursaday;
+
 note left 
 #TIMEDIFF calculates difference between two times
 #Time_to_sec function converts data into seconds
 #Dividing by 3600 converts the time into hours
 end note
+
 :Set @checkstart = null
 Set @checkend = null;
+
 :Select CONCAT(SUBSTRING_INDEX(@assigneddate, ' ', 1), ' ',@starttime),
 CONCAT(SUBSTRING_INDEX(@closeddate, ' ', 1), ' ',@endtime)  into @checkstart, @checkend;
 
 if (@assigneddate > @checkstart) then (yes)
-		if (@closeddate0?) then (yes)
-while (count>=0?) is (true)
-:calculate weekday for nextdate
-select weekday(@nextdate) into @weekday;
-:Select sum(if(date_format(holiday_date,'%Y-%m-%d') = 
-substring_index(@nextdate,' ',1),1,0)) from 
-holiday_table where Country_codes = 'ALL' 
-or instr(Country_codes,@param_country)>0 into 
-@holidayflag;
-note left
-Set the holiday flag to 
-anything other than zero
-if the value in nextdate 
-for this loop is a holiday
-end note
-if ( @weekday0 into 
-@holidayflag;
-note left
-Set the holiday flag to 
-anything other than zero
-if the value in nextdate 
-for this loop is a holiday
-end note
-if ( @weekday<5? and @holidayflag=0) then (yes)
-:SELECT Least(Greatest(((TIME_TO_SEC
-(TIMEDIFF(@closeddate, @assigneddate))) 
-/ 3600),0),@maxhoursaday) INTO @timecount;
-note left
- #TIMEDIFF calculates difference between two times
- #Time_to_sec function converts data into seconds
- #Dividing by 3600 converts the time into hours
- #if the difference was negative, GREATEST will 
- ignore result in favour of 0
- #If result is greater than max working hours, 
- LEAST will ignore result in favour of maxhoursday
-end note
-else (if assigned and closed over holiday / weekend, set @timecount to 0)
-:Set @timecount = 0;
+		if (@closeddate < @checkend) then (yes)
+			:Set @assigneddate = @assigneddate
+            Set @closeddate = @closeddate;
+		else (no)
+			:Set @assigneddate = @assigneddate
+			Set @closeddate = @checkend;
+		endif
+    else (no)
+		if (@closeddate < @checkend) then (yes)
+			:SET @assigneddate = @checkstart
+            Set @closeddate = @closeddate;
+		else (no)
+			:SET @assigneddate = @checkstart
+            Set @closeddate = @checkend;
+		endif
+    endif
+
+:SELECT DATEDIFF(@closeddate, @assigneddate) INTO @fixcount; 
+
+:Set @count = @fixcount;
+
+If (@fixcount > 0) then (yes)
+	while (@count>=0)
+		:select weekday(@nextdate) into @weekday; 
+        note
+            Assign the weekday value to @weekday. Weekday returns o for Monday, 2 for Tuesday ...5 for Saturday and 6 for Sunday
+        end note
+        :Select sum(if(date_format(holiday_date,'%Y-%m-%d') = substring_index(@nextdate,' ',1),1,0)) from holiday_table where Country_codes = 'ALL' or instr(Country_codes,@param_country)>0 into @holidayflag; 
+		if ( @weekday<5 and @holidayflag=0) then (yes)
+			if (@count = @fixcount) then (yes)
+				:Set @timevar1 = @assigneddate;
+				:SELECT CONCAT(SUBSTRING_INDEX(@assigneddate, ' ', 1), ' ',@endtime) INTO @timevar2;
+
+			(no) elseif (@count = 0) then (yes)
+				:Select concat(substring_index(@closeddate,' ',1),' ',@starttime) into @timevar1; 
+				:Set @timevar2 = @closeddate;
+			else (no)
+				:Select concat(@nextdate,' ',@starttime) into @timevar1;
+				:SELECT CONCAT(@nextdate, ' ', @endtime) INTO @timevar2;
+			endif
+	    :SELECT LEAST(Greatest(((TIME_TO_SEC(TIMEDIFF(@timevar2, @timevar1))) / 3600),0),@maxhoursaday) 
+        INTO @timecounttemp;
+		:Set @timecount = @timecounttemp + @timecount;
+		endif
+        
+        :Set @timevar1 = @nextdate;
+        :SELECT ADDDATE(SUBSTRING_INDEX(@timevar1, ' ', 1),1) 
+        INTO @nextdate;
+		:Set @count = @count - 1;
+	endwhile
+else (no)
+    :select weekday(@assigneddate) into @weekday; 
+    :Select sum(if(date_format(holiday_date,'%Y-%m-%d') = substring_index(@assigneddate,' ',1),1,0)) from holiday_table where Country_codes = 'ALL' or instr(Country_codes,@param_country)>0 into @holidayflag; 
+    
+    if (@weekday<5 and @holidayflag=0) then (yes)
+        :SELECT Least(Greatest(((TIME_TO_SEC
+        (TIMEDIFF(@closeddate, @assigneddate))) / 3600),0)
+        ,@maxhoursaday) INTO @timecount;
+    else (no)
+        :Set @timecount = 0;
+    endif
 endif
-endif
-:return timecount*60;
+:RETURN @timecount*60;
 end
 @enduml
 ```
