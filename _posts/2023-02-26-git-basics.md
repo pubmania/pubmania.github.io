@@ -107,4 +107,56 @@ Now at this point, all changes are being tracked on the local machine of the use
 
 Github basically is a web based utility which acts as a remote location where we can push our finalised version to be saved in what is called a **github repository** for other collborators to then download (clone) as their local copy and work on. Once each poarty has made changes, the can each push their changes to the github with help of git and the version control will be applied automagically or in some instance with minimal manual intervention from the maintaining or one pushing the changes.
 
+```plantuml!
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+!define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
+!define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
+!include FONTAWESOME/users.puml
+!include FONTAWESOME/server.puml
+!include DEVICONS/git.puml
+!include FONTAWESOME/laptop_code.puml
+!include FONTAWESOME/folder.puml
+!include FONTAWESOME/file_alt.puml
+!include DEVICONS/git_commit.puml
+!include DEVICONS/github.puml
+!include DEVICONS/git_branch.puml
+''https://github.com/tupadr3/plantuml-icon-font-sprites/blob/master/font-awesome-5/index.md
+HIDE_STEREOTYPE()
+
+AddElementTag(wip, $bgColor=red)
+
+Person(dev,"User")
+System(laptop,"Local Device",$sprite="laptop_code")
+System(git,"Git on local device",$sprite="git")
+System(github,"GitHub (Remote)",$sprite="github")
+Rel_R(dev,laptop,"Make changes")
+Rel_R(laptop,git,"Tracked by Git")
+Rel_R(git,github,"Push commits")
+
+System_Boundary(OnDevice, "On Device"){
+    Component(folder, "Working Directory",$sprite="folder"){
+        System(file, "Working File",$sprite="file_alt")
+        Component(git_tracker, "GIT Tracker",$sprite="git"){
+            System(a_file, "Add File",$sprite="file_alt", $tags = "wip")
+            System(c_file, "Commit File",$sprite="git_commit", $tags = "wip")
+            Rel_D(a_file,c_file,"git commit -m <message>")
+        }
+        Rel_R(file,a_file,"git add ./<file>")
+    }
+}
+
+System_Boundary(Remote_Repository, "Github"){
+    System(repo, "main repo",$sprite="git_branch")
+}
+Rel_R(c_file,repo,"git push origin main")
+Lay_D(git, repo)
+Lay_R(a_file,c_file)
+Lay_D(laptop,file)
+Lay_D(git,a_file)
+Lay_D(laptop,folder)
+
+@enduml
+```
+
 There is lots going on in this last bit so lets break it down to digestable chunks of information in next session.
