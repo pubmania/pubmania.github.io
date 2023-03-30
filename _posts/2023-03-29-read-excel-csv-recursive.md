@@ -2,15 +2,17 @@
 title: "Python Function read excel / csv files from a given directory and its subdirectories"
 slug: "read-excel-csv-recursive"
 toc: true
-date: 2023-03-29T17:50:00
+date: 2023-03-29T17:16:00
 draft: false
 description: A function written in Python that allows user to provide parameters and then checks all excel and csv files to extract data where conditions are met.
-last_modified_at: 2023-02-28T17:50:00
+last_modified_at: 2023-02-28T17:16:00
 excerpt: "Reading multiple excel and csv files recursively in directory and subdirectories"
 classes: "wide"
 ---
 
 # Code
+
+The code for the function is as shown below:
 
 ```python
 import os
