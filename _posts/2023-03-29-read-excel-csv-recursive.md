@@ -5,7 +5,7 @@ toc: true
 date: 2023-03-29T17:16:00
 draft: false
 description: A function written in Python that allows user to provide parameters and then checks all excel and csv files to extract data where conditions are met.
-last_modified_at: 2023-02-28T17:16:00
+last_modified_at: 2023-04-18T20:26:00
 excerpt: "Reading multiple excel and csv files recursively in directory and subdirectories"
 classes: "wide"
 ---
@@ -161,3 +161,38 @@ df = extract_data(directory_path,columns_to_extract,date_col,skiprows,output_fil
 ```
 
 Now, assuming there were 12 separate files for past 12 months inside the folder then so long as all those files, irrespective of whether they are csv or excel, have the columns `Region`,`Country`, `Product Number`,`Quantity`,`Date of Sale`; the function will read the files and extract the data and return it to the dataframe `df`.
+
+# GUI Implementation
+
+A very basic GUI implementation of above function using PySimpleGUI with all codeis available [here](https://github.com/pubmania/extract_excel_csv_data_recursively)
+
+## Usage
+The script can directly be copied to a Jupyter cell or can be run from terminal. Following command should ensure all dependencies are installed:
+
+```python
+py -m pip install pandas, numpy, pysimplegui
+```
+
+Some things the GUI takes care of are: 
+
+* Allows selection of columns to be extracted from a sample `.csv` file
+* Allows user to specify which of the selected columns should be parsed as `date`
+* Gives a date based filename to `output`
+* Shows colour coded log for which files were read in green and which were ignored in red background.
+
+## Screenshots
+
+### Empty Form
+![image](https://user-images.githubusercontent.com/1966557/232877297-2d3a2914-8a7f-4f20-bba1-af8d0e92c039.png)
+
+### Filled Form
+![image](https://user-images.githubusercontent.com/1966557/232879216-22e3b81c-10d0-449f-80d1-30725c24b5ff.png)
+
+### Displays extracted output
+![image](https://user-images.githubusercontent.com/1966557/232881326-f2ecdd14-8bf6-4f7b-bcd4-3e5de4f361a2.png)
+
+### Displays filename of the output and location where it is saved
+![image](https://user-images.githubusercontent.com/1966557/232881685-6a0eafd9-a5be-464b-ae0c-5814b101fc02.png)
+
+### Colour coded log
+![image](https://user-images.githubusercontent.com/1966557/232882657-dd1e4e69-26a3-4849-8e94-9811cedab6d7.png)
