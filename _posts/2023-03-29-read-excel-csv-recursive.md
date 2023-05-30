@@ -182,6 +182,8 @@ Some things the GUI takes care of are:
 
 ## Screenshots
 
+Some screenshots of the resulting app are as shown below:
+
 ### Empty Form
 ![image](https://user-images.githubusercontent.com/1966557/232877297-2d3a2914-8a7f-4f20-bba1-af8d0e92c039.png)
 
