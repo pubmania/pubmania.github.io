@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.23.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+--><html lang="en" class="no-js">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Seafile Server behind nginx on Fedora 24 Security Lab Spin - Make Gadgets Work</title>
+<meta name="description" content="Seafile Server behind nginx on Fedora 24 Security Lab Spin">
+
+
+  <meta name="author" content="Ankit Mittal">
+  
+  <meta property="article:author" content="Ankit Mittal">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Make Gadgets Work">
+<meta property="og:title" content="Seafile Server behind nginx on Fedora 24 Security Lab Spin">
+<meta property="og:url" content="https://mgw.dumatics.com/seafile-server-behind-nginx-on-fedora-24-security-lab-spin/">
+
+
+  <meta property="og:description" content="Seafile Server behind nginx on Fedora 24 Security Lab Spin">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2016-06-27T17:54:00+00:00">
+
+
+
+  <meta property="article:modified_time" content="2016-06-27T17:54:00+00:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://mgw.dumatics.com/seafile-server-behind-nginx-on-fedora-24-security-lab-spin/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Ankit Mittal",
+      "url": "https://mgw.dumatics.com/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Make Gadgets Work Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+    <script src="/assets/js/scroll-to-top.js"></script>
+  
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Make Gadgets Work
+          <span class="site-subtitle">I give what I take and then I try giving a bit more - My payback to the helpful open source community !!!</span>
+        </a>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/"><i class="fas fa-home"></i></a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li>
+</ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile_pix/profile_1.jpg" alt="Ankit Mittal" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Ankit Mittal</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Programme Manager by profession, Developer at heart !!!</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">United Kingdom</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:mr.ankitmittal@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Seafile Server behind nginx on Fedora 24 Security Lab Spin">
+    <meta itemprop="description" content="I have recently been intrigued by the idea of replacing the likes of “Dropbox” and “Google Drive” with a cloud set-up of my own. I had “Owncloud” set-up for nearly a year but was not happy with it. There were minor niggles aside form speed and thumbnails and then “Owncloud” had a recent split leading to creation of “Nextcloud”.">
+    <meta itemprop="datePublished" content="2016-06-27T17:54:00+00:00">
+    <meta itemprop="dateModified" content="2016-06-27T17:54:00+00:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Seafile Server behind nginx on Fedora 24 Security Lab Spin
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          12 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+			  <aside class="sidebar__right sticky">
+				<nav class="toc">
+				  <header><h4 class="nav__title">
+<i class="fas fa-file-alt"></i> On this page</h4></header>
+				  <ul class="toc__menu">
+<li><a href="#1installrequiredsoftwaretosupportseafilewithnginx">1. Install required software to support seafile with nginx:</a></li>
+<li><a href="#2startmariadbserverandsetupbasicsecuritysettings">2. Start mariadb-server and set up basic security settings.</a></li>
+<li><a href="#3setupdatabasesandprivilegesforseafile">3. Set up databases and privileges for "seafile"</a></li>
+<li>
+<a href="#4createdirectoriestodownloadandextractseafileserver">4. Create directories to download and extract seafile server:</a><ul><li><a href="#checkpoint">Checkpoint</a></li></ul>
+</li>
+<li><a href="#5configuretheseafileserver">5. Configure the seafile-server</a></li>
+<li><a href="#6addtheuserandproviderightaccess">6. Add the user and provide right access</a></li>
+<li><a href="#7generatesslcertificate">7. Generate SSL Certificate:</a></li>
+<li><a href="#8createthenginxconfigfileforseafile">8. Create the nginx config file for seafile</a></li>
+<li><a href="#9applyconfigchangestoseafile">9. Apply config changes to seafile</a></li>
+<li>
+<a href="#10nowcreatetheseafileandseahubservicesandenablethemsotheyrunatsystemstartup">10. Now create the seafile and seahub services and enable them so they run at system startup:</a><ul><li><a href="#startnginxserviceandenabletorunatsystemstart">Start nginx service and enable to run at system start</a></li></ul>
+</li>
+<li><a href="#12fedoraspecificsteps">12. Fedora specific steps:</a></li>
+<li><a href="#13resetadminuserandpasswordforseafile">13. Re-set admin user and password for seafile:</a></li>
+<li><a href="#14firewallconfigurationandportforwarding">14. Firewall configuration and port forwarding:</a></li>
+<li><a href="#15finallyrestartnginx">15. Finally, restart nginx:</a></li>
+</ul>
+
+				</nav>
+			  </aside>
+		
+        <p>I have recently been intrigued by the idea of replacing the likes of “Dropbox” and “Google Drive” with a cloud set-up of my own. I had “Owncloud” set-up for nearly a year but was not happy with it. There were minor niggles aside form speed and thumbnails and then “Owncloud” had a recent split leading to creation of “Nextcloud”.</p>
+
+<p>While “Nextcloud” is the one that is more aligned to the general principles of community driven software, it is new and is still plagued with owncloud issues as it is essentially same stuff in new packaging at the moment.</p>
+
+<p>In the meantime, every now and then I was reading all the good stuff people had to say about “Seafile” and so I wanted to give it a try. Now for the past year and a half I have also been using Fedora Security Lab spin on my home server and I just wanted to get the Seafile set-up on it so I did a few “duckduckgo” searches on the net and finally had the steps to achieve the objective. Obviously it all worked and my Seafile server is live and kicking, hence the post. :)</p>
+
+<p>So in nutshell my objective was to:</p>
+
+<blockquote>
+<strong>Install seafile-server-5 behind nginx on Fedora 24 Security Lab spin all on a 32 bit 12 year old laptop.</strong>
+</blockquote>
+
+<p>The steps I followed are listed below with detailed notes of what I did. I do not claim these to be perfect but this is what worked for me. If you know that something can be done better, please do let me know in the comments.</p>
+
+<h2 id="1installrequiredsoftwaretosupportseafilewithnginx">1. Install required software to support seafile with nginx:</h2>
+<ol style="list-style-type: lower-alpha">
+<li>python </li>
+<li>python-imaging </li>
+<li>MySQL-python </li>
+<li>python-setuptools </li>
+<li>nginx </li>
+<li>mariadb </li>
+<li>mariadb-server</li>
+<li>policycoreutils-python</li>
+<li>setroubleshoot</li>
+</ol>
+
+<p>All this can be done with one single command:</p>
+
+<p><code class="language-plaintext highlighter-rouge">sudo dnf install python python-imaging MySQL-python python-setuptools nginx mariadb mariadb-server policycoreutils-python setroubleshoot</code></p>
+
+<h2 id="2startmariadbserverandsetupbasicsecuritysettings">2. Start mariadb-server and set up basic security settings.</h2>
+<p>Now as we need to run all commands with “sudo”, it is actually easier to just go root. In other words, type “su” on the terminal and provide your password so you are logged in as root on the terminal. When you are logged in as root the $ changes to # at command prompt. All commands below are on root so if you are not logged in as root, you will need to run these with “sudo”.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#Start mariadb: </span>
+<span class="o">[</span>root@localhost /] systemctl start mariadb
+<span class="c">#Initiate the mariadb secure installation:</span>
+<span class="o">[</span>root@localhost /] mysql_secure_installation
+</code></pre></div></div>
+<p>Above command will trigger a set of questions around port, username, password etc. You can of course change these. If you do so, you must keep note of it and change your specific details for database in subsequent steps but if you leave it default you will basically have a user: root, with a password of your choice (we will use “sqlpasswd” for this example) and a database server running at port 3306.</p>
+<h2 id="3setupdatabasesandprivilegesforseafile">3. Set up databases and privileges for "seafile"</h2>
+<p>Type following:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@localhost /] mysql <span class="nt">-p</span>
+</code></pre></div></div>
+<p>You will be prompted to enter a password. Provide the password you have set-up for maria-db server in step above. So for our example it will be: sqlpasswd
+Now on mysql prompt type following commands one after one along with semi-colon:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">create</span> <span class="k">database</span> <span class="nv">`ccnet-db`</span> <span class="nb">character</span> <span class="k">set</span> <span class="o">=</span> <span class="s1">'utf8'</span><span class="p">;</span>
+<span class="k">create</span> <span class="k">database</span> <span class="nv">`seafile-db`</span> <span class="nb">character</span> <span class="k">set</span> <span class="o">=</span> <span class="s1">'utf8'</span><span class="p">;</span>
+<span class="k">create</span> <span class="k">database</span> <span class="nv">`seahub-db`</span> <span class="nb">character</span> <span class="k">set</span> <span class="o">=</span> <span class="s1">'utf8'</span>
+</code></pre></div></div>
+<p>Now we will create a user named “seafile” for mysql with a password ‘seafilepwd’. You must replace this password with one of your own. To do so use the command below and change seafilepwd with a password of your choice.</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">create</span> <span class="k">user</span> <span class="s1">'seafile'</span><span class="o">@</span><span class="s1">'localhost'</span> <span class="n">identified</span> <span class="k">by</span> <span class="s1">'seafilepwd'</span><span class="p">;</span>
+</code></pre></div></div>
+<p>Once seafile user is created, we need to grant permissions to this user on the three databases we created above. To do so, use the following one by one on mysql command prompt:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">PRIVILEGES</span> <span class="k">ON</span> <span class="nv">`ccnet-db`</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="nv">`seafile`</span><span class="o">@</span><span class="n">localhost</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">PRIVILEGES</span> <span class="k">ON</span> <span class="nv">`seafile-db`</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="nv">`seafile`</span><span class="o">@</span><span class="n">localhost</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">PRIVILEGES</span> <span class="k">ON</span> <span class="nv">`seahub-db`</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="nv">`seafile`</span><span class="o">@</span><span class="n">localhost</span><span class="p">;</span>
+</code></pre></div></div>
+<p>Finally we will make sure that mariadb-server starts every-time the system is started. To do this simply copy the command below:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@localhost /] systemctl <span class="nb">enable </span>mariadb
+</code></pre></div></div>
+<h2 id="4createdirectoriestodownloadandextractseafileserver">4. Create directories to download and extract seafile server:</h2>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><table class="rouge-table"><tbody><tr>
+<td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td>
+<td class="code"><pre><span class="c">#Create a directory called seafile:</span>
+<span class="o">[</span>root@localhost /] <span class="nb">mkdir</span> /opt/seafile
+Now change directory to the newly created path
+<span class="o">[</span>root@localhost /] <span class="nb">cd</span> /opt/seafile
+</pre></td>
+</tr></tbody></table></code></pre></figure>
+
+<p>Download the latest seafile-server relevant to your machine architecture (32 bit, 64 bit etc). As I am using a 32 bit laptop, I used the link meant for that.</p>
+
+<p class="notice--tip">TIP: You can get the relevant link by first opening the seafile site in firefox (https://www.seafile.com/en/download/) and scrolling down all the way to “Server” section. Then under linux section you will see link for 64 bit and 32 bit versions. Right click on one you need and click on “Copy Link” Location&amp;quot;. The copied text is what you need to paste after wget in command below.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@localhost /] wget https://bintray.com/artifact/download/seafile-org/seafile/seafile-server_5.1.3_i386.tar.gz
+</code></pre></div></div>
+<p>Now to extract the downloaded file, type following command.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@localhost /] <span class="nb">tar</span> <span class="nt">-xzf</span> seafile-server_5.1.3_i386.tar.gz
+</code></pre></div></div>
+<p class="notice--tip">TIP: If downloaded version is different, the filename “seafile-server_5.1.3_i386.tar.gz” will be different in the link you would have got from previous step. Use the file name right at the end of the link you copied.</p>
+
+<p>OK, now we will create a directory named “installed” and move the downloaded file in there.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@localhost /] <span class="nb">mkdir </span>installed
+<span class="o">[</span>root@localhost /] <span class="nb">mv </span>seafile-server_5.1.3_i386.tar.gz installed
+</code></pre></div></div>
+<h3 id="checkpoint">Checkpoint</h3>
+<p>At this point, if you give the tree command, your directory structure would look as shown below</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@localhost seafile] tree <span class="nt">-L</span> 2
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.
+|---installed
+|----- seafile-server_5.1.3_i386.tar.gz
+|---seafile-server-5.1.3
+|----- check_init_admin.py
+|----- reset-admin.sh
+|----- runtime
+|----- seaf-fsck.sh
+|----- seaf-fuse.sh
+|----- seaf-gc.sh
+|----- seafile
+|----- seafile.sh
+|----- seahub
+|----- seahub.sh
+|----- setup-seafile-mysql.py
+|----- setup-seafile-mysql.sh
+|----- setup-seafile.sh
+|----- upgrade
+</code></pre></div></div>
+<h2 id="5configuretheseafileserver">5. Configure the seafile-server</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#Change directory to seafile-server where the execution scripts are residing.</span>
+<span class="o">[</span>root@localhost seafile] <span class="nb">cd </span>seafile-server-5.1.3
+<span class="c">#Now run the execution script:</span>
+<span class="o">[</span>root@localhost seafile-server-5.1.3] ./setup-seafile-mysql.sh
+</code></pre></div></div>
+
+<p>Running this script will initiate the seafile server set-up for mysql. You will need to provide answers to some questions. I am providing those below where you need to deviate from default or need to provide specifc information:</p>
+<ol style="list-style-type: lower-alpha">
+<li>
+<em>Name of the server.</em> Provide a servername like "my_seafile_cloud" or "cloudy_lemon" ...you get the gist.</li>
+<li>
+<em>IP or Domain of Server:</em> </li>
+</ol>
+
+<div class="notice--tip">
+<p>TIP: Now let’s take a bit of time to understand what should go here. For my usage I wanted to use dyndns so I can access this server from outside of my home network. So I had to configure my dyndns url to a port on my home router such that router understood that incoming traffic to that particular port must be transferred to this machine where the server is hosted.</p>
+
+<p>Then on this machine, I have forwarded the traffic coming to a specific port again to whichever server I want to access thus having my unique URL for each service I am interested in. I will go into in a bit more detail later but for now, just ensure you are providing 1 the internal IP as well as dyndns IP along with the port you have configured on your router to reach this machine in particular where you are configuring the server.</p>
+
+<p>So if internal IP of this machine is 192.168.1.24 and my dyndns url is banana.dyndns.com and I have forwarded port 9994 on my router to this machine and on machine incoming traffic to 9994 is forwarded to the port relevant to seahub then I will provide following entries as answer to this question:
+192.168.1.24:9994, banana.dyndns.com</p>
+</div>
+
+<ol style="list-style-type: lower-alpha">
+<li>
+<em>Choose a way to initiatlise seafile databases:</em> 
+Now remember we have already done this in step 2. So for this question we will need to give option 2. so just type 2 and press enter.
+</li>
+<li>
+<em>Host of mysql server:</em> Unless you changed this in step 2, leave it as default (localhost)
+</li>
+<li>
+<em>Port for mysql server:</em> as above leave it default (3306) unless you changed in Step 2.
+</li>
+<li>
+<em>User for seafile:</em> seafile
+</li>
+<li>
+<em>Password for user "seafile":</em> Use the password provided in Step 3. "seafilepwd" is what we provided for this example.
+</li>
+<li>
+<em>Database name for ccnet:</em> ccnet-db
+</li>
+<li>
+<em>Database name for seafile:</em> seafile-db
+</li>
+<li>
+<em>Database name for seahub:</em> seahub-db</li>
+</ol>
+
+<p>Once this wizard has completed configuring, you will get a confirmation that will tell you that seafile is now listening on port 8082 and seahub on port 8000 unless you changed these while providing answers to the wizard.</p>
+
+<h2 id="6addtheuserandproviderightaccess">6. Add the user and provide right access</h2>
+
+<p>Use following commands to go up one directory, add a user “seafile” and provide right privileges.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@localhost seafile-server-5.1.3] <span class="nb">cd</span> ..
+<span class="o">[</span>root@localhost seafile] adduser seafile
+<span class="o">[</span>root@localhost seafile] <span class="nb">chown</span> <span class="nt">-R</span> seafile <span class="nb">.</span>
+</code></pre></div></div>
+<h2 id="7generatesslcertificate">7. Generate SSL Certificate:</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#Change directory to /etc/ssl</span>
+<span class="o">[</span>root@localhost seafile] <span class="nb">cd</span> /etc/ssl
+<span class="c">#Generate private and public ssl certificates</span>
+<span class="o">[</span>root@localhost ssl] openssl genrsa <span class="nt">-out</span> seafile_privkey.pem 2048
+<span class="o">[</span>root@localhost ssl] openssl req <span class="nt">-new</span> <span class="nt">-x509</span> <span class="nt">-key</span> seafile_privkey.pem <span class="nt">-out</span> seafile_cacert.pem <span class="nt">-days</span> 1095
+</code></pre></div></div>
+<h2 id="8createthenginxconfigfileforseafile">8. Create the nginx config file for seafile</h2>
+
+<p>Use following command to create seafile.conf file:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@localhost ssl] nano /etc/nginx/conf.d/seafile.conf
+</code></pre></div></div>
+<p>Copy Paste the following but do make relevant changes where required for servername etc:</p>
+
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">########################################################</span>
+<span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span>      <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">*banana.dyndns.com*</span><span class="p">;</span> <span class="kn">---&amp;gt</span><span class="p">;</span> <span class="kn">Must</span> <span class="s">change</span> <span class="s">this</span> <span class="s">as</span> <span class="s">per</span> <span class="s">your</span> <span class="s">set-up.</span> <span class="s">Notice</span> <span class="s">no</span> <span class="s">port</span> <span class="mi">9994</span> <span class="s">here.</span>
+    <span class="s">rewrite</span> <span class="s">^</span> <span class="s">https://</span><span class="nv">$http_host$request_uri</span><span class="s">?</span> <span class="s">permanent</span><span class="p">;</span>   <span class="c1"># force redirect http to https. </span>
+<span class="p">}</span>
+<span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">443</span><span class="p">;</span>
+    <span class="kn">ssl</span> <span class="no">on</span><span class="p">;</span>
+    <span class="kn">ssl_certificate</span> <span class="n">/etc/ssl/seafile_cacert.pem</span><span class="p">;</span>
+    <span class="kn">ssl_certificate_key</span> <span class="n">/etc/ssl/seafile_privkey.pem</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">*banana.dyndns.com*</span><span class="p">;</span> <span class="kn">---&amp;gt</span><span class="p">;</span><span class="kn">Must</span> <span class="s">change</span> <span class="s">this</span> <span class="s">as</span> <span class="s">per</span> <span class="s">your</span> <span class="s">set-up.</span> <span class="s">Notice</span> <span class="s">no</span> <span class="s">port</span> <span class="mi">9994</span> <span class="s">here.</span> 
+    <span class="s">proxy_set_header</span> <span class="s">X-Forwarded-For</span> <span class="nv">$remote_addr</span><span class="p">;</span>
+    <span class="kn">add_header</span> <span class="s">Strict-Transport-Security</span> <span class="s">"max-age=31536000</span><span class="p">;</span> <span class="kn">includeSubdomains&amp;amp</span><span class="p">;</span><span class="kn">quot</span><span class="p">;</span>;
+    <span class="kn">server_tokens</span> <span class="no">off</span><span class="p">;</span>
+    <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>
+        <span class="kn">fastcgi_pass</span>   <span class="nf">127.0.0.1</span><span class="p">:</span><span class="mi">8000</span><span class="p">;</span>
+        <span class="kn">fastcgi_param</span>  <span class="s">SCRIPT_FILENAME</span>    <span class="nv">$document_root$fastcgi_script_name</span><span class="p">;</span>
+        <span class="kn">fastcgi_param</span>  <span class="s">PATH_INFO</span>          <span class="nv">$fastcgi_script_name</span><span class="p">;</span>
+        <span class="kn">fastcgi_param</span>  <span class="s">SERVER_PROTOCOL</span>    <span class="nv">$server_protocol</span><span class="p">;</span>
+        <span class="kn">fastcgi_param</span>  <span class="s">QUERY_STRING</span>       <span class="nv">$query_string</span><span class="p">;</span>
+        <span class="kn">fastcgi_param</span>  <span class="s">REQUEST_METHOD</span>     <span class="nv">$request_method</span><span class="p">;</span>
+        <span class="kn">fastcgi_param</span>  <span class="s">CONTENT_TYPE</span>       <span class="nv">$content_type</span><span class="p">;</span>
+        <span class="kn">fastcgi_param</span>  <span class="s">CONTENT_LENGTH</span>     <span class="nv">$content_length</span><span class="p">;</span>
+        <span class="kn">fastcgi_param</span>  <span class="s">SERVER_ADDR</span>        <span class="nv">$server_addr</span><span class="p">;</span>
+        <span class="kn">fastcgi_param</span>  <span class="s">SERVER_PORT</span>        <span class="nv">$server_port</span><span class="p">;</span>
+        <span class="kn">fastcgi_param</span>  <span class="s">SERVER_NAME</span>        <span class="nv">$server_name</span><span class="p">;</span>
+        <span class="kn">fastcgi_param</span>  <span class="s">HTTPS</span>              <span class="no">on</span><span class="p">;</span>
+        <span class="kn">fastcgi_param</span>  <span class="s">HTTP_SCHEME</span>        <span class="s">https</span><span class="p">;</span>
+        <span class="kn">access_log</span>     <span class="n">/var/log/nginx/seahub.access.log</span><span class="p">;</span>
+        <span class="kn">error_log</span>      <span class="n">/var/log/nginx/seahub.error.log</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kn">location</span> <span class="n">/seafhttp</span> <span class="p">{</span>
+        <span class="kn">rewrite</span> <span class="s">^/seafhttp(.*)</span>$ <span class="nv">$1</span> <span class="s">break</span><span class="p">;</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://127.0.0.1:8082</span><span class="p">;</span>
+        <span class="kn">client_max_body_size</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kn">proxy_connect_timeout</span> <span class="s">36000s</span><span class="p">;</span>
+        <span class="kn">proxy_read_timeout</span> <span class="s">36000s</span><span class="p">;</span>
+        <span class="kn">proxy_send_timeout</span> <span class="s">36000s</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kn">location</span> <span class="n">/media</span> <span class="p">{</span>
+        <span class="kn">root</span> <span class="n">/opt/seafile/seafile-server-latest/seahub</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="c1">########################################################</span>
+</code></pre></div></div>
+<h2 id="9applyconfigchangestoseafile">9. Apply config changes to seafile</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#Change to conf directory at /opt/seafile.</span>
+<span class="o">[</span>root@localhost ssl] <span class="nb">cd</span> /opt/seafile/conf
+<span class="c">#Now open the ccnet.conf file:</span>
+<span class="o">[</span>root@localhost conf] nano ccnet.conf
+</code></pre></div></div>
+<p>Amend the file as per below:</p>
+
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">########################################################</span>
+
+<span class="k">[General]</span>
+<span class="s">USER_NAME</span> <span class="p">=</span> <span class="s">my_seafile_cloud</span> 
+<span class="c1">#**Must change this as per your setup.**</span>
+<span class="s">ID</span> <span class="p">=</span>
+<span class="s">NAME</span> <span class="p">=</span> <span class="s">my_seafile_cloud</span> <span class="c1">####&amp;lt;--------- Must change this as per your setup.</span>
+<span class="s">SERVICE_URL</span> <span class="p">=</span> <span class="s">https://192.168.1.24:9994,https://banana.dyndns.com:9994</span> 
+<span class="c1">#**Must change this as per your setup.**</span>
+<span class="c1">#**Also note that here we have provided the 9994 port **</span>
+<span class="c1">#**- the one we used as port forward on router **</span>
+<span class="c1">#**to send traffic to this machine.**</span>
+
+<span class="s">[Client]</span>
+<span class="s">PORT</span> <span class="p">=</span> <span class="mi">13419</span>
+
+<span class="s">[Database]</span>
+<span class="s">ENGINE</span> <span class="p">=</span> <span class="s">mysql</span>
+<span class="s">HOST</span> <span class="p">=</span> <span class="mi">127</span><span class="s">.0.0.1</span>
+<span class="s">PORT</span> <span class="p">=</span> <span class="mi">3306</span>
+<span class="s">USER</span> <span class="p">=</span> <span class="s">seafile</span>
+<span class="s">PASSWD</span> <span class="p">=</span> <span class="s">sqlpasswd</span> 
+<span class="c1">#**This would be same as what was provided in Step 2.**</span>
+<span class="s">DB</span> <span class="p">=</span> <span class="s">ccnet-db</span>
+<span class="s">CONNECTION_CHARSET</span> <span class="p">=</span> <span class="s">utf8</span>
+
+<span class="c1">########################################################</span>
+</code></pre></div></div>
+<p>Open the seahub_settings.py file</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@localhost conf] nano seahub_settings.py
+</code></pre></div></div>
+<p>Add the line <code>FILE_SERVER_ROOT= 'https://banana.dyndns.com:9994/seafhttp'</code> replacing <em>banana.dyndns.com:9994</em> with url to reach your machine.</p>
+
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">########################################################</span>
+
+<span class="k">DATABASES</span> <span class="p">=</span> 
+<span class="p">{</span>
+	<span class="kn">'default':</span> 
+	<span class="p">{</span>
+	<span class="kn">'ENGINE':</span> <span class="s">'django.db.backends.mysql',</span>
+	<span class="s">'NAME':</span> <span class="s">'seahub-db',</span>
+	<span class="s">'USER':</span> <span class="s">'seafile',</span>
+	<span class="s">'PASSWORD':</span> <span class="s">'sqlpasswd',</span> <span class="c1">#This will be same as password created in Step 2.</span>
+	<span class="s">'HOST':</span> <span class="s">'127.0.0.1',</span>
+	<span class="s">'PORT':</span> <span class="s">'3306'</span>
+	<span class="err">}</span>
+<span class="err">}</span>
+
+<span class="s">FILE_SERVER_ROOT=</span> <span class="s">'https://banana.dyndns.com:9994/seafhttp'</span> 
+<span class="c1">#**Must change this as per your setup.**</span>
+<span class="c1">#**Also note that here we have provided the 9994 port **</span>
+<span class="c1">#**- the one we used as port forward on router **</span>
+<span class="c1">#**to send traffic to this machine.**</span>
+</code></pre></div></div>
+<h2 id="10nowcreatetheseafileandseahubservicesandenablethemsotheyrunatsystemstartup">10. Now create the seafile and seahub services and enable them so they run at system startup:</h2>
+<p>Create a seafile.service file:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@localhost conf] nano /etc/systemd/system/seafile.service
+</code></pre></div></div>
+
+<p>Paste the below into the file:</p>
+
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">########################################################</span>
+
+<span class="k">[Unit]</span>
+<span class="s">Description=Seafile</span>
+<span class="s">After=network.target</span> <span class="s">mariadb.service</span>
+
+<span class="s">[Service]</span>
+<span class="s">Type=oneshot</span>
+<span class="s">ExecStart=/opt/seafile/seafile-server-latest/seafile.sh</span> <span class="s">start</span>
+<span class="s">ExecStop=/opt/seafile/seafile-server-latest/seafile.sh</span> <span class="s">stop</span>
+<span class="s">RemainAfterExit=yes</span>
+<span class="s">User=seafile</span>
+<span class="s">Group=seafile</span>
+
+<span class="s">[Install]</span>
+<span class="s">WantedBy=multi-user.target</span>
+<span class="c1">#########################################################</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#Now reload the systemd and enable seafile to start at system start-up.</span>
+<span class="o">[</span>root@localhost conf] systemctl daemon-reload
+<span class="o">[</span>root@localhost conf] systemctl <span class="nb">enable </span>seafile
+<span class="c">#Create a seahub.service file:</span>
+<span class="o">[</span>root@localhost conf] nano /etc/systemd/system/seahub.service
+</code></pre></div></div>
+
+<p>Paste the following in the file and save.</p>
+
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">##########################################################</span>
+<span class="k">[Unit]</span>
+<span class="s">Description=Seafile</span> <span class="s">hub</span>
+<span class="s">After=network.target</span> <span class="s">seafile.service</span>
+
+<span class="s">[Service]</span>
+<span class="s">ExecStart=/opt/seafile/seafile-server-latest/seahub.sh</span> <span class="s">start-fastcgi</span>
+<span class="s">ExecStop=/opt/seafile/seafile-server-latest/seahub.sh</span> <span class="s">stop</span>
+<span class="s">User=seafile</span>
+<span class="s">Group=seafile</span>
+<span class="s">Type=oneshot</span>
+<span class="s">RemainAfterExit=yes</span>
+
+<span class="s">[Install]</span>
+<span class="s">WantedBy=multi-user.target</span>
+<span class="c1">##########################################################</span>
+</code></pre></div></div>
+<p>Now enable seahub to start at system start-up and start seafile and seahub services.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@localhost conf] systemctl <span class="nb">enable </span>seahub
+<span class="o">[</span>root@localhost conf] systemctl start seafile
+<span class="o">[</span>root@localhost conf] systemctl start seahub
+</code></pre></div></div>
+<h3 id="startnginxserviceandenabletorunatsystemstart">Start nginx service and enable to run at system start</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@localhost conf] systemctl <span class="nb">enable </span>nginx.service
+<span class="o">[</span>root@localhost conf] systemctl start nginx.service
+</code></pre></div></div>
+<h2 id="12fedoraspecificsteps">12. Fedora specific steps:</h2>
+
+<p>Now at this point there were few final things specific to Fedora that needed attention. I was ending up getting error 500 and what not and after a bit of searching on duckduckgo, I tried steps listed in this section that fixed the issue.</p>
+
+<p>I am not entirely sure what this does but what I understood is selinux was not allowing some access between nginx and seafile which this resolved. How? Well, you tell me :D.</p>
+
+<p>I had to install policycoreutils-python and setroubleshoot packages for these commands to work, so I have included them in Step 1 anyway.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@localhost conf] <span class="nb">cat</span> /var/log/audit/audit.log | <span class="nb">grep </span>nginx | <span class="nb">grep </span>denied | audit2allow <span class="nt">-M</span> mynginx
+<span class="o">[</span>root@localhost conf] semodule <span class="nt">-i</span> mynginx.pp
+<span class="o">[</span>root@localhost conf] setsebool httpd_can_network_connect 1
+</code></pre></div></div>
+<h2 id="13resetadminuserandpasswordforseafile">13. Re-set admin user and password for seafile:</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#Change directory to seafile</span>
+<span class="o">[</span>root@localhost conf] <span class="nb">cd</span> /opt/seafile/seafile-server-5.1.3/
+<span class="c">#Now run the reset-admin</span>
+<span class="o">[</span>root@localhost seafile-server-5.1.3] ./reset-admin.sh
+</code></pre></div></div>
+
+<h2 id="14firewallconfigurationandportforwarding">14. Firewall configuration and port forwarding:</h2>
+
+<p>Notes below are relevant to system running Fedora Security Lab spin with XFCE but general principle will be same.
+Application-&gt;Administration-&gt;Firewall will open firewall gui.<br></p>
+
+<p><br><img src="../assets/images/2016/07/Figure-1-1.png" alt="Alt Text" style="width:40%;height:40%;"></p>
+
+<p>You will be asked for password and upon entering you will be presented with Zones and Services.
+<br><img src="../assets/images/2016/07/Figure-2.png" alt="Alt Text" style="width:50%;height:50%;"></p>
+
+<p>In Services enable https by clicking the checkbox against “https”.
+<br><img src="../assets/images/2016/07/Figure-3.png" alt="Alt Text" style="width:30%;height:30%;"><br></p>
+
+<p>Now click on “Ports” and click on “Add”.
+<br><img src="../assets/images/2016/07/Figure-4.png" alt="Alt Text" style="width:240px;height:228px;"><br>
+Then add port 8082 in “Port / Port Range” and select “TCP” as “Protocol”.<br>
+Then add port 8082 in “Port / Port Range” and select “UDP” as “Protocol”.<br>
+Then add port 8000 in “Port / Port Range” and select “TCP” as “Protocol”.<br>
+Then add port 8000 in “Port / Port Range” and select “UDP” as “Protocol”.<br>
+Then add port 443 in “Port / Port Range” and select “TCP” as “Protocol”.<br>
+<br><img src="../assets/images/2016/07/Figure-5.png" alt="Alt Text" style="width:30%;height:30%;"><br></p>
+
+<p>Now click on Port Forward tab and click on “Add”. Then fill field as shown below:</p>
+
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Protocol:</span> <span class="s">tcp</span>  
+<span class="s">Port</span> <span class="n">/</span> <span class="s">Port</span> <span class="s">Range:</span> <span class="mi">9994</span> 
+<span class="c1"># This is the port you have used on your router for port forwarding to this machine.</span>
+<span class="s">Under</span> <span class="s">Destination</span> <span class="s">section,</span> <span class="s">tick</span> <span class="s">the</span> <span class="s">checkbox</span> <span class="s">for</span> <span class="s">"Local</span> <span class="s">Forwarding"</span>
+<span class="s">Port</span> <span class="n">/</span> <span class="s">Port</span> <span class="s">Forwarding</span> <span class="s">field:</span> <span class="mi">443</span> 
+<span class="c1"># If you have used above configuration, SSL is enabled at 443. </span>
+<span class="c1"># If you have changed it, mention the relevant port.</span>
+</code></pre></div></div>
+<p class="notice--tip">TIP: Once you have made these changes don’t forget to save this from run time to permanent or these changes will be lost when you restart the machine. [Options-&gt; Runtime to Permanent]</p>
+
+<h2 id="15finallyrestartnginx">15. Finally, restart nginx:</h2>
+
+<p>Use the following command to restart nginx services.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>root@localhost seafile-server-5.1.3]# systemctl restart nginx.service
+</code></pre></div></div>
+<p>This is it. All Done !!!
+If you now type your URL: (https://<em>banana.dyndns.com</em>:9994 from this example) on a browser, you will be presented with login page where you should use the admin login details you have created in Step 13 above.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-06-27">June 27, 2016</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Seafile+Server+behind+nginx+on+Fedora+24+Security+Lab+Spin%20https%3A%2F%2Fmgw.dumatics.com%2Fseafile-server-behind-nginx-on-fedora-24-security-lab-spin%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmgw.dumatics.com%2Fseafile-server-behind-nginx-on-fedora-24-security-lab-spin%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fmgw.dumatics.com%2Fseafile-server-behind-nginx-on-fedora-24-security-lab-spin%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/crossover/" class="pagination--pager" title="Crossover
+">Previous</a>
+    
+    
+      <a href="/ghost-on-fedora-24/" class="pagination--pager" title="Ghost on Fedora 24
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/read-excel-csv-recursive/" rel="permalink">Python Function read excel / csv files from a given directory and its subdirectories
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Reading multiple excel and csv files recursively in directory and subdirectories
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git-jargon/" rel="permalink">Git Jargon
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Familiarisation with some Git jargon
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git-basics/" rel="permalink">Git Basics
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">What is GIT, how is it used and where to begin
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jupyterlite-on-github-enterprise-with-panel-enabled/" rel="permalink">JupyterLite on Github Enterprise with Panel enabled
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Steps to build JupyterLite on windows powershell with Panel and local file access and to host it on restricted Github Enterprise.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+<form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term...">
+  </form>
+  <div id="results" class="results"></div>
+</div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<div id="scroll-to-top">
+    <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-angle-double-up fa-stack-1x fa-inverse up-arrow"></i>
+    </span>
+</div>
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2023 Ankit Mittal. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://mgw.dumatics.com/seafile-server-behind-nginx-on-fedora-24-security-lab-spin/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/seafile-server-behind-nginx-on-fedora-24-security-lab-spin"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://makegadgetswork.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+
+  
+
+
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  
+    <script src="/assets/js/clipboardrouge.js"></script>
+  
+
+
+
+  </body>
+</html>

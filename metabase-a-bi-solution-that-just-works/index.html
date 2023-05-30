@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.23.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+--><html lang="en" class="no-js">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Metabase - A BI solution that just works - Make Gadgets Work</title>
+<meta name="description" content="Metabase - A BI solution that just works">
+
+
+  <meta name="author" content="Ankit Mittal">
+  
+  <meta property="article:author" content="Ankit Mittal">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Make Gadgets Work">
+<meta property="og:title" content="Metabase - A BI solution that just works">
+<meta property="og:url" content="https://mgw.dumatics.com/metabase-a-bi-solution-that-just-works/">
+
+
+  <meta property="og:description" content="Metabase - A BI solution that just works">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2018-12-05T14:35:02+00:00">
+
+
+
+  <meta property="article:modified_time" content="2019-04-08T17:36:09+00:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://mgw.dumatics.com/metabase-a-bi-solution-that-just-works/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Ankit Mittal",
+      "url": "https://mgw.dumatics.com/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Make Gadgets Work Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+    <script src="/assets/js/scroll-to-top.js"></script>
+  
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Make Gadgets Work
+          <span class="site-subtitle">I give what I take and then I try giving a bit more - My payback to the helpful open source community !!!</span>
+        </a>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/"><i class="fas fa-home"></i></a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li>
+</ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile_pix/profile_1.jpg" alt="Ankit Mittal" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Ankit Mittal</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Programme Manager by profession, Developer at heart !!!</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">United Kingdom</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:mr.ankitmittal@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Metabase - A BI solution that just works">
+    <meta itemprop="description" content="I like exploring new solutions and anything to do with data always piques my interest. I came across this nice tool through the list of free self hosted software.">
+    <meta itemprop="datePublished" content="2018-12-05T14:35:02+00:00">
+    <meta itemprop="dateModified" content="2019-04-08T17:36:09+00:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Metabase - A BI solution that just works
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+			  <aside class="sidebar__right sticky">
+				<nav class="toc">
+				  <header><h4 class="nav__title">
+<i class="fas fa-file-alt"></i> On this page</h4></header>
+				  <ul class="toc__menu">
+<li><a href="#create-a-record-for-subdomain">Create A-record for subdomain</a></li>
+<li><a href="#download-and-create-apache-conf">Download and Create Apache Conf</a></li>
+<li><a href="#run-metabase-docker-image">Run Metabase docker image</a></li>
+<li><a href="#access-and-configure-on-browser">Access and configure on browser</a></li>
+<li><a href="#enable-ssl">Enable SSL</a></li>
+<li><a href="#update-version">Update version</a></li>
+</ul>
+
+				</nav>
+			  </aside>
+		
+        <p>I like exploring new solutions and anything to do with data always piques my interest. I came across this nice tool through the <a href="https://github.com/Kickball/awesome-selfhosted">list of free self hosted software</a>.</p>
+
+<div class="notice--info">
+<p><strong>UPDATE:</strong> 
+I am still getting introduced to the world of docker and while most of it just works few things confuse the hell out of me.</p>
+
+<p>Anyway what happened is there was an update for Metabase and I wanted to apply it on my container and in doing so I realised that some of this post can be changed to make it a better experience from get go because after update all my config and dashboards were gone and I had to reconfigure everything.</p>
+
+<p>It could be that my lack of knowledge meant I did something wrong and faced the issue but irrespective doing it as per updated post below will ensure you dont face the issue at all because I have now tested it twice to ensure it works well.</p>
+</div>
+
+<p>I have also added the steps to update the metabase to latest docker image as it worked for me.</p>
+
+<p>The overall impression when I opened their site can be summed up with WOW!! Now they offer simple docker install supported officially by them and the guide to install docker image is simple enough but the few
+simple steps I followed are as below:</p>
+
+<ol>
+  <li>Create an A-record for a subdomain for metabase</li>
+  <li>Download the official <em>metabse</em> docker image from dockerhub</li>
+  <li>Create an apache server conf file for metabase</li>
+  <li>Run the metabase docker image</li>
+  <li>Access metabase docker image using subdomain URL</li>
+  <li>Configure your database on metabase</li>
+  <li>Run Certbot to make the URL https</li>
+  <li>Done!!</li>
+</ol>
+
+<h1 id="create-a-record-for-subdomain">Create A-record for subdomain</h1>
+
+<p>Using the process for your Domain Name Regsitrar create an A-Record for
+a subdomain you would want to use for metabase. For this guide we will
+assume that the subdomain being created is called <strong>“metabase”</strong> so if
+your domain name is say <em>yourdomain.com</em> then the URL to access metabase
+will be <em>metabase .yourdomain .com</em>.</p>
+
+<p class="notice--info">It is important that if you use a different subdomain name, please replace metabase with the subdomain name you have chosen in all Apache conf file samples in sections below.</p>
+
+<p>More detailed steps are available on previous post <a href="/prosody-behind-apache-on-debian-stretch/#createasubdomainrecord">HERE</a></p>
+
+<h1 id="download-and-create-apache-conf">Download and Create Apache Conf</h1>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull metabase/metabase
+<span class="nb">cd</span> /etc/apache2/sites-available/
+<span class="nb">sudo </span>nano metabase.conf
+</code></pre></div></div>
+<p>Create a conf file similar to what is shown below:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">VirtualHost</span> <span class="o">*</span><span class="p">:</span><span class="mi">80</span><span class="o">&gt;</span>
+    <span class="nx">ServerName</span> <span class="nx">metabase</span><span class="p">.</span><span class="nx">yourdomain</span><span class="p">.</span><span class="nx">com</span>
+    <span class="nx">ServerAlias</span> <span class="nx">metabase</span><span class="p">.</span><span class="nx">yourdomain</span><span class="p">.</span><span class="nx">com</span>
+
+    <span class="nx">ErrorLog</span> <span class="nx">$</span><span class="p">{</span><span class="nx">APACHE_LOG_DIR</span><span class="p">}</span><span class="sr">/error_metabase.lo</span><span class="err">g
+</span>    <span class="nx">CustomLog</span> <span class="nx">$</span><span class="p">{</span><span class="nx">APACHE_LOG_DIR</span><span class="p">}</span><span class="sr">/access_metabase.log combine</span><span class="err">d
+</span>
+    <span class="nx">ProxyPreserveHost</span> <span class="nx">On</span>
+    <span class="nx">ProxyPass</span> <span class="o">/</span> <span class="nx">http</span><span class="p">:</span><span class="c1">//localhost:3000/</span>
+    <span class="nx">ProxyPassReverse</span> <span class="o">/</span> <span class="nx">http</span><span class="p">:</span><span class="o">/</span><span class="nx">localhost</span><span class="p">:</span><span class="mi">3000</span><span class="o">/</span>
+    <span class="nx">ProxyPass</span> <span class="dl">"</span><span class="s2">/ws2/</span><span class="dl">"</span>  <span class="dl">"</span><span class="s2">ws://localhost:3000/</span><span class="dl">"</span>
+    <span class="nx">ProxyPass</span> <span class="dl">"</span><span class="s2">/wss2/</span><span class="dl">"</span> <span class="dl">"</span><span class="s2">wss://localhost:3000/</span><span class="dl">"</span>        
+ <span class="o">&lt;</span><span class="sr">/VirtualHost</span><span class="err">&gt;
+</span></code></pre></div></div>
+<p>Save this by pressing <code class="language-plaintext highlighter-rouge">Ctrl+X</code> and issue following commands to enable site and reload the apache server.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">sudo </span>a2ensite metabase.conf
+ <span class="nb">sudo </span>systemctl reload apache2
+</code></pre></div></div>
+
+<h1 id="run-metabase-docker-image">Run Metabase docker image</h1>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-d</span> <span class="nt">-p</span> 3000:3000 <span class="nt">--name</span> metabase metabase/metabase
+</code></pre></div></div>
+<p>If all goes well, you should have metabase already running. If you get an error to the effect saying port 3000 is already in use, you will perhaps have to run it on another port (say 12345) but as metabase container would have been created you will need to issue following commands.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker <span class="nb">rm </span>metabase
+docker run <span class="nt">-d</span> <span class="nt">-p</span> 12345:3000 <span class="nt">--name</span> metabase metabase/metabase
+</code></pre></div></div>
+<p>In addition to avoid running the database through the container we must anyway move it to filesystem. Using commands below:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir /var/www/metabase
+</code></pre></div></div>
+<p>This command will create metabase directory on the path /var/www/metabase but you can as easily chose another path as you wish. If you do, just remember to update it in next commands.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker ps
+</code></pre></div></div>
+<p>This will show you the active docker containers. Copy the container ID in first column for the row where under Names you see “metabase” which is the container name we have given using previosu commands.Now copy the
+database from container to local filesystem.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd /var/www/metabase
+docker cp &lt;container ID&gt;:/metabase.db ./
+</code></pre></div></div>
+<p>Now Stop and rename the container</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker stop metabase
+docker rename metabase metabase_old
+</code></pre></div></div>
+<p>Finally run Metabase Docker Image while pointing it to your filesystem for database file.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run -d -p 12345:3000 -v ~/metabase-data:/var/www/metabase -e "MB_DB_FILE=/var/www/metabase/metabase.db" --name metabase metabase/metabase
+</code></pre></div></div>
+<p>The above docker command can be explained as below:</p>
+
+<p><code class="language-plaintext highlighter-rouge">docker run -d  </code>- This is telling system to start a container in detached mode. By design, containers started in detached mode exit when the root process used to run the container exits.</p>
+
+<p>` -p 12345:3000` -  This is telling docker to make the container map port 12345 to port 3000 which is the default port on which metabase starts its server.</p>
+
+<p><code class="language-plaintext highlighter-rouge">-v ~/metabase-data:/var/www/metabase</code>- This part is telling docker to map the “metabase-data” directory in the container to “/var/www/metabase” on the filesystem. In other words, mounting the local volume at path “/var/www/metabase” onto the container in “metabase-data” directory.</p>
+
+<p><code class="language-plaintext highlighter-rouge">--name metabase metabase/metabase</code>- Finally this part of command is telling docker to name the container “metabase” and to use the docker image “metabase/metabase” from dockerhub</p>
+
+<p>Do bear in mind if you change the port as explained above, you will also need to change the port in apache conf file in previous step. So your apache conf file in this case will look as shown below:</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="o">&lt;</span><span class="nx">VirtualHost</span> <span class="o">*</span><span class="p">:</span><span class="mi">80</span><span class="o">&gt;</span>
+        <span class="nx">ServerName</span> <span class="nx">metabase</span><span class="p">.</span><span class="nx">yourdomain</span><span class="p">.</span><span class="nx">com</span>
+        <span class="nx">ServerAlias</span> <span class="nx">metabase</span><span class="p">.</span><span class="nx">yourdomain</span><span class="p">.</span><span class="nx">com</span>
+    
+        <span class="nx">ErrorLog</span> <span class="nx">$</span><span class="p">{</span><span class="nx">APACHE_LOG_DIR</span><span class="p">}</span><span class="sr">/error_metabase.lo</span><span class="err">g
+</span>        <span class="nx">CustomLog</span> <span class="nx">$</span><span class="p">{</span><span class="nx">APACHE_LOG_DIR</span><span class="p">}</span><span class="sr">/access_metabase.log combine</span><span class="err">d
+</span>    
+        <span class="nx">ProxyPreserveHost</span> <span class="nx">On</span>
+        <span class="nx">ProxyPass</span> <span class="o">/</span> <span class="nx">http</span><span class="p">:</span><span class="c1">//localhost:12345/</span>
+        <span class="nx">ProxyPassReverse</span> <span class="o">/</span> <span class="nx">http</span><span class="p">:</span><span class="o">/</span><span class="nx">localhost</span><span class="p">:</span><span class="mi">12345</span><span class="o">/</span>
+        <span class="nx">ProxyPass</span> <span class="dl">"</span><span class="s2">/ws2/</span><span class="dl">"</span>  <span class="dl">"</span><span class="s2">ws://localhost:12345/</span><span class="dl">"</span>
+        <span class="nx">ProxyPass</span> <span class="dl">"</span><span class="s2">/wss2/</span><span class="dl">"</span> <span class="dl">"</span><span class="s2">wss://localhost:12345/</span><span class="dl">"</span>
+        
+    <span class="o">&lt;</span><span class="sr">/VirtualHost</span><span class="err">&gt;
+</span></code></pre></div></div>
+<h1 id="access-and-configure-on-browser">Access and configure on browser</h1>
+
+<p>Access your metabase using the subdomain url - <em>http:// metabase.yourdomain .com</em> and it should walk you through the initial configuration. If you do not want to add a database and just play with the tool, they have kindly provided a sample database.</p>
+
+<p class="notice--info">It might be useful for you to create a “user” in your database that has “read only” access and then use that “user” when you configure metabase. Metabase will only ever need read access as it cannot be used to modify data in your database.</p>
+
+<h1 id="enable-ssl">Enable SSL</h1>
+
+<p>Once you are happy with your configuration from step above, just run the certbot to enable https using letsencrypt certificate. On Debian this could be as simple as issuing the command</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>certbot
+</code></pre></div></div>
+<p>Once above step is created you will have an additional conf file named <strong>metabase-le-ssl.conf</strong> created in the location <code class="language-plaintext highlighter-rouge">/etc/apache2/sites-available</code>. Check this and once it is there you are all set to access your new functional metabase instance on https. More detailed steps are available on previous post <a href="/prosody-behind-apache-on-debian-stretch/#enablesslsetupusingletsencrypt">HERE</a></p>
+
+<h1 id="update-version">Update version</h1>
+
+<p>Updating on docker image is pretty straight forward and provided you have followed steps above should not result in you loosing all the effort once update has completed.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#docker rm metabase_old</span>
+
+docker stop metabase
+
+<span class="c">#docker rename metabase metabase_old</span>
+
+docker pull metabase/metabase
+
+docker start metabase
+</code></pre></div></div>
+<p>From my recent messing around, I have come to realise that so long as the first start of the docker image was done using environment variables pointing to correct database directory, there is no need to run the commented lines above and a simple stop, upgrade and start should work just fine. Enjoy!!!</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-04-08">April 8, 2019</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Metabase+-+A+BI+solution+that+just+works%20https%3A%2F%2Fmgw.dumatics.com%2Fmetabase-a-bi-solution-that-just-works%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmgw.dumatics.com%2Fmetabase-a-bi-solution-that-just-works%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fmgw.dumatics.com%2Fmetabase-a-bi-solution-that-just-works%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/prosody-behind-apache-on-debian-stretch/" class="pagination--pager" title="Prosody behind Apache on Debian Stretch with Conversations
+">Previous</a>
+    
+    
+      <a href="/converting-aax-audible-to-mp3/" class="pagination--pager" title="Converting AAX (Audible) to mp3
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/read-excel-csv-recursive/" rel="permalink">Python Function read excel / csv files from a given directory and its subdirectories
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Reading multiple excel and csv files recursively in directory and subdirectories
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git-jargon/" rel="permalink">Git Jargon
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Familiarisation with some Git jargon
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git-basics/" rel="permalink">Git Basics
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">What is GIT, how is it used and where to begin
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jupyterlite-on-github-enterprise-with-panel-enabled/" rel="permalink">JupyterLite on Github Enterprise with Panel enabled
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Steps to build JupyterLite on windows powershell with Panel and local file access and to host it on restricted Github Enterprise.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+<form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term...">
+  </form>
+  <div id="results" class="results"></div>
+</div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<div id="scroll-to-top">
+    <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-angle-double-up fa-stack-1x fa-inverse up-arrow"></i>
+    </span>
+</div>
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2023 Ankit Mittal. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://mgw.dumatics.com/metabase-a-bi-solution-that-just-works/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/metabase-a-bi-solution-that-just-works"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://makegadgetswork.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+
+  
+
+
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  
+    <script src="/assets/js/clipboardrouge.js"></script>
+  
+
+
+
+  </body>
+</html>

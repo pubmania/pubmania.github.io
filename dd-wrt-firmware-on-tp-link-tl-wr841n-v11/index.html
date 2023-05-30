@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.23.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+--><html lang="en" class="no-js">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>DD-WRT firmware on TP-LINK TL-WR841N v11 - Make Gadgets Work</title>
+<meta name="description" content="Apply Unlocked stock firmware, download all the three files from… Follow these steps: 1. Connect the power supply to the TP-Link router and switch it on. 2. Connect the ethernet cable in one of the yellow LAN slots of the router. …">
+
+
+  <meta name="author" content="Ankit Mittal">
+  
+  <meta property="article:author" content="Ankit Mittal">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Make Gadgets Work">
+<meta property="og:title" content="DD-WRT firmware on TP-LINK TL-WR841N v11">
+<meta property="og:url" content="https://mgw.dumatics.com/dd-wrt-firmware-on-tp-link-tl-wr841n-v11/">
+
+
+  <meta property="og:description" content="Apply Unlocked stock firmware, download all the three files from… Follow these steps: 1. Connect the power supply to the TP-Link router and switch it on. 2. Connect the ethernet cable in one of the yellow LAN slots of the router. …">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2017-02-02T18:46:00+00:00">
+
+
+
+  <meta property="article:modified_time" content="2018-03-29T15:37:53+00:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://mgw.dumatics.com/dd-wrt-firmware-on-tp-link-tl-wr841n-v11/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Ankit Mittal",
+      "url": "https://mgw.dumatics.com/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Make Gadgets Work Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+    <script src="/assets/js/scroll-to-top.js"></script>
+  
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Make Gadgets Work
+          <span class="site-subtitle">I give what I take and then I try giving a bit more - My payback to the helpful open source community !!!</span>
+        </a>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/"><i class="fas fa-home"></i></a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li>
+</ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile_pix/profile_1.jpg" alt="Ankit Mittal" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Ankit Mittal</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Programme Manager by profession, Developer at heart !!!</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">United Kingdom</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:mr.ankitmittal@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="DD-WRT firmware on TP-LINK TL-WR841N v11">
+    <meta itemprop="description" content="I have been with PlusNet for over two years now and am a happy camper as far as fiber optic broadband is concerned but as I am no longer on a broadband contract with PlusNet and had no intention of going on one, so the only way I could get a change to my ageing router was by purchasing a new one.Hence I started reading about my options and soon enough realised that an old router can be given new lease of life using DD-WRT. Equally soon-ish I also realised that the router from PlusNet - TG582n - is quite rubbish and does not play nice with any of the open source firmwares.So I figured that if I have to just play around a bit, I might as well start with something cheaper and cheaper is what I found in the TP-Link router TL-WR841n at just £16.00. You can’t get any cheaper than that in my opinion. OK, so now that we have established that I am cheap and my new router is cheap, let’s move on to interesting stuff.">
+    <meta itemprop="datePublished" content="2017-02-02T18:46:00+00:00">
+    <meta itemprop="dateModified" content="2018-03-29T15:37:53+00:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">DD-WRT firmware on TP-LINK TL-WR841N v11
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+			  <aside class="sidebar__right sticky">
+				<nav class="toc">
+				  <header><h4 class="nav__title">
+<i class="fas fa-file-alt"></i> On this page</h4></header>
+				  <ul class="toc__menu">
+<li><a href="#flash-router-with-dd-wrt-firmware">Flash router with DD-WRT firmware</a></li>
+<li><a href="#makingnestplaynicewithddwrt">Making NEST play nice with DD-WRT</a></li>
+<li><a href="#configurerouterforplusnetfiberopticbroadband">Configure router for PlusNet Fiber Optic Broadband</a></li>
+</ul>
+
+				</nav>
+			  </aside>
+		
+        <p>I have been with PlusNet for over two years now and am a happy camper as far as fiber optic broadband is concerned but as I am no longer on a broadband contract with PlusNet and had no intention of going on one, so the only way I could get a change to my ageing router was by purchasing a new one.
+Hence I started reading about my options and soon enough realised that an old router can be given new lease of life using DD-WRT. Equally soon-ish I also realised that the router from PlusNet - TG582n - is quite rubbish and does not play nice with any of the open source firmwares.
+So I figured that if I have to just play around a bit, I might as well start with something cheaper and cheaper is what I found in the TP-Link router TL-WR841n at just £16.00. You can’t get any cheaper than that in my opinion. OK, so now that we have established that I am cheap and my new router is cheap, let’s move on to interesting stuff.</p>
+
+<p>I had read that TP-Link router and specifically TL-WR841n plays nicely with DD-WRT but it was only after I had my new toy did I realise that these things also come in hardware version and while interwebs is filled with instructions on installing DD-WRT for upto v9, when it comes to v11 in Europe, it can be a bit tricky to proceed. There are some instructions in forums<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> but nothing that walks one end to end hence this post.</p>
+
+<h2 id="flash-router-with-dd-wrt-firmware">Flash router with DD-WRT firmware</h2>
+<p>There are two ways to ensure that the DD-WRT firmware gets flashed on the router:</p>
+
+<ol>
+<li>
+<strong>Apply Unlocked stock firmware</strong>  - This is the one I used and to use this I downloaded the modified firmware from NeDark that he has provided in a post on the OpenWRT forum <a href="https://forum.openwrt.org/viewtopic.php?id=67382">here</a>
+</li>
+</ol>
+<ul>
+<li>
+<strong>Using TFTP server</strong> - This is considered to be a safe approach because you do not have to use any modded version of stock firmware to apply it. However, if like me you are anyway going to flash it with DD-WRT, I feel it's a bit of pain that can be avoided as it involves setting up TFTP server and making your router to connect to this server can take some time and effort. It is explained <a href="http://www.dd-wrt.com/phpBB2/viewtopic.php?t=304830&sid=84c147f63f0876b055b3eb7add2a8d4e">here</a>.</li>
+</ul>
+
+<p>Right, so assuming you want to go with the first and easier approach, first you need to download the modded firmware from NeDark. He has uploaded it on his <a href="https://dl.dropboxusercontent.com/u/5038754/wr841n%28EU%29_v11_150616.bin">dropbox link</a> and I have also uploaded a copy of this firmware <a href="http://www.mediafire.com/file/4ap8bde3m6trcs2/wr841n%28EU%29_v11_150616.bin">here</a>.</p>
+
+<p>I recommend that you download all the three files from my folder on Mediafire<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup> using the link below but if you would much rather download directly from DD-WRT, then the links for rest of the two files that I used are also in references <sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup> and <sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup> below.</p>
+
+<p>Assuming that now you have all the three files safely downloaded to you computer we just follow the simple steps below:</p>
+
+<ol>
+<li>Connect the power supply to the TP-Link router and switch it on.</li>
+<li>Connect the ethernet cable in one of the yellow LAN slots of the router.</li>
+<li>Switch-off the wifi on your computer and connect the other end of the ethernet cable to the ethernet port of your computer.</li>
+<li>Once the ethernet connection on your laptop is established, open a browser and type <code>192.168.0.1</code> and press enter.</li>
+<li>You will be presented with TP-LINK admin interface.</li>
+<li>Login using the credentials username: <code>admin</code>; password: <code>admin</code>.</li>
+<li>On left hand navigation locate and click on <code>System Tools</code> and then on expanded menu click on <code>Firmware Upgrade</code>
+</li>
+<li>Now click on <code>Browse</code> button and select the file from NeDARK - <code>wr841n(EU)_v11_150616.bin</code> from your downloaded folder.</li>
+<li>Click on <code>Upgrade</code> button. It will take roughly 30 to 40 seconds and router will reboot.</li>
+<li>Refresh the browser screen and you will once again be presented with TP-LINK admin interface.</li>
+<li>Once again login using the credentials username: <code>admin</code>; password: <code>admin</code>.</li>
+<li>On left hand navigation locate and click on <code>System Tools</code> and then on expanded menu click on <code>Firmware Upgrade</code>
+</li>
+<li>Now click on <code>Browse</code> button and select the file <code>factory-to-ddwrt.bin</code>.</li>
+<li>Click on <code>Upgrade</code> button. It will take roughly 30 to 40 seconds and router will reboot.</li>
+<li>Disconnect the ethernet cable from Laptop and reboot the laptop - This isn't always required but just to be safe.</li>
+<li>Reconnect the ethernet cable to the laptop. Make sure that wifi is switched off on the laptop.</li>
+<li>Once the ethernet connection on your laptop is established, open a browser and type <code>192.168.1.1</code> and press enter.  &lt;-- <em><strong>Notice the different IP than what was used in step 4</strong></em>.</li>
+<li>If all has gone well until now you will be greeted with DD-WRT login interface and will actually be asked to change the password.</li>
+<li>After providing the password, navigate to tab Administration and then sub-tab named Firmware upgrade.</li>
+<li>Click on <code>Browse</code> and this time select <code>tl-wr841nd-webflash.bin</code> and Click upgrade. This will take 40 seconds or so and your router has now been liberated.</li>
+</ol>
+
+<p>This is it for flashing TP-LINK TL-WR841N v11 router with DD-WRT. <s>I will be writing more about how to configure DD-WRT to work with Plusnet fiber optic broadband and to play nice with NEST so stay tuned if this interests you.</s>
+I made fiber optic broadband work with no fuss but with NEST there were some issues basically down to auto setting changing to channel 13.</p>
+
+<h2 id="makingnestplaynicewithddwrt">Making NEST play nice with DD-WRT</h2>
+<p>The issue was that NEST would suddenly drop internet connection and then not identify the SSID for my router. The SSID just won’t appear in the list of available wireless networks.</p>
+
+<ul>
+<li>NEST apparently does not like channel 13, possibly even Channel 11 and 12. Changing the channel to any of the single digit (1 - 9) works well.</li>
+<li>In addition giving a static IP for NEST MAC seems to have resolved any network drops whatsoever.</li>
+<li>Under Wireless Setting, I also changed the Beacon Interval to 211.</li>
+<li>Under Administration tab -&gt; Management -&gt; IP Filter Settings, I changed the TCP timeout to 1800 and UDP timeout to 3600.</li>
+</ul>
+
+<h2 id="configurerouterforplusnetfiberopticbroadband">Configure router for PlusNet Fiber Optic Broadband</h2>
+<p>For configuring PlusNet fiber optic broadband, the settings I used are as below:
+<strong>Setup -&gt; Basic Setup</strong><br>
+<img src="../assets/images/2017/02/SetupBasicSetup_1.PNG" alt="Setup 1" loading="lazy"><br>
+<img src="../assets/images/2017/02/SetupBasicSetup_2.PNG" alt="Setup 2" loading="lazy"><br>
+<strong>Setup -&gt; DDNS</strong><br>
+<img src="../assets/images/2017/02/DDNS.PNG" alt="" loading="lazy"><br>
+<strong>Wireless -&gt; Basic Settings</strong><br>
+<img src="../assets/images/2017/02/Wireless-Basic-Settings.PNG" alt="Wireless-Basic-Settings" loading="lazy"><br>
+<strong>Wireless -&gt; Wireless Security</strong><br>
+<img src="../assets/images/2017/02/Wireless-Wireless-Security.PNG" alt="Wireless-Wireless-Security" loading="lazy"><br>
+<strong>Administration -&gt; Management</strong><br>
+<img src="../assets/images/2017/02/Administration-Management.PNG" alt="Administration-Management" loading="lazy"><br>
+<strong>Administration -&gt; Commands</strong><br></p>
+
+<p>Add the following in the startup commands</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Fix lan port communication 841 v7, v9, v11 </span>
+swconfig dev eth0 <span class="nb">set </span>enable_vlan 1 
+swconfig dev eth0 <span class="nb">set </span>apply
+</code></pre></div></div>
+
+<p>as shown below:<br>
+<img src="../assets/images/2017/02/Administration-Command.PNG" alt="Administration-Command" loading="lazy"></p>
+
+<p>Above basic setting ensures that PlusNet fiber optic broadband works perfectly fine.
+<strong>REFERENCES:</strong></p>
+
+<hr class="footnotes-sep">
+
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item">
+<a href="https://www.quora.com/Is-the-TP-Link-TL-WR841n-v11-router-supported-by-DD-WRT">https://www.quora.com/Is-the-TP-Link-TL-WR841n-v11-router-supported-by-DD-WRT</a> <a href="#fnref1" class="footnote-backref">↩︎</a>
+</li>
+<li id="fn2" class="footnote-item">
+<a href="https://www.mediafire.com/folder/q56dcdecfh3v1/Router_Firmware">https://www.mediafire.com/folder/q56dcdecfh3v1/Router_Firmware</a> <a href="#fnref2" class="footnote-backref">↩︎</a>
+</li>
+<li id="fn3" class="footnote-item">
+<a href="http://download1.dd-wrt.com/dd-wrtv2/downloads/betas/2016/12-15-2016-r30949/tplink_tl-wr841ndv11/factory-to-ddwrt.bin">http://download1.dd-wrt.com/dd-wrtv2/downloads/betas/2016/12-15-2016-r30949/tplink_tl-wr841ndv11/factory-to-ddwrt.bin</a> <a href="#fnref3" class="footnote-backref">↩︎</a>
+</li>
+<li id="fn4" class="footnote-item">
+<a href="http://download1.dd-wrt.com/dd-wrtv2/downloads/betas/2016/12-15-2016-r30949/tplink_tl-wr841ndv11/tl-wr841nd-webflash.bin">http://download1.dd-wrt.com/dd-wrtv2/downloads/betas/2016/12-15-2016-r30949/tplink_tl-wr841ndv11/tl-wr841nd-webflash.bin</a> <a href="#fnref4" class="footnote-backref">↩︎</a>
+</li>
+</ol>
+
+</section>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-03-29">March 29, 2018</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=DD-WRT+firmware+on+TP-LINK+TL-WR841N+v11%20https%3A%2F%2Fmgw.dumatics.com%2Fdd-wrt-firmware-on-tp-link-tl-wr841n-v11%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmgw.dumatics.com%2Fdd-wrt-firmware-on-tp-link-tl-wr841n-v11%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fmgw.dumatics.com%2Fdd-wrt-firmware-on-tp-link-tl-wr841n-v11%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/swap-file-to-create-extra-memory/" class="pagination--pager" title="Swap File to create extra memory
+">Previous</a>
+    
+    
+      <a href="/markdown-and-gantt-charts/" class="pagination--pager" title="Markdown and Gantt Charts
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/read-excel-csv-recursive/" rel="permalink">Python Function read excel / csv files from a given directory and its subdirectories
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Reading multiple excel and csv files recursively in directory and subdirectories
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git-jargon/" rel="permalink">Git Jargon
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Familiarisation with some Git jargon
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git-basics/" rel="permalink">Git Basics
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">What is GIT, how is it used and where to begin
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jupyterlite-on-github-enterprise-with-panel-enabled/" rel="permalink">JupyterLite on Github Enterprise with Panel enabled
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Steps to build JupyterLite on windows powershell with Panel and local file access and to host it on restricted Github Enterprise.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+<form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term...">
+  </form>
+  <div id="results" class="results"></div>
+</div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<div id="scroll-to-top">
+    <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-angle-double-up fa-stack-1x fa-inverse up-arrow"></i>
+    </span>
+</div>
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2023 Ankit Mittal. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://mgw.dumatics.com/dd-wrt-firmware-on-tp-link-tl-wr841n-v11/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/dd-wrt-firmware-on-tp-link-tl-wr841n-v11"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://makegadgetswork.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+
+  
+
+
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  
+    <script src="/assets/js/clipboardrouge.js"></script>
+  
+
+
+
+  </body>
+</html>

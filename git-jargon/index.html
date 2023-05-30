@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.23.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+--><html lang="en" class="no-js">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Git Jargon - Make Gadgets Work</title>
+<meta name="description" content="Recap on Git basics and explanation of some git jargon">
+
+
+  <meta name="author" content="Ankit Mittal">
+  
+  <meta property="article:author" content="Ankit Mittal">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Make Gadgets Work">
+<meta property="og:title" content="Git Jargon">
+<meta property="og:url" content="https://mgw.dumatics.com/git-jargon/">
+
+
+  <meta property="og:description" content="Recap on Git basics and explanation of some git jargon">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-02-28T17:50:00+00:00">
+
+
+
+  <meta property="article:modified_time" content="2023-02-28T17:50:00+00:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://mgw.dumatics.com/git-jargon/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Ankit Mittal",
+      "url": "https://mgw.dumatics.com/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Make Gadgets Work Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+    <script src="/assets/js/scroll-to-top.js"></script>
+  
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Make Gadgets Work
+          <span class="site-subtitle">I give what I take and then I try giving a bit more - My payback to the helpful open source community !!!</span>
+        </a>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/"><i class="fas fa-home"></i></a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li>
+</ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile_pix/profile_1.jpg" alt="Ankit Mittal" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Ankit Mittal</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Programme Manager by profession, Developer at heart !!!</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">United Kingdom</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:mr.ankitmittal@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Git Jargon">
+    <meta itemprop="description" content="Familiarisation with some Git jargon">
+    <meta itemprop="datePublished" content="2023-02-28T17:50:00+00:00">
+    <meta itemprop="dateModified" content="2023-02-28T17:50:00+00:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Git Jargon
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+			  <aside class="sidebar__right sticky">
+				<nav class="toc">
+				  <header><h4 class="nav__title">
+<i class="fas fa-file-alt"></i> On this page</h4></header>
+				  <ul class="toc__menu">
+<li>
+<a href="#git-jargon">Git Jargon</a><ul>
+<li><a href="#repo">repo</a></li>
+<li><a href="#repository">repository</a></li>
+<li><a href="#root">root</a></li>
+<li><a href="#remote">remote</a></li>
+<li><a href="#push">push</a></li>
+<li><a href="#pull">pull</a></li>
+<li><a href="#main">main</a></li>
+<li><a href="#branch">branch</a></li>
+<li><a href="#merge">merge</a></li>
+<li><a href="#modified">modified</a></li>
+<li><a href="#staged">staged</a></li>
+</ul>
+</li>
+<li><a href="#recap">Recap</a></li>
+</ul>
+
+				</nav>
+			  </aside>
+		
+        <h1 id="git-jargon">Git Jargon</h1>
+
+<p>Before we delve into the topic of how collaboration happens using git, lets get some terminology out of the way.</p>
+
+<h2 id="repo"><code class="language-plaintext highlighter-rouge">repo</code></h2>
+
+<p>When talking to techy chaps, one will encounter the word <code class="language-plaintext highlighter-rouge">repo</code> very often. However, <code class="language-plaintext highlighter-rouge">repo</code> is just a shortform for the complete word <code class="language-plaintext highlighter-rouge">repository</code>.</p>
+
+<h2 id="repository"><code class="language-plaintext highlighter-rouge">repository</code></h2>
+
+<p>Now <code class="language-plaintext highlighter-rouge">repository</code> in git speak is basically specific to a project and is nothing but a fancy alias for the <strong>working directory</strong> where all the digital assets being tracked for the project are placed.</p>
+
+<h2 id="root"><code class="language-plaintext highlighter-rouge">root</code></h2>
+
+<p>The term <code class="language-plaintext highlighter-rouge">root</code> when used with reference to a folder, directory, repo or repository is basically the directory in which all the digital assets of your project are stored. This directory may or may not contain other sub directories.</p>
+
+<h2 id="remote"><code class="language-plaintext highlighter-rouge">remote</code></h2>
+
+<p><code class="language-plaintext highlighter-rouge">remote</code> is a way to refer to server. So if a techy were to say “I have updated File X on remote” - it will basically translate in plain English to something like this - “I updated the File X on my laptop and have then also taken required actions to get those updates reflected on the copy saved on the server.”</p>
+
+<h2 id="push"><code class="language-plaintext highlighter-rouge">push</code></h2>
+
+<p>This refers to sending updates carried out (commited) on a local machine to the server (remote). Fairly frequently one may come across statements when checking for status updates on the lines of “I have pushed my changes to remote” which in normal English means “I made required changes on my local machine, committed them and then sent (pushed) them to the server (remote)”</p>
+
+<h2 id="pull"><code class="language-plaintext highlighter-rouge">pull</code></h2>
+
+<p>This refers to getting updates from the server (remote) on to the local machine. This is an activity typically carried out before one is planning to make any changes or updates to last known version. So if say a task is assigned to an individual for updating file , a reply can be “Alright, I will pull the latest from remote and make changes and will let you know once I have pushed my changes back.” which will translate to “Alright, I will get the latest copy from server, make the changes you have asked for and then commit those changes and send it back as updated version on the server”</p>
+
+<h2 id="main"><code class="language-plaintext highlighter-rouge">main</code></h2>
+
+<p>This refers to the final / published version of project’s repository.</p>
+
+<h2 id="branch"><code class="language-plaintext highlighter-rouge">branch</code></h2>
+
+<p>This term is more of a concept really. You see <code class="language-plaintext highlighter-rouge">branch</code> is a mechanism to carry out changes without impacting the main version and therefore a <code class="language-plaintext highlighter-rouge">branch</code> is basically just a new or separate version of the main repository where one can make changes to their heart’s content without worrying about messing up with the last known final version.</p>
+
+<h2 id="merge"><code class="language-plaintext highlighter-rouge">merge</code></h2>
+
+<p>Once the experimental changes in a <code class="language-plaintext highlighter-rouge">branch</code> are completed and proven not be breaking any other digital assets, it is desirable indeed to get these changes reflected on the main version and this action of bringing digital assets in <code class="language-plaintext highlighter-rouge">main</code> to reflect same changes as that on the <code class="language-plaintext highlighter-rouge">branch</code> is called <code class="language-plaintext highlighter-rouge">merge</code>.</p>
+
+<h2 id="modified"><code class="language-plaintext highlighter-rouge">modified</code></h2>
+
+<p>In git speak, any changes (updates, additions, deletions) to a digital asset (including deletion of entire digital asset) then that digital asset will be identified as <code class="language-plaintext highlighter-rouge">modified</code></p>
+
+<h2 id="staged"><code class="language-plaintext highlighter-rouge">staged</code></h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">modified</code> digital assets are not automatically assumed to contribute a version change and that is only done when those changes are added explicity by issuing the command <code class="language-plaintext highlighter-rouge">git add &lt;filenaem / foldername&gt;</code> and at this point the changes are said to be staged.</p>
+
+<h1 id="recap">Recap</h1>
+
+<p>With this in mind, the flow of GIT can now be explained as below:</p>
+
+<ol>
+  <li>To work with Git, you first initialise it on a directory which will make it a <code class="language-plaintext highlighter-rouge">Repository</code>
+</li>
+  <li>Once initialised, Git creates a hidden firectory called <code class="language-plaintext highlighter-rouge">.git</code> which is used to keep track of changes in the initialised directory.</li>
+  <li>At this point, we need to make Git aware of the files in this repository which we want Git to track and in doing so we <code class="language-plaintext highlighter-rouge">stage</code> those digital assets.</li>
+  <li>From this point on, any changes made to digital assets in project folder can be tracked.</li>
+  <li>If a digital asset which is being tracked is changed, it gets the status of <code class="language-plaintext highlighter-rouge">modified</code>.</li>
+  <li>Any digital asset with status must be <code class="language-plaintext highlighter-rouge">staged</code> before it can be passed on for version control.</li>
+  <li>Once <code class="language-plaintext highlighter-rouge">staged</code> files must be <code class="language-plaintext highlighter-rouge">committed</code> so that the changes can be treated as the latest version snapshot.</li>
+  <li>As each commit is tracked by Git, it is possible to revert to a previous version by first identifying the commit id one wants to revert to using <code class="language-plaintext highlighter-rouge">git log</code> and then providing that commit id through <code class="language-plaintext highlighter-rouge">git revert &lt;commit_id&gt;</code>
+</li>
+</ol>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2023-02-28">February 28, 2023</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Git+Jargon%20https%3A%2F%2Fmgw.dumatics.com%2Fgit-jargon%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmgw.dumatics.com%2Fgit-jargon%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fmgw.dumatics.com%2Fgit-jargon%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/git-basics/" class="pagination--pager" title="Git Basics
+">Previous</a>
+    
+    
+      <a href="/read-excel-csv-recursive/" class="pagination--pager" title="Python Function read excel / csv files from a given directory and its subdirectories
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/read-excel-csv-recursive/" rel="permalink">Python Function read excel / csv files from a given directory and its subdirectories
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Reading multiple excel and csv files recursively in directory and subdirectories
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git-basics/" rel="permalink">Git Basics
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Basics of Git
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jupyterlite-on-github-enterprise-with-panel-enabled/" rel="permalink">JupyterLite on Github Enterprise with Panel enabled
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Steps to build JupyterLite on windows powershell with Panel and local file access and to host it on restricted Github Enterprise.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/tech-for-diabetics/" rel="permalink">Tech for Diabetics
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          9 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">As a diabetic there are a number of things we are not able to control but one thing we can do is keep tabs on our data
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+<form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term...">
+  </form>
+  <div id="results" class="results"></div>
+</div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<div id="scroll-to-top">
+    <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-angle-double-up fa-stack-1x fa-inverse up-arrow"></i>
+    </span>
+</div>
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2023 Ankit Mittal. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://mgw.dumatics.com/git-jargon/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/git-jargon"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://makegadgetswork.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+
+  
+
+
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  
+    <script src="/assets/js/clipboardrouge.js"></script>
+  
+
+
+
+  </body>
+</html>

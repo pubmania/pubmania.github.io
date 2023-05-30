@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.23.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+--><html lang="en" class="no-js">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>How to boot from USB when BIOS does not have the option. - Make Gadgets Work</title>
+<meta name="description" content="How to boot from USB when BIOS does not have the option.">
+
+
+  <meta name="author" content="Ankit Mittal">
+  
+  <meta property="article:author" content="Ankit Mittal">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Make Gadgets Work">
+<meta property="og:title" content="How to boot from USB when BIOS does not have the option.">
+<meta property="og:url" content="https://mgw.dumatics.com/how-to-boot-from-usb-when-bios-does-not-have-the-option/">
+
+
+  <meta property="og:description" content="How to boot from USB when BIOS does not have the option.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2012-02-20T18:50:00+00:00">
+
+
+
+  <meta property="article:modified_time" content="2012-02-20T18:50:00+00:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://mgw.dumatics.com/how-to-boot-from-usb-when-bios-does-not-have-the-option/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Ankit Mittal",
+      "url": "https://mgw.dumatics.com/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Make Gadgets Work Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+    <script src="/assets/js/scroll-to-top.js"></script>
+  
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Make Gadgets Work
+          <span class="site-subtitle">I give what I take and then I try giving a bit more - My payback to the helpful open source community !!!</span>
+        </a>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/"><i class="fas fa-home"></i></a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li>
+</ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile_pix/profile_1.jpg" alt="Ankit Mittal" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Ankit Mittal</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Programme Manager by profession, Developer at heart !!!</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">United Kingdom</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:mr.ankitmittal@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="How to boot from USB when BIOS does not have the option.">
+    <meta itemprop="description" content="I have an old Sony VAIO which is not in it’s best of health and has long been really a companion for my telly, faithfully streaming media from bbc iplayer, youtube, dailymotion and likes. Internet enabled TV arrived in my home long long back :).">
+    <meta itemprop="datePublished" content="2012-02-20T18:50:00+00:00">
+    <meta itemprop="dateModified" content="2012-02-20T18:50:00+00:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">How to boot from USB when BIOS does not have the option.
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>I have an old Sony VAIO which is not in it’s best of health and has long been really a companion for my telly, faithfully streaming media from bbc iplayer, youtube, dailymotion and likes. Internet enabled TV arrived in my home long long back :).</p>
+
+<p>Now the thing with this laptop is that it’s kinda gimpy - inbuilt keyboard won’t work, battery is dead and it hangs on life with constant supply of energy from the AC source on the wall and the one thing that helps me load new OS on this machine - the optical reader - is temperamental and may or may not work and is moody in selecting which CD / DVD it will read and which it won’t. It does in particular like CD’s authored by Linux Format guys though. Writing is a skill it has forgotten long back and if it reads something, anything I am found celebrating.</p>
+
+<p>Anyway, I had ubuntu installed on this laptop for quite some time but as this laptop has one more flaw - the nvidia graphic card - and the latest update from ubuntu broke the nvidia drivers which aren’t all that well supported anyway, I was being forced to reformat the machine. So I decided to try a new distro named Bodhi Linux which is very cool and uses Enlightenment as desktop which is very very good and way better than Unity and some might argue even Gnome 3.2. However, in order to do so I had to cross the hurdle of burning a CD that my laptop’s Optical Drive will find intresting enough to read.</p>
+
+<p>I have checked and rechecked the BIOS of this laptop and there is no way to make BIOS understand that it can boot from USB. The only options it provides are Hard Drive, Floppy Disk, Optical Reader and Network Boot. None of these were particularly useful for reasons explained above and unfortunately I was hitting the wall. So I started looking for alternative ways to get Bodhi Linux installed. Alternative is what I found in Plop Boot Manager.</p>
+
+<p>Now open source enthusiasts at this point be aware, this nifty piece of software is not open source but it is so useful that this one minor flaw must be completely ignored. It gives you options to boot from USB in several ways - you can burn a CD and fool BIOS to boot from CD onto plop boot manager which in turn allows you to boot from device of your choice aka USB, it can also be put on floppy or the option that I have used - install on hard drive and configured through GRUB.</p>
+
+<p>So presented below without further ado is the guide to how you can install this on your hard drive but before I do so a quick thanks to several boards and posts I referred in the process of making this work:</p>
+
+<p>Steps:</p>
+
+<p class="notice--info">Please note that these instructions will work for machines that have one of these OS installed: Bodhi Linux and Ubuntu variants. For other linux versions it should be on similar lines</p>
+
+<ol>
+<li>
+Download the Plop Boot Manager (plpbt-5.0.14.zip file) on the machine where you want to achieve the result from <a href="http://www.plop.at/en/bootmanager/download.html">http://www.plop.at/en/bootmanager/download.html</a><br>
+<img src="../assets/images/2016/07/20120220_Fig_1.png" alt="Fig-1" style="width:50%;height:50%;">
+</li>
+<li>
+Extract the zip file in folder where it was downloaded. In my case I have my browser setting set to download everything to "Download" folder.<br>
+<img src="../assets/images/2016/07/20120220_Fig_2.png" alt="Fig-2" style="width:40%;height:40%;">
+</li>
+<li>
+Now open the terminal and type following command relevant to your distro:
+</li>
+</ol>
+<p><strong>For UBUNTU:</strong>
+<code>gksu nautilus  /boot</code>
+<strong>For Bodhi:</strong>
+<code>sudo pcmanfm /boot</code>
+You will be presented with a dialogue box to enter password. Once you enter the password you will be presented the contents of boot folder as shown below.
+ <img src="../assets/images/2016/07/20120220_Fig_3.png" alt="Fig-3" style="width:40%;height:40%;"><br></p>
+<ol start="4">
+<li>Now<br>
+(a) Go to the extracted plpbt-5.0.14 from step 2, click on Linux folder</li>
+ <img src="../assets/images/2016/07/20120220_Fig_4.png" alt="Fig-4" style="width:40%;height:40%;"><br>
+(b) Then copy the files - "plpbt.bin" and "plpcfgbt" and paste them in the boot folder opened through step 3.<br>
+<img src="../assets/images/2016/07/20120220_Fig_5.png" alt="Fig-5" style="width:40%;height:40%;"><br>
+</ol>
+<ol start="5">
+<li>Once the files are copied in boot folder, double click on folder named grub and there open the file named "grub.cfg" in texteditor.<br>
+<img src="../assets/images/2016/07/20120220_Fig_6.png" alt="Fig-6" style="width:40%;height:40%;">
+</li>
+</ol>
+<p>Once the file is opened, press "Ctrl+f" and search for string "END /etc/grub.d/10_linux". Now copy the text as highlighted in screen below and paste it in a new text-editor window.
+ <img src="../assets/images/2016/07/20120220_Fig_7.png" alt="Fig-7" style="width:75%;height:50%;"></p>
+<ol start="6">
+<li>In the new text editor after pasting the four lines from above</li>
+</ol>
+<p>a) Edit the fourth line so it reads as below:
+<code>linux16 /boot/plpbt.bin</code>
+b) Complete the block in new editor to read as below, keeping the first three lines intact from what was copied in step 5 from grub.cfg file. In our example it will read as below:</p>
+<pre><code>    menuentry "Plop Bootmanager" {
+    insmod ext2
+    set root='(hd0,6)'
+    search --no-floppy --fs-uuid --set cb7a6eb7-b355-4d0f-865e-f7312880f887
+    linux16 /boot/plpbt.bin
+    }
+</code></pre>
+<p>Once again, this is important so remember the final structure will be achieved by following steps below.
+Copy Paste this in Line 1:
+<code>menuentry "Plop Bootmanager" {</code>
+Next three lines remain same as copied from step 5:</p>
+<pre><code>    insmod ext2
+    set root='(hd0,6)'
+    search --no-floppy --fs-uuid --set cb7a6eb7-b355-4d0f-865e-f7312880f887
+</code></pre>
+<p>Then the fourth line will be edited to look as shown below. You can copy paste this in fourth line.
+<code>linux16 /boot/plpbt.bin</code>
+Fifth line will be closing bracket.
+<code>}</code></p>
+<ol start="7">
+<li>Now open another terminal window and type following command relevant to your distro:</li>
+
+<strong>For UBUNTU:</strong> <code>gksu nautilus  /etc/grub.d</code>
+<br>
+<strong>For Bodhi:</strong> <code>sudo pcmanfm /etc/grub.d</code>
+<br>
+You will be presented with a dialogue box to enter password. Once you enter the password you will be presented the contents of boot folder as shown below.<br>
+
+<img src="../assets/images/2016/07/20120220_Fig_8.png" alt="Fig-8" style="width:40%;height:40%;"><br>
+</ol>
+<ol start="8">
+<li>
+Open the file 40_custom (highlighted in screenshot above) in texteditor - gedit on ubuntu or leafpad on Bodhi and paste the block from step 6(b) in this file and save it.
+<pre><code> #!/bin/sh
+ exec tail -n +3 $0
+ # This file provides an easy way to add custom menu entries.  Simply type the
+ # menu entries you want to add after this comment.  Be careful not to change
+ # the 'exec tail' line above.
+ menuentry "Plop Bootmanager" {
+ insmod ext2
+ set root='(hd0,6)'
+ search --no-floppy --fs-uuid --set cb7a6eb7-b355-4d0f-865e-f7312880f887
+ linux16 /boot/plpbt.bin
+ }
+</code></pre>
+</li>
+</ol>
+<p><mark>Very Important - Press "Enter" at-least twice after pasting to ensure there are atleast two new lines below closing bracket.</mark></p>
+<ol start="9">
+<li>Close all windows and open terminal once again and type following command:</li>
+</ol>
+<p><code>sudo update-grub</code></p>
+<ol start="10">
+<li>
+Now open /boot/grub/grub.conf and you should find the following entry on it:
+<pre><code> ### BEGIN /etc/grub.d/40_custom ###
+ # This file provides an easy way to add custom menu entries.  Simply type the
+ # menu entries you want to add after this comment.  Be careful not to change
+ # the 'exec tail' line above.
+ menuentry "Plop Bootmanager" {
+ insmod ext2
+set root='(hd0,6)'
+search --no-floppy --fs-uuid --set cb7a6eb7-b355-4d0f-865e-f7312880f887
+linux16 /boot/plpbt.bin
+ }
+ ### END /etc/grub.d/40_custom ###
+</code></pre>
+</li>
+<li>
+Now reboot your machine with your Live USB plugged in. If you already dual boot your grub will show on restart and will have an additional option in the end - "Plop Bootmanager".
+</li>
+</ol>
+<p>If however, you just have single OS ubuntu, press shift once the bios logo shows up and keep holding for getting the system to show Grub.
+Once Grub is shown it will have the additional "Plop Bootmanager" menu entry on grub.
+Select the "Plop Bootmanager" and press enter.</p>
+<ol start="12">
+<li>Plop Bootmanager will show option to boot from USB. It was third option for me. Select and press enter. If your Live USB is working, you will be able to load OS from it.</li>
+</ol>
+<p>This is it. You can check the video below:</p>
+
+<!-- Courtesy of embedresponsively.com //-->
+
+<div class="responsive-video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/gG_UtAGFA8I" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+  </div>
+
+<p>Please do let me know in comments if you found this useful. If there are any other ways I will be keen to hear those too.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2012-02-20">February 20, 2012</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=How+to+boot+from+USB+when+BIOS+does+not+have+the+option.%20https%3A%2F%2Fmgw.dumatics.com%2Fhow-to-boot-from-usb-when-bios-does-not-have-the-option%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmgw.dumatics.com%2Fhow-to-boot-from-usb-when-bios-does-not-have-the-option%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fmgw.dumatics.com%2Fhow-to-boot-from-usb-when-bios-does-not-have-the-option%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/openvpn-on-linux-mint-to-access-us/" class="pagination--pager" title="OpenVPN on Linux Mint to access US sites
+">Previous</a>
+    
+    
+      <a href="/stagevu-divx-video-on-bodhi-linux/" class="pagination--pager" title="StageVu / DivX video on Bodhi Linux
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/read-excel-csv-recursive/" rel="permalink">Python Function read excel / csv files from a given directory and its subdirectories
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Reading multiple excel and csv files recursively in directory and subdirectories
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git-jargon/" rel="permalink">Git Jargon
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Familiarisation with some Git jargon
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git-basics/" rel="permalink">Git Basics
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">What is GIT, how is it used and where to begin
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jupyterlite-on-github-enterprise-with-panel-enabled/" rel="permalink">JupyterLite on Github Enterprise with Panel enabled
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Steps to build JupyterLite on windows powershell with Panel and local file access and to host it on restricted Github Enterprise.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+<form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term...">
+  </form>
+  <div id="results" class="results"></div>
+</div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<div id="scroll-to-top">
+    <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-angle-double-up fa-stack-1x fa-inverse up-arrow"></i>
+    </span>
+</div>
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2023 Ankit Mittal. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://mgw.dumatics.com/how-to-boot-from-usb-when-bios-does-not-have-the-option/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/how-to-boot-from-usb-when-bios-does-not-have-the-option"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://makegadgetswork.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+
+  
+
+
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  
+    <script src="/assets/js/clipboardrouge.js"></script>
+  
+
+
+
+  </body>
+</html>

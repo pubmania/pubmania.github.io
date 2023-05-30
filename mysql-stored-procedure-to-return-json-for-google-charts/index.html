@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.23.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+--><html lang="en" class="no-js">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>MySQL Stored Procedure to return JSON for google charts on BIRT - Make Gadgets Work</title>
+<meta name="description" content="MySQL Stored Procedure to return JSON for google charts on BIRT">
+
+
+  <meta name="author" content="Ankit Mittal">
+  
+  <meta property="article:author" content="Ankit Mittal">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Make Gadgets Work">
+<meta property="og:title" content="MySQL Stored Procedure to return JSON for google charts on BIRT">
+<meta property="og:url" content="https://mgw.dumatics.com/mysql-stored-procedure-to-return-json-for-google-charts/">
+
+
+  <meta property="og:description" content="MySQL Stored Procedure to return JSON for google charts on BIRT">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2016-02-18T13:56:00+00:00">
+
+
+
+  <meta property="article:modified_time" content="2016-02-18T13:56:00+00:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://mgw.dumatics.com/mysql-stored-procedure-to-return-json-for-google-charts/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Ankit Mittal",
+      "url": "https://mgw.dumatics.com/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Make Gadgets Work Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+    <script src="/assets/js/scroll-to-top.js"></script>
+  
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Make Gadgets Work
+          <span class="site-subtitle">I give what I take and then I try giving a bit more - My payback to the helpful open source community !!!</span>
+        </a>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/"><i class="fas fa-home"></i></a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li>
+</ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile_pix/profile_1.jpg" alt="Ankit Mittal" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Ankit Mittal</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Programme Manager by profession, Developer at heart !!!</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">United Kingdom</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:mr.ankitmittal@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="MySQL Stored Procedure to return JSON for google charts on BIRT">
+    <meta itemprop="description" content="My requirement was to get the data in a format that google chart can use to draw the chart I want. Now gogle chart accepts data in json format where all column names separated with comma are in first square bracket set followed by values in rest of the square bracket sets and each square bracket set is separated by comma as well.">
+    <meta itemprop="datePublished" content="2016-02-18T13:56:00+00:00">
+    <meta itemprop="dateModified" content="2016-02-18T13:56:00+00:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">MySQL Stored Procedure to return JSON for google charts on BIRT
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+			  <aside class="sidebar__right sticky">
+				<nav class="toc">
+				  <header><h4 class="nav__title">
+<i class="fas fa-file-alt"></i> On this page</h4></header>
+				  <ul class="toc__menu">
+<li><a href="#thecode">The code</a></li>
+<li><a href="#thebirtusageexplained">The BIRT usage explained</a></li>
+</ul>
+
+				</nav>
+			  </aside>
+		
+        <p>My requirement was to get the data in a format that google chart can use to draw the chart I want. Now gogle chart accepts data in json format where all column names separated with comma are in first square bracket set followed by values in rest of the square bracket sets and each square bracket set is separated by comma as well.</p>
+
+<p>Having searched on good old google, there did not appear to be any quick way of doing it without getting hands dirty with likes of php and as I was to plug this into a BIRT report where a simple html would do the trick, I really just needed the data-set to be returned in format that google-chart understood.</p>
+
+<p>I figured it can be easily done using a MySQL stored procedure and can be a repeatable process which resulted in creation of stored procedure presented below.</p>
+
+<h1 id="thecode">The code</h1>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">DEFINER</span><span class="o">=</span><span class="nv">`root`</span><span class="o">@</span><span class="nv">`localhost`</span> <span class="k">PROCEDURE</span> <span class="nv">`json_builder_multiple_string`</span><span class="p">(</span><span class="k">IN</span> <span class="nv">`var1`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">10000</span><span class="p">),</span> <span class="k">IN</span> <span class="nv">`tab_name`</span> <span class="nb">text</span><span class="p">,</span> <span class="k">IN</span> <span class="nv">`int_col_as_str`</span> <span class="nb">int</span><span class="p">)</span>
+	<span class="k">LANGUAGE</span> <span class="k">SQL</span>
+	<span class="k">NOT</span> <span class="k">DETERMINISTIC</span>
+	<span class="k">CONTAINS</span> <span class="k">SQL</span>
+	<span class="k">SQL</span> <span class="k">SECURITY</span> <span class="k">DEFINER</span>
+	<span class="k">COMMENT</span> <span class="s1">''</span>
+<span class="k">BEGIN</span>
+<span class="cm">/*
+- This procedure will take columns and tablename as parameter.
+- Third parameter is to tell the procedure how many columns are to be returned as string - surrounded by quotes
+- Third parameter must always be less than the total columns being requested.
+- Rest of the columns must have numerical values as they won't be surrounded with quotes
+- Procedure returns 0 for each null value.
+​
+SAMPLE PROCEDURE CALL
+CALL `json_builder_multiple_string`('Year,Month,Region,Sales,Expenses', 'myjsonexample',4);
+​
+SAMPLE QUERY GENERATED:
+SELECT 
+    CONCAT('[\'Year\',\'Month\',\'Region\',\'Sales\',\'Expenses\'],',
+            GROUP_CONCAT('[',
+                CONCAT_WS(',',
+                        CONCAT('\'',
+                                IFNULL(`Year`, 0),
+                                '\',\'',
+                                IFNULL(`Month`, 0),
+                                '\',\'',
+                                IFNULL(`Region`, 0),
+                                '\',\'',
+                                IFNULL(`Sales`, 0),
+                                '\''),
+                        IFNULL(`Expenses`, 0))
+                SEPARATOR '],'),
+            ']') AS data_set
+FROM
+    myjsonexample
+​
+SAMPLE OUTPUT:
+['Year','Month','Region','Sales','Expenses'],['2004','JAN','NW','1000',400],['2005','Feb','SW','1170',460],['2006','Mar','NE','2000',1210],['2007','Apr','SE','650',540],['2008','May','EC','0',0]
+​
+SAMPLE TABLE USED:
+Drop Table if exists `myjsonexample`;
+CREATE TABLE `myjsonexample` (
+  `Year` int(11) NOT NULL,
+  `Month` varchar(25),
+  `Region` varchar(25),
+  `Sales` int(11) ,
+  `Expenses` int(11) 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `myjsonexample`
+(`Year`,
+`Month`,
+`Region`,
+`Sales`,
+`Expenses`)
+VALUES
+(2004,'JAN','NW',1000,400),
+(2005,'Feb','SW',1170,460),
+(2006,'Mar','NE',2000,1210),
+(2007,'Apr','SE',650,540),
+(2008,'May','EC',null,null);
+*/</span>
+<span class="k">SET</span> <span class="k">SESSION</span> <span class="n">group_concat_max_len</span> <span class="o">=</span> <span class="mi">1000000</span><span class="p">;</span>
+<span class="k">Set</span> <span class="o">@</span><span class="n">stmt1</span> <span class="o">=</span> <span class="k">null</span><span class="p">;</span>
+<span class="k">select</span> <span class="n">concat</span><span class="p">(</span><span class="s1">'Select concat(</span><span class="se">\'</span><span class="s1">'</span><span class="p">,</span><span class="n">concat</span><span class="p">(</span><span class="s1">'[</span><span class="se">\\\'</span><span class="s1">'</span><span class="p">,</span><span class="k">replace</span><span class="p">(</span><span class="k">replace</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span><span class="s1">'_'</span><span class="p">,</span><span class="s1">' '</span><span class="p">),</span><span class="s1">','</span><span class="p">,</span><span class="s1">'</span><span class="se">\\\'</span><span class="s1">,</span><span class="se">\\\'</span><span class="s1">'</span><span class="p">),</span><span class="s1">'</span><span class="se">\\\'</span><span class="s1">],'</span><span class="p">),</span><span class="s1">'</span><span class="se">\'</span><span class="s1">'</span><span class="p">,</span>
+<span class="s1">', group_concat(</span><span class="se">\'</span><span class="s1">[</span><span class="se">\'</span><span class="s1">,
+concat_ws(</span><span class="se">\'</span><span class="s1">,</span><span class="se">\'</span><span class="s1">,
+CONCAT(</span><span class="se">\'\\\'\'</span><span class="s1">, ifnull(`'</span><span class="p">,</span><span class="k">replace</span><span class="p">(</span><span class="n">substring_index</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span><span class="s1">','</span><span class="p">,</span><span class="n">int_col_as_str</span><span class="p">),</span><span class="s1">','</span><span class="p">,</span><span class="s1">'`,0),</span><span class="se">\'\\\'</span><span class="s1">,</span><span class="se">\\\'\'</span><span class="s1">,ifnull(`'</span><span class="p">),</span>
+<span class="s1">'`,0), </span><span class="se">\'\\\'\'</span><span class="s1">),'</span><span class="p">,</span>
+<span class="p">(</span><span class="n">concat</span><span class="p">(</span><span class="s1">'ifnull(`'</span><span class="p">,</span>
+<span class="k">replace</span><span class="p">(</span>
+                <span class="k">SUBSTRING</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span><span class="k">LENGTH</span><span class="p">(</span><span class="n">SUBSTRING_INDEX</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="s1">','</span><span class="p">,</span> <span class="n">int_col_as_str</span><span class="p">))</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span><span class="k">LENGTH</span><span class="p">(</span><span class="n">var1</span><span class="p">)),</span>
+                <span class="s1">','</span><span class="p">,</span>
+                <span class="s1">'`,0),ifnull(`'</span><span class="p">),</span>
+<span class="s1">'`,0)'</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="p">,</span><span class="s1">') SEPARATOR </span><span class="se">\'</span><span class="s1">],</span><span class="se">\'</span><span class="s1">),</span><span class="se">\'</span><span class="s1">]</span><span class="se">\'</span><span class="s1">) as data_set from '</span><span class="p">,</span> <span class="n">tab_name</span><span class="p">)</span> <span class="k">into</span> <span class="o">@</span><span class="n">stmt1</span><span class="p">;</span>
+<span class="k">Prepare</span> <span class="n">stmt2</span> <span class="k">from</span> <span class="o">@</span><span class="n">stmt1</span><span class="p">;</span>
+<span class="k">Execute</span> <span class="n">stmt2</span><span class="p">;</span>
+<span class="k">END</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">h1</span> <span class="n">id</span><span class="o">=</span><span class="nv">"thealternativecode"</span><span class="o">&gt;</span><span class="n">The</span> <span class="n">alternative</span> <span class="n">code</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+<span class="n">Another</span> <span class="n">variation</span> <span class="k">of</span> <span class="n">above</span> <span class="n">stored</span> <span class="k">procedure</span> <span class="k">where</span> <span class="n">the</span> <span class="k">output</span> <span class="k">is</span> <span class="n">returned</span> <span class="k">in</span> <span class="n">an</span> <span class="k">output</span> <span class="k">parameter</span> <span class="n">can</span> <span class="n">be</span> <span class="n">created</span> <span class="n">simply</span> <span class="k">by</span> <span class="n">adding</span> <span class="n">two</span> <span class="k">more</span> <span class="n">lines</span> <span class="k">to</span> <span class="n">above</span> <span class="n">code</span> <span class="k">after</span> <span class="k">Execute</span> <span class="n">stmt2</span> <span class="k">and</span> <span class="n">also</span> <span class="k">including</span> <span class="n">the</span> <span class="k">output</span> <span class="k">parameter</span> <span class="k">in</span> <span class="k">first</span> <span class="n">line</span><span class="p">.</span> <span class="n">Complete</span> <span class="n">code</span> <span class="n">below</span><span class="p">:</span>
+<span class="o">&lt;</span><span class="n">pre</span> <span class="k">class</span><span class="o">=</span><span class="nv">"language-sql line-numbers"</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">CREATE</span> <span class="k">DEFINER</span><span class="o">=</span><span class="nv">`root`</span><span class="o">@</span><span class="nv">`localhost`</span> <span class="k">PROCEDURE</span> <span class="nv">`json_builder_outparam`</span><span class="p">(</span><span class="k">IN</span> <span class="nv">`var1`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">10000</span><span class="p">),</span> <span class="k">IN</span> <span class="nv">`tab_name`</span> <span class="nb">text</span><span class="p">,</span> <span class="k">OUT</span> <span class="nv">`varout`</span> <span class="nb">text</span><span class="p">)</span>
+	<span class="k">LANGUAGE</span> <span class="k">SQL</span>
+	<span class="k">NOT</span> <span class="k">DETERMINISTIC</span>
+	<span class="k">CONTAINS</span> <span class="k">SQL</span>
+	<span class="k">SQL</span> <span class="k">SECURITY</span> <span class="k">DEFINER</span>
+	<span class="k">COMMENT</span> <span class="s1">''</span>
+<span class="k">BEGIN</span>
+<span class="cm">/*
+- This procedure will take columns and tablename as parameter.
+- Third parameter is to tell the procedure how many columns are to be returned as string - surrounded by quotes
+- Third parameter must always be less than the total columns being requested.
+- Rest of the columns must have numerical values as they won't be surrounded with quotes
+- Procedure returns 0 for each null value.
+​
+SAMPLE PROCEDURE CALL
+CALL `json_builder_multiple_string`('Year,Month,Region,Sales,Expenses', 'myjsonexample',4);
+​
+SAMPLE QUERY GENERATED:
+SELECT 
+    CONCAT('[\'Year\',\'Month\',\'Region\',\'Sales\',\'Expenses\'],',
+            GROUP_CONCAT('[',
+                CONCAT_WS(',',
+                        CONCAT('\'',
+                                IFNULL(`Year`, 0),
+                                '\',\'',
+                                IFNULL(`Month`, 0),
+                                '\',\'',
+                                IFNULL(`Region`, 0),
+                                '\',\'',
+                                IFNULL(`Sales`, 0),
+                                '\''),
+                        IFNULL(`Expenses`, 0))
+                SEPARATOR '],'),
+            ']') AS data_set
+FROM
+    myjsonexample
+​
+SAMPLE OUTPUT:
+['Year','Month','Region','Sales','Expenses'],['2004','JAN','NW','1000',400],['2005','Feb','SW','1170',460],['2006','Mar','NE','2000',1210],['2007','Apr','SE','650',540],['2008','May','EC','0',0]
+​
+SAMPLE TABLE USED:
+Drop Table if exists `myjsonexample`;
+CREATE TABLE `myjsonexample` (
+  `Year` int(11) NOT NULL,
+  `Month` varchar(25),
+  `Region` varchar(25),
+  `Sales` int(11) ,
+  `Expenses` int(11) 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `myjsonexample`
+(`Year`,
+`Month`,
+`Region`,
+`Sales`,
+`Expenses`)
+VALUES
+(2004,'JAN','NW',1000,400),
+(2005,'Feb','SW',1170,460),
+(2006,'Mar','NE',2000,1210),
+(2007,'Apr','SE',650,540),
+(2008,'May','EC',null,null);
+*/</span>
+<span class="k">SET</span> <span class="k">SESSION</span> <span class="n">group_concat_max_len</span> <span class="o">=</span> <span class="mi">1000000</span><span class="p">;</span>
+<span class="k">Set</span> <span class="o">@</span><span class="n">stmt1</span> <span class="o">=</span> <span class="k">null</span><span class="p">;</span>
+<span class="k">select</span> <span class="n">concat</span><span class="p">(</span><span class="s1">'Select concat(</span><span class="se">\'</span><span class="s1">'</span><span class="p">,</span><span class="n">concat</span><span class="p">(</span><span class="s1">'[</span><span class="se">\\\'</span><span class="s1">'</span><span class="p">,</span><span class="k">replace</span><span class="p">(</span><span class="k">replace</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span><span class="s1">'_'</span><span class="p">,</span><span class="s1">' '</span><span class="p">),</span><span class="s1">','</span><span class="p">,</span><span class="s1">'</span><span class="se">\\\'</span><span class="s1">,</span><span class="se">\\\'</span><span class="s1">'</span><span class="p">),</span><span class="s1">'</span><span class="se">\\\'</span><span class="s1">],'</span><span class="p">),</span><span class="s1">'</span><span class="se">\'</span><span class="s1">'</span><span class="p">,</span>
+<span class="s1">', group_concat(</span><span class="se">\'</span><span class="s1">[</span><span class="se">\'</span><span class="s1">,
+concat_ws(</span><span class="se">\'</span><span class="s1">,</span><span class="se">\'</span><span class="s1">,
+CONCAT(</span><span class="se">\'\\\'\'</span><span class="s1">, ifnull(`'</span><span class="p">,</span><span class="k">replace</span><span class="p">(</span><span class="n">substring_index</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span><span class="s1">','</span><span class="p">,</span><span class="n">int_col_as_str</span><span class="p">),</span><span class="s1">','</span><span class="p">,</span><span class="s1">'`,0),</span><span class="se">\'\\\'</span><span class="s1">,</span><span class="se">\\\'\'</span><span class="s1">,ifnull(`'</span><span class="p">),</span>
+<span class="s1">'`,0), </span><span class="se">\'\\\'\'</span><span class="s1">),'</span><span class="p">,</span>
+<span class="p">(</span><span class="n">concat</span><span class="p">(</span><span class="s1">'ifnull(`'</span><span class="p">,</span>
+<span class="k">replace</span><span class="p">(</span>
+                <span class="k">SUBSTRING</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span><span class="k">LENGTH</span><span class="p">(</span><span class="n">SUBSTRING_INDEX</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="s1">','</span><span class="p">,</span> <span class="n">int_col_as_str</span><span class="p">))</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span><span class="k">LENGTH</span><span class="p">(</span><span class="n">var1</span><span class="p">)),</span>
+                <span class="s1">','</span><span class="p">,</span>
+                <span class="s1">'`,0),ifnull(`'</span><span class="p">),</span>
+<span class="s1">'`,0)'</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="p">,</span><span class="s1">') SEPARATOR </span><span class="se">\'</span><span class="s1">],</span><span class="se">\'</span><span class="s1">),</span><span class="se">\'</span><span class="s1">]</span><span class="se">\'</span><span class="s1">) as data_set from '</span><span class="p">,</span> <span class="n">tab_name</span><span class="p">)</span> <span class="k">into</span> <span class="o">@</span><span class="n">stmt1</span><span class="p">;</span>
+<span class="k">Prepare</span> <span class="n">stmt2</span> <span class="k">from</span> <span class="o">@</span><span class="n">stmt1</span><span class="p">;</span>
+<span class="k">Execute</span> <span class="n">stmt2</span><span class="p">;</span>
+<span class="k">Set</span> <span class="n">varout</span> <span class="o">=</span> <span class="o">@</span><span class="n">varouttemp</span><span class="p">;</span>
+<span class="k">Select</span> <span class="n">varout</span><span class="p">;</span>
+<span class="k">END</span>
+</code></pre></div></div>
+
+<h1 id="thebirtusageexplained">The BIRT usage explained</h1>
+
+<p>My sample BIRT reports are available for download <a href="https://www.mediafire.com/folder/n96sq03xvhrjz/BIRT_Examples" target="_blank">HERE</a>.
+Enabling the google chart on BIRT couldn’t be simpler.</p>
+
+<ul>
+<li>Create a new report</li>
+<li>Add a text field, open it and change it to HTML as shown in the image below<br>
+<img src="../assets/images/2016/07/20160718_Fig_1.PNG" alt="" loading="lazy">
+</li>
+<li>Copy the html<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> (modify as required - <a href="https://jsfiddle.net/mrmittal/656Lts2e/">I used jsfiddle for checking the code and making changes</a>) and paste in to the text field.</li>
+<li>Run</li>
+<li>Once the BIRT preview is working fine, create a dataset by calling the stored-procedure above and bind it to this text field.</li>
+<li>To bind a dataset, in "Report Design" perspective, click on the field and then in "Property Editor" select "Binding" as shown below:<br>
+<img src="../assets/images/2016/07/20160718_Fig_2.PNG" alt="" loading="lazy">
+</li>
+<li>Then right click on the text field and click on edit and then click on the "Fx" symbol next to where field was changed to HTML on top of the window. This will open javascript editor.</li>
+<li>On javascript editor select the static dataset and replace it by selecting the dataset like so:<br>
+<img src="../assets/images/2016/07/20160718_Fig_3.PNG" alt="" loading="lazy">
+</li>
+<li>That should change the HTML to dynamically get the data from json builder.</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"https://www.gstatic.com/charts/loader.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"https://www.google.com/jsapi"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
+<span class="nx">google</span><span class="p">.</span><span class="nx">charts</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="dl">'</span><span class="s1">current</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+        <span class="dl">'</span><span class="s1">packages</span><span class="dl">'</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">geochart</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">corechart</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">table</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">controls</span><span class="dl">'</span><span class="p">]</span>
+      <span class="p">});</span>
+      <span class="nx">google</span><span class="p">.</span><span class="nx">charts</span><span class="p">.</span><span class="nx">setOnLoadCallback</span><span class="p">(</span><span class="nx">drawRegionsMap</span><span class="p">);</span>
+
+      <span class="kd">function</span> <span class="nx">drawRegionsMap</span><span class="p">()</span> <span class="p">{</span>
+				<span class="c1">// Create our data table.</span>
+        	  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">google</span><span class="p">.</span><span class="nx">visualization</span><span class="p">.</span><span class="nx">arrayToDataTable</span><span class="p">([</span>
+            <span class="p">[</span><span class="dl">'</span><span class="s1">Country</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Period</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">RMPV</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">TARGET</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Average</span><span class="dl">'</span><span class="p">],</span>
+            <span class="p">[</span><span class="dl">'</span><span class="s1">Germany</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Nov-2015</span><span class="dl">'</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">],</span>
+            <span class="p">[</span><span class="dl">'</span><span class="s1">Germany</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Dec-2015</span><span class="dl">'</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">60</span><span class="p">],</span>
+            <span class="p">[</span><span class="dl">'</span><span class="s1">Canada</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Nov-2015</span><span class="dl">'</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span><span class="mf">42.5</span><span class="p">],</span>
+            <span class="p">[</span><span class="dl">'</span><span class="s1">Canada</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Dec-2015</span><span class="dl">'</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">60</span><span class="p">],</span>
+            <span class="p">[</span><span class="dl">'</span><span class="s1">IN</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Nov-2015</span><span class="dl">'</span><span class="p">,</span> <span class="mi">328</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">179</span><span class="p">],</span>
+            <span class="p">[</span><span class="dl">'</span><span class="s1">IN</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Dec-2015</span><span class="dl">'</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">60</span><span class="p">],</span>
+            <span class="p">[</span><span class="dl">'</span><span class="s1">France</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Dec-2015</span><span class="dl">'</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">65</span><span class="p">],</span>
+            <span class="p">[</span><span class="dl">'</span><span class="s1">France</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Nov-2015</span><span class="dl">'</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">],</span>
+            <span class="p">[</span><span class="dl">'</span><span class="s1">Brazil</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Dec-2015</span><span class="dl">'</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">75</span><span class="p">],</span>
+            <span class="p">[</span><span class="dl">'</span><span class="s1">Brazil</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Nov-2015</span><span class="dl">'</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mf">142.5</span><span class="p">],</span>
+            <span class="p">[</span><span class="dl">'</span><span class="s1">United States</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Dec-2015</span><span class="dl">'</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">60</span><span class="p">],</span>
+            <span class="p">[</span><span class="dl">'</span><span class="s1">United States</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Nov-2015</span><span class="dl">'</span><span class="p">,</span> <span class="mi">328</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">179</span><span class="p">]</span>
+          <span class="p">]);</span>
+
+        <span class="kd">var</span> <span class="nx">data1</span> <span class="o">=</span> <span class="nx">google</span><span class="p">.</span><span class="nx">visualization</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="nx">data</span><span class="p">,[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="p">[{</span><span class="dl">'</span><span class="s1">column</span><span class="dl">'</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="dl">'</span><span class="s1">aggregation</span><span class="dl">'</span><span class="p">:</span> <span class="nx">google</span><span class="p">.</span><span class="nx">visualization</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">avg</span><span class="p">,</span> <span class="dl">'</span><span class="s1">type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">number</span><span class="dl">'</span><span class="p">}]</span>
+        <span class="p">);</span>
+
+        <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="na">colorAxis</span><span class="p">:</span> <span class="p">{</span>
+<span class="c1">//          values: [0,30,90,150],</span>
+          <span class="na">colors</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">#F40EF4</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">#FCFC2A</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">#7BFC2A</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">#FC4A2A</span><span class="dl">'</span><span class="p">]</span>
+          <span class="p">},</span>
+          <span class="na">backgroundColor</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#F1F7FD</span><span class="dl">'</span><span class="p">,</span>
+          <span class="na">datalessRegionColor</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#8B8E91</span><span class="dl">'</span><span class="p">,</span>
+          <span class="na">defaultColor</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#f5f5f5</span><span class="dl">'</span>
+        <span class="p">};</span>
+        <span class="kd">var</span> <span class="nx">chart</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">visualization</span><span class="p">.</span><span class="nx">GeoChart</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">regions_div</span><span class="dl">'</span><span class="p">));</span>
+
+        <span class="kd">function</span> <span class="nx">selectHandler</span><span class="p">()</span> <span class="p">{</span>
+          <span class="kd">var</span> <span class="nx">selectedItem</span> <span class="o">=</span> <span class="nx">chart</span><span class="p">.</span><span class="nx">getSelection</span><span class="p">()[</span><span class="mi">0</span><span class="p">];</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">selectedItem</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">data1</span><span class="p">.</span><span class="nx">getValue</span><span class="p">(</span><span class="nx">selectedItem</span><span class="p">.</span><span class="nx">row</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="c1">//            alert(message)</span>
+            <span class="c1">//if(message=='Canada'){</span>
+            <span class="kd">var</span> <span class="nx">display_value</span> <span class="o">=</span> <span class="p">[</span><span class="nx">message</span><span class="p">];</span>
+           <span class="c1">//};</span>
+          <span class="p">};</span>
+          <span class="cm">/* Start of testing*/</span>
+          
+          <span class="c1">// Create a dashboard.</span>
+          <span class="kd">var</span> <span class="nx">dashboard</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">visualization</span><span class="p">.</span><span class="nx">Dashboard</span><span class="p">(</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">dashboard_div</span><span class="dl">'</span><span class="p">));</span>
+
+          <span class="c1">// Create a range slider, passing some options</span>
+          <span class="kd">var</span> <span class="nx">donutRangeSlider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">visualization</span><span class="p">.</span><span class="nx">ControlWrapper</span><span class="p">({</span>
+            <span class="dl">'</span><span class="s1">controlType</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">NumberRangeFilter</span><span class="dl">'</span><span class="p">,</span>
+            <span class="dl">'</span><span class="s1">containerId</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">filter_div</span><span class="dl">'</span><span class="p">,</span>
+            <span class="dl">'</span><span class="s1">options</span><span class="dl">'</span><span class="p">:</span> <span class="p">{</span>
+              <span class="c1">//'filterColumnLabel': 'M602'</span>
+              <span class="dl">'</span><span class="s1">filterColumnIndex</span><span class="dl">'</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="p">}</span>
+          <span class="p">});</span>
+
+          <span class="c1">// Create a range slider, passing some options</span>
+          <span class="kd">var</span> <span class="nx">donutRangeSlider1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">visualization</span><span class="p">.</span><span class="nx">ControlWrapper</span><span class="p">({</span>
+            <span class="dl">'</span><span class="s1">controlType</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">NumberRangeFilter</span><span class="dl">'</span><span class="p">,</span>
+            <span class="dl">'</span><span class="s1">containerId</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">filter_div1</span><span class="dl">'</span><span class="p">,</span>
+            <span class="dl">'</span><span class="s1">options</span><span class="dl">'</span><span class="p">:</span> <span class="p">{</span>
+              <span class="c1">//'filterColumnLabel': 'M525'</span>
+              <span class="dl">'</span><span class="s1">filterColumnIndex</span><span class="dl">'</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+            <span class="p">}</span>
+          <span class="p">});</span>
+
+          <span class="kd">var</span> <span class="nx">categoryPicker</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">visualization</span><span class="p">.</span><span class="nx">ControlWrapper</span><span class="p">({</span>
+            <span class="na">controlType</span><span class="p">:</span> <span class="dl">'</span><span class="s1">CategoryFilter</span><span class="dl">'</span><span class="p">,</span>
+            <span class="na">containerId</span><span class="p">:</span> <span class="dl">'</span><span class="s1">control3</span><span class="dl">'</span><span class="p">,</span>
+            <span class="na">state</span><span class="p">:</span> <span class="p">{</span>
+              <span class="na">selectedValues</span><span class="p">:</span> <span class="nx">display_value</span>
+            <span class="p">},</span>
+            <span class="na">options</span><span class="p">:</span> <span class="p">{</span>
+              <span class="c1">//filterColumnLabel: 'Location Type',</span>
+              <span class="na">filterColumnIndex</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+              <span class="na">ui</span><span class="p">:</span> <span class="p">{</span>
+                <span class="na">labelStacking</span><span class="p">:</span> <span class="dl">'</span><span class="s1">vertical</span><span class="dl">'</span><span class="p">,</span>
+                <span class="na">allowTyping</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="na">allowMultiple</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="na">allowNone</span><span class="p">:</span> <span class="kc">false</span>
+              <span class="p">}</span>
+            <span class="p">}</span>
+          <span class="p">});</span>
+          <span class="c1">// Create a column chart, passing some options</span>
+          <span class="kd">var</span> <span class="nx">ColumnChart</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">visualization</span><span class="p">.</span><span class="nx">ChartWrapper</span><span class="p">({</span>
+            <span class="dl">'</span><span class="s1">chartType</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">ColumnChart</span><span class="dl">'</span><span class="p">,</span>
+            <span class="dl">'</span><span class="s1">containerId</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">chart1</span><span class="dl">'</span><span class="p">,</span>
+            <span class="dl">'</span><span class="s1">options</span><span class="dl">'</span><span class="p">:</span> <span class="p">{</span>
+              <span class="dl">'</span><span class="s1">width</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">900px</span><span class="dl">'</span><span class="p">,</span>
+              <span class="dl">'</span><span class="s1">legend</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">bottom</span><span class="dl">'</span><span class="p">,</span>
+              <span class="dl">'</span><span class="s1">vAxes</span><span class="dl">'</span><span class="p">:</span> <span class="p">{</span>
+                <span class="mi">0</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="na">title</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Average Utilisation/Target Utilisation</span><span class="dl">'</span>
+                <span class="p">},</span>
+                <span class="mi">1</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="na">title</span><span class="p">:</span> <span class="dl">'</span><span class="s1">RMPV Utilisation</span><span class="dl">'</span>
+                <span class="p">}</span>
+              <span class="p">},</span>
+              <span class="dl">'</span><span class="s1">series</span><span class="dl">'</span><span class="p">:</span> <span class="p">{</span>
+                <span class="mi">1</span><span class="p">:</span> <span class="p">{</span>
+                  <span class="na">targetAxisIndex</span><span class="p">:</span> <span class="mi">1</span>
+                <span class="p">}</span>
+              <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="na">view</span><span class="p">:</span> <span class="p">{</span>
+              <span class="na">columns</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+            <span class="p">}</span>
+
+
+          <span class="p">});</span>
+
+          <span class="c1">// Create a table chart, passing some options</span>
+          <span class="kd">var</span> <span class="nx">tableChart</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">visualization</span><span class="p">.</span><span class="nx">ChartWrapper</span><span class="p">({</span>
+            <span class="dl">'</span><span class="s1">chartType</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Table</span><span class="dl">'</span><span class="p">,</span>
+            <span class="dl">'</span><span class="s1">containerId</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">chart2</span><span class="dl">'</span><span class="p">,</span>
+          <span class="p">});</span>
+
+          <span class="kd">var</span> <span class="nx">pie</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">visualization</span><span class="p">.</span><span class="nx">ChartWrapper</span><span class="p">({</span>
+            <span class="na">chartType</span><span class="p">:</span> <span class="dl">'</span><span class="s1">PieChart</span><span class="dl">'</span><span class="p">,</span>
+            <span class="na">containerId</span><span class="p">:</span> <span class="dl">'</span><span class="s1">chart3</span><span class="dl">'</span><span class="p">,</span>
+            <span class="na">options</span><span class="p">:</span> <span class="p">{</span>
+              <span class="na">legend</span><span class="p">:</span> <span class="dl">'</span><span class="s1">bottom</span><span class="dl">'</span><span class="p">,</span>
+              <span class="na">title</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Average Utilisation per month</span><span class="dl">'</span><span class="p">,</span>
+              <span class="na">pieSliceText</span><span class="p">:</span> <span class="dl">'</span><span class="s1">value</span><span class="dl">'</span>
+            <span class="p">},</span>
+            <span class="c1">// Instruct the piechart to use colums 0 (Name) and 3 (Donuts Eaten)</span>
+            <span class="c1">// from the 'data' DataTable.</span>
+            <span class="na">view</span><span class="p">:</span> <span class="p">{</span>
+              <span class="na">columns</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+            <span class="p">}</span>
+          <span class="p">});</span>
+
+          <span class="c1">// Establish dependencies, declaring that 'filter' drives 'pieChart',</span>
+          <span class="c1">// so that the pie chart will only display entries that are let through</span>
+          <span class="c1">// given the chosen slider range.</span>
+          <span class="nx">dashboard</span><span class="p">.</span><span class="nx">bind</span><span class="p">([</span><span class="nx">donutRangeSlider</span><span class="p">,</span> <span class="nx">donutRangeSlider1</span><span class="p">,</span> <span class="nx">categoryPicker</span><span class="p">],</span> <span class="p">[</span><span class="nx">ColumnChart</span><span class="p">,</span> <span class="nx">tableChart</span><span class="p">,</span> <span class="nx">pie</span><span class="p">]);</span>
+
+          <span class="c1">// Draw the dashboard.</span>
+          <span class="nx">dashboard</span><span class="p">.</span><span class="nx">draw</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+          <span class="c1">//redraw the main chart so selection doesn't retun empty</span>
+					<span class="nx">chart</span><span class="p">.</span><span class="nx">draw</span><span class="p">(</span><span class="nx">data1</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+          <span class="c1">// End of testing*/</span>
+        <span class="p">};</span>
+
+        <span class="nx">google</span><span class="p">.</span><span class="nx">visualization</span><span class="p">.</span><span class="nx">events</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="nx">chart</span><span class="p">,</span> <span class="dl">'</span><span class="s1">select</span><span class="dl">'</span><span class="p">,</span> <span class="nx">selectHandler</span><span class="p">);</span>
+
+        <span class="nx">chart</span><span class="p">.</span><span class="nx">draw</span><span class="p">(</span><span class="nx">data1</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+      <span class="p">}</span>
+
+	  <span class="nt">&lt;/script&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"regions_div"</span> <span class="na">style=</span><span class="s">"width: 900px; height: 500px;"</span><span class="nt">&gt;&lt;/div&gt;</span>
+	  <span class="c">&lt;!--Div that will hold the dashboard--&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"dashboard_div"</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!--Divs that will hold each control and chart--&gt;</span>
+    <span class="nt">&lt;table&gt;</span>
+      <span class="nt">&lt;tr&gt;</span>
+        <span class="nt">&lt;td&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"control3"</span> <span class="na">align=</span><span class="s">"center"</span><span class="nt">&gt;&lt;/div&gt;</span>
+        <span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;/tr&gt;</span>
+      <span class="nt">&lt;tr&gt;</span>
+        <span class="nt">&lt;td&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"filter_div"</span><span class="nt">&gt;&lt;/div&gt;</span>
+        <span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;td&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"filter_div1"</span><span class="nt">&gt;&lt;/div&gt;</span>
+        <span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;/tr&gt;</span>
+    <span class="nt">&lt;/table&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"chart1"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"chart3"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"chart2"</span> <span class="na">align=</span><span class="s">"center"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<hr>
+
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item">HTML to be pasted in text field: <a href="#fnref1" class="footnote-backref">↩︎</a>
+</li>
+</ol>
+</section>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-02-18">February 18, 2016</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=MySQL+Stored+Procedure+to+return+JSON+for+google+charts+on+BIRT%20https%3A%2F%2Fmgw.dumatics.com%2Fmysql-stored-procedure-to-return-json-for-google-charts%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmgw.dumatics.com%2Fmysql-stored-procedure-to-return-json-for-google-charts%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fmgw.dumatics.com%2Fmysql-stored-procedure-to-return-json-for-google-charts%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/arch-linux-nearly-a-year-on/" class="pagination--pager" title="Arch Linux - nearly a year on….
+">Previous</a>
+    
+    
+      <a href="/crossover/" class="pagination--pager" title="Crossover
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/read-excel-csv-recursive/" rel="permalink">Python Function read excel / csv files from a given directory and its subdirectories
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Reading multiple excel and csv files recursively in directory and subdirectories
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git-jargon/" rel="permalink">Git Jargon
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Familiarisation with some Git jargon
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git-basics/" rel="permalink">Git Basics
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">What is GIT, how is it used and where to begin
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jupyterlite-on-github-enterprise-with-panel-enabled/" rel="permalink">JupyterLite on Github Enterprise with Panel enabled
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Steps to build JupyterLite on windows powershell with Panel and local file access and to host it on restricted Github Enterprise.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+<form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term...">
+  </form>
+  <div id="results" class="results"></div>
+</div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<div id="scroll-to-top">
+    <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-angle-double-up fa-stack-1x fa-inverse up-arrow"></i>
+    </span>
+</div>
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2023 Ankit Mittal. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://mgw.dumatics.com/mysql-stored-procedure-to-return-json-for-google-charts/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/mysql-stored-procedure-to-return-json-for-google-charts"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://makegadgetswork.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+
+  
+
+
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  
+    <script src="/assets/js/clipboardrouge.js"></script>
+  
+
+
+
+  </body>
+</html>

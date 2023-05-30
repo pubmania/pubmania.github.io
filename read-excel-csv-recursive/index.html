@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.23.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+--><html lang="en" class="no-js">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Python Function read excel / csv files from a given directory and its subdirectories - Make Gadgets Work</title>
+<meta name="description" content="A function written in Python that allows user to provide parameters and then checks all excel and csv files to extract data where conditions are met.">
+
+
+  <meta name="author" content="Ankit Mittal">
+  
+  <meta property="article:author" content="Ankit Mittal">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Make Gadgets Work">
+<meta property="og:title" content="Python Function read excel / csv files from a given directory and its subdirectories">
+<meta property="og:url" content="https://mgw.dumatics.com/read-excel-csv-recursive/">
+
+
+  <meta property="og:description" content="A function written in Python that allows user to provide parameters and then checks all excel and csv files to extract data where conditions are met.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-03-29T17:16:00+00:00">
+
+
+
+  <meta property="article:modified_time" content="2023-04-18T20:26:00+00:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://mgw.dumatics.com/read-excel-csv-recursive/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Ankit Mittal",
+      "url": "https://mgw.dumatics.com/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Make Gadgets Work Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+    <script src="/assets/js/scroll-to-top.js"></script>
+  
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Make Gadgets Work
+          <span class="site-subtitle">I give what I take and then I try giving a bit more - My payback to the helpful open source community !!!</span>
+        </a>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/"><i class="fas fa-home"></i></a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li>
+</ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile_pix/profile_1.jpg" alt="Ankit Mittal" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Ankit Mittal</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Programme Manager by profession, Developer at heart !!!</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">United Kingdom</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:mr.ankitmittal@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Python Function read excel / csv files from a given directory and its subdirectories">
+    <meta itemprop="description" content="Reading multiple excel and csv files recursively in directory and subdirectories">
+    <meta itemprop="datePublished" content="2023-03-29T17:16:00+00:00">
+    <meta itemprop="dateModified" content="2023-04-18T20:26:00+00:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Python Function read excel / csv files from a given directory and its subdirectories
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+			  <aside class="sidebar__right sticky">
+				<nav class="toc">
+				  <header><h4 class="nav__title">
+<i class="fas fa-file-alt"></i> On this page</h4></header>
+				  <ul class="toc__menu">
+<li><a href="#code">Code</a></li>
+<li><a href="#explanation">Explanation</a></li>
+<li><a href="#sample-usage">Sample Usage</a></li>
+<li>
+<a href="#gui-implementation">GUI Implementation</a><ul>
+<li><a href="#usage">Usage</a></li>
+<li>
+<a href="#screenshots">Screenshots</a><ul>
+<li><a href="#empty-form">Empty Form</a></li>
+<li><a href="#filled-form">Filled Form</a></li>
+<li><a href="#displays-extracted-output">Displays extracted output</a></li>
+<li><a href="#displays-filename-of-the-output-and-location-where-it-is-saved">Displays filename of the output and location where it is saved</a></li>
+<li><a href="#colour-coded-log">Colour coded log</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+				</nav>
+			  </aside>
+		
+        <h1 id="code">Code</h1>
+
+<p>The code for the function is as shown below:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span> 
+
+<span class="k">def</span> <span class="nf">extract_data</span><span class="p">(</span><span class="n">directory_path</span><span class="p">,</span> <span class="n">columns_to_extract</span><span class="p">,</span> <span class="n">date_columns</span><span class="o">=</span><span class="p">[],</span> <span class="n">rows_to_skip</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">output_filename</span><span class="o">=</span><span class="s">'output.csv'</span><span class="p">):</span>
+    <span class="s">"""
+    Extracts data from all Excel and CSV files in the specified directory and its subdirectories that contain all the
+    specified columns.
+
+    :param directory_path: The path to the directory to search for Excel and CSV files.
+    :param columns_to_extract: A list of column names to extract from each file.
+    :param date_columns: A list of column names to parse as dates using pd.to_datetime().
+    :param output_filename: The path and filename to save the extracted data in a csv
+    :return: A DataFrame containing the extracted data from all Excel and CSV files that contain the specified columns,
+    or None if no files contain the specified columns.
+    """</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="n">extracted_data</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="n">files_with_no_columns</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">sheet_read</span> <span class="o">=</span> <span class="s">''</span>
+    <span class="n">extracted_columns</span> <span class="o">=</span> <span class="n">columns_to_extract</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">extracted_columns</span><span class="p">.</span><span class="n">extend</span><span class="p">([</span><span class="s">'File Name'</span><span class="p">,</span><span class="s">'SubDir'</span><span class="p">,</span><span class="s">'CreatedDate'</span><span class="p">,</span><span class="s">'LastModifiedDate'</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="n">walk</span><span class="p">(</span><span class="n">directory_path</span><span class="p">):</span>
+        <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'Started reading '</span> <span class="o">+</span> <span class="nb">file</span> <span class="o">+</span> <span class="s">' at: {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">datetime</span><span class="p">.</span><span class="n">now</span><span class="p">())</span> <span class="o">+</span> <span class="s">' ...'</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">file</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">'.xlsx'</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">file</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">'.xls'</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">file</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">'.csv'</span><span class="p">):</span>
+                <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="nb">file</span><span class="p">)</span>
+                <span class="n">columns_found_outer</span> <span class="o">=</span> <span class="bp">False</span>
+                <span class="k">if</span> <span class="nb">file</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">'.csv'</span><span class="p">):</span>
+                    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span><span class="n">skiprows</span><span class="o">=</span><span class="n">rows_to_skip</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns_to_extract</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="p">.</span><span class="n">columns</span><span class="p">:</span>
+                            <span class="n">columns_found_outer</span> <span class="o">=</span> <span class="bp">True</span>
+                            <span class="c1">#print(col + 'in csv true loop')
+</span>                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">columns_found_outer</span> <span class="o">=</span> <span class="bp">False</span>
+                            <span class="c1">#print(col + 'in false loop')
+</span>                            <span class="k">break</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">dfs</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">skiprows</span><span class="o">=</span><span class="n">rows_to_skip</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">dfs</span><span class="p">.</span><span class="n">keys</span><span class="p">():</span>
+                        <span class="n">columns_found</span> <span class="o">=</span> <span class="bp">False</span>
+                        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns_to_extract</span><span class="p">:</span>
+                            <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">dfs</span><span class="p">[</span><span class="n">key</span><span class="p">].</span><span class="n">columns</span><span class="p">:</span>
+                                <span class="n">columns_found</span> <span class="o">=</span> <span class="bp">True</span>
+                                <span class="c1">#print(col + 'in true loop')
+</span>                            <span class="k">else</span><span class="p">:</span>
+                                <span class="n">columns_found</span> <span class="o">=</span> <span class="bp">False</span>
+                                <span class="c1">#print(col + 'in false loop')
+</span>                                <span class="k">break</span>
+                        <span class="k">if</span> <span class="n">columns_found</span><span class="p">:</span>
+                            <span class="n">columns_found_outer</span> <span class="o">=</span> <span class="bp">True</span>
+                            <span class="n">df</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                            <span class="n">sheet_read</span> <span class="o">=</span> <span class="n">key</span>
+                            <span class="k">break</span>
+                <span class="k">if</span> <span class="n">columns_found_outer</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">date_columns</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">date_columns</span><span class="p">:</span>
+                            <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="p">.</span><span class="n">columns</span><span class="p">:</span>
+                                <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+                    <span class="n">df</span><span class="p">[</span><span class="s">'File Name'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">file</span>
+                    <span class="n">df</span><span class="p">[</span><span class="s">'SubDir'</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">basename</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+
+                    <span class="n">createx</span> <span class="o">=</span> <span class="n">modx</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">getctime</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+                    <span class="n">xcreate</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">modx</span><span class="p">)</span>
+                    <span class="n">df</span><span class="p">[</span><span class="s">'CreatedDate'</span><span class="p">]</span> <span class="o">=</span> <span class="n">xcreate</span>
+
+                    <span class="n">modx</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+                    <span class="n">xmod</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">modx</span><span class="p">)</span>
+                    <span class="n">df</span><span class="p">[</span><span class="s">'LastModifiedDate'</span><span class="p">]</span> <span class="o">=</span> <span class="n">xmod</span>
+                    <span class="n">extracted_data</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">extracted_data</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="n">extracted_columns</span><span class="p">]],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+                    <span class="c1">#print(xmod)
+</span>                    <span class="k">if</span> <span class="nb">file</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">'.csv'</span><span class="p">):</span>
+                        <span class="k">print</span><span class="p">(</span><span class="nb">file</span> <span class="o">+</span> <span class="s">' has been read'</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">print</span><span class="p">(</span><span class="nb">file</span> <span class="o">+</span> <span class="s">' has been read and it was last modified on '</span> <span class="o">+</span> <span class="n">xmod</span><span class="p">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">'%Y-%m-%d'</span><span class="p">)</span> <span class="o">+</span> <span class="s">'. The name of the sheet that was read is: '</span> <span class="o">+</span> <span class="n">sheet_read</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">files_with_no_columns</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">files_with_no_columns</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"The following files do not contain the specified columns:"</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">file_path</span> <span class="ow">in</span> <span class="n">files_with_no_columns</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">extracted_data</span><span class="p">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="n">extracted_data</span> <span class="o">=</span> <span class="n">extracted_data</span><span class="p">.</span><span class="n">applymap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="p">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span> <span class="k">else</span> <span class="n">s</span><span class="p">).</span><span class="n">fillna</span><span class="p">(</span><span class="s">''</span><span class="p">)</span>
+        <span class="n">extracted_data</span><span class="p">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">output_filename</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'Started at: {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">start_time</span><span class="p">)</span> <span class="o">+</span> <span class="s">'. </span><span class="se">\n</span><span class="s">Ended at: {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">datetime</span><span class="p">.</span><span class="n">now</span><span class="p">())</span> <span class="o">+</span> <span class="s">'. </span><span class="se">\n</span><span class="s">Time elapsed (hh:mm:ss.ms) {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">datetime</span><span class="p">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">extracted_data</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Specified columns do not exist in any file in the provided directory."</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'Started at: {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">start_time</span><span class="p">)</span> <span class="o">+</span> <span class="s">'. </span><span class="se">\n</span><span class="s">Ended at: {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">datetime</span><span class="p">.</span><span class="n">now</span><span class="p">())</span> <span class="o">+</span> <span class="s">'. </span><span class="se">\n</span><span class="s">Time elapsed (hh:mm:ss.ms) {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">datetime</span><span class="p">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">None</span>
+</code></pre></div></div>
+
+<h1 id="explanation">Explanation</h1>
+
+<ol>
+  <li>
+    <p>The function <code class="language-plaintext highlighter-rouge">extract_data</code> takes in the following parameters:</p>
+
+    <ul>
+      <li>
+<em>directory_path</em>: the path to the directory to search for Excel and CSV files</li>
+      <li>
+<em>columns_to_extract</em>: a list of column names to extract from each file</li>
+      <li>
+<em>date_columns</em>: a list of column names to parse as dates using pd.to_datetime()</li>
+      <li>
+<em>rows_to_skip</em>: the number of rows to skip when reading each file</li>
+      <li>
+<em>output_filename</em>: the path and filename to save the extracted data in a CSV file</li>
+    </ul>
+  </li>
+  <li>
+    <p>The function starts by creating an empty DataFrame called <code class="language-plaintext highlighter-rouge">extracted_data</code>.</p>
+  </li>
+  <li>
+    <p>It also initializes variables <code class="language-plaintext highlighter-rouge">files_with_no_columns</code> and <code class="language-plaintext highlighter-rouge">sheet_read</code> to track files that do not contain the specified columns and to keep track of the current sheet being read when extracting data from Excel files.</p>
+  </li>
+  <li>
+    <p>The list <code class="language-plaintext highlighter-rouge">extracted_columns</code> is created by copying the input <code class="language-plaintext highlighter-rouge">columns_to_extract</code> list and adding additional columns for the <code class="language-plaintext highlighter-rouge">filename</code>, <code class="language-plaintext highlighter-rouge">subdirectory name</code>, <code class="language-plaintext highlighter-rouge">file creation date</code>, and <code class="language-plaintext highlighter-rouge">last modified date</code>.</p>
+  </li>
+  <li>
+    <p>The function then loops through all the files in the specified directory and its subdirectories using os.walk().</p>
+  </li>
+  <li>
+    <p>For each file, it checks if it has a “.xlsx”, “.xls”, or “.csv” extension.</p>
+  </li>
+  <li>
+    <p>If the file is a CSV file, the function reads it into a DataFrame using <code class="language-plaintext highlighter-rouge">pd.read_csv()</code>, skipping the number of rows specified by <code class="language-plaintext highlighter-rouge">rows_to_skip</code>.</p>
+  </li>
+  <li>
+    <p>It then checks if all the columns in <code class="language-plaintext highlighter-rouge">columns_to_extract</code> are present in the DataFrame. If so, it sets <code class="language-plaintext highlighter-rouge">columns_found_outer</code> to <code class="language-plaintext highlighter-rouge">True</code> and proceeds to the next step. If not, it sets <code class="language-plaintext highlighter-rouge">columns_found_outer</code> to <code class="language-plaintext highlighter-rouge">False</code> and moves on to the next file.</p>
+  </li>
+  <li>
+    <p>If the file is an Excel file, the function reads all sheets in the file into a dictionary of DataFrames using <code class="language-plaintext highlighter-rouge">pd.read_excel()</code> and <code class="language-plaintext highlighter-rouge">sheet_name=None</code>. It then loops through all the sheets and all the columns in <code class="language-plaintext highlighter-rouge">columns_to_extract</code>, checking if each column is present in each sheet’s DataFrame. If all the columns are present in a sheet, it sets <code class="language-plaintext highlighter-rouge">columns_found</code> to <code class="language-plaintext highlighter-rouge">True</code> and proceeds to the next step. If not, it sets <code class="language-plaintext highlighter-rouge">columns_found</code> to <code class="language-plaintext highlighter-rouge">False</code> and moves on to the next sheet in the same Excel file. If at least one sheet contains all the specified columns, the function combines the DataFrames of all sheets into one using <code class="language-plaintext highlighter-rouge">pd.concat()</code>.</p>
+  </li>
+  <li>
+    <p>If <code class="language-plaintext highlighter-rouge">columns_found_outer</code> is <code class="language-plaintext highlighter-rouge">True</code>, it extracts the <code class="language-plaintext highlighter-rouge">filename</code>, <code class="language-plaintext highlighter-rouge">subdirectory name</code>, <code class="language-plaintext highlighter-rouge">file creation date</code>, and <code class="language-plaintext highlighter-rouge">last modified date</code> using <code class="language-plaintext highlighter-rouge">os.path.basename()</code>, <code class="language-plaintext highlighter-rouge">os.path.getctime()</code>, and <code class="language-plaintext highlighter-rouge">os.path.getmtime()</code>, and adds them as new columns to the DataFrame. It then appends the DataFrame to the <code class="language-plaintext highlighter-rouge">extracted_data</code> DataFrame.</p>
+  </li>
+  <li>
+    <p>If <code class="language-plaintext highlighter-rouge">columns_found_outer</code> is <code class="language-plaintext highlighter-rouge">False</code>, it increments the <code class="language-plaintext highlighter-rouge">files_with_no_columns</code> counter and prints a warning message.</p>
+  </li>
+  <li>
+    <p>Finally, the function checks if any files contained the specified columns. If not, it returns None. Otherwise, it sorts the <code class="language-plaintext highlighter-rouge">extracted_data</code> DataFrame by filename and saves it to a CSV file using <code class="language-plaintext highlighter-rouge">to_csv()</code>. It then prints the number of files processed, the number of files that did not contain the specified columns, and the path to the output file.</p>
+  </li>
+</ol>
+
+<h1 id="sample-usage">Sample Usage</h1>
+
+<p>The function can be called in python as shown below:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># set directory path
+</span><span class="n">directory_path</span> <span class="o">=</span> <span class="s">'./Work'</span> <span class="c1"># Path for the directory where all the files containing data for  extraction are to be searched
+</span>
+<span class="c1"># set the columns you want to extract
+</span><span class="n">columns_to_extract</span> <span class="o">=</span> <span class="p">[</span><span class="s">'Region'</span><span class="p">,</span><span class="s">'Country'</span><span class="p">,</span> <span class="s">'Product Number'</span><span class="p">,</span><span class="s">'Quantity'</span><span class="p">,</span><span class="s">'Date of Sale'</span><span class="p">]</span>
+<span class="n">date_col</span> <span class="o">=</span> <span class="p">[</span><span class="s">'Date of Sale'</span><span class="p">]</span>
+<span class="c1"># set the rows to skip
+</span><span class="n">skiprows</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#this basically will be number of rows in begining of the files which must be skipped to reach the header row of the data
+</span><span class="n">output_filename</span> <span class="o">=</span> <span class="s">'Regional Sales Data.csv'</span>
+<span class="c1">#Call function
+</span><span class="n">df</span> <span class="o">=</span> <span class="n">extract_data</span><span class="p">(</span><span class="n">directory_path</span><span class="p">,</span><span class="n">columns_to_extract</span><span class="p">,</span><span class="n">date_col</span><span class="p">,</span><span class="n">skiprows</span><span class="p">,</span><span class="n">output_filename</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Now, assuming there were 12 separate files for past 12 months inside the folder then so long as all those files, irrespective of whether they are csv or excel, have the columns <code class="language-plaintext highlighter-rouge">Region</code>,<code class="language-plaintext highlighter-rouge">Country</code>, <code class="language-plaintext highlighter-rouge">Product Number</code>,<code class="language-plaintext highlighter-rouge">Quantity</code>,<code class="language-plaintext highlighter-rouge">Date of Sale</code>; the function will read the files and extract the data and return it to the dataframe <code class="language-plaintext highlighter-rouge">df</code>.</p>
+
+<h1 id="gui-implementation">GUI Implementation</h1>
+
+<p>A very basic GUI implementation of above function using PySimpleGUI with all codeis available <a href="https://github.com/pubmania/extract_excel_csv_data_recursively">here</a></p>
+
+<h2 id="usage">Usage</h2>
+<p>The script can directly be copied to a Jupyter cell or can be run from terminal. Following command should ensure all dependencies are installed:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">py</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">pandas</span><span class="p">,</span> <span class="n">numpy</span><span class="p">,</span> <span class="n">pysimplegui</span>
+</code></pre></div></div>
+
+<p>Some things the GUI takes care of are:</p>
+
+<ul>
+  <li>Allows selection of columns to be extracted from a sample <code class="language-plaintext highlighter-rouge">.csv</code> file</li>
+  <li>Allows user to specify which of the selected columns should be parsed as <code class="language-plaintext highlighter-rouge">date</code>
+</li>
+  <li>Gives a date based filename to <code class="language-plaintext highlighter-rouge">output</code>
+</li>
+  <li>Shows colour coded log for which files were read in green and which were ignored in red background.</li>
+</ul>
+
+<h2 id="screenshots">Screenshots</h2>
+
+<p>Some screenshots of the resulting app are as shown below:</p>
+
+<h3 id="empty-form">Empty Form</h3>
+<p><img src="https://user-images.githubusercontent.com/1966557/232877297-2d3a2914-8a7f-4f20-bba1-af8d0e92c039.png" alt="image"></p>
+
+<h3 id="filled-form">Filled Form</h3>
+<p><img src="https://user-images.githubusercontent.com/1966557/232879216-22e3b81c-10d0-449f-80d1-30725c24b5ff.png" alt="image"></p>
+
+<h3 id="displays-extracted-output">Displays extracted output</h3>
+<p><img src="https://user-images.githubusercontent.com/1966557/232881326-f2ecdd14-8bf6-4f7b-bcd4-3e5de4f361a2.png" alt="image"></p>
+
+<h3 id="displays-filename-of-the-output-and-location-where-it-is-saved">Displays filename of the output and location where it is saved</h3>
+<p><img src="https://user-images.githubusercontent.com/1966557/232881685-6a0eafd9-a5be-464b-ae0c-5814b101fc02.png" alt="image"></p>
+
+<h3 id="colour-coded-log">Colour coded log</h3>
+<p><img src="https://user-images.githubusercontent.com/1966557/232882657-dd1e4e69-26a3-4849-8e94-9811cedab6d7.png" alt="image"></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2023-04-18">April 18, 2023</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Python+Function+read+excel+%2F+csv+files+from+a+given+directory+and+its+subdirectories%20https%3A%2F%2Fmgw.dumatics.com%2Fread-excel-csv-recursive%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmgw.dumatics.com%2Fread-excel-csv-recursive%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fmgw.dumatics.com%2Fread-excel-csv-recursive%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/git-jargon/" class="pagination--pager" title="Git Jargon
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git-jargon/" rel="permalink">Git Jargon
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Familiarisation with some Git jargon
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git-basics/" rel="permalink">Git Basics
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Basics of Git
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jupyterlite-on-github-enterprise-with-panel-enabled/" rel="permalink">JupyterLite on Github Enterprise with Panel enabled
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Steps to build JupyterLite on windows powershell with Panel and local file access and to host it on restricted Github Enterprise.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/tech-for-diabetics/" rel="permalink">Tech for Diabetics
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          9 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">As a diabetic there are a number of things we are not able to control but one thing we can do is keep tabs on our data
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+<form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term...">
+  </form>
+  <div id="results" class="results"></div>
+</div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<div id="scroll-to-top">
+    <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-angle-double-up fa-stack-1x fa-inverse up-arrow"></i>
+    </span>
+</div>
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2023 Ankit Mittal. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://mgw.dumatics.com/read-excel-csv-recursive/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/read-excel-csv-recursive"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://makegadgetswork.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+
+  
+
+
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  
+    <script src="/assets/js/clipboardrouge.js"></script>
+  
+
+
+
+  </body>
+</html>

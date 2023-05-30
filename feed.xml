@@ -1,0 +1,1394 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="https://mgw.dumatics.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mgw.dumatics.com/" rel="alternate" type="text/html" /><updated>2023-05-30T17:18:21+00:00</updated><id>https://mgw.dumatics.com/feed.xml</id><title type="html">Make Gadgets Work</title><subtitle>An amazing website.</subtitle><author><name>Ankit Mittal</name></author><entry><title type="html">Python Function read excel / csv files from a given directory and its subdirectories</title><link href="https://mgw.dumatics.com/read-excel-csv-recursive/" rel="alternate" type="text/html" title="Python Function read excel / csv files from a given directory and its subdirectories" /><published>2023-03-29T17:16:00+00:00</published><updated>2023-04-18T20:26:00+00:00</updated><id>https://mgw.dumatics.com/read-excel-csv-recursive</id><content type="html" xml:base="https://mgw.dumatics.com/read-excel-csv-recursive/">&lt;h1 id=&quot;code&quot;&gt;Code&lt;/h1&gt;
+
+&lt;p&gt;The code for the function is as shown below:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;os&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pandas&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;datetime&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;datetime&lt;/span&gt; 
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;extract_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;directory_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;columns_to_extract&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;date_columns&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rows_to_skip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;output_filename&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'output.csv'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
+    Extracts data from all Excel and CSV files in the specified directory and its subdirectories that contain all the
+    specified columns.
+
+    :param directory_path: The path to the directory to search for Excel and CSV files.
+    :param columns_to_extract: A list of column names to extract from each file.
+    :param date_columns: A list of column names to parse as dates using pd.to_datetime().
+    :param output_filename: The path and filename to save the extracted data in a csv
+    :return: A DataFrame containing the extracted data from all Excel and CSV files that contain the specified columns,
+    or None if no files contain the specified columns.
+    &quot;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;start_time&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;datetime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;extracted_data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DataFrame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;files_with_no_columns&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sheet_read&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;''&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;extracted_columns&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;columns_to_extract&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;copy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;extracted_columns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;extend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'File Name'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'SubDir'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'CreatedDate'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'LastModifiedDate'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dirs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;files&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;walk&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;directory_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;files&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Started reading '&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;' at: {}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;datetime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;' ...'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;endswith&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'.xlsx'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;endswith&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'.xls'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;endswith&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'.csv'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;file_path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;columns_found_outer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;endswith&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'.csv'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read_csv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;skiprows&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rows_to_skip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;col&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;columns_to_extract&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;col&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;columns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                            &lt;span class=&quot;n&quot;&gt;columns_found_outer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;
+                            &lt;span class=&quot;c1&quot;&gt;#print(col + 'in csv true loop')
+&lt;/span&gt;                        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                            &lt;span class=&quot;n&quot;&gt;columns_found_outer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;
+                            &lt;span class=&quot;c1&quot;&gt;#print(col + 'in false loop')
+&lt;/span&gt;                            &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;dfs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read_excel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sheet_name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;skiprows&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rows_to_skip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+                        &lt;span class=&quot;n&quot;&gt;columns_found&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;
+                        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;col&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;columns_to_extract&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;col&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;columns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                                &lt;span class=&quot;n&quot;&gt;columns_found&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;
+                                &lt;span class=&quot;c1&quot;&gt;#print(col + 'in true loop')
+&lt;/span&gt;                            &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                                &lt;span class=&quot;n&quot;&gt;columns_found&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;
+                                &lt;span class=&quot;c1&quot;&gt;#print(col + 'in false loop')
+&lt;/span&gt;                                &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;
+                        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;columns_found&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                            &lt;span class=&quot;n&quot;&gt;columns_found_outer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;
+                            &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+                            &lt;span class=&quot;n&quot;&gt;sheet_read&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;
+                            &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;columns_found_outer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;date_columns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;col&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;date_columns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;col&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;columns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                                &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;col&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_datetime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;col&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'File Name'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'SubDir'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;basename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+                    &lt;span class=&quot;n&quot;&gt;createx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;modx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getctime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;xcreate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;datetime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fromtimestamp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;modx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'CreatedDate'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xcreate&lt;/span&gt;
+
+                    &lt;span class=&quot;n&quot;&gt;modx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getmtime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;xmod&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;datetime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fromtimestamp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;modx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'LastModifiedDate'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xmod&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;extracted_data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;concat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;extracted_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;extracted_columns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ignore_index&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                    &lt;span class=&quot;c1&quot;&gt;#print(xmod)
+&lt;/span&gt;                    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;endswith&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'.csv'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+                        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;' has been read'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;' has been read and it was last modified on '&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xmod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strftime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'%Y-%m-%d'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'. The name of the sheet that was read is: '&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sheet_read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;files_with_no_columns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;files_with_no_columns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;The following files do not contain the specified columns:&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;file_path&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;files_with_no_columns&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;extracted_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;extracted_data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;extracted_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;applymap&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;upper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fillna&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;extracted_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_csv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;output_filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Started at: {}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start_time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'. &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Ended at: {}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;datetime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'. &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Time elapsed (hh:mm:ss.ms) {}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;datetime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start_time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;extracted_data&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Specified columns do not exist in any file in the provided directory.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Started at: {}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start_time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'. &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Ended at: {}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;datetime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'. &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Time elapsed (hh:mm:ss.ms) {}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;datetime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start_time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;explanation&quot;&gt;Explanation&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;The function &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;extract_data&lt;/code&gt; takes in the following parameters:&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;&lt;em&gt;directory_path&lt;/em&gt;: the path to the directory to search for Excel and CSV files&lt;/li&gt;
+      &lt;li&gt;&lt;em&gt;columns_to_extract&lt;/em&gt;: a list of column names to extract from each file&lt;/li&gt;
+      &lt;li&gt;&lt;em&gt;date_columns&lt;/em&gt;: a list of column names to parse as dates using pd.to_datetime()&lt;/li&gt;
+      &lt;li&gt;&lt;em&gt;rows_to_skip&lt;/em&gt;: the number of rows to skip when reading each file&lt;/li&gt;
+      &lt;li&gt;&lt;em&gt;output_filename&lt;/em&gt;: the path and filename to save the extracted data in a CSV file&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The function starts by creating an empty DataFrame called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;extracted_data&lt;/code&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;It also initializes variables &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;files_with_no_columns&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sheet_read&lt;/code&gt; to track files that do not contain the specified columns and to keep track of the current sheet being read when extracting data from Excel files.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The list &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;extracted_columns&lt;/code&gt; is created by copying the input &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;columns_to_extract&lt;/code&gt; list and adding additional columns for the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;filename&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;subdirectory name&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;file creation date&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;last modified date&lt;/code&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The function then loops through all the files in the specified directory and its subdirectories using os.walk().&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;For each file, it checks if it has a “.xlsx”, “.xls”, or “.csv” extension.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If the file is a CSV file, the function reads it into a DataFrame using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pd.read_csv()&lt;/code&gt;, skipping the number of rows specified by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;rows_to_skip&lt;/code&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;It then checks if all the columns in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;columns_to_extract&lt;/code&gt; are present in the DataFrame. If so, it sets &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;columns_found_outer&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;True&lt;/code&gt; and proceeds to the next step. If not, it sets &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;columns_found_outer&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;False&lt;/code&gt; and moves on to the next file.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If the file is an Excel file, the function reads all sheets in the file into a dictionary of DataFrames using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pd.read_excel()&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sheet_name=None&lt;/code&gt;. It then loops through all the sheets and all the columns in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;columns_to_extract&lt;/code&gt;, checking if each column is present in each sheet’s DataFrame. If all the columns are present in a sheet, it sets &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;columns_found&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;True&lt;/code&gt; and proceeds to the next step. If not, it sets &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;columns_found&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;False&lt;/code&gt; and moves on to the next sheet in the same Excel file. If at least one sheet contains all the specified columns, the function combines the DataFrames of all sheets into one using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pd.concat()&lt;/code&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;columns_found_outer&lt;/code&gt; is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;True&lt;/code&gt;, it extracts the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;filename&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;subdirectory name&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;file creation date&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;last modified date&lt;/code&gt; using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;os.path.basename()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;os.path.getctime()&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;os.path.getmtime()&lt;/code&gt;, and adds them as new columns to the DataFrame. It then appends the DataFrame to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;extracted_data&lt;/code&gt; DataFrame.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;columns_found_outer&lt;/code&gt; is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;False&lt;/code&gt;, it increments the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;files_with_no_columns&lt;/code&gt; counter and prints a warning message.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Finally, the function checks if any files contained the specified columns. If not, it returns None. Otherwise, it sorts the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;extracted_data&lt;/code&gt; DataFrame by filename and saves it to a CSV file using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;to_csv()&lt;/code&gt;. It then prints the number of files processed, the number of files that did not contain the specified columns, and the path to the output file.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;sample-usage&quot;&gt;Sample Usage&lt;/h1&gt;
+
+&lt;p&gt;The function can be called in python as shown below:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# set directory path
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;directory_path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'./Work'&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Path for the directory where all the files containing data for  extraction are to be searched
+&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# set the columns you want to extract
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;columns_to_extract&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Region'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Country'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'Product Number'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Quantity'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Date of Sale'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;date_col&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Date of Sale'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# set the rows to skip
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;skiprows&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#this basically will be number of rows in begining of the files which must be skipped to reach the header row of the data
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;output_filename&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'Regional Sales Data.csv'&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#Call function
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;extract_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;directory_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;columns_to_extract&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;date_col&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;skiprows&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;output_filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now, assuming there were 12 separate files for past 12 months inside the folder then so long as all those files, irrespective of whether they are csv or excel, have the columns &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Region&lt;/code&gt;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Country&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product Number&lt;/code&gt;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Quantity&lt;/code&gt;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Date of Sale&lt;/code&gt;; the function will read the files and extract the data and return it to the dataframe &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;df&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;gui-implementation&quot;&gt;GUI Implementation&lt;/h1&gt;
+
+&lt;p&gt;A very basic GUI implementation of above function using PySimpleGUI with all codeis available &lt;a href=&quot;https://github.com/pubmania/extract_excel_csv_data_recursively&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;usage&quot;&gt;Usage&lt;/h2&gt;
+&lt;p&gt;The script can directly be copied to a Jupyter cell or can be run from terminal. Following command should ensure all dependencies are installed:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;py&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pip&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pandas&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numpy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pysimplegui&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Some things the GUI takes care of are:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Allows selection of columns to be extracted from a sample &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.csv&lt;/code&gt; file&lt;/li&gt;
+  &lt;li&gt;Allows user to specify which of the selected columns should be parsed as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;date&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Gives a date based filename to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;output&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Shows colour coded log for which files were read in green and which were ignored in red background.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;screenshots&quot;&gt;Screenshots&lt;/h2&gt;
+
+&lt;p&gt;Some screenshots of the resulting app are as shown below:&lt;/p&gt;
+
+&lt;h3 id=&quot;empty-form&quot;&gt;Empty Form&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/1966557/232877297-2d3a2914-8a7f-4f20-bba1-af8d0e92c039.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;filled-form&quot;&gt;Filled Form&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/1966557/232879216-22e3b81c-10d0-449f-80d1-30725c24b5ff.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;displays-extracted-output&quot;&gt;Displays extracted output&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/1966557/232881326-f2ecdd14-8bf6-4f7b-bcd4-3e5de4f361a2.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;displays-filename-of-the-output-and-location-where-it-is-saved&quot;&gt;Displays filename of the output and location where it is saved&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/1966557/232881685-6a0eafd9-a5be-464b-ae0c-5814b101fc02.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;colour-coded-log&quot;&gt;Colour coded log&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/1966557/232882657-dd1e4e69-26a3-4849-8e94-9811cedab6d7.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;</content><author><name>Ankit Mittal</name></author><summary type="html">Reading multiple excel and csv files recursively in directory and subdirectories</summary></entry><entry><title type="html">Git Jargon</title><link href="https://mgw.dumatics.com/git-jargon/" rel="alternate" type="text/html" title="Git Jargon" /><published>2023-02-28T17:50:00+00:00</published><updated>2023-02-28T17:50:00+00:00</updated><id>https://mgw.dumatics.com/git-jargon</id><content type="html" xml:base="https://mgw.dumatics.com/git-jargon/">&lt;h1 id=&quot;git-jargon&quot;&gt;Git Jargon&lt;/h1&gt;
+
+&lt;p&gt;Before we delve into the topic of how collaboration happens using git, lets get some terminology out of the way.&lt;/p&gt;
+
+&lt;h2 id=&quot;repo&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;repo&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;When talking to techy chaps, one will encounter the word &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;repo&lt;/code&gt; very often. However, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;repo&lt;/code&gt; is just a shortform for the complete word &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;repository&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;repository&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;repository&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;Now &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;repository&lt;/code&gt; in git speak is basically specific to a project and is nothing but a fancy alias for the &lt;strong&gt;working directory&lt;/strong&gt; where all the digital assets being tracked for the project are placed.&lt;/p&gt;
+
+&lt;h2 id=&quot;root&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;The term &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt; when used with reference to a folder, directory, repo or repository is basically the directory in which all the digital assets of your project are stored. This directory may or may not contain other sub directories.&lt;/p&gt;
+
+&lt;h2 id=&quot;remote&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;remote&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;remote&lt;/code&gt; is a way to refer to server. So if a techy were to say “I have updated File X on remote” - it will basically translate in plain English to something like this - “I updated the File X on my laptop and have then also taken required actions to get those updates reflected on the copy saved on the server.”&lt;/p&gt;
+
+&lt;h2 id=&quot;push&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;push&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;This refers to sending updates carried out (commited) on a local machine to the server (remote). Fairly frequently one may come across statements when checking for status updates on the lines of “I have pushed my changes to remote” which in normal English means “I made required changes on my local machine, committed them and then sent (pushed) them to the server (remote)”&lt;/p&gt;
+
+&lt;h2 id=&quot;pull&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pull&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;This refers to getting updates from the server (remote) on to the local machine. This is an activity typically carried out before one is planning to make any changes or updates to last known version. So if say a task is assigned to an individual for updating file , a reply can be “Alright, I will pull the latest from remote and make changes and will let you know once I have pushed my changes back.” which will translate to “Alright, I will get the latest copy from server, make the changes you have asked for and then commit those changes and send it back as updated version on the server”&lt;/p&gt;
+
+&lt;h2 id=&quot;main&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;This refers to the final / published version of project’s repository.&lt;/p&gt;
+
+&lt;h2 id=&quot;branch&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;branch&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;This term is more of a concept really. You see &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;branch&lt;/code&gt; is a mechanism to carry out changes without impacting the main version and therefore a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;branch&lt;/code&gt; is basically just a new or separate version of the main repository where one can make changes to their heart’s content without worrying about messing up with the last known final version.&lt;/p&gt;
+
+&lt;h2 id=&quot;merge&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;merge&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;Once the experimental changes in a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;branch&lt;/code&gt; are completed and proven not be breaking any other digital assets, it is desirable indeed to get these changes reflected on the main version and this action of bringing digital assets in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main&lt;/code&gt; to reflect same changes as that on the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;branch&lt;/code&gt; is called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;merge&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;modified&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;modified&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;In git speak, any changes (updates, additions, deletions) to a digital asset (including deletion of entire digital asset) then that digital asset will be identified as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;modified&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;staged&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;staged&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;modified&lt;/code&gt; digital assets are not automatically assumed to contribute a version change and that is only done when those changes are added explicity by issuing the command &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git add &amp;lt;filenaem / foldername&amp;gt;&lt;/code&gt; and at this point the changes are said to be staged.&lt;/p&gt;
+
+&lt;h1 id=&quot;recap&quot;&gt;Recap&lt;/h1&gt;
+
+&lt;p&gt;With this in mind, the flow of GIT can now be explained as below:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;To work with Git, you first initialise it on a directory which will make it a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Repository&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Once initialised, Git creates a hidden firectory called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.git&lt;/code&gt; which is used to keep track of changes in the initialised directory.&lt;/li&gt;
+  &lt;li&gt;At this point, we need to make Git aware of the files in this repository which we want Git to track and in doing so we &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;stage&lt;/code&gt; those digital assets.&lt;/li&gt;
+  &lt;li&gt;From this point on, any changes made to digital assets in project folder can be tracked.&lt;/li&gt;
+  &lt;li&gt;If a digital asset which is being tracked is changed, it gets the status of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;modified&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Any digital asset with status must be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;staged&lt;/code&gt; before it can be passed on for version control.&lt;/li&gt;
+  &lt;li&gt;Once &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;staged&lt;/code&gt; files must be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;committed&lt;/code&gt; so that the changes can be treated as the latest version snapshot.&lt;/li&gt;
+  &lt;li&gt;As each commit is tracked by Git, it is possible to revert to a previous version by first identifying the commit id one wants to revert to using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git log&lt;/code&gt; and then providing that commit id through &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git revert &amp;lt;commit_id&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Ankit Mittal</name></author><summary type="html">Familiarisation with some Git jargon</summary></entry><entry><title type="html">Git Basics</title><link href="https://mgw.dumatics.com/git-basics/" rel="alternate" type="text/html" title="Git Basics" /><published>2023-02-26T17:50:00+00:00</published><updated>2023-02-26T17:50:00+00:00</updated><id>https://mgw.dumatics.com/git-basics</id><content type="html" xml:base="https://mgw.dumatics.com/git-basics/">&lt;h1 id=&quot;basics-of-git&quot;&gt;Basics of Git&lt;/h1&gt;
+
+&lt;p&gt;Recently, I was asked to help people understand what is this whole business with GIT and I ran a few sessions on the topic specifically keeping in mind that my audience consisted of tech enthusiasts with minimal tech background. The content below is how I explained and as it went down well, I figured it may be helpful to someone else too; hence this post. :)&lt;/p&gt;
+
+&lt;h2 id=&quot;version-control-system&quot;&gt;Version Control System&lt;/h2&gt;
+
+&lt;p&gt;To understand the tool git lets first start by understanding what problem does it actually solve. At the most basic level git is a version control system. What this means is that it allows automated control of maintaining different versions of a digital asset such as a text file, CV, or indeed code files for a software. Now for simpler things like CV or text file one may not need something as sophisticated and complex as git but when it comes to maintaining assets for a software it is indeed a very useful tool.&lt;/p&gt;
+
+&lt;p&gt;To understand how significant this is, lets put it in perspective of a typical business operations scenario completely unrelated to software development:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Say there was an RFP response on which multiple people from Sales, Marketing, Pursuit and Technical team were helping prepare a response.&lt;/li&gt;
+  &lt;li&gt;Each team will complete one section of the response document relevant to their area.&lt;/li&gt;
+  &lt;li&gt;This will then all need to be integrated into the final response and reviewed by the Sales Lead.&lt;/li&gt;
+  &lt;li&gt;Any changes that Sales Lead identifies will need further changes which will then again need to be amended on the document.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Even with change tracking enabled in MS Word, we all know how painful this entire exercise is. So much so that at times we try doing it together so all changes can be done once or we opt for the approach of making changes sequentially where one section is completed by one team before another can be started by another team. This when we have one document!!!&lt;/p&gt;
+
+&lt;p&gt;Now imagine if we had 1000s of such documents - that is a real scenario for software developers as each software has multiple files that may need input from multiple people. So having an automated version control helps save time because it, at the most basic level, saves time on integrating changes carried out by different people or teams that were carried out in parallel.&lt;/p&gt;
+
+&lt;p&gt;Now when it comes to version control there are two main ways in which it can be achieved:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Centralised Version Control System&lt;/strong&gt;: In our RFP example, the approach where everyone gathers together to carry out change on the main version will be a good simulation of centralised version control. What this means is that the changes to digital asset are done at one central location which is tightly controlled. This might as well be right approach for a smaller undertaking such as our RFP example but when it comes to software development it is not considered to be the best.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Distributed Version Control System&lt;/strong&gt;: This is loosely what would have been the approach in our RFP example if people were to carry out changes on their copy of document which will then be merged by Sales Lead to prepare the final response. Basically a distributed version control system works on the principle that each contributor to the change of digital asset will make change on their local copy and then submit the change for version maintenance to the version controller. Git as a system shines in this approach of distributed version control.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;working-directory&quot;&gt;Working Directory&lt;/h2&gt;
+
+&lt;p&gt;Directory is technically correct name for what are called folders in Windows Operating System and &lt;strong&gt;Working Directory&lt;/strong&gt; is the directory in which the user is currently working. For example, let’s say I create a folder called “Project_1” in windows on path “C:/Documents” and save a python script in that folder, then the working directory will be “Project_1” and working directory path will be “C:/Documents/Project_1”.&lt;/p&gt;
+
+&lt;p&gt;In order to version control this file, one can use git but this will include understanding the steps of how to go about it as explained in following sections.&lt;/p&gt;
+
+&lt;h2 id=&quot;initiatlise&quot;&gt;Initiatlise&lt;/h2&gt;
+
+&lt;p&gt;Now when let’s say the script file script.py is created by developer. It is not being tracked by git at this time. Now if we want it tracked by git, we need to first initiate git on the working directory. This is done using the command: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git init&lt;/code&gt; but before typing this on command line, one needs to first get into the working directory on command line or terminal.&lt;/p&gt;
+
+&lt;p&gt;In our example this will be done like so:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;C:/Documents/Project_1
+git init
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This will create a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.git&lt;/code&gt; directory (folder) inside the working directory.&lt;/p&gt;
+
+&lt;p&gt;This is equivalent of git software saying it is now ready to start tracking but it will still need to know what exactly we want it to track. This is what &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git add&lt;/code&gt; does.&lt;/p&gt;
+
+&lt;h2 id=&quot;add&quot;&gt;Add&lt;/h2&gt;
+
+&lt;p&gt;To tell git what we want it to track, we have to use the command &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git add &amp;lt;filenames / foldernames&amp;gt;&lt;/code&gt;. However, if there are 100 script files in directory it will be very cumbersome to type every single filename and as a shortcut one can use dot notation for current working directory which is dot(.) and the command can be issued as:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# To add all content of the working directory&lt;/span&gt;
+git add &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# To add specific file say script.py&lt;/span&gt;
+git add script.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This tells git that we want all files and directories (folders) in the current working directory to be tracked.&lt;/p&gt;
+
+&lt;p&gt;At this point, git is basically aware that it has to monitor changes on these files but it will not assume that every change we have made needs to be applied to maintained version so when we have added these files, we have basically also just said prepare these files for finalising their version - In other words we have asked git to &lt;strong&gt;stage&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;In order to finalise the versioning, we have to now tell this specifically to git which is done using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;commit&lt;/code&gt;. This will also be reflected in the tracking status which can be checked using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;status&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;status&quot;&gt;Status&lt;/h2&gt;
+
+&lt;p&gt;One can check current tracking status of various files and directories on the git initialised working directory by using the command:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git status
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;commit&quot;&gt;Commit&lt;/h2&gt;
+
+&lt;p&gt;So we have got git to stage the files and now we want it to label the latest changes as a new version and this is achieved using the command:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git commit &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &amp;lt;Comment &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;the commit&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This command ensures that git now makes the latest changes baseline and still keep record of previous changes. This is especially useful if in case we want to revert to a previous version for some reason - say we found that in latest version there were quite a few mistakes which will need to be rewworked and until then previous version is what we want to keep as baseline for anyone who wants to refer and make changes to. This reverting can be achieved using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;revert&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;revert&quot;&gt;Revert&lt;/h2&gt;
+
+&lt;p&gt;Now reverting to a previous version requires that we know the commit id that git applied to previous commits and then identify the exact commit id to which we want git to revert to. This can be achieved by checking git logs, so the sequence to git revert will be like so:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Find the commit id to revert to&lt;/span&gt;
+git log
+
+&lt;span class=&quot;c&quot;&gt;# Copy the commit id of the version to revert to and issue following command&lt;/span&gt;
+git revert &amp;lt;commit &lt;span class=&quot;nb&quot;&gt;id &lt;/span&gt;to revert to&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now at this point, all changes are being tracked on the local machine of the user, so how can this help with collboration. This is achieved by synchronising the latest version on local machine to a central server. This could be a server hosted by an organisation or it can be something public like Github, Gitlab and such. As GitHub is most frequently used in enterprise environment, lets see how that works.&lt;/p&gt;
+
+&lt;p&gt;Github basically is a web based utility which acts as a remote location where we can push our finalised version to be saved in what is called a &lt;strong&gt;github repository&lt;/strong&gt; for other collborators to then download (clone) as their local copy and work on. Once each poarty has made changes, the can each push their changes to the github with help of git and the version control will be applied automagically or in some instance with minimal manual intervention from the maintaining or one pushing the changes.&lt;/p&gt;
+
+&lt;p&gt;&lt;img class=&quot;plantuml&quot; src=&quot;http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a407374617274756d6c0a21696e636c7564652068747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f706c616e74756d6c2d7374646c69622f43342d506c616e74554d4c2f6d61737465722f43345f436f6d706f6e656e742e70756d6c0a21646566696e652044455649434f4e532068747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f747570616472332f706c616e74756d6c2d69636f6e2d666f6e742d737072697465732f6d61737465722f64657669636f6e730a21646566696e6520464f4e54415745534f4d452068747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f747570616472332f706c616e74756d6c2d69636f6e2d666f6e742d737072697465732f6d61737465722f666f6e742d617765736f6d652d350a21696e636c75646520464f4e54415745534f4d452f75736572732e70756d6c0a21696e636c75646520464f4e54415745534f4d452f7365727665722e70756d6c0a21696e636c7564652044455649434f4e532f6769742e70756d6c0a21696e636c75646520464f4e54415745534f4d452f6c6170746f705f636f64652e70756d6c0a21696e636c75646520464f4e54415745534f4d452f666f6c6465722e70756d6c0a21696e636c75646520464f4e54415745534f4d452f66696c655f616c742e70756d6c0a21696e636c7564652044455649434f4e532f6769745f636f6d6d69742e70756d6c0a21696e636c7564652044455649434f4e532f6769746875622e70756d6c0a21696e636c7564652044455649434f4e532f6769745f6272616e63682e70756d6c0a272768747470733a2f2f6769746875622e636f6d2f747570616472332f706c616e74756d6c2d69636f6e2d666f6e742d737072697465732f626c6f622f6d61737465722f666f6e742d617765736f6d652d352f696e6465782e6d640a484944455f53544552454f5459504528290a0a416464456c656d656e74546167287769702c20246267436f6c6f723d726564290a0a506572736f6e286465762c225573657222290a53797374656d286c6170746f702c224c6f63616c20446576696365222c247370726974653d226c6170746f705f636f646522290a53797374656d286769742c22476974206f6e206c6f63616c20646576696365222c247370726974653d2267697422290a53797374656d286769746875622c22476974487562202852656d6f746529222c247370726974653d2267697468756222290a52656c5f52286465762c6c6170746f702c224d616b65206368616e67657322290a52656c5f52286c6170746f702c6769742c22547261636b65642062792047697422290a52656c5f52286769742c6769746875622c225075736820636f6d6d69747322290a0a53797374656d5f426f756e64617279284f6e4465766963652c20224f6e2044657669636522297b0a20202020436f6d706f6e656e7428666f6c6465722c2022576f726b696e67204469726563746f7279222c247370726974653d22666f6c64657222297b0a202020202020202053797374656d2866696c652c2022576f726b696e672046696c65222c247370726974653d2266696c655f616c7422290a2020202020202020436f6d706f6e656e74286769745f747261636b65722c202247495420547261636b6572222c247370726974653d2267697422297b0a20202020202020202020202053797374656d28615f66696c652c20224164642046696c65222c247370726974653d2266696c655f616c74222c202474616773203d202277697022290a20202020202020202020202053797374656d28635f66696c652c2022436f6d6d69742046696c65222c247370726974653d226769745f636f6d6d6974222c202474616773203d202277697022290a20202020202020202020202052656c5f4428615f66696c652c635f66696c652c2267697420636f6d6d6974202d6d203c6d6573736167653e22290a20202020202020207d0a202020202020202052656c5f522866696c652c615f66696c652c2267697420616464202e2f3c66696c653e22290a202020207d0a7d0a0a53797374656d5f426f756e646172792852656d6f74655f5265706f7369746f72792c202247697468756222297b0a2020202053797374656d287265706f2c20226d61696e207265706f222c247370726974653d226769745f6272616e636822290a7d0a52656c5f5228635f66696c652c7265706f2c226769742070757368206f726967696e206d61696e22290a4c61795f44286769742c207265706f290a4c61795f5228615f66696c652c635f66696c65290a4c61795f44286c6170746f702c66696c65290a4c61795f44286769742c615f66696c65290a4c61795f44286c6170746f702c666f6c646572290a0a40656e64756d6c0a40656e64756d6c&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;There is lots going on in this last bit so lets break it down to digestable chunks of information in next session.&lt;/p&gt;</content><author><name>Ankit Mittal</name></author><summary type="html">Basics of Git</summary></entry><entry><title type="html">JupyterLite on Github Enterprise with Panel enabled</title><link href="https://mgw.dumatics.com/jupyterlite-on-github-enterprise-with-panel-enabled/" rel="alternate" type="text/html" title="JupyterLite on Github Enterprise with Panel enabled" /><published>2023-01-25T17:50:00+00:00</published><updated>2023-01-25T17:50:00+00:00</updated><id>https://mgw.dumatics.com/jupyterlite-%20on-github-enterprise-with-panel-enabled</id><content type="html" xml:base="https://mgw.dumatics.com/jupyterlite-on-github-enterprise-with-panel-enabled/">&lt;h1 id=&quot;jupyterlite-on-github-enterprise-with-panel-enabled&quot;&gt;JupyterLite on Github Enterprise with Panel enabled&lt;/h1&gt;
+
+&lt;p&gt;Recently I found myself in a scenario where I had access to Github Enterprise but was limited to a windows machine. Now I wanted to host JupyterLite on Github Enterprise so it can be used by some other people on my team. Challenge was the “Actions” on this instance of Github enterprise were disabled and so I had to build Jupyterlite locally and push it on Github. I figured while at it, I might as well enable the “Panel” and few other dependencies. The steps that worked for me are documented here. This is ofcourse assuming that Python is already installed on the device.&lt;/p&gt;
+
+&lt;p&gt;The final hosted JupyterLite can be seen in action &lt;a href=&quot;https://mgw.dumatics.com/jupyterlite_panel_dist/lab/index.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The steps below created a Jupyterlite instance that allows use of Panel using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;%pip install panel&lt;/code&gt; magic command, and if used on Chrome or its derivatives it also allows exploring local file system.&lt;/p&gt;
+
+&lt;h2 id=&quot;create-and-activate-jupyterlite-environment&quot;&gt;Create and activate Jupyterlite Environment&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;panel_lite
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; .&lt;span class=&quot;se&quot;&gt;\p&lt;/span&gt;anel_lite&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+py &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; venv panel_v
+.&lt;span class=&quot;se&quot;&gt;\p&lt;/span&gt;anel_v&lt;span class=&quot;se&quot;&gt;\S&lt;/span&gt;cripts&lt;span class=&quot;se&quot;&gt;\a&lt;/span&gt;ctivate
+pip &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--upgrade&lt;/span&gt; pip
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;install-jupyterlite-and-other-extensions&quot;&gt;Install jupyterlite and other extensions&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--pre&lt;/span&gt; jupyterlite
+pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;jupyter-bokeh ipython ipywidgets jupyterlab-drawio jupyterlab-markup jupyterlab-myst jupyterlab-pygments jupyterlite-p5-kernel jupyterlite-xeus-sqlite libarchive-c matplotlib matplotlib-inline matplotlib-venn myst-nb myst-parser nbconvert numpy openpyxl pandas pandocfilters pkginfo pyopenssl python-dateutil python-dotenv pyviz-comms pyxlsb scipy sql SQLAlchemy sqlparse tornado widgetsnbextension xlrd XlsxWriter zipp jupyterlab-filesystem-access
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;prepare-build-directory&quot;&gt;Prepare build directory&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;jupyterlite_panel
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; .&lt;span class=&quot;se&quot;&gt;\j&lt;/span&gt;upyterlite_panel&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;mkdir &lt;/span&gt;pypi
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; .&lt;span class=&quot;se&quot;&gt;\p&lt;/span&gt;ypi&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+wget &lt;span class=&quot;s2&quot;&gt;&quot;https://cdn.holoviz.org/panel/0.14.2/dist/wheels/bokeh-2.4.3-py3-none-any.whl&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-outfile&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;bokeh-2.4.3-py3-none-any.whl&quot;&lt;/span&gt;
+wget &lt;span class=&quot;s2&quot;&gt;&quot;https://cdn.holoviz.org/panel/0.14.2/dist/wheels/panel-0.14.2-py3-none-any.whl&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-outfile&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;panel-0.14.2-py3-none-any.whl&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;make-a-record-of-all-that-you-have-installed&quot;&gt;Make a record of all that you have installed.&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip freeze &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; requirements.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;including-any-existing-notebooks&quot;&gt;Including any existing notebooks&lt;/h2&gt;
+
+&lt;p&gt;If you have some existing notebooks or files you would want to include on the hosted version of Jupyterlite, you must create a directory and name it &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;files&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;build-jupyterlite-and-serve-locally-to-test&quot;&gt;Build Jupyterlite and serve locally to test&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jupyter lite build &lt;span class=&quot;nt&quot;&gt;--output-dir&lt;/span&gt; ./dist
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; .&lt;span class=&quot;se&quot;&gt;\d&lt;/span&gt;ist&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+py &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; http.server 8000
+deactivate
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The folder structure after build should look somewhat like below:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;panel_lite:.
+├───.cache
+├───dist
+│   ├───api
+│   ├───build
+│   ├───doc
+│   ├───extensions
+│   ├───files
+│   ├───kernelspecs
+│   ├───lab
+│   ├───pypi
+│   ├───repl
+│   ├───retro
+│   └───tree
+├───files
+│   ├───data
+│   └───sample.ipynb
+├───pypi
+└───panel_v
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/images/2023/01/3.png&quot; alt=&quot;Directory Structure Overall&quot; /&gt;
+&lt;img src=&quot;../assets/images/2023/01/4.png&quot; alt=&quot;Directory Structure of built dist folder&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;push-it-to-github-enterprise&quot;&gt;Push it to Github Enterprise&lt;/h2&gt;
+
+&lt;p&gt;Github Desktop is the easiest way to do it.&lt;/p&gt;
+
+&lt;p&gt;Open Github desktop and create new reporsitory:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/images/2023/01/1.png&quot; alt=&quot;Create New Repository&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;On Github desktop point the Local Path field to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\panel_lite\jupyterlite_panel\dist&lt;/code&gt; and do the initial commit and push to origin.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/images/2023/01/2.png&quot; alt=&quot;Provide Local Path&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;host-jupyterlite-as-github-pages&quot;&gt;Host Jupyterlite as Github pages&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Click on button &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;View on Github&lt;/code&gt; on Github Desktop.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/images/2023/01/5.png&quot; alt=&quot;Open Github Enterprise&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Github Enterprise will open in browser to the created repository&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/images/2023/01/6.png&quot; alt=&quot;Enable Pages on Github Enterprise&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Click on Settings &amp;gt;  Pages&lt;/li&gt;
+  &lt;li&gt;select Branch: master (or main) and root as source.&lt;/li&gt;
+  &lt;li&gt;Click Save and the message should be displayed in green box with the URL to access Jupyterlite.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;finally-open-the-url-to-access-jupyterlite&quot;&gt;Finally open the URL to access JupyterLite&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;../assets/images/2023/01/7.png&quot; alt=&quot;JupyterLite hosted on Github Enterprise&quot; /&gt;&lt;/p&gt;</content><author><name>Ankit Mittal</name></author><summary type="html">Steps to build JupyterLite on windows powershell with Panel and local file access and to host it on restricted Github Enterprise.</summary></entry><entry><title type="html">Tech for Diabetics</title><link href="https://mgw.dumatics.com/tech-for-diabetics/" rel="alternate" type="text/html" title="Tech for Diabetics" /><published>2021-03-05T17:50:00+00:00</published><updated>2021-03-12T13:05:15+00:00</updated><id>https://mgw.dumatics.com/tech-for-diabetics</id><content type="html" xml:base="https://mgw.dumatics.com/tech-for-diabetics/">&lt;h1 id=&quot;background&quot;&gt;Background&lt;/h1&gt;
+
+&lt;p&gt;As a diabetic there are a number of things we are not able to control
+but one thing we can do is keep tabs on our data and while in past it
+would have meant meticulously noting down BG readings in a diary, today
+it is much much easier with all the apps and connected services. In this
+article, I aim to go through the list of technologies that I am aware of
+and use to keep on top of my diabetic data right from my phone.&lt;/p&gt;
+
+&lt;h1 id=&quot;blood-glucose-meter&quot;&gt;Blood Glucose Meter&lt;/h1&gt;
+
+&lt;p&gt;While there are a number of options available, I settled for &lt;a href=&quot;https://shop.spirit-health.co.uk/collections/caresens-dual&quot;&gt;CareSens
+Dual&lt;/a&gt;. The
+biggest advantage with this model is that it plays very nicely with
+xdrip+ app although lately I am relying more on Diabox so the point is
+kind of moot. Apart from that, one factor we must bear in mind while
+chosing the device is not just the cost of the device itself but also
+that of testing strips as it will be a recurring expense and this device
+has one of the most reasonably priced testing strips.&lt;/p&gt;
+
+&lt;h1 id=&quot;freestyle-libre-2-fsl2&quot;&gt;Freestyle Libre 2 (FSL2)&lt;/h1&gt;
+
+&lt;p&gt;FSL2 became available in the UK only from Jan’21 and this or it’s
+previous version allow for a more regular check of the BG trends. FSL1
+in my experience was a bit less accurate than FSL2. However these
+sensors along with the official app from manufacturer require manual
+scan, don’t give all datapoints and can not be calibrated which is again
+where xdrip+ / Diabox apps come into the picture.&lt;/p&gt;
+
+&lt;div class=&quot;notice--info&quot;&gt;
+&lt;p&gt;&lt;strong&gt;Freestyle Libre 1 (FSL1) with Transmitter (Miaomiao / Bubble)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Before Jan’21, in the UK we only had the option of FSL1 and as this version does not have bluetooth communication; the possibility to
+calibrate and get automated data points required usage of a transmitter device such as Miaomiao or Bubble. I ordered a Miaomiao
+transmitter back then and I still can use it with FSL2 albiet with slightly modified approach. I do it because I have the device but with
+FSL2 a transmitter is not needed as explained later.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;freestyle-libre-app&quot;&gt;Freestyle Libre App&lt;/h1&gt;
+
+&lt;p&gt;Now the fact is I dont really use this app for anything other than
+activating the sensor but it is for this reason alone an app you can not
+avoid or do without. In order to use the sensors to feed data directly
+and automatically to Diabox the sensor at the time of activation should
+not be paired through bluetooth to this app. Now there are several ways
+to achieve this. One is to install the app on a completely separate
+phone and turn off Bluetooth on that phone. Another is just do not give
+this app the “Location” permission which would then not allow app access
+to Bluetooth. Either scenario should work in theory but I use the safest
+approach of activating sensor through this app on a compltely different
+phone (that of my daughter actually :))&lt;/p&gt;
+
+&lt;h1 id=&quot;diabox-especially-with-fsl2&quot;&gt;&lt;a href=&quot;https://www.bubblan.org&quot;&gt;Diabox&lt;/a&gt; (Especially with FSL2)&lt;/h1&gt;
+
+&lt;p&gt;I have been using this app only for 10 days at the time of writing but
+it works really well with FSL2 and as it gets the data directly from the
+sensor it removes the additional cost of the transmitter and that makes
+this a very useful app indeed. The app is available for both iOS as well
+as Android but from what I gathered at some point Abbot Laboratories
+(Manufacturers of FSL sensor) complained about the app to Google and so
+google was obligated to takedown this app from playstore. App therefore
+is available as an apk file on github and the latest release for it can
+be downloaded from this &lt;a href=&quot;https://github.com/bubbledevteam/diabox/releases&quot;&gt;GitHub
+Link&lt;/a&gt; The developer
+has a &lt;a href=&quot;https://www.bubblan.org/docs/installation-guide-for-bubblan/diabox/understanding-the-ui/&quot;&gt;Diabox Dev
+website&lt;/a&gt;
+with lot more information on user interface and setup etc. but I will
+explain my setup below.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Download the latest version of the app from &lt;a href=&quot;https://github.com/bubbledevteam/diabox/releases&quot;&gt;GitHub
+Link&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Install the app - As it is not from playstore, the permission to
+install from unknown sources&lt;sup id=&quot;fnref:fn1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:fn1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; should be
+activated in Android Settings.&lt;/li&gt;
+  &lt;li&gt;Once installed, open the app. It will ask to scan the sensor. Once
+you scan, the phone will automatically pair the sensor with the
+Bluetooth of the Libre.&lt;/li&gt;
+  &lt;li&gt;Now to enable calibration tap on the sensor image as shown in
+screenshot below:
+&lt;img src=&quot;../assets/images/2021/03/adfd44c4c0cf4e91aeeb8792970dbf67.png&quot; alt=&quot;adfd44c4c0cf4e91aeeb8792970dbf67&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Now tap 5 times on the text “Factory” in the last entry “Calibration
+Mode” as shown below:
+&lt;img src=&quot;../assets/images/2021/03/00aec12e25c74fed8e124e788850090e.png&quot; alt=&quot;00aec12e25c74fed8e124e788850090e&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;This will present a dialogbox &lt;span class=&quot;mark&quot;&gt;“Sensor Magic
+Code”&lt;/span&gt;. Type &lt;span class=&quot;mark&quot;&gt;“GODMODE”&lt;/span&gt; in the
+dialogbox field and press “OK”. This should activate the calibration
+mode and screen should look as shown below:
+&lt;img src=&quot;../assets/images/2021/03/4aa44c106c724c16b27129ccc3acfb3a.png&quot; alt=&quot;4aa44c106c724c16b27129ccc3acfb3a&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Go back to homepage and you will now see a red coloured circular
+button with “+” symbol on it as you can see on the first screenshot
+above.&lt;/li&gt;
+  &lt;li&gt;Tapping on the add button will reveal an icon with a glucometer as
+shown below:
+&lt;img src=&quot;../assets/images/2021/03/d417b24684524a05985e737b656b55a9.png&quot; alt=&quot;d417b24684524a05985e737b656b55a9&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Tapping on the glucometer icon will open a sliding scale to provide
+the calibration value.
+&lt;img src=&quot;../assets/images/2021/03/8f671fb4efa542d08bdf60c1ead2756d.png&quot; alt=&quot;8f671fb4efa542d08bdf60c1ead2756d&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Add your calibration and click on Save button.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Now, the app also allows uploading the data it collects to LibreView and
+Nighscout. I am not so keen on LibreView web interface so I never tried
+uploading on that service but have it syncing with Nightscout. For
+Nightscout sync, you will need to have a Nightscout instance up and
+running&lt;sup id=&quot;fnref:fn2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:fn2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; but assuming it is in place, the steps
+will be simple to follow:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Click on “Settings”&lt;/li&gt;
+  &lt;li&gt;Click on “Integration”&lt;/li&gt;
+  &lt;li&gt;Enable “Nightscout Share Server Upload”&lt;/li&gt;
+  &lt;li&gt;Enter the URL for Nightscout instance, something like
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://your_nightscout.herokuapp.com/api/v1/&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Enter the password for your instance.&lt;/li&gt;
+  &lt;li&gt;Click on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Connect Test&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;If the test is a success, click on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Save&lt;/code&gt; button.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;nightscout&quot;&gt;&lt;a href=&quot;https://nightscout.github.io/&quot;&gt;Nightscout&lt;/a&gt;&lt;/h1&gt;
+
+&lt;p&gt;Nightscout is a fairly detailed open source solution with loads and
+loads of functionalities but as a type 2 user I merely use it as a
+backup of my data.&lt;/p&gt;
+
+&lt;blockquote class=&quot;notice--danger&quot;&gt;
+  &lt;p&gt;One key thing to note is that once you setup this server your BG data
+is available to anyone with access to your URL as there is no password
+block or similar which in my eyes is no big deal. What can anyone do
+with just my blood glucose data and how or why will they get access to
+an obscure URL anyway but if this makes you worried perhaps you can
+skip this part. If this is not of concern then I must say that while
+the setup guide&lt;sup id=&quot;fnref:fn2:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:fn2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; looks very long and complex,
+it really isn’t. They have taken care to make it so very simple that
+its infact easier than even completing the registration form for some
+of the online services we have got accustomed to and it will just
+work.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;To set it up you can follow the &lt;a href=&quot;https://nightscout.github.io/nightscout/new_user/&quot;&gt;official set-up and installation
+guide&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;diabetesm&quot;&gt;&lt;a href=&quot;https://www.diabetes-m.com/&quot;&gt;Diabetes:M&lt;/a&gt;&lt;/h1&gt;
+
+&lt;p&gt;Diabetes-M is a very good app and creates some very useful and pretty
+reports that can be helpful during discussion with Diabetic Nurse / GP.
+One big advantage of using this app is that it is able to import data
+from Nightscout directly and keep it in sync every 15 minutes and then
+that data is also backed-up in Diabetes-M servers. The app also allows
+for automatic data sync with a number of popular Glucometers but that is
+a paid feature and I do not use it so I cannot comment on its
+reliability. For my usecase I anyway calibrate Diabox each time manually
+when I take the reading from finger prick and that is synched to
+Nightscout which is synched to Diabetes-M so the data is anyway there
+when I need it. Steps to sync with Nightscout are as below:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Open your nightscout instance in a browser on a laptop / PC .&lt;/li&gt;
+  &lt;li&gt;Click on the site in sequence as shown below:&lt;br /&gt;
+&lt;img src=&quot;../assets/images/2021/03/2707fa8797d94ed08f1d6c44fc04ef85.png&quot; alt=&quot;2707fa8797d94ed08f1d6c44fc04ef85&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;On resulting screen - Administration panel, check if the role
+“readable” exists.&lt;br /&gt;
+&lt;img src=&quot;../assets/images/2021/03/cc9cdbfe94474be4b87515de72d9f98c.png&quot; alt=&quot;cc9cdbfe94474be4b87515de72d9f98c&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;If not create it by clicking on the button &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Add new Role&lt;/code&gt; and in
+“Permissions” type &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;*.*.read&lt;/code&gt; as shown below.&lt;br /&gt;
+&lt;img src=&quot;../assets/images/2021/03/053fbb025cc74ebc880f729d3dc3b6b2.png&quot; alt=&quot;053fbb025cc74ebc880f729d3dc3b6b2&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;If it exists, go to the section “Subjects - People, Devices, etc”
+and click on “Add new Subject” and fill the resulting dialogbox like
+shown below and click &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Save&lt;/code&gt;:&lt;br /&gt;
+&lt;img src=&quot;../assets/images/2021/03/64ed999845d644239615c3b0e2aab454.png&quot; alt=&quot;64ed999845d644239615c3b0e2aab454&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;This will generate the Access Token for the app and it will be shown
+in the table in the section:&lt;br /&gt;
+&lt;img src=&quot;../assets/images/2021/03/8c623ef74cdc41d8a6ba5fd05e30b32d.png&quot; alt=&quot;8c623ef74cdc41d8a6ba5fd05e30b32d&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Open the Diabetes:M app and click on the hamburger menu on top left
+corner of the screen. Then on the panel locate and tap on the Data
+Sync icon.&lt;br /&gt;
+&lt;img src=&quot;../assets/images/2021/03/5229542f7a364b07bbed0356ec8f3565.png&quot; alt=&quot;5229542f7a364b07bbed0356ec8f3565&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;On resulting screen under section “Link external sources” locate
+Nightscout and click on setting icon.&lt;br /&gt;
+&lt;img src=&quot;../assets/images/2021/03/4c718c71ade84cb7a2c9eeb3596e32c1.png&quot; alt=&quot;4c718c71ade84cb7a2c9eeb3596e32c1&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;Now fill the URL for your nightscout instance, something like
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://your_nightscout.herokuapp.com&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Leave “Secret” empty and in in the field “Access token” type the
+access token shown generated in step 6 above from the browser and
+click &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Save&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Direct links to appstore:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.mydiabetes&quot;&gt;Google
+Playstore&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://itunes.apple.com/app/id1196733537?mt=8&quot;&gt;Apple Appstore&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;xdrip&quot;&gt;&lt;a href=&quot;https://jamorham.github.io/#xdrip-plus&quot;&gt;XDRIP+&lt;/a&gt;&lt;/h1&gt;
+
+&lt;p&gt;xdrip+ is an opensource Android app (an iOS variant exists but I havent
+read much about it so have no knowledge to share) and as it is not
+available from playstore it can be obtained directly from developer
+site: &lt;a href=&quot;https://jamorham.github.io/#xdrip-plus&quot;&gt;https://jamorham.github.io/#xdrip-plus&lt;/a&gt; To use xdrip, you will
+also need to order a transmitter called miaomiao - It usually comes
+within 2 to 3 days - for me atleast it came in 2 days back in October
+when I started using FSL1. It is a bit of investment at about £162 but
+it pays for itself in long run. I ordered from their
+site&lt;sup id=&quot;fnref:fn3&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:fn3&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;. Once you get the transmitter, the process
+will be like so:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;It will come with a USB charging cable so place it on charger. It
+should start blinking blue but if it does not there is a very small
+hole and you will need a safety pin to press and reset it. Insert
+the safety pin and keep it pressed for 10 seconds. Then place it on
+charge.&lt;/li&gt;
+  &lt;li&gt;Once the transmitter is charged it will display green light.&lt;/li&gt;
+  &lt;li&gt;Now there is also a strap they provide with the transmitter which
+you can use to place it over the libre sensor on your arm.&lt;/li&gt;
+  &lt;li&gt;Open xdrip app and follow the xdrip+ installation
+guide&lt;sup id=&quot;fnref:fn4&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:fn4&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;4&lt;/a&gt;&lt;/sup&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Once connected, it will ask you to calibrate the app with readings from
+two finger prick tests. You can do one and provide twice or you can do
+twice. I usually do it twice for each new sensor.&lt;/p&gt;
+
+&lt;h1 id=&quot;tidepool&quot;&gt;&lt;a href=&quot;https://www.tidepool.org/&quot;&gt;Tidepool&lt;/a&gt;&lt;/h1&gt;
+
+&lt;p&gt;This is a not-for-profit site which xdrip+ can directly communicate with
+and push the readings to every 15 minutes thus creating a backup for
+your data in the cloud. As I still use the miaomiao transmitter paired
+with xdrip+ I have created a sync from xdrip+ to tidepool. Now the good
+thing with tidepool is that it shows glucometer readings in a separate
+table and while for Diabox I have to manually enter the finger prick
+test data, Caresens Dual is paired perfectly with xdrip and every single
+time I take a finger prick test, xdrip+ automatically fetches the
+reading from meter via Bluetooth and then that reading is fed into
+Tidepool which allows me to see my BG data at one place like so:
+&lt;img src=&quot;../assets/images/2021/03/tidepool.png&quot; alt=&quot;tidepool&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;eufy-smartscales&quot;&gt;Eufy Smartscales&lt;/h1&gt;
+
+&lt;p&gt;Eufy smartscale is very reasonably priced and I ordered it from Amazon.
+The scale is reliable, uses standard 3x “AAA” battery which last for
+years not months. The app interface is good too. One drawback perhaps is
+that data is only accessible through app on the phone and not through
+any website. It does sync weight with google fit so that can be accessed
+and shared across other services if one is so inclined but rest of it
+will need to be manually captured for any statistical fun. However, if I
+knew before what I know now I would have perhaps opted for a device from
+&lt;a href=&quot;https://github.com/oliexdev/openScale/wiki/Supported-scales-in-openScale&quot;&gt;this
+list&lt;/a&gt;
+as then I could have had my data collected through the open source app
+&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.health.openscale.pro&quot;&gt;openScale&lt;/a&gt;
+and would have had better freedom on how to move it around. Hope this
+list is useful. If there are any questions, please do not hesitate to
+ask. :)&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:fn1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://developer.android.com/distribute/marketing-tools/alternative-distribution#unknown-sources&quot;&gt;Reference on how to activate installation from unknown sources&lt;/a&gt; &lt;a href=&quot;#fnref:fn1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:fn2&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://nightscout.github.io/nightscout/new_user/&quot;&gt;Guide to setup Nightscout Instance&lt;/a&gt; &lt;a href=&quot;#fnref:fn2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt; &lt;a href=&quot;#fnref:fn2:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:fn3&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://miaomiao.eu/&quot;&gt;Site to order MiaoMiao&lt;/a&gt; &lt;a href=&quot;#fnref:fn3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:fn4&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://androidaps.readthedocs.io/e...p.html#connect-libre-transmitter-start-sensor&quot;&gt;XDRIP+ installation guide&lt;/a&gt; &lt;a href=&quot;#fnref:fn4&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Ankit Mittal</name></author><summary type="html">As a diabetic there are a number of things we are not able to control but one thing we can do is keep tabs on our data</summary></entry><entry><title type="html">Upgrading PHP version on Linux for Apache</title><link href="https://mgw.dumatics.com/upgrading-php-version-on-linux-for-apache/" rel="alternate" type="text/html" title="Upgrading PHP version on Linux for Apache" /><published>2021-02-10T00:04:01+00:00</published><updated>2021-02-10T00:14:40+00:00</updated><id>https://mgw.dumatics.com/upgrading-php-version-on-linux-for-apache</id><content type="html" xml:base="https://mgw.dumatics.com/upgrading-php-version-on-linux-for-apache/">&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Install the Apache module for specific php version&lt;/p&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;libapache2-mod-php7.3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Copy the php.ini from previous version to newer version after making
+a backup of the original php.ini for new version.&lt;/p&gt;
+
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo cp&lt;/span&gt; /etc/php/7.3/apache2/php.ini php.ini.original
+&lt;span class=&quot;nb&quot;&gt;sudo cp&lt;/span&gt; /etc/php/7.2/apache2/php.ini /etc/php/7.3/apache2/php.ini
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Install specific php modules for Apache and enable the php modules
+on new version of php.&lt;/p&gt;
+
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt install php7.3-curl php7.3-gd php7.3-gmp php7.3-intl php7.3-mbstring php7.3-simplexml php7.3-soap php7.3-wddx php7.3-xmlreader php7.3-xmlrpc php7.3-xmlwriter php7.3-xsl php7.3-zip php7.3-xml php7.3-mysql
+sudo phpenmod -v 7.3 pdo_mysql soap wddx xmlreader xmlrpc xsl zip intl gd dom curl mysqlnd gmp simplexml mysqli mbstring
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Disable old php version, enable new version and restart Apache
+server.&lt;/p&gt;
+
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo a2dismod php7.2
+sudo a2enmod php7.3
+sudo systemctl restart apache2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Ankit Mittal</name></author><summary type="html">Install the Apache module for specific php version</summary></entry><entry><title type="html">Converting AAX (Audible) to mp3</title><link href="https://mgw.dumatics.com/converting-aax-audible-to-mp3/" rel="alternate" type="text/html" title="Converting AAX (Audible) to mp3" /><published>2020-05-19T19:36:30+00:00</published><updated>2020-05-21T11:48:26+00:00</updated><id>https://mgw.dumatics.com/converting-aax-audible-to-mp3</id><content type="html" xml:base="https://mgw.dumatics.com/converting-aax-audible-to-mp3/">&lt;p&gt;Lately I have been a bit frustrated because while I subscribe to Audible services, Amazon and Google do not play nice with each other limiting me - &lt;em&gt;the owner of books with rights to listen my purchase on any device&lt;/em&gt; - in my options on where I can listen. Now I am yet to find a good solution that can get my files playing on google home and not just Alexa, I guess first step was to free my audiobooks from Amazon jail. That as it turns out is rather simple to do.I must at this point mention &lt;a href=&quot;https://openaudible.org/&quot;&gt;OpenAudible&lt;/a&gt; which is one fine tool. However, their latest version (2.0.7 at the time of writing) added some limitations whereby you can get it to download the AAX files but not convert them to mp3 without purchasing their license. However,converting AAX to mp3 is accomplished using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ffmpeg&lt;/code&gt; and I do not believe a nice GUI wrapper is what I need and hence I do not believe my money is well spent in getting a license just to achieve from a graphical user interface what I can achieve for free from the terminal with a single line.There are 3 steps in the conversion process:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Get a copy of the AAX file you own from your audible account: This
+can be done in one of two ways as listed below:&lt;/p&gt;
+
+    &lt;p&gt;a. Install OpenAudible and follow instructions to download the AAX
+files.&lt;br /&gt;
+b. Copy it from the filesystem of your Android phone.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Obtain the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;activation_bytes&lt;/code&gt; for your AAX file:&lt;/p&gt;
+
+    &lt;p&gt;a. If you installed OpenAudible, you can use the following steps:&lt;/p&gt;
+
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd /opt/OpenAudible/bin/linux/
+ffprobe /home/OpenAudible/aax/name_of_the_book.AAX 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;b. This should give you a lot of output and a hash code. Let’s say
+the hashcode you get is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;a6ger35cf22u03c9x16743j06f6df50a00b811c3&lt;/code&gt;
+&lt;img src=&quot;../assets/images/2020/05/2020-05-1919-17-07.png&quot; alt=&quot;aax_hash_code&quot; /&gt;
+c. Use this hashcode with following command to get the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;activation_bytes&lt;/code&gt;:&lt;/p&gt;
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   ./rcrack path /opt/OpenAudible/bin/tables/ -h a6ger35cf22u03c9x16743j06f6df50a00b811c3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;d. This should then output the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;activation_bytes&lt;/code&gt; in last line - something like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hex:abc43opu&lt;/code&gt; as shown below:
+&lt;img src=&quot;../assets/images/2020/05/2020-05-1919-46-13-1.png&quot; alt=&quot;activation_byte&quot; /&gt;&lt;/p&gt;
+
+    &lt;p class=&quot;notice--info&quot;&gt;Above steps are required only once. Keep the activation_bytes code that you obtain above safe as it can be used for converting all your audiobooks.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Now use the following commands to convert AAX file to mp3:&lt;/p&gt;
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#change directory to where the AAX files are saved. If using OpenAudible it will be in /home/&amp;lt;username&amp;gt;/OpenAudible/aax
+cd /home/&amp;lt;username&amp;gt;/OpenAudible/aax
+ffmpeg -activation_bytes xxxxxxxx -i 'name of the book.AAX' -map_metadata 0 -codec:a libmp3lame -qscale:a 6 /home/&amp;lt;username&amp;gt;/OpenAudible/mp3/name\ of\ the\ book.mp3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;Remember to change xxxxxxxx with the activation_bytes code you obtained in step 2 and the name of book as well as destination path and name of the book.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Now ofcourse you can accomplish the first Step 2 above without OpenAudible. If you would want to do so, just follow the &lt;a href=&quot;https://github.com/inAudible-NG/tables&quot;&gt;guidance on github&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Hope this will be helpful for a few. In the meantime, I am yet to work out the best way to make google home to play my audiobooks when I so desire. If anyone has any tips they will be gratefully received.Have fun !!!&lt;/p&gt;</content><author><name>Ankit Mittal</name></author><summary type="html">Lately I have been a bit frustrated because while I subscribe to Audible services, Amazon and Google do not play nice with each other limiting me - the owner of books with rights to listen my purchase on any device - in my options on where I can listen. Now I am yet to find a good solution that can get my files playing on google home and not just Alexa, I guess first step was to free my audiobooks from Amazon jail. That as it turns out is rather simple to do.I must at this point mention OpenAudible which is one fine tool. However, their latest version (2.0.7 at the time of writing) added some limitations whereby you can get it to download the AAX files but not convert them to mp3 without purchasing their license. However,converting AAX to mp3 is accomplished using ffmpeg and I do not believe a nice GUI wrapper is what I need and hence I do not believe my money is well spent in getting a license just to achieve from a graphical user interface what I can achieve for free from the terminal with a single line.There are 3 steps in the conversion process:</summary></entry><entry><title type="html">Metabase - A BI solution that just works</title><link href="https://mgw.dumatics.com/metabase-a-bi-solution-that-just-works/" rel="alternate" type="text/html" title="Metabase - A BI solution that just works" /><published>2018-12-05T14:35:02+00:00</published><updated>2019-04-08T17:36:09+00:00</updated><id>https://mgw.dumatics.com/metabase-a-bi-solution-that-just-works</id><content type="html" xml:base="https://mgw.dumatics.com/metabase-a-bi-solution-that-just-works/">&lt;p&gt;I like exploring new solutions and anything to do with data always piques my interest. I came across this nice tool through the &lt;a href=&quot;https://github.com/Kickball/awesome-selfhosted&quot;&gt;list of free self hosted software&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;notice--info&quot;&gt;
+&lt;p&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt; 
+I am still getting introduced to the world of docker and while most of it just works few things confuse the hell out of me.&lt;/p&gt;
+
+&lt;p&gt;Anyway what happened is there was an update for Metabase and I wanted to apply it on my container and in doing so I realised that some of this post can be changed to make it a better experience from get go because after update all my config and dashboards were gone and I had to reconfigure everything.&lt;/p&gt;
+
+&lt;p&gt;It could be that my lack of knowledge meant I did something wrong and faced the issue but irrespective doing it as per updated post below will ensure you dont face the issue at all because I have now tested it twice to ensure it works well.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I have also added the steps to update the metabase to latest docker image as it worked for me.&lt;/p&gt;
+
+&lt;p&gt;The overall impression when I opened their site can be summed up with WOW!! Now they offer simple docker install supported officially by them and the guide to install docker image is simple enough but the few
+simple steps I followed are as below:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Create an A-record for a subdomain for metabase&lt;/li&gt;
+  &lt;li&gt;Download the official &lt;em&gt;metabse&lt;/em&gt; docker image from dockerhub&lt;/li&gt;
+  &lt;li&gt;Create an apache server conf file for metabase&lt;/li&gt;
+  &lt;li&gt;Run the metabase docker image&lt;/li&gt;
+  &lt;li&gt;Access metabase docker image using subdomain URL&lt;/li&gt;
+  &lt;li&gt;Configure your database on metabase&lt;/li&gt;
+  &lt;li&gt;Run Certbot to make the URL https&lt;/li&gt;
+  &lt;li&gt;Done!!&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;create-a-record-for-subdomain&quot;&gt;Create A-record for subdomain&lt;/h1&gt;
+
+&lt;p&gt;Using the process for your Domain Name Regsitrar create an A-Record for
+a subdomain you would want to use for metabase. For this guide we will
+assume that the subdomain being created is called &lt;strong&gt;“metabase”&lt;/strong&gt; so if
+your domain name is say &lt;em&gt;yourdomain.com&lt;/em&gt; then the URL to access metabase
+will be &lt;em&gt;metabase .yourdomain .com&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p class=&quot;notice--info&quot;&gt;It is important that if you use a different subdomain name, please replace metabase with the subdomain name you have chosen in all Apache conf file samples in sections below.&lt;/p&gt;
+
+&lt;p&gt;More detailed steps are available on previous post &lt;a href=&quot;/prosody-behind-apache-on-debian-stretch/#createasubdomainrecord&quot;&gt;HERE&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;download-and-create-apache-conf&quot;&gt;Download and Create Apache Conf&lt;/h1&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker pull metabase/metabase
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /etc/apache2/sites-available/
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;nano metabase.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Create a conf file similar to what is shown below:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;VirtualHost&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;80&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ServerName&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;metabase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;yourdomain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;com&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ServerAlias&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;metabase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;yourdomain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;com&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;ErrorLog&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;APACHE_LOG_DIR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/error_metabase.lo&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;g
+&lt;/span&gt;    &lt;span class=&quot;nx&quot;&gt;CustomLog&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;APACHE_LOG_DIR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/access_metabase.log combine&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;d
+&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ProxyPreserveHost&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;On&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ProxyPass&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//localhost:3000/&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ProxyPassReverse&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;localhost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ProxyPass&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/ws2/&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;  &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;ws://localhost:3000/&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ProxyPass&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/wss2/&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;wss://localhost:3000/&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;        
+ &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/VirtualHost&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Save this by pressing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Ctrl+X&lt;/code&gt; and issue following commands to enable site and reload the apache server.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;a2ensite metabase.conf
+ &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl reload apache2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;run-metabase-docker-image&quot;&gt;Run Metabase docker image&lt;/h1&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker run &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 3000:3000 &lt;span class=&quot;nt&quot;&gt;--name&lt;/span&gt; metabase metabase/metabase
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;If all goes well, you should have metabase already running. If you get an error to the effect saying port 3000 is already in use, you will perhaps have to run it on another port (say 12345) but as metabase container would have been created you will need to issue following commands.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker &lt;span class=&quot;nb&quot;&gt;rm &lt;/span&gt;metabase
+docker run &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 12345:3000 &lt;span class=&quot;nt&quot;&gt;--name&lt;/span&gt; metabase metabase/metabase
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;In addition to avoid running the database through the container we must anyway move it to filesystem. Using commands below:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkdir /var/www/metabase
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This command will create metabase directory on the path /var/www/metabase but you can as easily chose another path as you wish. If you do, just remember to update it in next commands.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker ps
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This will show you the active docker containers. Copy the container ID in first column for the row where under Names you see “metabase” which is the container name we have given using previosu commands.Now copy the
+database from container to local filesystem.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd /var/www/metabase
+docker cp &amp;lt;container ID&amp;gt;:/metabase.db ./
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Now Stop and rename the container&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker stop metabase
+docker rename metabase metabase_old
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Finally run Metabase Docker Image while pointing it to your filesystem for database file.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker run -d -p 12345:3000 -v ~/metabase-data:/var/www/metabase -e &quot;MB_DB_FILE=/var/www/metabase/metabase.db&quot; --name metabase metabase/metabase
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The above docker command can be explained as below:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker run -d  &lt;/code&gt;- This is telling system to start a container in detached mode. By design, containers started in detached mode exit when the root process used to run the container exits.&lt;/p&gt;
+
+&lt;p&gt;` -p 12345:3000` -  This is telling docker to make the container map port 12345 to port 3000 which is the default port on which metabase starts its server.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-v ~/metabase-data:/var/www/metabase&lt;/code&gt;- This part is telling docker to map the “metabase-data” directory in the container to “/var/www/metabase” on the filesystem. In other words, mounting the local volume at path “/var/www/metabase” onto the container in “metabase-data” directory.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--name metabase metabase/metabase&lt;/code&gt;- Finally this part of command is telling docker to name the container “metabase” and to use the docker image “metabase/metabase” from dockerhub&lt;/p&gt;
+
+&lt;p&gt;Do bear in mind if you change the port as explained above, you will also need to change the port in apache conf file in previous step. So your apache conf file in this case will look as shown below:&lt;/p&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;VirtualHost&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;80&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;ServerName&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;metabase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;yourdomain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;com&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;ServerAlias&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;metabase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;yourdomain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;com&lt;/span&gt;
+    
+        &lt;span class=&quot;nx&quot;&gt;ErrorLog&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;APACHE_LOG_DIR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/error_metabase.lo&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;g
+&lt;/span&gt;        &lt;span class=&quot;nx&quot;&gt;CustomLog&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;APACHE_LOG_DIR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/access_metabase.log combine&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;d
+&lt;/span&gt;    
+        &lt;span class=&quot;nx&quot;&gt;ProxyPreserveHost&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;On&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;ProxyPass&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//localhost:12345/&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;ProxyPassReverse&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;localhost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;12345&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;ProxyPass&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/ws2/&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;  &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;ws://localhost:12345/&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;ProxyPass&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/wss2/&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;wss://localhost:12345/&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+        
+    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/VirtualHost&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h1 id=&quot;access-and-configure-on-browser&quot;&gt;Access and configure on browser&lt;/h1&gt;
+
+&lt;p&gt;Access your metabase using the subdomain url - &lt;em&gt;http:// metabase.yourdomain .com&lt;/em&gt; and it should walk you through the initial configuration. If you do not want to add a database and just play with the tool, they have kindly provided a sample database.&lt;/p&gt;
+
+&lt;p class=&quot;notice--info&quot;&gt;It might be useful for you to create a “user” in your database that has “read only” access and then use that “user” when you configure metabase. Metabase will only ever need read access as it cannot be used to modify data in your database.&lt;/p&gt;
+
+&lt;h1 id=&quot;enable-ssl&quot;&gt;Enable SSL&lt;/h1&gt;
+
+&lt;p&gt;Once you are happy with your configuration from step above, just run the certbot to enable https using letsencrypt certificate. On Debian this could be as simple as issuing the command&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;certbot
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Once above step is created you will have an additional conf file named &lt;strong&gt;metabase-le-ssl.conf&lt;/strong&gt; created in the location &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/apache2/sites-available&lt;/code&gt;. Check this and once it is there you are all set to access your new functional metabase instance on https. More detailed steps are available on previous post &lt;a href=&quot;/prosody-behind-apache-on-debian-stretch/#enablesslsetupusingletsencrypt&quot;&gt;HERE&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;update-version&quot;&gt;Update version&lt;/h1&gt;
+
+&lt;p&gt;Updating on docker image is pretty straight forward and provided you have followed steps above should not result in you loosing all the effort once update has completed.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#docker rm metabase_old&lt;/span&gt;
+
+docker stop metabase
+
+&lt;span class=&quot;c&quot;&gt;#docker rename metabase metabase_old&lt;/span&gt;
+
+docker pull metabase/metabase
+
+docker start metabase
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;From my recent messing around, I have come to realise that so long as the first start of the docker image was done using environment variables pointing to correct database directory, there is no need to run the commented lines above and a simple stop, upgrade and start should work just fine. Enjoy!!!&lt;/p&gt;</content><author><name>Ankit Mittal</name></author><summary type="html">I like exploring new solutions and anything to do with data always piques my interest. I came across this nice tool through the list of free self hosted software.</summary></entry><entry><title type="html">Prosody behind Apache on Debian Stretch with Conversations</title><link href="https://mgw.dumatics.com/prosody-behind-apache-on-debian-stretch/" rel="alternate" type="text/html" title="Prosody behind Apache on Debian Stretch with Conversations" /><published>2018-06-15T12:36:19+00:00</published><updated>2020-05-21T11:56:42+00:00</updated><id>https://mgw.dumatics.com/prosody-behind-apache-on-debian-stretch</id><content type="html" xml:base="https://mgw.dumatics.com/prosody-behind-apache-on-debian-stretch/">&lt;h1 id=&quot;genrealguidance&quot;&gt;Genreal Guidance&lt;/h1&gt;
+
+&lt;p&gt;This how-to assumes that:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;User has access to a registered domain - &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;domain.name&lt;/code&gt;. Any reference to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;domain.name&lt;/code&gt; throughout the tutorial therefore, must be replaced with your own domain name.&lt;/li&gt;
+  &lt;li&gt;If stuck anywhere, please do get in touch with &lt;a href=&quot;https://chat.prosody.im/&quot;&gt;prosody support chat&lt;/a&gt; - They are a very helpful lot and are very kind too.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;networksetup&quot;&gt;Network Setup:&lt;/h1&gt;
+
+&lt;p&gt;It is not mandatory to follow the flow of this how-to but if you do, please do it till the end before you try and access the IM server from any client to save yourself some pain.&lt;/p&gt;
+
+&lt;h2 id=&quot;obtaintheipaddress&quot;&gt;Obtain the IP address&lt;/h2&gt;
+
+&lt;p&gt;.… of the machine where your XMPP server will be installed using following command on the terminal &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ip -a address&lt;/code&gt; On the result shown, IP address against inet family is the one we are interested in as can be seen in screenshot below:
+&lt;img src=&quot;../assets/images/2018/06/PUTTY_2018-06-15_12-49-42.png&quot; alt=&quot;PUTTY_2018-06-15_12-49-42&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Copy this ip address, we will need it in next step.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;portforwardingonrouterifhostingfromhome&quot;&gt;Port Forwarding on router if hosting from home.&lt;/h2&gt;
+
+&lt;p&gt;You have to ensure that following ports are opened and directed to above IP address from your router. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;5222, 5269, 5280, 5281&lt;/code&gt; On DD-WRT this can be done as shown in screenshot below. This will, ofcourse, vary based on router you are using.
+&lt;img src=&quot;../assets/images/2018/06/chrome_2018-06-15_11-34-57.png&quot; alt=&quot;chrome_2018-06-15_11-34-57&quot; /&gt;
+Use the IP address from previous step to fill the IP address field. Basically this set-up is informing your router that if a request comes to you asking for one of the above mentioned ports direct that request to this IP address on the same port.&lt;/p&gt;
+
+&lt;h2 id=&quot;createasubdomainrecord&quot;&gt;Create a sub-domain record&lt;/h2&gt;
+
+&lt;div class=&quot;notify--danger&quot;&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Please note that the official Prosody Documentation recommends using Server Record and even the experts on their chat support strongly recommend that approach.
+
+I did not have that option unfortunately - read I was being lazy / adventurous - anyway the C-Name set-up has worked fine for me and hence the guide follows this route.
+
+You have been warned !!!
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This step will vary based on the domain name registrar you use. I use Namecheap for which you could do it as shown in screenshot below:
+&lt;img src=&quot;../assets/images/2018/06/chrome_2018-06-15_11-43-31.png&quot; alt=&quot;chrome_2018-06-15_11-43-31&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;ensureyouhavesomesortofdynamicdnsupdatesetupinplace&quot;&gt;Ensure you have some sort of Dynamic DNS update set-up in place&lt;/h2&gt;
+
+&lt;p&gt;You can create an account here -&amp;gt; &lt;a href=&quot;https://dnsomatic.com/&quot;&gt;DNSOMATIC&lt;/a&gt; If you are going to use DNSOMATIC which allows you to update several places like so:
+&lt;img src=&quot;../assets/images/2018/06/chrome_2018-06-15_11-53-35.png&quot; alt=&quot;chrome_2018-06-15_11-53-35&quot; /&gt;
+For namecheap in order to get the value for password, login to Namecheap dashboard, go to Advanced DNS and scroll down to &quot;Dynamic DNS&quot; section and copy the value in front of the field named &quot;Dynamic DNS Password” as shown below:
+&lt;img src=&quot;../assets/images/2018/06/chrome_2018-06-15_17-02-32.png&quot; alt=&quot;chrome_2018-06-15_17-02-32.png&quot; /&gt;
+The setting to update DNSOMATIC on DD-WRT are as shown below: 
+DYDNS Server:&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;updates.dnsomatic.com&lt;/code&gt; 
+Hostname: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;all.dnsomatic.com&lt;/code&gt; 
+URL: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://updates.dnsomatic.com/nic/update?hostname=&lt;/code&gt;
+&lt;img src=&quot;../assets/images/2018/06/chrome_2018-06-15_11-48-32.png&quot; alt=&quot;chrome_2018-06-15_11-48-32&quot; /&gt;
+For all other Dynamic DNS set-ups ensure that your subdomain will always get updated with latest IP address to ensure continuity of service.&lt;/p&gt;
+
+&lt;h1 id=&quot;serversetup&quot;&gt;Server Setup:&lt;/h1&gt;
+
+&lt;p&gt;Normally the XMPP clients on phone directly access port 5222 or 5269 for MUC (Multi User Chats aka Group Chats) but to make sure image uploads work and for being able to access IM from web we need to enable reverse proxy using Apache server. As this is fairly straight forward, lets get that out of the way.&lt;/p&gt;
+
+&lt;h2 id=&quot;apachewithreverseproxyenabled&quot;&gt;Apache with reverse Proxy enabled&lt;/h2&gt;
+
+&lt;p&gt;Make directory for subdomain:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo mkdir /var/www/html/im&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Then create a server conf file and open for editing in nano using following command:\&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo nano /etc/apache2/sites-available/prosody.conf&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Paste the following in conf file:&lt;/p&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;VirtualHost&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;80&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ServerName&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;im&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;domain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ServerAlias&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;im&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;domain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;DocumentRoot&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/www/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;html&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;im&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;ErrorLog&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;APACHE_LOG_DIR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/error_im.lo&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;g
+&lt;/span&gt;    &lt;span class=&quot;nx&quot;&gt;CustomLog&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;APACHE_LOG_DIR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/access_im.log combine&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;d
+&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ProxyPass&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//im.domain.name:5280/http-bind/&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ProxyPassReverse&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//im.domain.name:5280/http-bind/&lt;/span&gt;
+
+
+&lt;span class=&quot;nx&quot;&gt;RewriteEngine&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;RewriteCond&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;SERVER_NAME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;im&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;domain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;RewriteRule&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;^&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;https&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/VirtualHost&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Save the file with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Ctrl+x&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;y&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enter&lt;/code&gt;. Finally enable site and reload server.&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;a2ensite prosody.conf
+    &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl reload apache2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Enable SSL set-up using Let’s Encrypt {#enablesslsetupusingletsencrypt}
+————————————–&lt;/p&gt;
+
+&lt;p&gt;It is assumed at this point that certbot is already installed but if not, follow the tutorial &lt;a href=&quot;https://certbot.eff.org/lets-encrypt/debianstretch-apache&quot;&gt;here&lt;/a&gt; On terminal give the command &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo certbot&lt;/code&gt;
+&lt;img src=&quot;../assets/images/2018/06/PUTTY_2018-06-15_12-08-21.png&quot; alt=&quot;PUTTY_2018-06-15_12-08-21&quot; /&gt;
+Then follow the wizard and once completed check that an additional conf file named prosody-le-ssl.conf is created. If not something did not go well so check again and repeat but if yes move to next step.&lt;/p&gt;
+
+&lt;h3 id=&quot;ensurecertbotisrenewingautomatically&quot;&gt;Ensure certbot is renewing automatically&lt;/h3&gt;
+
+&lt;p&gt;Debian stretch gets the service certbot.timer already on it which when enabled will try to autorenew twice a day ensuring a continuous certificate availability. To locate and edit the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;certbot.timer&lt;/code&gt;following commands are helpful:&lt;br /&gt;
+&lt;img src=&quot;../assets/images/2018/06/PUTTY_2018-06-15_12-19-30.png&quot; alt=&quot;PUTTY_2018-06-15_12-19-30&quot; /&gt;&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;locate certbot.timer
+nano /etc/systemd/system/timers.target.wants/certbot.timer
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The certbot.timer entry on my system is as below:
+&lt;img src=&quot;../assets/images/2018/06/PUTTY_2018-06-15_17-23-18.png&quot; alt=&quot;PUTTY_2018-06-15_17-23-18&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Once edited, make sure it is enabled using following commands:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;certbot.timer
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl start certbot.timer
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;prosodyxmppserver&quot;&gt;Prosody XMPP server&lt;/h2&gt;
+&lt;p class=&quot;notice--warning&quot;&gt;Assumption - Apache 2.4 web server is already installed and functioning.&lt;/p&gt;
+
+&lt;h3 id=&quot;install&quot;&gt;Install&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Option 1&lt;/strong&gt; (Not Recommended):&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo nano /etc/apt/sources.list&lt;/code&gt;
+Then add this -&amp;gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;deb http://packages.prosody.im/debian stretch main&lt;/code&gt;on the last line.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Option 2&lt;/strong&gt; (Recommended):&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;echo deb http://packages.prosody.im/debian \$\(lsb\_release -sc) main | sudo tee -a /etc/apt/sources.list
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Above command is recommended because it takes the release of your installed version and adds it directly rather than the hard coded “stretch” in Option 1 which must be changes specific to the version of debian. Now add the key, update repository, upgrade for good measure and then install using the following commands:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    wget https://prosody.im/files/prosody-debian-packages.key &lt;span class=&quot;nt&quot;&gt;-O-&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-key add
+    &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get update
+    &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get upgrade
+    &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;prosody
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;installpluginsmodules&quot;&gt;Install plugins / modules&lt;/h3&gt;
+
+&lt;p&gt;Latest updated documentation is ofcourse on &lt;a href=&quot;https://prosody.im/doc/installing_modules.html&quot;&gt;project website&lt;/a&gt; but at the time of writing these are the instructions that were followed:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /usr/lib/prosody/
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;hg clone https://hg.prosody.im/prosody-modules/ prosody-modules
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;To update:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /usr/lib/prosody/prosody-modules/
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;hg pull &lt;span class=&quot;nt&quot;&gt;--update&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;importsslusingcertbot&quot;&gt;Import SSL using certbot&lt;/h3&gt;
+
+&lt;p&gt;Issue following commands to get the SSL activated for Prosody:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;certbot renew &lt;span class=&quot;nt&quot;&gt;--deploy-hook&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;prosodyctl --root cert import /etc/letsencrypt/live&quot;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;prosodyctl &lt;span class=&quot;nt&quot;&gt;--root&lt;/span&gt; cert import /etc/letsencrypt/live
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;prosodyctl cert generate localhost 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;configure&quot;&gt;Configure&lt;/h3&gt;
+
+&lt;p&gt;The configuration file for prosody is very well documented and only needs minor tweaks. However, it is lot of commenting and to keep this readable, I have put my configuration here that can either be directly pasted or can be compared to update the default conf file. Either way, first you would need to open the config file:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo nano /etc/prosody/prosody.cfg.lua&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now the working config file for me is as shown below and can be compared to amend or can be directly copy pasted.&lt;/p&gt;
+
+&lt;p&gt;Bear in mind that all references to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;domain.name&lt;/code&gt; must be replaced with your registered domain name.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;admins = {&quot;admin1@im.domain.name&quot;}
+
+plugin_paths = {&quot;/usr/lib/prosody/prosody-modules&quot; }
+consider_bosh_secure = true
+cross_domain_bosh = true
+modules_enabled = {
+
+        -- Generally required
+                &quot;roster&quot;; -- Allow users to have a roster. Recommended ;)
+                &quot;saslauth&quot;; -- Authentication for clients and servers. Recommended if you want to log in.
+                &quot;tls&quot;; -- Add support for secure TLS on c2s/s2s connections
+                &quot;dialback&quot;; -- s2s dialback support
+                &quot;disco&quot;; -- Service discovery
+
+        -- Not essential, but recommended
+                &quot;carbons&quot;; -- Keep multiple clients in sync
+                &quot;pep&quot;; -- Enables users to publish the1ir mood, activity, playing music and more
+                &quot;omemo_all_access&quot;; -- xep-0060 for enabling omemo access to non subscribers
+                &quot;private&quot;; -- Private XML storage (for room bookmarks, etc.)
+                &quot;blocklist&quot;; -- Allow users to block communications with other users
+                &quot;vcard&quot;; -- Allow users to set vCards
+
+        -- Nice to have
+                &quot;version&quot;; -- Replies to server version requests
+                &quot;uptime&quot;; -- Report how long server has been running
+                &quot;time&quot;; -- Let others know the time here on this server
+                &quot;ping&quot;; -- Replies to XMPP pings with pongs
+                &quot;register&quot;; -- Allow users to register on this server using a client and change passwords
+                &quot;mam&quot;; -- Store messages in an archive and allow users to access it
+                --&quot;mam_muc&quot;; -- store group chat messages
+
+        -- Admin interfaces
+                &quot;admin_adhoc&quot;; -- Allows administration via an XMPP client that supports ad-hoc commands
+                --&quot;admin_telnet&quot;; -- Opens telnet console interface on localhost port 5582
+
+        -- HTTP modules
+                &quot;bosh&quot;; -- Enable BOSH clients, aka &quot;Jabber over HTTP&quot;
+                &quot;websocket&quot;; -- XMPP over WebSockets
+                &quot;http_files&quot;; -- Serve static files from a directory over HTTP
+                &quot;http_upload&quot;; -- module to enable file upload in group chat
+
+        -- Other specific functionality
+                &quot;groups&quot;; -- Shared roster support
+                &quot;proxy65&quot;; -- Enables a file transfer proxy service which clients behind NAT can use
+                &quot;smacks&quot;;
+                &quot;csi&quot;;
+                &quot;cloud_notify&quot;;
+                &quot;conversejs&quot;;
+}
+
+modules_disabled = {
+        -- &quot;offline&quot;; -- Store offline messages
+        -- &quot;c2s&quot;; -- Handle client connections
+        -- &quot;s2s&quot;; -- Handle server-to-server connections
+        -- &quot;posix&quot;; -- POSIX functionality, sends server to background, enables syslog, etc.
+}
+
+allow_registration = false
+
+c2s_require_encryption = false
+
+s2s_require_encryption = true
+
+s2s_secure_auth = true
+
+s2s_secure_domains = { &quot;domain.name&quot; }
+
+pidfile = &quot;/var/run/prosody/prosody.pid&quot;
+
+authentication = &quot;internal_hashed&quot;
+
+archive_expires_after = &quot;1w&quot; -- Remove archived messages after 1 week
+
+log = {
+        info = &quot;/var/log/prosody/prosody.log&quot;; -- Change 'info' to 'debug' for verbose logging
+        error = &quot;/var/log/prosody/prosody.err&quot;;
+        -- &quot;*syslog&quot;; -- Uncomment this for logging to syslog
+        -- &quot;*console&quot;; -- Log to the console, useful for debugging with daemonize=false
+}
+
+certificates = &quot;certs&quot;
+
+----------- Virtual hosts -----------
+-- You need to add a VirtualHost entry for each domain you wish Prosody to serve.
+-- Settings under each VirtualHost entry apply *only* to that host.
+
+VirtualHost &quot;localhost&quot;
+
+VirtualHost &quot;im.domain.name&quot;
+
+------ Components ------
+---Set up a MUC (multi-user chat) room server on conference.example.com:
+   Component &quot;conference.im.domain.name&quot; &quot;muc&quot;
+     restrict_room_creation = &quot;local&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Once completed, save it and proceed to next steps.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo service prosody start
+sudo service prosody stop
+sudo service prosody start -v
+sudo service prosody stop
+
+## Enable prosody as a service so it restarts each time after system reboot
+
+sudo systemctl is-enabled prosody.service
+sudo service prosody restart
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;adduser&quot;&gt;Add User&lt;/h3&gt;
+
+&lt;p&gt;Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;prosodyctl&lt;/code&gt; command to add user like so:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo prosodyctl adduser admin1@im.domain.name&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;and then provide password for the user. Ofcourse you must add as many users as you need and bear in mind the conf file above has registration switched-off so the users must be manually added using this step. Check the manpage using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;man prosodyctl&lt;/code&gt; to see how to update password for an existing user and to delete a user.&lt;/p&gt;
+
+&lt;h1 id=&quot;clientssetup&quot;&gt;Clients Setup:&lt;/h1&gt;
+
+&lt;h2 id=&quot;conversationsonandroid&quot;&gt;Conversations on Android&lt;/h2&gt;
+
+&lt;p&gt;Conversations is the best client for XMPP on Android and is available on playstore for a small amount or it can be installed from f-droid for free. The free version has some limitations with regards to push but I have been using it with no issues what-so-ever.&lt;/p&gt;
+
+&lt;h3 id=&quot;openpgpusingopenkeychain&quot;&gt;OpenPGP using OpenKeyChain&lt;/h3&gt;
+
+&lt;p&gt;Install the OpenKeyChain app, create the key pair and trigger Conversations to start from OpenKeyChain. The other person must also have OpenPGP Key pair and you should have the public key of other person added on openkeychain instaled on your phone. Do bear in mind Conversations developer says it is an experimental feature. Although it did work perfectly fine for me while I tested with about 4 or 5 users.&lt;/p&gt;
+
+&lt;h2 id=&quot;conversejsorgonweb&quot;&gt;Conversejs.org on web&lt;/h2&gt;
+
+&lt;p&gt;Go to the web root we defined initially and create an index.html:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo nano /var/www/html/im/index.html&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Then add following html code in there:&lt;/p&gt;
+
+&lt;p&gt;Bear in mind that all references to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;domain.name&lt;/code&gt; must be replaced with your registered domain name.&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;cp&quot;&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;html&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;no-js&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;lang=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;en&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;charset=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;utf-8&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;viewport&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;width=device-width, initial-scale=1.0&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Converse&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;shortcut icon&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;image/ico&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;css/images/favicon.ico&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/css&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;media=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;screen&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://cdn.conversejs.org/3.3.4/css/converse.min.css&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/css&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;media=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;screen&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://cdn.conversejs.org/3.3.4/css/mobile.min.css&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://cdn.conversejs.org/3.3.4/dist/converse.min.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;reset&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;content&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;inner-content&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+                &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;brand-heading&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;i&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;icon-conversejs&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/i&amp;gt;&lt;/span&gt; Converse&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;converse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;initialize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;authentication&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;login&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;auto_away&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;300&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;auto_reconnect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;bosh_service_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;https://im.domain.name/http-bind/&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;show_controlbox_by_default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;message_archiving&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;always&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;allow_logout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;allow_dragresize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Save the file with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Ctrl+x&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;y&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enter&lt;/code&gt;. Once done restart the webserver as well as prosody for good measure:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl restart apache2.service
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;prosodyctl restart
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;chatsecureonios&quot;&gt;ChatSecure on iOS&lt;/h2&gt;
+
+&lt;p&gt;Now I do not have an iphone but a few of my friends do. They were able to use ChatSecure which is also an opensource app. Unfortunately ChatSecure is unable to get the images on group chat from Conversations but I am hoping that developer of ChatSecure will fix this issue sooner rather than later.&lt;/p&gt;
+
+&lt;h2 id=&quot;desktopclient&quot;&gt;Desktop Client&lt;/h2&gt;
+
+&lt;p&gt;For desktop I found Gajim to be most polished and it can be downloaded for your OS from &lt;a href=&quot;https://gajim.org&quot;&gt;here&lt;/a&gt; All works great on it except for the http_upload which seems to fail for transferring images with an error “Unsecured”. I am not sure what the issue is a search results did not help much - I left it because I dont really need this feature from desktop. However if someone has any ideas on how to fix this, please do leave it in the comments. The plugins on Gajim that I have applied and activated can be seen below:
+&lt;img src=&quot;../assets/images/2018/06/Gajim_2018-06-15_17-10-11.png&quot; alt=&quot;Gajim_2018-06-15_17-10-11.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;maintenance&quot;&gt;Maintenance&lt;/h1&gt;
+
+&lt;p&gt;The service does generate a lot of logs and it will serve you well to delete generated logs daily using Cronjob like so&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;crontab &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Then add the following on the cronjob:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;############## DELETE PROSODY LOG FILE ARCHIVES ###########################&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;MAILTO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;your@email.com&quot;&lt;/span&gt;
+0 0 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 0-6 &lt;span class=&quot;nb&quot;&gt;rm&lt;/span&gt;  /var/log/prosody/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.gz
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Ankit Mittal</name></author><summary type="html">A detailed step by step guide for a self-hosted instant messaging</summary></entry><entry><title type="html">Home Networking</title><link href="https://mgw.dumatics.com/home-networking/" rel="alternate" type="text/html" title="Home Networking" /><published>2018-05-14T18:21:00+00:00</published><updated>2018-11-10T08:59:05+00:00</updated><id>https://mgw.dumatics.com/home-networking</id><content type="html" xml:base="https://mgw.dumatics.com/home-networking/">&lt;h1 id=&quot;networkrouting&quot;&gt;Network routing&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;strong&gt;Router&lt;/strong&gt; - Router is the device at home that connects all devices in your house to the internet. It does so by assigning IP address to each of your device but this IP address is only relevant for devices connected to this router. What this means is that if you use an IP address allocated by this router from a coffee shop and you are not connected to your home router then you will not be able to reach the device that IP address belonged to. For this reason these IP addresses are called internal IP addresses.&lt;br /&gt;&lt;br /&gt;
+Now what happens is when you try to access a website, your device sends the request to your router, router in turn sends it to the router of your ISP which in turn eventually connects to the server that is hosting the website. The information flows back through same route and your router finally gets the information and then passes it back to your device and it is able to do so because it identifies your device based on the Internal IP address it assigned to your device. &lt;br /&gt;&lt;br /&gt;
+By default pretty much all routers are configured to allocate these Internal IP Addresses using DHCP which is just fancy term for allocating a random number to the device. They do also provide the facility to reserve an IP address for a particular device if we tell it to do so - This is called &amp;quot;assigning a static IP on the router&amp;quot; in technical speak. This is important when we are trying to host service from home based server and is explained next&lt;br /&gt;&lt;br /&gt;
+Many ISP provided routers are locked in and it will serve you well to get a router and flash it with an open source firmware like &lt;a href=&quot;/dd-wrt-firmware-on-tp-link-tl-wr841n-v11&quot;&gt;DD-WRT.&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;strong&gt;Internal LAN set-up&lt;/strong&gt; - Ensure that on your internal LAN network you assign static IP address to device that will be running the server. If your router allows for LAN Domain to be configured then do so and allocate appropriate LAN Hostname as it makes it easier to access the server from within LAN than just by trying to remember the IP address.
+&lt;/li&gt;
+&lt;li&gt;
+&lt;strong&gt;Port Forwarding&lt;/strong&gt; - When the request comes from Internet, it will be with http, ftp, smtp those kind of headers. These headers operate on standard ports. However for security as well as application related issues, the ports on actual server within your home network can be significantly different. All this needs to be translated for communication to be completed and application to provide requested information.&lt;br /&gt;&lt;br /&gt;
+Port Forwarding at router level is simply us telling router which IP address to pass on the received request based on the port that request is trying to access. For example http requests are on port 80 so if we tell router that any requests coming on port 80 must be forwarded to a laptop in your house with internal ip address of 192.168.1.44 then port forwarding should be the way to do so.
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;internettohome&quot;&gt;Internet to Home&lt;/h1&gt;
+&lt;p&gt;Use of Dynamic DNS Services&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Ensure that the router is informing your Dynamic DNS provider with latest IP address assigned by your ISP.
+&lt;ul&gt;
+&lt;li&gt;Use of duckdns.org or dtdns.com etc&lt;/li&gt;
+&lt;li&gt;Use of DNS-O-Matic to dynamically update the External IP address for your home router as soon as it is changed by the ISP.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Allocate the Dynamic DNS to DNS name purchased from Domain Name registrar like Namecheap etc.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;hostingaservicefromhomeserver&quot;&gt;Hosting a service from Home Server:&lt;/h1&gt;
+&lt;p&gt;Question we are first going to answer is - &lt;strong&gt;If we want to host on server from home. what do we need to do?&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;1ensureyouareabletodochangestoyourroutersettingthatallowsyouto&quot;&gt;1. Ensure you are able to do changes to your router setting that allows you to:&lt;/h2&gt;
+&lt;p&gt;a. Create port forwarding rules&lt;br /&gt;
+b. Update the DynamicDNS each time your ISP changes External IP address for your router. &lt;br /&gt;&lt;br /&gt;
+The concept for these two topics are covered in previous sections but we will revisit in greater detail later. For now let’s start at something even more basic.&lt;/p&gt;
+&lt;h2 id=&quot;2weneedtodecidetheoperatingsystemandwebserverwewanttouse&quot;&gt;2. We need to decide the operating system and web server we want to use?&lt;/h2&gt;
+&lt;p&gt;The request from Internet when it reaches the router it is just dealing in numbers and not strings so it does not really know what information to send back unless it gets it back from the device where the information resides. In order for the device that has the information to provide it such that router can send it out, we need to have these web servers that do the job of translating the information into a format that the router and eventually the  device can understand. So as an example if the request was on http protocol, it would mean it is for a web page and router knows that it is for port 80, and will forward it to the IP address you assigned - Router is assuming ofcourse that you know what you are doing. In other words it is your (human) responsibility to ensure that when this request lands on said IP address someone is there to receive it - that someone is the &quot;Web Server&quot; we are now talking about.&lt;/p&gt;
+&lt;h1 id=&quot;webservers&quot;&gt;Web Servers&lt;/h1&gt;
+&lt;p&gt;The two commonly used web-servers are:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Apache&lt;/li&gt;
+&lt;li&gt;Nginx&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;There are other servers too for various other scenarios but the most popular options are the two above.&lt;/p&gt;
+&lt;div class=&quot;notice--primary&quot;&gt;
+&lt;strong&gt;QUESTION:&lt;/strong&gt;&lt;br /&gt; 
+Can we have both web servers running on same machine?
+&lt;br /&gt;
+&lt;strong&gt;ANSWER: &lt;/strong&gt;&lt;br /&gt; 
+Yes, the routing of information will be similar to the flow below:&lt;br /&gt;
+Internet -&amp;gt; Home Router -&amp;gt; Primary Server -&amp;gt; Other servers in home network accessed through reverse proxy and connected to world only through Primary Server.
+&lt;/div&gt;
+&lt;h1 id=&quot;operatingsystem&quot;&gt;Operating System&lt;/h1&gt;
+&lt;p&gt;Assuming that we decide to go with Apache Server. You will need to install it on your laptop. This brings us to the first controversial topic of operating system that this laptop is using. It can be anything from Windows, Mac to a range of Linux Distros. As we are talking open source, lets assume it is will be a linux distro but there are so many to chose from so which one?
+A safe choice is to opt for Debian based distro as it is easy to start with. In that too Debian 9 (code named: Stretch) at the time of writing is latest stable version and is most recommended. I will assume for the purpose of this article that the reader will use Debian 9 (Stretch). I will also assume that reader is not aware of working on a Linux environment. Advanced users may find some of the information here obvious or boring as I explain few things at length.&lt;/p&gt;
+&lt;h1 id=&quot;preparethelaptop&quot;&gt;Prepare the laptop:&lt;/h1&gt;
+&lt;p&gt;Step 1 - Find out whether the laptop is 32 bit or 64 bit.&lt;br /&gt;
+Step 2 - Download a copy of the Debian 9 (Stretch) applicable to the specific version of your laptop (32 bit / 64 bit)&lt;br /&gt;
+Step 3 - Create a Live DVD / USB and test drive the OS&lt;br /&gt;
+Step 4 - Install it&lt;br /&gt;
+You will be asked to provide root password, username and user password. Make note of each of these as you will need them later.&lt;br /&gt;
+Step 5 - Update, Upgrade and Dist Upgrade&lt;br /&gt;
+Open the terminal of the laptop and type following commands:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt update
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt upgrade
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt dist-upgrade
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h1 id=&quot;moretocomeworkinprogress&quot;&gt;....More to come...Work in progress.&lt;/h1&gt;</content><author><name>Ankit Mittal</name></author><summary type="html">Network routing Router - Router is the device at home that connects all devices in your house to the internet. It does so by assigning IP address to each of your device but this IP address is only relevant for devices connected to this router. What this means is that if you use an IP address allocated by this router from a coffee shop and you are not connected to your home router then you will not be able to reach the device that IP address belonged to. For this reason these IP addresses are called internal IP addresses. Now what happens is when you try to access a website, your device sends the request to your router, router in turn sends it to the router of your ISP which in turn eventually connects to the server that is hosting the website. The information flows back through same route and your router finally gets the information and then passes it back to your device and it is able to do so because it identifies your device based on the Internal IP address it assigned to your device. By default pretty much all routers are configured to allocate these Internal IP Addresses using DHCP which is just fancy term for allocating a random number to the device. They do also provide the facility to reserve an IP address for a particular device if we tell it to do so - This is called &amp;quot;assigning a static IP on the router&amp;quot; in technical speak. This is important when we are trying to host service from home based server and is explained next Many ISP provided routers are locked in and it will serve you well to get a router and flash it with an open source firmware like DD-WRT. Internal LAN set-up - Ensure that on your internal LAN network you assign static IP address to device that will be running the server. If your router allows for LAN Domain to be configured then do so and allocate appropriate LAN Hostname as it makes it easier to access the server from within LAN than just by trying to remember the IP address. Port Forwarding - When the request comes from Internet, it will be with http, ftp, smtp those kind of headers. These headers operate on standard ports. However for security as well as application related issues, the ports on actual server within your home network can be significantly different. All this needs to be translated for communication to be completed and application to provide requested information. Port Forwarding at router level is simply us telling router which IP address to pass on the received request based on the port that request is trying to access. For example http requests are on port 80 so if we tell router that any requests coming on port 80 must be forwarded to a laptop in your house with internal ip address of 192.168.1.44 then port forwarding should be the way to do so. Internet to Home Use of Dynamic DNS Services Ensure that the router is informing your Dynamic DNS provider with latest IP address assigned by your ISP. Use of duckdns.org or dtdns.com etc Use of DNS-O-Matic to dynamically update the External IP address for your home router as soon as it is changed by the ISP. Allocate the Dynamic DNS to DNS name purchased from Domain Name registrar like Namecheap etc. Hosting a service from Home Server: Question we are first going to answer is - If we want to host on server from home. what do we need to do? 1. Ensure you are able to do changes to your router setting that allows you to: a. Create port forwarding rules b. Update the DynamicDNS each time your ISP changes External IP address for your router. The concept for these two topics are covered in previous sections but we will revisit in greater detail later. For now let’s start at something even more basic. 2. We need to decide the operating system and web server we want to use? The request from Internet when it reaches the router it is just dealing in numbers and not strings so it does not really know what information to send back unless it gets it back from the device where the information resides. In order for the device that has the information to provide it such that router can send it out, we need to have these web servers that do the job of translating the information into a format that the router and eventually the device can understand. So as an example if the request was on http protocol, it would mean it is for a web page and router knows that it is for port 80, and will forward it to the IP address you assigned - Router is assuming ofcourse that you know what you are doing. In other words it is your (human) responsibility to ensure that when this request lands on said IP address someone is there to receive it - that someone is the &quot;Web Server&quot; we are now talking about. Web Servers The two commonly used web-servers are: Apache Nginx There are other servers too for various other scenarios but the most popular options are the two above. QUESTION: Can we have both web servers running on same machine? ANSWER: Yes, the routing of information will be similar to the flow below: Internet -&amp;gt; Home Router -&amp;gt; Primary Server -&amp;gt; Other servers in home network accessed through reverse proxy and connected to world only through Primary Server. Operating System Assuming that we decide to go with Apache Server. You will need to install it on your laptop. This brings us to the first controversial topic of operating system that this laptop is using. It can be anything from Windows, Mac to a range of Linux Distros. As we are talking open source, lets assume it is will be a linux distro but there are so many to chose from so which one? A safe choice is to opt for Debian based distro as it is easy to start with. In that too Debian 9 (code named: Stretch) at the time of writing is latest stable version and is most recommended. I will assume for the purpose of this article that the reader will use Debian 9 (Stretch). I will also assume that reader is not aware of working on a Linux environment. Advanced users may find some of the information here obvious or boring as I explain few things at length. Prepare the laptop: Step 1 - Find out whether the laptop is 32 bit or 64 bit. Step 2 - Download a copy of the Debian 9 (Stretch) applicable to the specific version of your laptop (32 bit / 64 bit) Step 3 - Create a Live DVD / USB and test drive the OS Step 4 - Install it You will be asked to provide root password, username and user password. Make note of each of these as you will need them later. Step 5 - Update, Upgrade and Dist Upgrade Open the terminal of the laptop and type following commands:</summary></entry></feed>

@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.23.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+--><html lang="en" class="no-js">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Ghost V1.0 Upgrade on Apache stack, related quirks and fixes - Make Gadgets Work</title>
+<meta name="description" content="Ghost V1.0 Upgrade on Apache stack, related quirks and fixes">
+
+
+  <meta name="author" content="Ankit Mittal">
+  
+  <meta property="article:author" content="Ankit Mittal">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Make Gadgets Work">
+<meta property="og:title" content="Ghost V1.0 Upgrade on Apache stack, related quirks and fixes">
+<meta property="og:url" content="https://mgw.dumatics.com/ghost-v1-0-upgrade-related-quirks-and-fixes/">
+
+
+  <meta property="og:description" content="Ghost V1.0 Upgrade on Apache stack, related quirks and fixes">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2017-10-05T17:46:00+00:00">
+
+
+
+  <meta property="article:modified_time" content="2018-03-29T15:37:54+00:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://mgw.dumatics.com/ghost-v1-0-upgrade-related-quirks-and-fixes/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Ankit Mittal",
+      "url": "https://mgw.dumatics.com/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Make Gadgets Work Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+    <script src="/assets/js/scroll-to-top.js"></script>
+  
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Make Gadgets Work
+          <span class="site-subtitle">I give what I take and then I try giving a bit more - My payback to the helpful open source community !!!</span>
+        </a>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/"><i class="fas fa-home"></i></a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li>
+</ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile_pix/profile_1.jpg" alt="Ankit Mittal" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Ankit Mittal</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Programme Manager by profession, Developer at heart !!!</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">United Kingdom</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:mr.ankitmittal@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Ghost V1.0 Upgrade on Apache stack, related quirks and fixes">
+    <meta itemprop="description" content="Right then, the Ghost V1.0 was out a while back and they made Ghost 0.11.x an LTS so I was not in any rush to upgrade too. I have not had much time to sort this out for a while and two days back when I finally came around to check how to upgrade, my first moment of concern was that officially supported stack is for NGINX.">
+    <meta itemprop="datePublished" content="2017-10-05T17:46:00+00:00">
+    <meta itemprop="dateModified" content="2018-03-29T15:37:54+00:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Ghost V1.0 Upgrade on Apache stack, related quirks and fixes
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Right then, the Ghost V1.0 was out a while back and they made Ghost 0.11.x an LTS so I was not in any rush to upgrade too. I have not had much time to sort this out for a while and two days back when I finally came around to check how to upgrade, my first moment of concern was that officially supported stack is for NGINX.</p>
+
+<p>I have moved my blog to the Apache Stack on DigitalOcean and while on my sandbox environment I still have NGINX, that is not a place I want to host my blog from. Anyhoo, I realised soon enough that while not officially supported it s easy to bypass the restrictions so I went ahead.
+The upgrade itself couldn’t have been simpler considering the major version bump. The answer to the question "Was it worth it?" is something we will have to wait and see although I am liking what I see except for the initial hiccups.</p>
+
+<p class="notice--success">EDITED AFTER THE POST: Boy oh boy - just after I finished this post I saw the latest version of Ghost V1.12 is out and it was such a painless process compared to past. Just a simple command ‘ghost update’ and job done. That itself makes this whole pain kind of worth it.</p>
+
+<p>OK so the steps I took are as below:</p>
+<ol>
+<li><a href="#backup">Backup</a></li>
+<li><a href="#downloadandinstall">Download and Install</a></li>
+<li><a href="#setupwizard">Setup Wizard</a></li>
+<li><a href="#configureapache">Configure Apache</a></li>
+<li><a href="#restore">Restore</a></li>
+<li><a href="#tweak">Tweak</a></li>
+</ol>
+
+<h2 id="backup">Backup</h2>
+<p>We will take the back-up from front end for all the posts and we will also backup on the server the entire directory where old instance of the blog is residing.
+To take backup of all the content and download it in a json file, open your ghost site on a browser, navidate to "Settings" and then click on "Export".
+Next for the backup of folder on the server itself. To do this issue the following commands on the terminal.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#Updateand upgrade the OS repo</span>
+<span class="nb">sudo </span>apt-get update
+<span class="nb">sudo </span>apt-get upgrade
+<span class="c">#Stop the ghost server</span>
+pm2 stop Ghost &amp;quot<span class="p">;</span>assuming Ghost is the pm2 <span class="nb">id </span><span class="k">for </span>the site&amp;quot<span class="p">;</span>
+<span class="c"># Change directory to web-server root</span>
+<span class="nb">cd</span> /var/www/html/&amp;quot<span class="p">;</span>path to your ghost directory say <span class="s1">'ghost'</span> &amp;quot<span class="p">;</span>
+<span class="c"># Create a new directory for backup</span>
+<span class="nb">sudo mkdir </span>old_ghost_bkp
+<span class="nb">sudo mv </span>ghost old_ghost_bkp
+<span class="c"># Recreate the ghost directory</span>
+<span class="nb">sudo mkdir </span>ghost
+<span class="nb">cd </span>ghost
+<span class="c"># Give right privileges to the new directory</span>
+<span class="nb">sudo chown</span> <span class="nt">-R</span> &amp;lt<span class="p">;</span>your username&amp;gt<span class="p">;</span>:www-data <span class="nb">.</span>
+</code></pre></div></div>
+
+<h2 id="downloadandinstall">Download and Install</h2>
+<p>As we are already in the right directory lets get on with installing the latest version of Ghost using npm.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>npm <span class="nb">install</span> <span class="nt">-g</span> ghost-cli
+<span class="c">#Make sure you are in the directory where new ghost is to be installed.</span>
+<span class="c">#If you have followed all commands so far, you will already be in </span>
+<span class="c">#required the directory</span>
+ghost <span class="nb">install</span>
+</code></pre></div></div>
+
+<p class="notice--warning">It is at this point that you will have to deviate from official guide if you have Apache instead of NGINX. You will be prompted by the installer that it could not find NGINX and do you still want to continue. Default is "No" so make sure you enter "Y" and then press enter.</p>
+
+<p><img src="../assets/images/2017/10/nginx-not-found.PNG" alt="nginx-not-found" loading="lazy"><br>
+For me rest of the install went smoothly.<br>
+<img src="../assets/images/2017/10/finish-install-process.PNG" alt="finish-install-process" loading="lazy"></p>
+
+<h2 id="setupwizard">Setup Wizard</h2>
+<p>Immediately after the install is complete, you will be presented with following questions:</p>
+
+<p class="notice--info">Please note that if you have configured SSL using LetsEncrypt as explained in previous posts on this blog then even if you are using https, the answer to blog url must be the with http and not https.</p>
+
+<p>For example: I gave http://mgw.dumatics.com and not https://mgw.dumatics.com
+&lt;/code&gt;&lt;/pre&gt;</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><table class="rouge-table"><tbody><tr>
+<td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td>
+<td class="code"><pre>Enter your blog url: http://your.blog.url
+Enter your MySQL Hostname: localhost
+Enter your MySQL Username: root
+Enter your MySQL Password: &amp;quot<span class="p">;</span>your mysql root password&amp;quot<span class="p">;</span>
+Enter your Ghost database Name: <span class="s2">"a relevant name"</span> 
+<span class="c"># for security reasons you may want to keep it different from your blog name";</span>
+Do you wish to <span class="nb">set </span>up Nginx: no
+Do you wish to <span class="nb">set </span>uo Ghost MySQL User: <span class="nb">yes
+</span>Do you wish to <span class="nb">set </span>up Systemd: <span class="nb">yes
+</span>Do you want to start Ghost: <span class="nb">yes</span>
+</pre></td>
+</tr></tbody></table></code></pre></figure>
+
+<p class="notice--warning">Please do note that the response on line 6 above to "Setup Nginx" must be "no"</p>
+
+<p>After the questions are complete you will get a notification <code>You can access you blog at http://your.blog.url</code>.
+At this point, it is best to see which port is configured by ghost CLI for this installation. you can do so by checking the configuration file like so:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nano config.production.json
+</code></pre></div></div>
+<p>You can change the port if you like but if it is different than the port you originally had for old version of ghost you can either change it here or you need to change Apache conf file in next step.
+If you do decide to change the port here, then there should be no need to carry out the next step - Configure Apache.</p>
+
+<h2 id="configureapache">Configure Apache</h2>
+<p>Assuming that the port in Ghost config file was <code>1234</code>, there will be some changes that you will need to make in Apache conf files like so:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /etc/apache2/sites-available/
+<span class="nb">sudo </span>nano ghost.conf
+</code></pre></div></div>
+
+<p>Now change the port on <code>ProxyPass</code> and <code>ProxyPassReverse</code> to be same as what is in the <code>config.production.json</code> file and save it by pressing <code>Ctrl+x</code> and <code>y</code>.- so for this example it will be changed to <code>1234</code> and change will look as below:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ProxyRequests off
+ProxyPass / http://localhost:1234/
+ProxyPassReverse / http:/localhost:1234/
+</code></pre></div></div>
+
+<p>Now open the ssl config file for the site using commands below and make the same changes as above.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>nano ghost-le-ssl.conf
+</code></pre></div></div>
+
+<p class="notice--primary">TIP: If done using LetsEncrypt, it will be named something like <code class="language-plaintext highlighter-rouge">ghost-le-ssl.conf</code>.</p>
+
+<p>Once the changes are saved, disable and enable the configurations using following commands:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>a2dissite ghost.conf
+<span class="nb">sudo </span>a2dissite ghost-le-ssl.conf
+<span class="nb">sudo </span>a2ensite ghost.conf
+<span class="nb">sudo </span>a2ensite ghost-le-ssl
+<span class="c">#Restart the server</span>
+<span class="nb">sudo </span>service apache2 restart
+</code></pre></div></div>
+
+<p>Now if you enter you blog url in a browser, you should be presented with vanilla Ghost site. If not, something in server set-up has not worked and you will need to troubleshoot it and fix - luckily for me all worked like a charm.</p>
+<h2 id="restore">Restore</h2>
+<p>Right, so you are now on the browser looking at the Vanilla Ghost install. First thing you need to do now is create the user with same credentials you had on your old version of ghost. To do this you will first need to enter the admin url for ghost and follow the steps to create your user.
+Once you are into the admin interface, navigate to "Settings" -&gt; "Labs" and click on "Choose File" button, select the json backup that was exported from your old version of the blog and then click on "Import" button.
+Now to restore the images from your old blog on the server issue following commands:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /var/www/html/ghost/content
+<span class="nb">sudo rm </span>images
+<span class="nb">sudo cp</span> /var/www/html/old_ghost_bkp/ghost/content/images /var/www/html/ghost/content/
+<span class="c">### Make the new image directory is writable or image uploads will fail</span>
+<span class="nb">sudo chown</span> <span class="nt">-R</span> ghost:ghost images/
+<span class="c">### Restart Ghost</span>
+<span class="nb">cd</span> ..
+ghost restart
+</code></pre></div></div>
+
+<ol class="notice--warning">
+  <li>The ghost CLI commands like stop, start and restart will require you to be in the directory where ghost is installed.</li>
+  <li>While start and stop commands of ghost specifically ask for sudo credentials, restart command just keeps rotating and hence it is better to issue a command with sudo before you issue <code class="language-plaintext highlighter-rouge">ghost restart</code>.</li>
+</ol>
+
+<p>This is it. Your old blog is now fully restored.</p>
+
+<h2 id="tweak">Tweak</h2>
+<p>This section is a bit of a pain because there are quite a few things that break with this version. So if you have heavily used html, you will painstakingly need to go through posts and add a new line between markdown and html content for it to be parsed properly or else it will display quite wiered outputs on your blog.
+If you have used code blocks with syntax highlighting, another change is with older version you would have given three backticks followed by language-sql but now you just need to give three backticks followed by sql.
+If you have used line numbering using prism.js, it just wont work and you will need to apply changes to your theme the way I did. Without going too much in detail on that, you can get the copy of <a href="https://github.com/pubmania/scrawl/blob/master/assets/js/prism.js">prism.js</a>, <a href="https://github.com/pubmania/scrawl/blob/master/assets/js/prism-custom-line-numbers.js">prism-custom-line-number.js</a>, <a href="https://github.com/pubmania/scrawl/blob/master/assets/css/prism.css">prism.css</a>, <a href="https://github.com/pubmania/scrawl/blob/master/assets/css/prism-line-numbers.css">prism-line-number.css</a> using the github links for my theme and place them in assets directory of your theme. Then make sure you include them in relevant files where your theme calls the javascripts.
+Once done, issue the command <code>ghost restart</code> and things should look pretty again.
+Happy Migrating !!!</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-03-29">March 29, 2018</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Ghost+V1.0+Upgrade+on+Apache+stack%2C+related+quirks+and+fixes%20https%3A%2F%2Fmgw.dumatics.com%2Fghost-v1-0-upgrade-related-quirks-and-fixes%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmgw.dumatics.com%2Fghost-v1-0-upgrade-related-quirks-and-fixes%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fmgw.dumatics.com%2Fghost-v1-0-upgrade-related-quirks-and-fixes%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/rstudio-server-setup-with-ssl-behind-apache-proxy-server/" class="pagination--pager" title="Rstudio Server Setup with SSL behind Apache proxy server
+">Previous</a>
+    
+    
+      <a href="/unprotect-sheets-in-libre-calc-excel/" class="pagination--pager" title="Unprotect Sheets in Libre Calc, Excel
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/read-excel-csv-recursive/" rel="permalink">Python Function read excel / csv files from a given directory and its subdirectories
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Reading multiple excel and csv files recursively in directory and subdirectories
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git-jargon/" rel="permalink">Git Jargon
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Familiarisation with some Git jargon
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git-basics/" rel="permalink">Git Basics
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">What is GIT, how is it used and where to begin
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jupyterlite-on-github-enterprise-with-panel-enabled/" rel="permalink">JupyterLite on Github Enterprise with Panel enabled
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Steps to build JupyterLite on windows powershell with Panel and local file access and to host it on restricted Github Enterprise.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+<form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term...">
+  </form>
+  <div id="results" class="results"></div>
+</div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<div id="scroll-to-top">
+    <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-angle-double-up fa-stack-1x fa-inverse up-arrow"></i>
+    </span>
+</div>
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2023 Ankit Mittal. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://mgw.dumatics.com/ghost-v1-0-upgrade-related-quirks-and-fixes/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/ghost-v1-0-upgrade-related-quirks-and-fixes"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://makegadgetswork.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+
+  
+
+
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  
+    <script src="/assets/js/clipboardrouge.js"></script>
+  
+
+
+
+  </body>
+</html>
