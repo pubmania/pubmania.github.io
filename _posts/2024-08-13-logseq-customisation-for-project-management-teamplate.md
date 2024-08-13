@@ -568,8 +568,9 @@ table th {
     :commands []
     ```
     - and replace above with:
+    
     {: .notice--info}
-    If you will copy and paste the code below please make suere that you remove the `white space` between the curly brackets, so `\{\{ ` should become `{{` and `\}\}` should become `}}`
+    If you will copy and paste the code below please make suere that you remove the `white space` between the curly brackets.
 
 
     ```
