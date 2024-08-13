@@ -16,6 +16,7 @@ That problem, however, is what I thought, can be resolved using Logseq especiall
 
     - Press `Ctrl+K` and search for `logseq/config.edn`
     - In the code block search for following lines:
+      
     ```edn
     ;; Advanced queries `:result-transform` function.
     ;; Transform the query result before displaying it.
