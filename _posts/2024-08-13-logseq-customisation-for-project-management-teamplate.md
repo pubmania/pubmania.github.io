@@ -10,9 +10,12 @@ That problem, however, is what I thought, can be resolved using Logseq especiall
 
 ## Customisations
 
+### Sample Project Log
+![Screenshot_13-8-2024_15949_](https://github.com/user-attachments/assets/8c9a7f4c-21a4-42a7-8951-1f4b301fa269)
+
 ### Preparation
 
-- First we will ensure our actions log which will be generated using the [[Logseq]] inbuilt feature for `To Do Lists` displays fields that we want it to display.
+- First we will ensure our actions log which will be generated using the Logseq's inbuilt feature for `To Do Lists` displays fields that we want it to display.
 
     - Press `Ctrl+K` and search for `logseq/config.edn`
     - In the code block search for following lines:
@@ -872,7 +875,7 @@ table th {
 - Here paste the following then save and close the default app:
 
 ```markdown
-  query-properties:: [:icon :page :updated-at]
+  - query-properties:: [:icon :page :updated-at]
   #+BEGIN_QUERY
   {:title [:h1 "⏳ Ongoing Projects"]
     :query [:find (pull ?page [*])
@@ -905,7 +908,13 @@ table th {
 #+END_QUERY
 ```
 
+### Sample Content Page
+![screenshot_20240813-152544](https://github.com/user-attachments/assets/5a295ec2-ab6c-447f-b485-d70166997eba)
+
 ## Usage
+
+### Sample Day to Day Capture
+![Screenshot_13-8-2024_151147_](https://github.com/user-attachments/assets/097dab9f-33a0-4f4a-a807-15923b754e65)
 
 ### Create Project
 - To create a CARDIO Log for a project, first create a new page and give it name of the Project.
