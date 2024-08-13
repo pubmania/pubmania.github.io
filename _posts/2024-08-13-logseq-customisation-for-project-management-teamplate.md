@@ -587,7 +587,8 @@ table th {
 - Press `Ctrl+K` and search for `templates` and open the page.
 - Once on the page, click on `Three dots` in top right corner of the screen and from the drop down menu select `Open in default app`
 - Here paste the following then save and close the default app:
-```markdown
+
+<code>
 title:: templates
 visibility:: false
 icon:: 🧾
@@ -863,7 +864,7 @@ icon:: 🧾
 	  }
 	  #+END_QUERY
 -
-```
+</code>
 
 ### Contents page
 
