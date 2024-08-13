@@ -938,8 +938,9 @@ table th {
         |#no-go|🚫|
 
 - Circles with additional colours can be created using the template. To do so, press `/.c` and press `enter`. This should then put following text on the editor:
-
-  - `{{renderer :template-view, circle-template, :color orange}}`
+```
+	{{renderer :template-view, circle-template, :color orange}}
+```
 - Now just replace `orange` in above with the colour desired.
 
 ### Maintain Issues Log
@@ -953,8 +954,15 @@ table th {
 #### Blockquotes
 - As we added css for different coloured borders of blockquotes and also created shortcode and keyboard shortcut we can do this in multiple ways:
     - Type `/>b`and press enter. This will place `<blockquote class='blue'></blockquote>` and the quote can be written between the tags.
-    - Type `{{> yellow,Some yellow quote}}` and it will be presented as {{> yellow,Some yellow quote}}
+    - Type the following, replacing yellow with one of the predefined colours: yellow, pink, blue, green, red, grey, gray, orange or purple.
+      ```
+      		{{> yellow,Some yellow quote}}
+      ```
 
 #### Coloured Highlight
 - Type `/=y`, select `Yellow Highlighter` from pop-up menu and press enter. This will place `<mark class='yellow'></mark>` and text to be highlighted can be written between the tags. It will be presented as <mark>Yellow Highlight</mark>
-- Type `{{== pink,pink highlight}}` and it will be presented as <span style="background-color: pink">This text is highlighted.</span>
+- Type the following and it will be presented as <span style="background-color: pink">This text is highlighted.</span>
+  ```
+  		{{== pink,pink highlight}}
+  ```
+  
