@@ -588,283 +588,283 @@ table th {
 - Once on the page, click on `Three dots` in top right corner of the screen and from the drop down menu select `Open in default app`
 - Here paste the following then save and close the default app:
 
-<code>
-title:: templates
-visibility:: false
-icon:: 🧾
-
-- # Circle
-  id:: 66b0d360-cde5-4e95-87b3-4e97a1e23bb5
-  template:: circle-template
-  template-including-parent:: false
-  arg-color:: red
-	- <span class='circle' style='background: ``c.args.color``; display: inline-block; width: 15px; height: 15px; border-radius: 50%; vertical-align: middle;'></span>
-- # People Page
-  template:: people page
-  template-including-parent:: false
-	- tags:: people
-	  icon:: 👨‍💼
-	- ## Tasks
-		- query-table:: true
-		     query-properties:: [:priority :deadline :block]
-		  #+BEGIN_QUERY
-		  {:title [:h3 "Owned"]
-		  :query [:find (pull ?b [*])
-		       :in $ ?tag
-		       :where
-		       [?b :block/marker ?marker]
-		       [(contains? #{"TODO" "DOING" "NOW" "LATER" "WAITING"} ?marker)]
-		       (page-ref ?b ?tag)
-		       [?ref :block/name "project"]
-		       (not [?b :block/refs ?ref])]
-		  :inputs [:query-page]
-		  :result-transform :add-task-attrs
-		  :breadcrumb-show? true
-		  :group-by-page? false
-		  :collapsed? false
-		  }
-		  #+END_QUERY
-		- query-table:: true
-		  collapsed:: true
-		     query-properties:: [:marker :deadline :block]
-		  #+BEGIN_QUERY
-		  {:title [:h3 "Closed or Cancelled"]
-		  :query [:find (pull ?b [*])
-		       :in $ ?tag
-		       :where
-		       [?b :block/marker ?marker]
-		       [(contains? #{"DONE" "CANCELLED" "CANCELED" } ?marker)]
-		       (page-ref ?b ?tag)
-		       [?ref :block/name "project"]
-		       (not [?b :block/refs ?ref])]
-		  :inputs [:query-page]
-		  :result-transform :add-task-attrs
-		  :breadcrumb-show? true
-		  :group-by-page? false
-		  :collapsed? true
-		  }
-		  #+END_QUERY
--
-- # Issue Table
-  template:: Issue_table
-  template-including-parent:: false
-	- #.tabular
-		- ## 01 ``{|}``Issue Title``{|}``
-		  
-		  owner::
-		  status:: #Red 
-		  #Issues #.v-kanban
-			- ### **Issue Description**
-				-
-			- ### **Updates**
-				- ``[today]`` :
-		- ## 02 Issue Title
-		  owner::
-		  status:: #Amber
-		  #Issues #.v-kanban
-			- ### **Issue Description**
-				-
-			- ### **Updates**
-				- ``[today]`` :
-		- ## 03 Issue Title
-		  owner:: 
-		  status:: #Yellow
-		  #Issues #.v-kanban
-			- ### **Issue Description**
-				-
-			- ### **Updates**
-				- ``[today]`` :
-		- ## 04 Issue Title
-		  owner:: 
-		  status:: #Green
-		  #Issues #.v-kanban
-			- ### **Issue Description**
-				-
-			- ### **Updates**
-				- [[Monday, 2024/08/12]] :
-		- ## 05 Issue Title
-		  owner:: 
-		  status:: #on-hold 
-		  #Issues #.v-kanban
-			- ### **Issue Description**
-				-
-			- ### **Updates**
-				- [[Monday, 2024/08/12]] :
-		- ## 06 Issue Title
-		  owner:: 
-		  status:: #no-go
-		  #Issues #.v-kanban
-			- ### **Issue Description**
-				-
-			- ### **Updates**
-				- [[Monday, 2024/08/12]] :
-		- ## 07 Issue Title
-		  owner:: 
-		  status:: #closed
-		  #Issues #.v-kanban
-			- ### **Issue Description**
-				-
-			- ### **Updates**
-				- [[Monday, 2024/08/12]] :
-- # Issue
-  template:: Issue
-  template-including-parent:: false
-	- ## ``{|}``01 Issue Title``{|}``
-	  
-	  owner::
-	  status:: #Red
-	  #Issues #.v-kanban
-		- ### **Issue Description**
+```
+		title:: templates
+		visibility:: false
+		icon:: 🧾
+		
+		- # Circle
+		  id:: 66b0d360-cde5-4e95-87b3-4e97a1e23bb5
+		  template:: circle-template
+		  template-including-parent:: false
+		  arg-color:: red
+			- <span class='circle' style='background: ``c.args.color``; display: inline-block; width: 15px; height: 15px; border-radius: 50%; vertical-align: middle;'></span>
+		- # People Page
+		  template:: people page
+		  template-including-parent:: false
+			- tags:: people
+			  icon:: 👨‍💼
+			- ## Tasks
+				- query-table:: true
+				     query-properties:: [:priority :deadline :block]
+				  #+BEGIN_QUERY
+				  {:title [:h3 "Owned"]
+				  :query [:find (pull ?b [*])
+				       :in $ ?tag
+				       :where
+				       [?b :block/marker ?marker]
+				       [(contains? #{"TODO" "DOING" "NOW" "LATER" "WAITING"} ?marker)]
+				       (page-ref ?b ?tag)
+				       [?ref :block/name "project"]
+				       (not [?b :block/refs ?ref])]
+				  :inputs [:query-page]
+				  :result-transform :add-task-attrs
+				  :breadcrumb-show? true
+				  :group-by-page? false
+				  :collapsed? false
+				  }
+				  #+END_QUERY
+				- query-table:: true
+				  collapsed:: true
+				     query-properties:: [:marker :deadline :block]
+				  #+BEGIN_QUERY
+				  {:title [:h3 "Closed or Cancelled"]
+				  :query [:find (pull ?b [*])
+				       :in $ ?tag
+				       :where
+				       [?b :block/marker ?marker]
+				       [(contains? #{"DONE" "CANCELLED" "CANCELED" } ?marker)]
+				       (page-ref ?b ?tag)
+				       [?ref :block/name "project"]
+				       (not [?b :block/refs ?ref])]
+				  :inputs [:query-page]
+				  :result-transform :add-task-attrs
+				  :breadcrumb-show? true
+				  :group-by-page? false
+				  :collapsed? true
+				  }
+				  #+END_QUERY
+		-
+		- # Issue Table
+		  template:: Issue_table
+		  template-including-parent:: false
+			- #.tabular
+				- ## 01 ``{|}``Issue Title``{|}``
+				  
+				  owner::
+				  status:: #Red 
+				  #Issues #.v-kanban
+					- ### **Issue Description**
+						-
+					- ### **Updates**
+						- ``[today]`` :
+				- ## 02 Issue Title
+				  owner::
+				  status:: #Amber
+				  #Issues #.v-kanban
+					- ### **Issue Description**
+						-
+					- ### **Updates**
+						- ``[today]`` :
+				- ## 03 Issue Title
+				  owner:: 
+				  status:: #Yellow
+				  #Issues #.v-kanban
+					- ### **Issue Description**
+						-
+					- ### **Updates**
+						- ``[today]`` :
+				- ## 04 Issue Title
+				  owner:: 
+				  status:: #Green
+				  #Issues #.v-kanban
+					- ### **Issue Description**
+						-
+					- ### **Updates**
+						- [[Monday, 2024/08/12]] :
+				- ## 05 Issue Title
+				  owner:: 
+				  status:: #on-hold 
+				  #Issues #.v-kanban
+					- ### **Issue Description**
+						-
+					- ### **Updates**
+						- [[Monday, 2024/08/12]] :
+				- ## 06 Issue Title
+				  owner:: 
+				  status:: #no-go
+				  #Issues #.v-kanban
+					- ### **Issue Description**
+						-
+					- ### **Updates**
+						- [[Monday, 2024/08/12]] :
+				- ## 07 Issue Title
+				  owner:: 
+				  status:: #closed
+				  #Issues #.v-kanban
+					- ### **Issue Description**
+						-
+					- ### **Updates**
+						- [[Monday, 2024/08/12]] :
+		- # Issue
+		  template:: Issue
+		  template-including-parent:: false
+			- ## ``{|}``01 Issue Title``{|}``
+			  
+			  owner::
+			  status:: #Red
+			  #Issues #.v-kanban
+				- ### **Issue Description**
+					-
+				- ### **Updates**
+					- ``[today]`` :
+		- # Date Today
+		  template:: Date Today
+		  template-including-parent:: false
+			- **``today``** ``{|}``
+		- # [[Bookmarks]]
+		  template:: Bookmark
+		  template-including-parent:: false
+			- url:: ``{|}``
+			  
+			  topic::
+		- # [[Project page]]
+		  template:: project page
+		  template-including-parent:: false
+			- tags:: project page
+			  icon:: 📂
 			-
-		- ### **Updates**
-			- ``[today]`` :
-- # Date Today
-  template:: Date Today
-  template-including-parent:: false
-	- **``today``** ``{|}``
-- # [[Bookmarks]]
-  template:: Bookmark
-  template-including-parent:: false
-	- url:: ``{|}``
-	  
-	  topic::
-- # [[Project page]]
-  template:: project page
-  template-including-parent:: false
-	- tags:: project page
-	  icon:: 📂
-	-
-	- ## Project Meta
-	  collapsed:: true
-		- DOING [#B] #project <% current page %>
-	- ## Actions Log
-		- query-properties:: [:deadline :priority :block]
-		  #+BEGIN_QUERY
-		  {:title [:h4 "On ToDo List"]
-		  :query [:find (pull ?b [*])
-		       :in $ ?tag
-		       :where
-		       [?b :block/marker ?marker]
-		       [(contains? #{"TODO"} ?marker)]
-		       (page-ref ?b ?tag)
-		       [?ref :block/name "project"]
-		       (not [?b :block/refs ?ref])]
-		  :inputs [:query-page]
-		  :result-transform :add-task-attrs
-		  :breadcrumb-show? true
-		  }
-		  #+END_QUERY
-		- query-table:: false
-		  query-properties:: [:page :block]
-		  #+BEGIN_QUERY
-		  {:title [:h4 "Ongoing Tasks"]
-		  :query [:find (pull ?b [*])
-		       :in $ ?tag
-		       :where
-		       [?b :block/marker ?marker]
-		       [(contains? #{"DOING" "NOW" "LATER" "WAITING"} ?marker)]
-		       (page-ref ?b ?tag)
-		       [?ref :block/name "project"]
-		       (not [?b :block/refs ?ref])]
-		  :inputs [:query-page]
-		  :result-transform :add-task-attrs
-		  :breadcrumb-show? true
-		  :group-by-page? false
-		  :collapsed? false
-		  }
-		  #+END_QUERY
-		- query-properties:: [:deadline :priority :block]
-		  collapsed:: true
-		  #+BEGIN_QUERY
-		  {:title [:h4 "Completed Tasks"]
-		  :query [:find (pull ?b [*])
-		       :in $ ?tag
-		       :where
-		       [?b :block/marker ?marker]
-		       [(contains? #{"DONE"} ?marker)]
-		       (page-ref ?b ?tag)
-		       [?ref :block/name "project"]
-		       (not [?b :block/refs ?ref])]
-		  :inputs [:query-page]
-		  :result-transform :add-task-attrs
-		  :breadcrumb-show? true
-		  :table-view? false
-		  :collapsed? true
-		  }
-		  #+END_QUERY
-	- ## Issues Log
-		- query-sort-by:: status
-		     query-table:: true
-		     query-sort-desc:: true
-		     query-properties:: [:block :owner :status]
-		  #+BEGIN_QUERY
-		  {:title [:h4 "Open Issues"]
-		  :query [:find (pull ?b [*])
-		       :in $ ?query-page
-		       :where
-		       [?p :block/name ?query-page]
-		  	 [?tag2 :block/name "issues"]
-		  	 [?b :block/refs ?tag2]
-		  	 [?tag1 :block/name "closed"]
-		  	 (not [?b :block/refs ?tag1])
-		       [?b :block/refs ?p]
-		       [?ref :block/name "project"]
-		       (not [?b :block/refs ?ref])         
-		       ]
-		  :inputs [:query-page]
-		  :breadcrumb-show? false
-		  :table-view? true
-		  :group-by-page? false
-		  :collapsed? false
-		  }
-		  #+END_QUERY
-		- query-properties:: [:block :owner :status]
-		  collapsed:: true
-		  #+BEGIN_QUERY
-		  {:title [:h4 "Closed Issues"]
-		  :query [:find (pull ?b [*])
-		       :in $ ?query-page
-		       :where
-		       [?p :block/name ?query-page]
-		  	 [?tag2 :block/name "issues"]
-		  	 [?b :block/refs ?tag2]
-		  	 [?tag1 :block/name "closed"]
-		  	 [?b :block/refs ?tag1]
-		       [?b :block/refs ?p]
-		       [?ref :block/name "project"]
-		       (not [?b :block/refs ?ref])         
-		       ]
-		  :inputs [:query-page]
-		  :breadcrumb-show? false
-		  :table-view? true
-		  :group-by-page? false
-		  :collapsed? true
-		  }
-		  #+END_QUERY
-	- #+BEGIN_QUERY
-	  {:title [:h2 "Project Notes"]
-	  :query [:find (pull ?b [*])
-	       :in $ ?query-page
-	       :where
-	       [?p :block/name ?query-page]
-	       [?b :block/refs ?p]
-	  	 [?tag2 :block/name "issues"]
-	  	 (not [?b :block/refs ?tag2])
-	       [?ref :block/name "project"]
-	       (not [?b :block/refs ?ref])        
-	       (not [?b :block/marker _])
-	       ]
-	  :inputs [:query-page]
-	  :result-transform (fn [result]
-	                   (sort-by (fn [b]
-	                              (get b :block/created-at "A")) result))
-	  :breadcrumb-show? false
-	  :group-by-page? true
-	  :collapsed? false
-	  }
-	  #+END_QUERY
--
-</code>
+			- ## Project Meta
+			  collapsed:: true
+				- DOING [#B] #project <% current page %>
+			- ## Actions Log
+				- query-properties:: [:deadline :priority :block]
+				  #+BEGIN_QUERY
+				  {:title [:h4 "On ToDo List"]
+				  :query [:find (pull ?b [*])
+				       :in $ ?tag
+				       :where
+				       [?b :block/marker ?marker]
+				       [(contains? #{"TODO"} ?marker)]
+				       (page-ref ?b ?tag)
+				       [?ref :block/name "project"]
+				       (not [?b :block/refs ?ref])]
+				  :inputs [:query-page]
+				  :result-transform :add-task-attrs
+				  :breadcrumb-show? true
+				  }
+				  #+END_QUERY
+				- query-table:: false
+				  query-properties:: [:page :block]
+				  #+BEGIN_QUERY
+				  {:title [:h4 "Ongoing Tasks"]
+				  :query [:find (pull ?b [*])
+				       :in $ ?tag
+				       :where
+				       [?b :block/marker ?marker]
+				       [(contains? #{"DOING" "NOW" "LATER" "WAITING"} ?marker)]
+				       (page-ref ?b ?tag)
+				       [?ref :block/name "project"]
+				       (not [?b :block/refs ?ref])]
+				  :inputs [:query-page]
+				  :result-transform :add-task-attrs
+				  :breadcrumb-show? true
+				  :group-by-page? false
+				  :collapsed? false
+				  }
+				  #+END_QUERY
+				- query-properties:: [:deadline :priority :block]
+				  collapsed:: true
+				  #+BEGIN_QUERY
+				  {:title [:h4 "Completed Tasks"]
+				  :query [:find (pull ?b [*])
+				       :in $ ?tag
+				       :where
+				       [?b :block/marker ?marker]
+				       [(contains? #{"DONE"} ?marker)]
+				       (page-ref ?b ?tag)
+				       [?ref :block/name "project"]
+				       (not [?b :block/refs ?ref])]
+				  :inputs [:query-page]
+				  :result-transform :add-task-attrs
+				  :breadcrumb-show? true
+				  :table-view? false
+				  :collapsed? true
+				  }
+				  #+END_QUERY
+			- ## Issues Log
+				- query-sort-by:: status
+				     query-table:: true
+				     query-sort-desc:: true
+				     query-properties:: [:block :owner :status]
+				  #+BEGIN_QUERY
+				  {:title [:h4 "Open Issues"]
+				  :query [:find (pull ?b [*])
+				       :in $ ?query-page
+				       :where
+				       [?p :block/name ?query-page]
+				  	 [?tag2 :block/name "issues"]
+				  	 [?b :block/refs ?tag2]
+				  	 [?tag1 :block/name "closed"]
+				  	 (not [?b :block/refs ?tag1])
+				       [?b :block/refs ?p]
+				       [?ref :block/name "project"]
+				       (not [?b :block/refs ?ref])         
+				       ]
+				  :inputs [:query-page]
+				  :breadcrumb-show? false
+				  :table-view? true
+				  :group-by-page? false
+				  :collapsed? false
+				  }
+				  #+END_QUERY
+				- query-properties:: [:block :owner :status]
+				  collapsed:: true
+				  #+BEGIN_QUERY
+				  {:title [:h4 "Closed Issues"]
+				  :query [:find (pull ?b [*])
+				       :in $ ?query-page
+				       :where
+				       [?p :block/name ?query-page]
+				  	 [?tag2 :block/name "issues"]
+				  	 [?b :block/refs ?tag2]
+				  	 [?tag1 :block/name "closed"]
+				  	 [?b :block/refs ?tag1]
+				       [?b :block/refs ?p]
+				       [?ref :block/name "project"]
+				       (not [?b :block/refs ?ref])         
+				       ]
+				  :inputs [:query-page]
+				  :breadcrumb-show? false
+				  :table-view? true
+				  :group-by-page? false
+				  :collapsed? true
+				  }
+				  #+END_QUERY
+			- #+BEGIN_QUERY
+			  {:title [:h2 "Project Notes"]
+			  :query [:find (pull ?b [*])
+			       :in $ ?query-page
+			       :where
+			       [?p :block/name ?query-page]
+			       [?b :block/refs ?p]
+			  	 [?tag2 :block/name "issues"]
+			  	 (not [?b :block/refs ?tag2])
+			       [?ref :block/name "project"]
+			       (not [?b :block/refs ?ref])        
+			       (not [?b :block/marker _])
+			       ]
+			  :inputs [:query-page]
+			  :result-transform (fn [result]
+			                   (sort-by (fn [b]
+			                              (get b :block/created-at "A")) result))
+			  :breadcrumb-show? false
+			  :group-by-page? true
+			  :collapsed? false
+			  }
+			  #+END_QUERY
+		-
+```
 
 ### Contents page
 
