@@ -570,7 +570,10 @@ table th {
     - and replace above with:
     
     {: .notice--info}
-    If you will copy and paste the code below please make suere that you remove the `white space` between the curly brackets.
+    If you will copy and paste the code below please make sure that you remove the `white space and forward slashes (\)` between the curly two consecutive brackets so it looks like this:
+  {% raw %}
+  ["bookmark                                        [.b]" [[:editor/input "{{ renderer :template, Bookmark}}" ]]],
+  {% end raw %}
 
 
     ```
