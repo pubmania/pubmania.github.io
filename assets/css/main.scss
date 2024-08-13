@@ -7,6 +7,16 @@
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
 
+#main {
+	max-width: 100%;
+	font-size: 70%;
+}
+
+.notice--warning code {
+	background-color: #3b312f;
+	color: yellow;
+}
+
 #scroll-to-top {
     display: block;
     position: fixed;
