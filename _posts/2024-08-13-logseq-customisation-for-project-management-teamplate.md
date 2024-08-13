@@ -568,15 +568,14 @@ table th {
     :commands []
     ```
     - and replace above with:
-    ```edn
-    {% raw %}
+    ```
     ;; Add custom commands to the command palette
     ;; To quickly call these commands, just type / (backslash) followed by characters in square bracket 
     :commands [
-                ["bookmark                                        [.b]" [[:editor/input "{{renderer :template, Bookmark}}" ]]],
-                ["date_today                                      [dt]" [[:editor/input "{{renderer :template, Date Today}}" ]]],
-                ["issue_table                                     [.it]" [[:editor/input "{{renderer :template, Issue_table}}" ]]],
-                ["issue                                           [.is]" [[:editor/input "{{renderer :template, Issue}}" ]]],
+                ["bookmark                                        [.b]" [[:editor/input "&lbrace;&lbrace;renderer :template, Bookmark &rbrace;&rbrace;" ]]],
+                ["date_today                                      [dt]" [[:editor/input "&lbrace;&lbrace;renderer :template, Date Today &rbrace;&rbrace;" ]]],
+                ["issue_table                                     [.it]" [[:editor/input "&lbrace;&lbrace;renderer :template, Issue_table &rbrace;&rbrace;" ]]],
+                ["issue                                           [.is]" [[:editor/input "&lbrace;&lbrace;renderer :template, Issue &rbrace;&rbrace;" ]]],
                 ["Blue Highlighter                                [=b]" [[:editor/input "<mark class='blue'></mark>" {:backward-pos 7}]]],
                 ["Green Highlighter                               [=g]" [[:editor/input "<mark class='green'></mark>" {:backward-pos 7}]]],
                 ["Gray Highlighter                                [=gra]" [[:edior/input "<mark class='gray'></mark>" {:backward-pos 7}]]],
@@ -589,9 +588,8 @@ table th {
                 ["Red Blockquote                                  [>r]" [[:editor/input "<blockquote class='red'></blockquote>" {:backward-pos 13}]]],
                 ["Yellow Blockquote                               [>y]" [[:editor/input "<blockquote class='yellow'></blockquote>" {:backward-pos 13}]]],
                 ["Blue Blockquote                                 [>b]" [[:editor/input "<blockquote class='blue'></blockquote>" {:backward-pos 13}]]],
-                ["circle                                          [.c]" [[:editor/input "{{renderer :template-view, circle-template, :color orange}}" ]]],                    
+                ["circle                                          [.c]" [[:editor/input "&lbrace;&lbrace;renderer :template-view, circle-template, :color orange &rbrace;&rbrace;" ]]],                    
               ]
-    {% endraw %}
     ```
     
     {: .notice--warning}
