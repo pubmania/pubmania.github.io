@@ -569,18 +569,18 @@ table th {
     ```
     - and replace above with:
     {: .notice--info}
-    If you will copy and paste the code below please make suere that you remove the `white space` between the curly brackets, so `{ { ` should become `{{` and ` } }` should become `}}`
+    If you will copy and paste the code below please make suere that you remove the `white space` between the curly brackets, so `\{\{ ` should become `{{` and `\}\}` should become `}}`
 
 
     ```
     ;; Add custom commands to the command palette
     ;; To quickly call these commands, just type / (backslash) followed by characters in square bracket
     :commands [
-                ["bookmark                                        [.b]" [[:editor/input "{ { renderer :template, Bookmark } }" ]]],
-                ["date_today                                      [dt]" [[:editor/input "{ { renderer :template, Date Today } }" ]]],
-                ["issue_table                                     [.it]" [[:editor/input "{ { renderer :template, Issue_table } }" ]]],
-                ["issue                                           [.is]" [[:editor/input "{ { renderer :template, Issue } }" ]]],
-                ["circle                                          [.c]" [[:editor/input "{ { renderer :template-view, circle-template, :color orange } }" ]]],               
+                ["bookmark                                        [.b]" [[:editor/input "\{\{ renderer :template, Bookmark\}\}" ]]],
+                ["date_today                                      [dt]" [[:editor/input "\{\{ renderer :template, Date Today\}\}" ]]],
+                ["issue_table                                     [.it]" [[:editor/input "\{\{ renderer :template, Issue_table\}\}" ]]],
+                ["issue                                           [.is]" [[:editor/input "\{\{ renderer :template, Issue\}\}" ]]],
+                ["circle                                          [.c]" [[:editor/input "\{\{ renderer :template-view, circle-template, :color orange\}\}" ]]],               
                 ["Blue Highlighter                                [=b]" [[:editor/input "<mark class='blue'></mark>" {:backward-pos 7}]]],
                 ["Green Highlighter                               [=g]" [[:editor/input "<mark class='green'></mark>" {:backward-pos 7}]]],
                 ["Gray Highlighter                                [=gra]" [[:edior/input "<mark class='gray'></mark>" {:backward-pos 7}]]],
