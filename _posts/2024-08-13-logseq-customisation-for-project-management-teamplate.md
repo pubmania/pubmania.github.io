@@ -1,5 +1,3 @@
-# Logseq Customisations for Project Management Template
-
 ## Background
 
 While the overall planning of project timeline gets lot of attention in the world of software, the most important aspect of project management in my experience is maintaining and tracking Issues and Actions. This in normal project management practice is carried out through the use of an `Actions Log` and an `Issues Log`. In addition any medium complexity project invariably will have internal and external dependencies / constraints, risks which I tend to track on `Constraints Log` and `Risks Log`. Finally every project has decisions that I track on a `Decisions Log`.
@@ -938,9 +936,11 @@ table th {
         |#no-go|🚫|
 
 - Circles with additional colours can be created using the template. To do so, press `/.c` and press `enter`. This should then put following text on the editor:
-```
-	{{renderer :template-view, circle-template, :color orange}}
-```
+
+{% raw %}
+{{renderer :template-view, circle-template, :color orange}}
+{% endraw %}
+
 - Now just replace `orange` in above with the colour desired.
 
 ### Maintain Issues Log
@@ -955,14 +955,15 @@ table th {
 - As we added css for different coloured borders of blockquotes and also created shortcode and keyboard shortcut we can do this in multiple ways:
     - Type `/>b`and press enter. This will place `<blockquote class='blue'></blockquote>` and the quote can be written between the tags.
     - Type the following, replacing yellow with one of the predefined colours: yellow, pink, blue, green, red, grey, gray, orange or purple.
-      ```
-      		{{> yellow,Some yellow quote}}
-      ```
+      {% raw %}
+      {{> yellow,Some yellow quote}}
+      {% endraw %}
 
 #### Coloured Highlight
 - Type `/=y`, select `Yellow Highlighter` from pop-up menu and press enter. This will place `<mark class='yellow'></mark>` and text to be highlighted can be written between the tags. It will be presented as <mark>Yellow Highlight</mark>
 - Type the following and it will be presented as <span style="background-color: pink">This text is highlighted.</span>
-  ```
-  		{{== pink,pink highlight}}
-  ```
+
+  {% raw %}
+  {{== pink,pink highlight}}
+  {% endraw %}
   
