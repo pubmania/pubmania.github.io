@@ -578,9 +578,8 @@ table th {
               ]
     ```
     
-    ```{warning}
-    Now, some of the short-codes above such as `/.is, /.it, /dt and /.c` will not work just yet because we have not created their associated template. We will get to that in next section.
-    ```
+    {: .notice--warning}
+    > Now, some of the short-codes above such as `/.is, /.it, /dt and /.c` will not work just yet because we have not created their associated template. We will get to that in next section.
 
 ### Create Templates
 
