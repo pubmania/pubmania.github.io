@@ -1,3 +1,15 @@
+---
+title: "Logseq Customisations for Project Management Template"
+slug: "logseq-customisation-for-project-management-teamplate"
+toc: true
+date: 2024-08-13T07:15:00
+draft: false
+description: Notes to create a functional project logs template for Logseq graphs.
+last_modified_at: 2024-08-13T08:15:00
+excerpt: "Notes to create a functional project logs template for Logseq graphs."
+classes: "wide"
+---
+
 ## Background
 
 While the overall planning of project timeline gets lot of attention in the world of software, the most important aspect of project management in my experience is maintaining and tracking Issues and Actions. This in normal project management practice is carried out through the use of an `Actions Log` and an `Issues Log`. In addition any medium complexity project invariably will have internal and external dependencies / constraints, risks which I tend to track on `Constraints Log` and `Risks Log`. Finally every project has decisions that I track on a `Decisions Log`.
@@ -557,6 +569,7 @@ table th {
     ```
     - and replace above with:
     ```edn
+    {% raw %}
     ;; Add custom commands to the command palette
     ;; To quickly call these commands, just type / (backslash) followed by characters in square bracket 
     :commands [
@@ -578,6 +591,7 @@ table th {
                 ["Blue Blockquote                                 [>b]" [[:editor/input "<blockquote class='blue'></blockquote>" {:backward-pos 13}]]],
                 ["circle                                          [.c]" [[:editor/input "{{renderer :template-view, circle-template, :color orange}}" ]]],                    
               ]
+    {% endraw %}
     ```
     
     {: .notice--warning}
@@ -735,7 +749,6 @@ table th {
 		  template-including-parent:: false
 			- tags:: project page
 			  icon:: 📂
-			-
 			- ## Project Meta
 			  collapsed:: true
 				- DOING [#B] #project <% current page %>
