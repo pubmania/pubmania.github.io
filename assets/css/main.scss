@@ -12,9 +12,34 @@
 	font-size: 70%;
 }
 
+.notice code {
+    background-color: #343942;
+    color: white;
+}
+
+.notice--primary code {
+    background-color: #3b3b34;
+    color: yellow;
+}
+
+.notice--info code {
+    background-color: #273541;
+    color: white;
+}
+
 .notice--warning code {
 	background-color: #3b312f;
 	color: yellow;
+}
+
+.notice--danger code {
+    background-color: #392f38;
+    color: white;
+}
+
+.notice--success code {
+    background-color: #283635;
+    color: white;
 }
 
 #scroll-to-top {
