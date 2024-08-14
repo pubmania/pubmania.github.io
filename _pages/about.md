@@ -4,7 +4,7 @@ date: 2008-07-01T08:41:00
 draft: false
 description: About the author 
 permalink: /about/ 
-last_modified_at: 2023-02-28T18:40:00
+last_modified_at: 2024-08-14T08:40:00
 toc: true
 author_profile: true 
 ---
@@ -24,7 +24,7 @@ EXECUTIVE SUMMARY {#executivesummary}
 
 ------------------------------------------------------------------------
 
-Results-oriented Programme Manager, with over 20 years of experience in
+Results-oriented Programme Manager, with over 21 years of experience in
 implementation and management of complex IT and Business Transformation
 initiatives. Passionate in the delivery of quality services and
 demonstrated ability to influence senior management decisions. History
@@ -54,7 +54,7 @@ KEY COMPETENCIES {#keycompetencies}
     cloud deployments
 -   Managing multiple projects and programmes with large remote 
     team size (80+)and budgets of up to 12M GBP.
--   Over 13 years of Business Transformation Programme and Project
+-   Over 15 years of Business Transformation Programme and Project
     Management experience spanning across Financial Services
     (Insurance and Banking), Aero-space, Manufacturing, Printing and
     FMCG sectors.
