@@ -8,6 +8,19 @@ description: Notes to create a functional project logs template for Logseq graph
 last_modified_at: 2024-08-13T08:15:00
 excerpt: "Notes to create a functional project logs template for Logseq graphs."
 classes: "wide"
+gallery:
+  - url: https://github.com/user-attachments/assets/8c9a7f4c-21a4-42a7-8951-1f4b301fa269
+    image_path: https://github.com/user-attachments/assets/8c9a7f4c-21a4-42a7-8951-1f4b301fa269
+    alt: "Sample Project Log"
+    title: "Sample Project Log"
+  - url: https://github.com/user-attachments/assets/5a295ec2-ab6c-447f-b485-d70166997eba
+    image_path: https://github.com/user-attachments/assets/5a295ec2-ab6c-447f-b485-d70166997eba
+    alt: "Sample Content Page"
+    title: "Sample Content Page"
+  - url: https://github.com/user-attachments/assets/097dab9f-33a0-4f4a-a807-15923b754e65
+    image_path: https://github.com/user-attachments/assets/097dab9f-33a0-4f4a-a807-15923b754e65
+    alt: "Sample Day to Day Entry"
+    title: "Sample Day to Day Entry"
 ---
 
 ## Background
@@ -21,6 +34,8 @@ Now all these logs have fairly standard fields so I created and started using an
 That problem, however, is what I thought, can be resolved using Logseq especially after starting with the template by the Logseq community user Luhman and starting with his template and explanation provided [here](https://luhmann-logseq.notion.site/A-new-approach-to-project-management-in-Logseq-8b36dd5eb25d4b9e9882742b5ee4368e).
 
 ## Customisations
+
+{% include gallery caption="Images showing Sample Data" %}
 
 ### Sample Project Log
 ![Screenshot_13-8-2024_15949_](https://github.com/user-attachments/assets/8c9a7f4c-21a4-42a7-8951-1f4b301fa269)
@@ -41,7 +56,7 @@ That problem, however, is what I thought, can be resolved using Logseq especiall
     }
     ```
 
-- Now replace these with following which is slightly reduced compared to the [Source](https://discuss.logseq.com/t/add-query-input-or-function-day-of-week/18361/12) as I only needed "Deadline" for my purposes and I don't use the "Scheduled" part of the [[Logseq]] task management feature:
+- Now replace these with following which is slightly reduced compared to the [Source](https://discuss.logseq.com/t/add-query-input-or-function-day-of-week/18361/12) as I only needed "Deadline" for my purposes and I don't use the "Scheduled" part of the Logseq task management feature:
 
     ```edn
     ;; Advanced queries `:result-transform` function.
@@ -958,7 +973,7 @@ table th {
 - Once the issue or issues table is created, all usual fields can be filled but most importantly the issue title must include hashtag for the project that the issue belongs to.
 	- So an issue for project called `North Star` must have `#[[North Star]]` in the title.
 	- As an example say the issue is to do with `lack of resources` then the title should be `#[[North Star]]: Lack of Resources`
-	- The issue `status` or any topic to be highlighted with RAG [[status]] can be tagged with following tags:
+	- The issue `status` or any topic to be highlighted with RAG status can be tagged with following tags:
 
         |Tag| Circle Appended|
         |---|---|
@@ -970,11 +985,7 @@ table th {
         |#Closed|🔵|
         |#no-go|🚫|
 
-- Circles with additional colours can be created using the template. To do so, press `/.c` and press `enter`. This should then put following text on the editor:
-
-{% raw %}
-{{renderer :template-view, circle-template, :color orange}}
-{% endraw %}
+- Circles with additional colours can be created using the template. To do so, press `/.c` and press `enter`. This should then put following text on the editor: `{% raw %} {{renderer :template-view, circle-template, :color orange}} {% endraw %}`
 
 - Now just replace `orange` in above with the colour desired.
 
