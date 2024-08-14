@@ -8,19 +8,6 @@ description: Notes to create a functional project logs template for Logseq graph
 last_modified_at: 2024-08-13T08:15:00
 excerpt: "Notes to create a functional project logs template for Logseq graphs."
 classes: "wide"
-gallery:
-  - url: https://github.com/user-attachments/assets/8c9a7f4c-21a4-42a7-8951-1f4b301fa269
-    image_path: https://github.com/user-attachments/assets/8c9a7f4c-21a4-42a7-8951-1f4b301fa269
-    alt: "Sample Project Log"
-    title: "Sample Project Log"
-  - url: https://github.com/user-attachments/assets/5a295ec2-ab6c-447f-b485-d70166997eba
-    image_path: https://github.com/user-attachments/assets/5a295ec2-ab6c-447f-b485-d70166997eba
-    alt: "Sample Content Page"
-    title: "Sample Content Page"
-  - url: https://github.com/user-attachments/assets/097dab9f-33a0-4f4a-a807-15923b754e65
-    image_path: https://github.com/user-attachments/assets/097dab9f-33a0-4f4a-a807-15923b754e65
-    alt: "Sample Day to Day Entry"
-    title: "Sample Day to Day Entry"
 ---
 
 ## Background
@@ -35,8 +22,6 @@ That problem, however, is what I thought, can be resolved using Logseq especiall
 
 ## Customisations
 
-{% include gallery caption="Images showing Sample Data" %}
-
 ### Sample Project Log
 ![Screenshot_13-8-2024_15949_](https://github.com/user-attachments/assets/8c9a7f4c-21a4-42a7-8951-1f4b301fa269)
 
@@ -47,7 +32,7 @@ That problem, however, is what I thought, can be resolved using Logseq especiall
     - Press `Ctrl+K` and search for `logseq/config.edn`
     - In the code block search for following lines:
       
-    ```edn
+    ```clj
     ;; Advanced queries `:result-transform` function.
     ;; Transform the query result before displaying it.
     :query/result-transforms
@@ -58,7 +43,7 @@ That problem, however, is what I thought, can be resolved using Logseq especiall
 
 - Now replace these with following which is slightly reduced compared to the [Source](https://discuss.logseq.com/t/add-query-input-or-function-day-of-week/18361/12) as I only needed "Deadline" for my purposes and I don't use the "Scheduled" part of the Logseq task management feature:
 
-    ```edn
+    ```clj
     ;; Advanced queries `:result-transform` function.
     ;; Transform the query result before displaying it.
     :query/result-transforms
@@ -556,7 +541,7 @@ table th {
 
 - In order to invoke some of the above tweaks, we will also create keyboard shortcuts and shortcodes to have a simpler way to change colour of the blockquote side border and highlights. So open `logseq/config.edn` and do the following:
     - Search for:
-    ```edn
+    ```clj
     ;; Macros replace texts and will make you more productive.
     ;; Example usage:
     ;; Change the :macros value below to:
@@ -567,7 +552,7 @@ table th {
     :macros {}
     ```
     - and replace above with:
-    ```edn
+    ```clj
     ;; Macros replace texts and will make you more productive.
     ;; Example usage:
     ;; Change the :macros value below to:
@@ -576,12 +561,12 @@ table th {
     ;; becomes
     ;; Rose is red, violet's blue. Life's ordered: Org assists you.
     :macros {
-     ">" "<blockquote class='$1'>$2</blockquote>" ;;usage {{> orange,Text to be presented in the blockquote}}
-     "==" "<mark class='$1'>$2</mark>" ;;usage {{== red,Text to be highlighted without linebreak}}
+     ">" "<blockquote class='$1'>$2</blockquote>" ;;usage \{\{ > orange,Text to be presented in the blockquote \}\}
+     "==" "<mark class='$1'>$2</mark>" ;;usage \{\{ == red,Text to be highlighted without linebreak \}\}
      }
     ```
     - search for:
-    ```edn
+    ```clj
     ;; Add custom commands to the command palette
     ;; Example usage:
     ;; :commands
