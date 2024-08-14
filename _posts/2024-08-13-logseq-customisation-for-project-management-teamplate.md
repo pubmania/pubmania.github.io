@@ -240,50 +240,59 @@ blockquote.red {
  border-left-color: #84b5ff80;
 }
 
-/* ==mark==  tweaks to add custom colours*/
+/* ==mark==  tweaks */
 
 mark {
- background: var(--ls-page-mark-bg-color);
- color: var(--ls-page-mark-color);
- padding: 1px 2px;
- margin: 0 2px;
- border-radius: 3px;
+  background: var(--ls-page-mark-bg-color);
+  color: var(--ls-page-mark-color);
+  padding: 1px 2px;
+  margin: 0 2px;
+  border-radius: 3px;
 }
 
 mark.yellow {
- background-color: #ffe85580;
+  background: var(--ls-page-mark-bg-color);
+  color: var(--ls-page-mark-color);
 }
 
 mark.pink {
- background-color: #ff89be80;
+  background-color: #ff89be80;
+  color: white;
 }
 
 mark.blue {
- background-color: #84b5ff80;
+  background-color: #84b5ff80;
+  color:white;
 }
 
 mark.green {
- background-color: #97ff9780;
+  background-color: #97ff9780;
+  color: yellow;
 }
 
 mark.red {
- background-color: #ff558280;
+  background-color: #ff558280;
+  color: white;
 }
 
 mark.grey {
- background-color: #80808080;
+  background-color: #80808080;
+  color: white;
 }
 
 mark.gray {
- background-color: #80808080;
+  background-color: #80808080;
+  color: white;
 }
 
 mark.orange {
- background-color: #ffb86c80;
+  background-color: #ffb86c80;
+  color: white;
 }
 
 mark.purple {
- background-color: #c097ff80;
+  background-color: #c097ff80;
+  color: white;
 }
 
 /* add traffic lights to prioritized tasks */
@@ -570,11 +579,8 @@ table th {
     - and replace above with:
     
     {: .notice--info}
-    If you will copy and paste the code below please make sure that you remove the `white space and forward slashes (\)` between the curly two consecutive brackets so it looks like this:
-  {% raw %}
-  ["bookmark                                        [.b]" [[:editor/input "{{ renderer :template, Bookmark}}" ]]],
-  {% end raw %}
-
+    If you will copy and paste the code below please make sure that you remove the `white space and forward slashes (\)` between the curly two consecutive brackets so it looks like this: {% raw %} ["bookmark                                        [.b]" [[:editor/input "{{ renderer :template, Bookmark}}" ]]],{% end raw %}
+  
 
     ```
     ;; Add custom commands to the command palette
