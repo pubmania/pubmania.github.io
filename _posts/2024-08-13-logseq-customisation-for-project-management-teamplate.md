@@ -20,6 +20,22 @@ Now all these logs have fairly standard fields so I created and started using an
 
 That problem, however, is what I thought, can be resolved using Logseq especially after starting with the template by the Logseq community user Luhman and starting with his template and explanation provided [here](https://luhmann-logseq.notion.site/A-new-approach-to-project-management-in-Logseq-8b36dd5eb25d4b9e9882742b5ee4368e).
 
+
+## Using logseq from browser when binary install is not possible
+
+When binary install is not possible, one can still use logseq from browser by navigating to the [web app demo page](https://demo.logseq.com/) from Chrome browser and then selecting a local directory where notes will be saved. It works perfectly fine except there is no option to install plugins. So inorder for issues table etc to work from broswer following steps will suffice:
+
+* Select the directory where your notes (or graphs in logseq speak) will be saved.
+* Grant permission for local file access when asked by the browser.
+* Now if you will press `Ctrl+k` it will open search box but the cusrsor goes to the omnibox (where you type the url for the page) and then you will have to either manually click into the logseq search or press `esc` key three times to be able to get the cursor back in the search box. It may be easier to just click on `Search` icon in left hand navigation at top of the screen (next to the hamburger menu).
+    * Alternatively configure the keyboard shortcut to `Alt+k` as that does not conflict with any other keyboard shortcut.
+    * To add custom shortcuts, you can navigate to the shortcuts page with g s. Press the blue button corresponding to a given shortcut and a modal should pop up. Press the keybinding you want and then press Save.
+* Now search for `logseq/custom.css` and add the whole css from this [gist](https://gist.github.com/pubmania/a1a84430ab0b6ef48b0760cd128550e0).
+* Then search for `logseq/config.edn` and add the whole edn from this [gist](https://gist.github.com/pubmania/200b6da0e3c5eaf4505c559b7f99e555)
+
+{: .notice}
+If you were installing the binary, you can still copy the entire `css` and `edn` from above. If you do that, you can directly skip to the section - [Create Templates](#create-templates).
+
 ## Customisations
 
 ### Sample Project Log
@@ -996,15 +1012,3 @@ table th {
   {% raw %} {{== pink,pink highlight}} {% endraw %}
 
   ![image](https://github.com/user-attachments/assets/a00cb3b5-497a-4401-810b-1276e7012641)
-
-## Using logseq from browser when binary install is not possible
-
-When binary install is not possible, one can still use logseq from browser by navigating to the [web app demo page](https://demo.logseq.com/) from Chrome browser and then selecting a local directory where notes will be saved. It works perfectly fine except there is no option to install plugins. So inorder for issues table etc to work from broswer following steps will suffice:
-
-* Select the directory where your notes (or graphs in logseq speak) will be saved.
-* Grant permission for local file access when asked by the browser.
-* Now if you will press `Ctrl+k` it will open search box but the cusrsor goes to the omnibox (where you type the url for the page) and then you will have to manually click into the logseq search so save yourself the trouble and just click on Search icon in left hand navigation at top of the screen (next to the hamburger menu.
-    * Alternatively configure the keyboard shortcut to `Alt+k` as that does not conflict with any other keyboard shortcut.
-    * To add custom shortcuts, you can navigate to the shortcuts page with g s. Press the blue button corresponding to a given shortcut and a modal should pop up. Press the keybinding you want and then press Save.
-* Now search for `logseq/custom.css` and add the whole css from this [gist](https://gist.github.com/pubmania/a1a84430ab0b6ef48b0760cd128550e0).
-* Then search for `logseq/config.edn` and add the whole edn from this [gist](https://gist.github.com/pubmania/200b6da0e3c5eaf4505c559b7f99e555)
