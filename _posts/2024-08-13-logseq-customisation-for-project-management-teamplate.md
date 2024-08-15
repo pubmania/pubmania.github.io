@@ -579,7 +579,7 @@ table th {
     - and replace above with:
     
     {: .notice--info}
-    If you will copy and paste the code below please make sure that you remove the `white space and forward slashes (\)` between the curly two consecutive brackets so it looks like this: {% raw %} ["bookmark                                        [.b]" [[:editor/input "{{ renderer :template, Bookmark}}" ]]],{% end raw %}
+    If you will copy and paste the code below please make sure that you remove the `white space and forward slashes (\)` between the curly two consecutive brackets so it looks like this: {% raw %}["bookmark                                        [.b]" [[:editor/input "{{ renderer :template, Bookmark}}" ]]],{% endraw %}
   
 
     ```
@@ -975,7 +975,7 @@ table th {
 - Now just replace `orange` in above with the colour desired.
 
 ### Maintain Issues Log
-- Reviewing the logs is as simple as opening the [[Contents]] page, clicking the project name and scrolling down to the `Issues Log` section.
+- Reviewing the logs is as simple as opening the Contents page, clicking the project name and scrolling down to the `Issues Log` section.
 - Now if there are actions identified during the review of an issue, they can be simply added in the `updates` section under the date of review `which can be quickly added by pressing Ctrl+_+Shift+D` and then noting down the action as a sub bullet `TODO [#A] Do Something /deadline`
 - I usually log decisions against a logged issue or if they resulted from a general discussion, just as `#<projectname> #decision`.
 
@@ -986,15 +986,26 @@ table th {
 - As we added css for different coloured borders of blockquotes and also created shortcode and keyboard shortcut we can do this in multiple ways:
     - Type `/>b`and press enter. This will place `<blockquote class='blue'></blockquote>` and the quote can be written between the tags.
     - Type the following, replacing yellow with one of the predefined colours: yellow, pink, blue, green, red, grey, gray, orange or purple.
-      {% raw %}
-      {{> yellow,Some yellow quote}}
-      {% endraw %}
+      {% raw %} {{> yellow,Some yellow quote}} {% endraw %}
+
+      ![image](https://github.com/user-attachments/assets/4caa35b9-9c71-4862-9dc1-a0c0c111fe23)
 
 #### Coloured Highlight
 - Type `/=y`, select `Yellow Highlighter` from pop-up menu and press enter. This will place `<mark class='yellow'></mark>` and text to be highlighted can be written between the tags. It will be presented as <mark>Yellow Highlight</mark>
 - Type the following and it will be presented as <span style="background-color: pink">This text is highlighted.</span>
+  {% raw %} {{== pink,pink highlight}} {% endraw %}
 
-  {% raw %}
-  {{== pink,pink highlight}}
-  {% endraw %}
-  
+  ![image](https://github.com/user-attachments/assets/a00cb3b5-497a-4401-810b-1276e7012641)
+
+## Using logseq from browser when binary install is not possible
+
+When binary install is not possible, one can still use logseq from browser by navigating to the [web app demo page](https://demo.logseq.com/) from Chrome browser and then selecting a local directory where notes will be saved. It works perfectly fine except there is no option to install plugins. So inorder for issues table etc to work from broswer following steps will suffice:
+
+* Select the directory where your notes (or graphs in logseq speak) will be saved.
+* Grant permission for local file access when asked by the browser.
+* Now if you will press `Ctrl+k` it will open search box but the cusrsor goes to the omnibox (where you type the url for the page) and then you will have to manually click into the logseq search so save yourself the trouble and just click on Search icon in left hand navigation at top of the screen (next to the hamburger menu.
+    * Alternatively configure the keyboard shortcut to `Alt+k` as that does not conflict with any other keyboard shortcut.
+    * To add custom shortcuts, you can navigate to the shortcuts page with g s. Press the blue button corresponding to a given shortcut and a modal should pop up. Press the keybinding you want and then press Save.
+* Now add the whole css from this [gist](https://gist.github.com/pubmania/a1a84430ab0b6ef48b0760cd128550e0):
+
+<script src="https://gist.github.com/pubmania/a1a84430ab0b6ef48b0760cd128550e0.js"></script>
