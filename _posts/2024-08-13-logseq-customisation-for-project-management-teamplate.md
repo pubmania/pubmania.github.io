@@ -1006,6 +1006,5 @@ When binary install is not possible, one can still use logseq from browser by na
 * Now if you will press `Ctrl+k` it will open search box but the cusrsor goes to the omnibox (where you type the url for the page) and then you will have to manually click into the logseq search so save yourself the trouble and just click on Search icon in left hand navigation at top of the screen (next to the hamburger menu.
     * Alternatively configure the keyboard shortcut to `Alt+k` as that does not conflict with any other keyboard shortcut.
     * To add custom shortcuts, you can navigate to the shortcuts page with g s. Press the blue button corresponding to a given shortcut and a modal should pop up. Press the keybinding you want and then press Save.
-* Now add the whole css from this [gist](https://gist.github.com/pubmania/a1a84430ab0b6ef48b0760cd128550e0):
-
-<script src="https://gist.github.com/pubmania/a1a84430ab0b6ef48b0760cd128550e0.js"></script>
+* Now search for `logseq/custom.css` and add the whole css from this [gist](https://gist.github.com/pubmania/a1a84430ab0b6ef48b0760cd128550e0).
+* Then search for `logseq/config.edn` and add the whole edn from this [gist](https://gist.github.com/pubmania/200b6da0e3c5eaf4505c559b7f99e555)
