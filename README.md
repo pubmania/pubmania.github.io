@@ -23,6 +23,6 @@ Type the notice statement here...
 This will create information notice
 ```
 
-`--info` can be replaced with `--warning`, `--danger`, `success` etc.
+`--info` can be replaced with `--warning`, `--danger`, `--success` etc.
 
 
