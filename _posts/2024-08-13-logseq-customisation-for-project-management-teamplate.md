@@ -555,8 +555,9 @@ table th {
 /*------------------expreimetal for better table view END-------------------*/
 {% endhighlight %}
 
-- In order to invoke some of the above tweaks, we will also create keyboard shortcuts and shortcodes to have a simpler way to change colour of the blockquote side border and highlights. So open `logseq/config.edn` and do the following:
--- Search for:
+* In order to invoke some of the above tweaks, we will also create keyboard shortcuts and shortcodes to have a simpler way to change colour of the blockquote side border and highlights. So open `logseq/config.edn` and do the following:
+
+** Search for:
     {% highlight clj linenos %}
     ;; Macros replace texts and will make you more productive.
     ;; Example usage:
@@ -568,7 +569,7 @@ table th {
     :macros {}
     {% endhighlight %}
 
--- and replace above with:
+** and replace above with:
     {% highlight clj linenos %}
     ;; Macros replace texts and will make you more productive.
     ;; Example usage:
@@ -583,7 +584,7 @@ table th {
      }
     {% endhighlight %}
 
--- search for:
+** search for:
     {% highlight clj linenos %}
     ;; Add custom commands to the command palette
     ;; Example usage:
@@ -595,9 +596,11 @@ table th {
     :commands []
     {% endhighlight %}
 
--- and replace above with:
-   {: .notice--info}
-   If you will copy and paste the code below please make sure that you remove the `white space and forward slashes (\)` between the curly two consecutive brackets so it looks like this: {% raw %}["bookmark                                        [.b]" [[:editor/input "{{ renderer :template, Bookmark}}" ]]],{% endraw %}
+** and replace above with:
+   
+{: .notice--info}
+If you will copy and paste the code below please make sure that you remove the `white space and forward slashes (\)` between the curly two consecutive brackets so it looks like this: {% raw %}["bookmark                                        [.b]" [[:editor/input "{{ renderer :template, Bookmark}}" ]]],{% endraw %}
+    
     {% highlight clj linenos %}
     ;; Add custom commands to the command palette
     ;; To quickly call these commands, just type / (backslash) followed by characters in square bracket
