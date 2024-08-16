@@ -566,7 +566,8 @@ table th {
     ;; becomes
     ;; Rose is red, violet's blue. Life's ordered: Org assists you.
     :macros {}
-    ```
+    {% endhighlight %}
+
     - and replace above with:
     {% highlight clj linenos %}
     ;; Macros replace texts and will make you more productive.
@@ -601,7 +602,7 @@ table th {
     If you will copy and paste the code below please make sure that you remove the `white space and forward slashes (\)` between the curly two consecutive brackets so it looks like this: {% raw %}["bookmark                                        [.b]" [[:editor/input "{{ renderer :template, Bookmark}}" ]]],{% endraw %}
   
 
-{% highlight clj linenos %}
+    {% highlight clj linenos %}
     ;; Add custom commands to the command palette
     ;; To quickly call these commands, just type / (backslash) followed by characters in square bracket
     :commands [
@@ -623,10 +624,10 @@ table th {
                 ["Yellow Blockquote                               [>y]" [[:editor/input "<blockquote class='yellow'></blockquote>" {:backward-pos 13}]]],
                 ["Blue Blockquote                                 [>b]" [[:editor/input "<blockquote class='blue'></blockquote>" {:backward-pos 13}]]],     
               ]
-{% endhighlight %}
+    {% endhighlight %}
     
-{: .notice--warning}
-> Now, some of the short-codes above such as `/.is, /.it, /dt and /.c` will not work just yet because we have not created their associated template. We will get to that in next section.
+    {: .notice--warning}
+    > Now, some of the short-codes above such as `/.is, /.it, /dt and /.c` will not work just yet because we have not created their associated template. We will get to that in next section.
 
 ### Create Templates
 
