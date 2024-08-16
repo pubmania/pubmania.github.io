@@ -557,7 +557,7 @@ table th {
 
 - In order to invoke some of the above tweaks, we will also create keyboard shortcuts and shortcodes to have a simpler way to change colour of the blockquote side border and highlights. So open `logseq/config.edn` and do the following:
     - Search for:
-    ```clj
+    {% highlight clj linenos %}
     ;; Macros replace texts and will make you more productive.
     ;; Example usage:
     ;; Change the :macros value below to:
@@ -581,8 +581,10 @@ table th {
      "==" "<mark class='$1'>$2</mark>" ;;usage \{\{ == red,Text to be highlighted without linebreak \}\}
      }
     {% endhighlight %}
+
     - search for:
-    ```clj
+
+    {% highlight clj linenos %}
     ;; Add custom commands to the command palette
     ;; Example usage:
     ;; :commands
@@ -591,7 +593,7 @@ table th {
     ;;  ["md" "Markdown"]
     ;;  ]
     :commands []
-    ```
+    {% endhighlight %}
     - and replace above with:
     
     {: .notice--info}
@@ -605,8 +607,8 @@ table th {
                 ["bookmark                                        [.b]" [[:editor/input "\{\{ renderer :template, Bookmark\}\}" ]]],
                 ["date_today                                      [dt]" [[:editor/input "\{\{ renderer :template, Date Today\}\}" ]]],
                 ["issue_table                                     [.it]" [[:editor/input "\{\{ renderer :template, Issue_table\}\}" ]]],
-                ["issue                                           [.is]" [[:editor/input "\{\{ renderer :template, Issue\}\}" ]]],
-                ["circle                                          [.c]" [[:editor/input "{{renderer :template-view, circle-template, :color orange}}" ]]],               
+                ["issue                                           [.is]" [[:editor/input "\{\{ renderer :template, Issue \}\}" ]]],
+                ["circle                                          [.c]" [[:editor/input "{\{\ renderer :template-view, circle-template, :color orange \}\}" ]]],               
                 ["Blue Highlighter                                [=b]" [[:editor/input "<mark class='blue'></mark>" {:backward-pos 7}]]],
                 ["Green Highlighter                               [=g]" [[:editor/input "<mark class='green'></mark>" {:backward-pos 7}]]],
                 ["Gray Highlighter                                [=gra]" [[:edior/input "<mark class='gray'></mark>" {:backward-pos 7}]]],
@@ -620,7 +622,7 @@ table th {
                 ["Yellow Blockquote                               [>y]" [[:editor/input "<blockquote class='yellow'></blockquote>" {:backward-pos 13}]]],
                 ["Blue Blockquote                                 [>b]" [[:editor/input "<blockquote class='blue'></blockquote>" {:backward-pos 13}]]],     
               ]
-    {% endhighlight %}
+{% endhighlight %}
     
     {: .notice--warning}
     > Now, some of the short-codes above such as `/.is, /.it, /dt and /.c` will not work just yet because we have not created their associated template. We will get to that in next section.
