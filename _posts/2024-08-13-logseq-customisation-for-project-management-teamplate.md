@@ -556,7 +556,7 @@ table th {
 {% endhighlight %}
 
 * In order to invoke some of the above tweaks, we will also create keyboard shortcuts and shortcodes to have a simpler way to change colour of the blockquote side border and highlights. So open `logseq/config.edn` and do the following:
-    - Search for:
+a) Search for:
       {% highlight clj linenos %}
       ;; Macros replace texts and will make you more productive.
       ;; Example usage:
@@ -567,7 +567,8 @@ table th {
       ;; Rose is red, violet's blue. Life's ordered: Org assists you.
       :macros {}
       {% endhighlight %}
-    - and replace above with:
+
+b) and replace above with:
       {% highlight clj linenos %}
       ;; Macros replace texts and will make you more productive.
       ;; Example usage:
@@ -577,11 +578,12 @@ table th {
       ;; becomes
       ;; Rose is red, violet's blue. Life's ordered: Org assists you.
       :macros {
-       ">" "<blockquote class='$1'>$2</blockquote>" ;;usage \{\{ > orange,Text to be presented in the blockquote \}\}
-       "==" "<mark class='$1'>$2</mark>" ;;usage \{\{ == red,Text to be highlighted without linebreak \}\}
+       ">" "<blockquote class='$1'>$2</blockquote>" ;;usage {% raw %}{{ > orange,Text to be presented in the blockquote }}{% endraw %}
+       "==" "<mark class='$1'>$2</mark>" ;;usage {% raw %}{{ == red,Text to be highlighted without linebreak }}{% endraw %}
       }
       {% endhighlight %}
-    - search for:
+  
+c) search for:
       {% highlight clj linenos %}
       ;; Add custom commands to the command palette
       ;; Example usage:
@@ -592,20 +594,20 @@ table th {
       ;;  ]
       :commands []
       {% endhighlight %}
-    - and replace above with:
+d) and replace above with:
 
-      {: .notice--info}
-      If you will copy and paste the code below please make sure that you remove the `white space and forward slashes (\)` between the curly two consecutive brackets so it looks like this: {% raw %}["bookmark                                        [.b]" [[:editor/input "{{ renderer :template, Bookmark}}" ]]],{% endraw %}
+{: .notice--info}
+If you will copy and paste the code below please make sure that you remove the `white space and forward slashes (\)` between the curly two consecutive brackets so it looks like this: {% raw %}["bookmark                                        [.b]" [[:editor/input "{{ renderer :template, Bookmark}}" ]]],{% endraw %}
     
       {% highlight clj linenos %}
       ;; Add custom commands to the command palette
       ;; To quickly call these commands, just type / (backslash) followed by characters in square bracket
       :commands [
-                  ["bookmark                                        [.b]" [[:editor/input "\{\{ renderer :template, Bookmark\}\}" ]]],
-                  ["date_today                                      [dt]" [[:editor/input "\{\{ renderer :template, Date Today\}\}" ]]],
-                  ["issue_table                                     [.it]" [[:editor/input "\{\{ renderer :template, Issue_table\}\}" ]]],
-                  ["issue                                           [.is]" [[:editor/input "\{\{ renderer :template, Issue \}\}" ]]],
-                  ["circle                                          [.c]" [[:editor/input "{\{\ renderer :template-view, circle-template, :color orange \}\}" ]]],          
+                  {% raw %}["bookmark                                        [.b]" [[:editor/input "{{ renderer :template, Bookmark}}" ]]],{% endraw %}
+                  ["date_today                                      [dt]" [[:editor/input "{% raw %}{{renderer :template, Date Today}}{% endraw %}" ]]],
+                  ["issue_table                                     [.it]" [[:editor/input "{% raw %}{{renderer :template, Issue_table}}{% endraw %}" ]]],
+                  ["issue                                           [.is]" [[:editor/input "{% raw %}{{renderer :template, Issue}}{% endraw %}" ]]],
+                  ["circle                                          [.c]" [[:editor/input "{% raw %}{{renderer :template-view, circle-template, :color orange}}{% endraw %}" ]]],          
                   ["Blue Highlighter                                [=b]" [[:editor/input "<mark class='blue'></mark>" {:backward-pos 7}]]],
                   ["Green Highlighter                               [=g]" [[:editor/input "<mark class='green'></mark>" {:backward-pos 7}]]],
                   ["Gray Highlighter                                [=gra]" [[:edior/input "<mark class='gray'></mark>" {:backward-pos 7}]]],
