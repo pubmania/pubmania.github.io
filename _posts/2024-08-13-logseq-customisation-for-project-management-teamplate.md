@@ -594,11 +594,8 @@ c) search for:
       ;;  ]
       :commands []
       {% endhighlight %}
-d) and replace above with:
 
-{: .notice--info}
-If you will copy and paste the code below please make sure that you remove the `white space and forward slashes (\)` between the curly two consecutive brackets so it looks like this: {% raw %}["bookmark                                        [.b]" [[:editor/input "{{ renderer :template, Bookmark}}" ]]],{% endraw %}
-    
+d) and replace above with:
       {% highlight clj linenos %}
       ;; Add custom commands to the command palette
       ;; To quickly call these commands, just type / (backslash) followed by characters in square bracket
@@ -702,7 +699,7 @@ If you will copy and paste the code below please make sure that you remove the `
 					- ### **Issue Description**
 						-
 					- ### **Updates**
-						- ``[today]`` :
+						- <% Today %> :
 				- ## 02 Issue Title
 				  owner::
 				  status:: #Amber
@@ -710,7 +707,7 @@ If you will copy and paste the code below please make sure that you remove the `
 					- ### **Issue Description**
 						-
 					- ### **Updates**
-						- ``[today]`` :
+						- <% Today %> :
 				- ## 03 Issue Title
 				  owner:: 
 				  status:: #Yellow
@@ -718,7 +715,7 @@ If you will copy and paste the code below please make sure that you remove the `
 					- ### **Issue Description**
 						-
 					- ### **Updates**
-						- ``[today]`` :
+						- <% Today %> :
 				- ## 04 Issue Title
 				  owner:: 
 				  status:: #Green
@@ -726,7 +723,7 @@ If you will copy and paste the code below please make sure that you remove the `
 					- ### **Issue Description**
 						-
 					- ### **Updates**
-						- [[Monday, 2024/08/12]] :
+						- <% Today %> :
 				- ## 05 Issue Title
 				  owner:: 
 				  status:: #on-hold 
@@ -734,7 +731,7 @@ If you will copy and paste the code below please make sure that you remove the `
 					- ### **Issue Description**
 						-
 					- ### **Updates**
-						- [[Monday, 2024/08/12]] :
+						- <% Today %> :
 				- ## 06 Issue Title
 				  owner:: 
 				  status:: #no-go
@@ -742,7 +739,7 @@ If you will copy and paste the code below please make sure that you remove the `
 					- ### **Issue Description**
 						-
 					- ### **Updates**
-						- [[Monday, 2024/08/12]] :
+						- <% Today %> :
 				- ## 07 Issue Title
 				  owner:: 
 				  status:: #closed
@@ -750,7 +747,7 @@ If you will copy and paste the code below please make sure that you remove the `
 					- ### **Issue Description**
 						-
 					- ### **Updates**
-						- [[Monday, 2024/08/12]] :
+						- <% Today %> :
 		- # Issue
 		  template:: Issue
 		  template-including-parent:: false
@@ -762,7 +759,7 @@ If you will copy and paste the code below please make sure that you remove the `
 				- ### **Issue Description**
 					-
 				- ### **Updates**
-					- ``[today]`` :
+					- <% Today %> :
 		- # Date Today
 		  template:: Date Today
 		  template-including-parent:: false
