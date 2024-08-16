@@ -33,7 +33,7 @@ When binary install is not possible, one can still use logseq from browser by na
 * Now search for `logseq/custom.css` and add the whole css from this [gist](https://gist.github.com/pubmania/a1a84430ab0b6ef48b0760cd128550e0).
 * Then search for `logseq/config.edn` and add the whole edn from this [gist](https://gist.github.com/pubmania/200b6da0e3c5eaf4505c559b7f99e555)
 
-{: .notice}
+{: .notice--tip}
 If you were installing the binary, you can still copy the entire `css` and `edn` from above. If you do that, you can directly skip to the section - [Create Templates](#create-templates).
 
 ## Customisations
@@ -567,7 +567,6 @@ table th {
     ;; Rose is red, violet's blue. Life's ordered: Org assists you.
     :macros {}
     {% endhighlight %}
-
     - and replace above with:
     {% highlight clj linenos %}
     ;; Macros replace texts and will make you more productive.
@@ -582,9 +581,7 @@ table th {
      "==" "<mark class='$1'>$2</mark>" ;;usage \{\{ == red,Text to be highlighted without linebreak \}\}
      }
     {% endhighlight %}
-
     - search for:
-
     {% highlight clj linenos %}
     ;; Add custom commands to the command palette
     ;; Example usage:
@@ -597,11 +594,8 @@ table th {
     {% endhighlight %}
 
     - and replace above with:
-    
     {: .notice--info}
     If you will copy and paste the code below please make sure that you remove the `white space and forward slashes (\)` between the curly two consecutive brackets so it looks like this: {% raw %}["bookmark                                        [.b]" [[:editor/input "{{ renderer :template, Bookmark}}" ]]],{% endraw %}
-  
-
     {% highlight clj linenos %}
     ;; Add custom commands to the command palette
     ;; To quickly call these commands, just type / (backslash) followed by characters in square bracket
@@ -625,7 +619,6 @@ table th {
                 ["Blue Blockquote                                 [>b]" [[:editor/input "<blockquote class='blue'></blockquote>" {:backward-pos 13}]]],     
               ]
     {% endhighlight %}
-    
     {: .notice--warning}
     > Now, some of the short-codes above such as `/.is, /.it, /dt and /.c` will not work just yet because we have not created their associated template. We will get to that in next section.
 
