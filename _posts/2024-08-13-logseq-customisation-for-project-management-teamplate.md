@@ -556,74 +556,70 @@ table th {
 {% endhighlight %}
 
 * In order to invoke some of the above tweaks, we will also create keyboard shortcuts and shortcodes to have a simpler way to change colour of the blockquote side border and highlights. So open `logseq/config.edn` and do the following:
+    - Search for:
+      {% highlight clj linenos %}
+      ;; Macros replace texts and will make you more productive.
+      ;; Example usage:
+      ;; Change the :macros value below to:
+      ;; {"poem" "Rose is $1, violet's $2. Life's ordered: Org assists you."}
+      {% raw %};; input "{{poem red,blue}}"{% endraw %}
+      ;; becomes
+      ;; Rose is red, violet's blue. Life's ordered: Org assists you.
+      :macros {}
+      {% endhighlight %}
+    - and replace above with:
+      {% highlight clj linenos %}
+      ;; Macros replace texts and will make you more productive.
+      ;; Example usage:
+      ;; Change the :macros value below to:
+      ;; {"poem" "Rose is $1, violet's $2. Life's ordered: Org assists you."}
+      {% raw %};; input "{{poem red,blue}}"{% endraw %}
+      ;; becomes
+      ;; Rose is red, violet's blue. Life's ordered: Org assists you.
+      :macros {
+       ">" "<blockquote class='$1'>$2</blockquote>" ;;usage \{\{ > orange,Text to be presented in the blockquote \}\}
+       "==" "<mark class='$1'>$2</mark>" ;;usage \{\{ == red,Text to be highlighted without linebreak \}\}
+      }
+      {% endhighlight %}
+    - search for:
+      {% highlight clj linenos %}
+      ;; Add custom commands to the command palette
+      ;; Example usage:
+      ;; :commands
+      ;; [
+      ;;  ["js" "Javascript"]
+      ;;  ["md" "Markdown"]
+      ;;  ]
+      :commands []
+      {% endhighlight %}
+    - and replace above with:
 
-** Search for:
-    {% highlight clj linenos %}
-    ;; Macros replace texts and will make you more productive.
-    ;; Example usage:
-    ;; Change the :macros value below to:
-    ;; {"poem" "Rose is $1, violet's $2. Life's ordered: Org assists you."}
-    ;; input "{{poem red,blue}}"
-    ;; becomes
-    ;; Rose is red, violet's blue. Life's ordered: Org assists you.
-    :macros {}
-    {% endhighlight %}
-
-** and replace above with:
-    {% highlight clj linenos %}
-    ;; Macros replace texts and will make you more productive.
-    ;; Example usage:
-    ;; Change the :macros value below to:
-    ;; {"poem" "Rose is $1, violet's $2. Life's ordered: Org assists you."}
-    ;; input "{{poem red,blue}}"
-    ;; becomes
-    ;; Rose is red, violet's blue. Life's ordered: Org assists you.
-    :macros {
-     ">" "<blockquote class='$1'>$2</blockquote>" ;;usage \{\{ > orange,Text to be presented in the blockquote \}\}
-     "==" "<mark class='$1'>$2</mark>" ;;usage \{\{ == red,Text to be highlighted without linebreak \}\}
-     }
-    {% endhighlight %}
-
-** search for:
-    {% highlight clj linenos %}
-    ;; Add custom commands to the command palette
-    ;; Example usage:
-    ;; :commands
-    ;; [
-    ;;  ["js" "Javascript"]
-    ;;  ["md" "Markdown"]
-    ;;  ]
-    :commands []
-    {% endhighlight %}
-
-** and replace above with:
-   
-{: .notice--info}
-If you will copy and paste the code below please make sure that you remove the `white space and forward slashes (\)` between the curly two consecutive brackets so it looks like this: {% raw %}["bookmark                                        [.b]" [[:editor/input "{{ renderer :template, Bookmark}}" ]]],{% endraw %}
+      {: .notice--info}
+      If you will copy and paste the code below please make sure that you remove the `white space and forward slashes (\)` between the curly two consecutive brackets so it looks like this: {% raw %}["bookmark                                        [.b]" [[:editor/input "{{ renderer :template, Bookmark}}" ]]],{% endraw %}
     
-    {% highlight clj linenos %}
-    ;; Add custom commands to the command palette
-    ;; To quickly call these commands, just type / (backslash) followed by characters in square bracket
-    :commands [
-                ["bookmark                                        [.b]" [[:editor/input "\{\{ renderer :template, Bookmark\}\}" ]]],
-                ["date_today                                      [dt]" [[:editor/input "\{\{ renderer :template, Date Today\}\}" ]]],
-                ["issue_table                                     [.it]" [[:editor/input "\{\{ renderer :template, Issue_table\}\}" ]]],
-                ["issue                                           [.is]" [[:editor/input "\{\{ renderer :template, Issue \}\}" ]]],
-                ["circle                                          [.c]" [[:editor/input "{\{\ renderer :template-view, circle-template, :color orange \}\}" ]]],               
-                ["Blue Highlighter                                [=b]" [[:editor/input "<mark class='blue'></mark>" {:backward-pos 7}]]],
-                ["Green Highlighter                               [=g]" [[:editor/input "<mark class='green'></mark>" {:backward-pos 7}]]],
-                ["Gray Highlighter                                [=gra]" [[:edior/input "<mark class='gray'></mark>" {:backward-pos 7}]]],
-                ["Grey Highlighter                                [=gre]" [[:editor/input "<mark class='grey'></mark>" {:backward-pos 7}]]],
-                ["Orange Highlighter                              [=o]" [[:editor/input "<mark class='orange'></mark>" {:backward-pos 7}]]],
-                ["Pink Highlighter                                [=p]" [[:editor/input "<mark class='pink'></mark>" {:backward-pos 7}]]],
-                ["Red Highlighter                                 [=r]" [[:editor/input "<mark class='red'></mark>" {:backward-pos 7}]]],
-                ["Yellow Highlighter                              [=y]" [[:editor/input "<mark class='yellow'></mark>" {:backward-pos 7}]]],
-                ["Purple Highlighter                              [=pu]" [[:editor/input "<mark class='purple'></mark>" {:backward-pos 7}]]],
-                ["Red Blockquote                                  [>r]" [[:editor/input "<blockquote class='red'></blockquote>" {:backward-pos 13}]]],
-                ["Yellow Blockquote                               [>y]" [[:editor/input "<blockquote class='yellow'></blockquote>" {:backward-pos 13}]]],
-                ["Blue Blockquote                                 [>b]" [[:editor/input "<blockquote class='blue'></blockquote>" {:backward-pos 13}]]],     
-              ]
-    {% endhighlight %}
+      {% highlight clj linenos %}
+      ;; Add custom commands to the command palette
+      ;; To quickly call these commands, just type / (backslash) followed by characters in square bracket
+      :commands [
+                  ["bookmark                                        [.b]" [[:editor/input "\{\{ renderer :template, Bookmark\}\}" ]]],
+                  ["date_today                                      [dt]" [[:editor/input "\{\{ renderer :template, Date Today\}\}" ]]],
+                  ["issue_table                                     [.it]" [[:editor/input "\{\{ renderer :template, Issue_table\}\}" ]]],
+                  ["issue                                           [.is]" [[:editor/input "\{\{ renderer :template, Issue \}\}" ]]],
+                  ["circle                                          [.c]" [[:editor/input "{\{\ renderer :template-view, circle-template, :color orange \}\}" ]]],          
+                  ["Blue Highlighter                                [=b]" [[:editor/input "<mark class='blue'></mark>" {:backward-pos 7}]]],
+                  ["Green Highlighter                               [=g]" [[:editor/input "<mark class='green'></mark>" {:backward-pos 7}]]],
+                  ["Gray Highlighter                                [=gra]" [[:edior/input "<mark class='gray'></mark>" {:backward-pos 7}]]],
+                  ["Grey Highlighter                                [=gre]" [[:editor/input "<mark class='grey'></mark>" {:backward-pos 7}]]],
+                  ["Orange Highlighter                              [=o]" [[:editor/input "<mark class='orange'></mark>" {:backward-pos 7}]]],
+                  ["Pink Highlighter                                [=p]" [[:editor/input "<mark class='pink'></mark>" {:backward-pos 7}]]],
+                  ["Red Highlighter                                 [=r]" [[:editor/input "<mark class='red'></mark>" {:backward-pos 7}]]],
+                  ["Yellow Highlighter                              [=y]" [[:editor/input "<mark class='yellow'></mark>" {:backward-pos 7}]]],
+                  ["Purple Highlighter                              [=pu]" [[:editor/input "<mark class='purple'></mark>" {:backward-pos 7}]]],
+                  ["Red Blockquote                                  [>r]" [[:editor/input "<blockquote class='red'></blockquote>" {:backward-pos 13}]]],
+                  ["Yellow Blockquote                               [>y]" [[:editor/input "<blockquote class='yellow'></blockquote>" {:backward-pos 13}]]],
+                  ["Blue Blockquote                                 [>b]" [[:editor/input "<blockquote class='blue'></blockquote>" {:backward-pos 13}]]],     
+                ]
+      {% endhighlight %}
 
 {: .notice--warning}
 > Now, some of the short-codes above such as `/.is, /.it, /dt and /.c` will not work just yet because we have not created their associated template. We will get to that in next section.
