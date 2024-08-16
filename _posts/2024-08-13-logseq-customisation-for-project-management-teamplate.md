@@ -331,11 +331,11 @@ mark.purple {
 .opacity-50 {
  opacity: 1;
 }
-```
+{% endhighlight %}
 
 - As our templates later will depend on v-kanban plugin but I did not want to include the whole `css` and also wanted to modify the icons it shows with `Pros and Cons`, I include the following `css` on `logseq/custom.css`:
 
-```css
+{% highlight css linenos %}
 /* -- like dislike ----------------------------------------- */
 
 .ls-block[data-refs-self*="pros"] .block-children .bullet-container .bullet {
@@ -594,13 +594,14 @@ table th {
     ;;  ]
     :commands []
     {% endhighlight %}
+
     - and replace above with:
     
     {: .notice--info}
     If you will copy and paste the code below please make sure that you remove the `white space and forward slashes (\)` between the curly two consecutive brackets so it looks like this: {% raw %}["bookmark                                        [.b]" [[:editor/input "{{ renderer :template, Bookmark}}" ]]],{% endraw %}
   
 
-    {% highlight clj linenos %}
+{% highlight clj linenos %}
     ;; Add custom commands to the command palette
     ;; To quickly call these commands, just type / (backslash) followed by characters in square bracket
     :commands [
@@ -624,8 +625,8 @@ table th {
               ]
 {% endhighlight %}
     
-    {: .notice--warning}
-    > Now, some of the short-codes above such as `/.is, /.it, /dt and /.c` will not work just yet because we have not created their associated template. We will get to that in next section.
+{: .notice--warning}
+> Now, some of the short-codes above such as `/.is, /.it, /dt and /.c` will not work just yet because we have not created their associated template. We will get to that in next section.
 
 ### Create Templates
 
