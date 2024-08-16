@@ -48,18 +48,18 @@ If you were installing the binary, you can still copy the entire `css` and `edn`
     - Press `Ctrl+K` and search for `logseq/config.edn`
     - In the code block search for following lines:
       
-    ```clj
+    {% highlight clj linenos %}
     ;; Advanced queries `:result-transform` function.
     ;; Transform the query result before displaying it.
     :query/result-transforms
     {:sort-by-priority
      (fn [result] (sort-by (fn [h] (get h :block/priority "Z")) result))
     }
-    ```
+    {% endhighlight %}
 
 - Now replace these with following which is slightly reduced compared to the [Source](https://discuss.logseq.com/t/add-query-input-or-function-day-of-week/18361/12) as I only needed "Deadline" for my purposes and I don't use the "Scheduled" part of the Logseq task management feature:
 
-    ```clj
+    {% highlight clj linenos %}
     ;; Advanced queries `:result-transform` function.
     ;; Transform the query result before displaying it.
     :query/result-transforms
@@ -158,7 +158,7 @@ If you were installing the binary, you can still copy the entire `css` and `edn`
        result)
      )
      }
-    ```
+    {% endhighlight %}
 
 ### Plugins
 
@@ -182,14 +182,14 @@ If you were installing the binary, you can still copy the entire `css` and `edn`
 ### Look and Feel
 - Now, I quite like the [Mia Quattro Theme](https://playerofgames.github.io/logseq-mia-theme/) that can either be installed as a theme from marketplace or just by including the following line in `logseq/custom.css` just under the comment `/*Theme*/` right at the top of the file like so:
 
-```css
+{% highlight css linenos %}
 /*Theme*/
 @import url('https://playerofgames.github.io/logseq-mia-theme/mia_quattro.css');
-```
+{% endhighlight %}
 
 - However this theme had some quirks which can be refined by adding following `css` overrides:
 
-```css
+{% highlight css linenos %}
 /* Override tag and note color scheme for tags from mia_quattro theme  */
 a.tag{
  font-size: 100%;
@@ -553,7 +553,7 @@ table th {
     word-break: keep-all;
 }
 /*------------------expreimetal for better table view END-------------------*/
-```
+{% endhighlight %}
 
 - In order to invoke some of the above tweaks, we will also create keyboard shortcuts and shortcodes to have a simpler way to change colour of the blockquote side border and highlights. So open `logseq/config.edn` and do the following:
     - Search for:
@@ -568,7 +568,7 @@ table th {
     :macros {}
     ```
     - and replace above with:
-    ```clj
+    {% highlight clj linenos %}
     ;; Macros replace texts and will make you more productive.
     ;; Example usage:
     ;; Change the :macros value below to:
@@ -580,7 +580,7 @@ table th {
      ">" "<blockquote class='$1'>$2</blockquote>" ;;usage \{\{ > orange,Text to be presented in the blockquote \}\}
      "==" "<mark class='$1'>$2</mark>" ;;usage \{\{ == red,Text to be highlighted without linebreak \}\}
      }
-    ```
+    {% endhighlight %}
     - search for:
     ```clj
     ;; Add custom commands to the command palette
@@ -598,7 +598,7 @@ table th {
     If you will copy and paste the code below please make sure that you remove the `white space and forward slashes (\)` between the curly two consecutive brackets so it looks like this: {% raw %}["bookmark                                        [.b]" [[:editor/input "{{ renderer :template, Bookmark}}" ]]],{% endraw %}
   
 
-    ```
+    {% highlight clj linenos %}
     ;; Add custom commands to the command palette
     ;; To quickly call these commands, just type / (backslash) followed by characters in square bracket
     :commands [
@@ -606,7 +606,7 @@ table th {
                 ["date_today                                      [dt]" [[:editor/input "\{\{ renderer :template, Date Today\}\}" ]]],
                 ["issue_table                                     [.it]" [[:editor/input "\{\{ renderer :template, Issue_table\}\}" ]]],
                 ["issue                                           [.is]" [[:editor/input "\{\{ renderer :template, Issue\}\}" ]]],
-                ["circle                                          [.c]" [[:editor/input "\{\{ renderer :template-view, circle-template, :color orange\}\}" ]]],               
+                ["circle                                          [.c]" [[:editor/input "{{renderer :template-view, circle-template, :color orange}}" ]]],               
                 ["Blue Highlighter                                [=b]" [[:editor/input "<mark class='blue'></mark>" {:backward-pos 7}]]],
                 ["Green Highlighter                               [=g]" [[:editor/input "<mark class='green'></mark>" {:backward-pos 7}]]],
                 ["Gray Highlighter                                [=gra]" [[:edior/input "<mark class='gray'></mark>" {:backward-pos 7}]]],
@@ -620,7 +620,7 @@ table th {
                 ["Yellow Blockquote                               [>y]" [[:editor/input "<blockquote class='yellow'></blockquote>" {:backward-pos 13}]]],
                 ["Blue Blockquote                                 [>b]" [[:editor/input "<blockquote class='blue'></blockquote>" {:backward-pos 13}]]],     
               ]
-    ```
+    {% endhighlight %}
     
     {: .notice--warning}
     > Now, some of the short-codes above such as `/.is, /.it, /dt and /.c` will not work just yet because we have not created their associated template. We will get to that in next section.
@@ -632,7 +632,7 @@ table th {
 - Once on the page, click on `Three dots` in top right corner of the screen and from the drop down menu select `Open in default app`
 - Here paste the following then save and close the default app:
 
-```
+{% highlight clj linenos %}
 		title:: templates
 		visibility:: false
 		icon:: 🧾
@@ -907,7 +907,7 @@ table th {
 			  }
 			  #+END_QUERY
 		-
-```
+{% endhighlight %}
 
 ### Contents page
 
@@ -915,7 +915,7 @@ table th {
 - Once on the page, click on `Three dots` in top right corner of the screen and from the drop down menu select `Open in default app`
 - Here paste the following then save and close the default app:
 
-```markdown
+{% highlight clj linenos %}
   - query-properties:: [:icon :page :updated-at]
   #+BEGIN_QUERY
   {:title [:h1 "⏳ Ongoing Projects"]
@@ -947,7 +947,7 @@ table th {
     ]
     }
 #+END_QUERY
-```
+{% endhighlight %}
 
 ### Sample Content Page
 ![screenshot_20240813-152544](https://github.com/user-attachments/assets/5a295ec2-ab6c-447f-b485-d70166997eba)
