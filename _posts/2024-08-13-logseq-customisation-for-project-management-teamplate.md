@@ -38,7 +38,7 @@ When binary install is not possible, one can still use logseq from browser by na
 If you were installing the binary, you can still copy the entire `css` and `edn` from above. If you do that, you can directly skip to the section - [Create Templates](#create-templates).
 
 ### Option 2
-* Download the archive from [my github repository here]([https://github.com/pubmania/logseq_project_management_logs_template.git](https://github.com/pubmania/logseq_project_management_logs_template/archive/refs/heads/main.zip))
+* Download the archive from [my github repository here](https://github.com/pubmania/logseq_project_management_logs_template/archive/refs/heads/main.zip)
 * Unzip the downlaoded repository and delete the `README.md` file.
 * Navigate to `journals` directory where there will be three files. Delete all these files.
 * Navigate back and open the 'pages` directory which will have 7 files. Except for `content.md` and `templates.md`, delete all other files.
