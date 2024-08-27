@@ -1002,7 +1002,7 @@ d) and replace above with:
 
 ### Maintain Issues Log
 - Reviewing the logs is as simple as opening the Contents page, clicking the project name and scrolling down to the `Issues Log` section.
-- Now if there are actions identified during the review of an issue, they can be simply added in the `updates` section under the date of review `which can be quickly added by pressing Ctrl+_+Shift+D` and then noting down the action as a sub bullet `TODO [#A] Do Something /deadline`
+- Now if there are actions identified during the review of an issue, they can be simply added in the `updates` section under the date of review `which can be quickly added by pressing Ctrl+Shift+D` and then noting down the action as a sub bullet `TODO [#A] Do Something /deadline`
 - I usually log decisions against a logged issue or if they resulted from a general discussion, just as `#<projectname> #decision`.
 
 ### Day to day notes
