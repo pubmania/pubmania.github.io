@@ -41,7 +41,7 @@ If you were installing the binary, you can still copy the entire `css` and `edn`
 * Download the archive from [my github repository here](https://github.com/pubmania/logseq_project_management_logs_template/archive/refs/heads/main.zip)
 * Unzip the downlaoded repository and delete the `README.md` file.
 * Navigate to `journals` directory where there will be three files. Delete all these files.
-* Navigate back and open the 'pages` directory which will have 7 files. Except for `content.md` and `templates.md`, delete all other files.
+* Navigate back and open the `pages` directory which will have 7 files. Except for `content.md` and `templates.md`, delete all other files.
 * Now copy the `logseq` and `pages` directories into the directory where you want your notes saved.
 * Open logseq from chrome and add the directory from step above where you copied the two folders.
 
