@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.23.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+--><html lang="en" class="no-js">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Rstudio Server Setup with SSL behind Apache proxy server - Make Gadgets Work</title>
+<meta name="description" content="Rstudio Server Setup with SSL behind Apache proxy server">
+
+
+  <meta name="author" content="Ankit Mittal">
+  
+  <meta property="article:author" content="Ankit Mittal">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Make Gadgets Work">
+<meta property="og:title" content="Rstudio Server Setup with SSL behind Apache proxy server">
+<meta property="og:url" content="https://mgw.dumatics.com/rstudio-server-setup-with-ssl-behind-apache-proxy-server/">
+
+
+  <meta property="og:description" content="Rstudio Server Setup with SSL behind Apache proxy server">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2017-03-03T15:10:00+00:00">
+
+
+
+  <meta property="article:modified_time" content="2018-03-29T15:37:54+00:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://mgw.dumatics.com/rstudio-server-setup-with-ssl-behind-apache-proxy-server/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Ankit Mittal",
+      "url": "https://mgw.dumatics.com/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Make Gadgets Work Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+    <script src="/assets/js/scroll-to-top.js"></script>
+  
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Make Gadgets Work
+          <span class="site-subtitle">I give what I take and then I try giving a bit more - My payback to the helpful open source community !!!</span>
+        </a>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/"><i class="fas fa-home"></i></a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li>
+</ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile_pix/profile_1.jpg" alt="Ankit Mittal" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Ankit Mittal</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Programme Manager by profession, Developer at heart !!!</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">United Kingdom</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:mr.ankitmittal@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Rstudio Server Setup with SSL behind Apache proxy server">
+    <meta itemprop="description" content="Install R using following commands:">
+    <meta itemprop="datePublished" content="2017-03-03T15:10:00+00:00">
+    <meta itemprop="dateModified" content="2018-03-29T15:37:54+00:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Rstudio Server Setup with SSL behind Apache proxy server
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+			  <aside class="sidebar__right sticky">
+				<nav class="toc">
+				  <header><h4 class="nav__title">
+<i class="fas fa-file-alt"></i> On this page</h4></header>
+				  <ul class="toc__menu">
+<li><a href="#installrusingfollowingcommands">Install R using following commands:</a></li>
+<li><a href="#installrstudioideserver">Install Rstudio IDE server</a></li>
+<li><a href="#addusertoaccesstherstudio">Add User to access the RStudio</a></li>
+<li>
+<a href="#setupsslandreverseproxyforrstudioserver">Set up SSL and reverse proxy for R-Studio Server</a><ul>
+<li><a href="#step1enablemodulesonapachetohelpsetupproxy">Step 1: Enable modules on Apache to help set up proxy</a></li>
+<li><a href="#step2configureaproxytocontrolaccesstorstudioserver">Step 2: Configure a proxy to control access to RStudio Server</a></li>
+<li><a href="#step3useletsencrypttoenablessl">Step 3: Use LetsEncrypt to enable SSL</a></li>
+<li><a href="#restrictaccesstorstudioserveronlythroughproxy">Restrict access to Rstudio server only through proxy</a></li>
+<li><a href="#restartbothrstudioandapacheservers">Restart both Rstudio and Apache servers</a></li>
+</ul>
+</li>
+</ul>
+
+				</nav>
+			  </aside>
+		
+        <h2 id="installrusingfollowingcommands">Install R using following commands:</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>r-base libapparmor1 gdebi-core
+<span class="c"># Check that R is installed</span>
+R
+<span class="c">#quit R</span>
+q<span class="o">()</span>
+</code></pre></div></div>
+
+<h2 id="installrstudioideserver">Install Rstudio IDE server</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>Downloads/
+wget https://download2.rstudio.org/rstudio-server-1.0.136-amd64.deb
+<span class="nb">sudo </span>gdebi rstudio-server-1.0.136-amd64.deb
+</code></pre></div></div>
+
+<p>At this point if all goes well you can check the status of rstudio server by issuing the command:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl status rstudio-server.service
+</code></pre></div></div>
+
+<p>The server is started automatically at port 8787 and can be accessed using &lt;ip_address:8787&gt; in browser of your choice, provided all firewall settings have been taken care of.</p>
+
+<p>However, when you open the Rstudio server you will be presented with a logon screen and while you can access this using the users for the machine it is hosted on, it will be prudent to create a lower privilege user as explained in next section.</p>
+<h2 id="addusertoaccesstherstudio">Add User to access the RStudio</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>adduser rstudio
+</code></pre></div></div>
+<h2 id="setupsslandreverseproxyforrstudioserver">Set up SSL and reverse proxy for R-Studio Server</h2>
+
+<p>Now important thing to note is that community version of Rstudio server does not come with SSL enabled but just to run it on a secure socket layer you don’t necessarily need the pro version. By following the steps below, your communication with the server will be on SSL.</p>
+
+<p>However to achieve the objective we need to accomplish following steps:</p>
+
+<ol>
+<li>Enable modules on Apache to help set up proxy</li>
+</ol>
+<ul>
+<li>Configure a proxy to control access to RStudio Server</li>
+<li>Use LetsEncrypt to enable SSL</li>
+<li>Restrict access to Rstudio server only through proxy</li>
+<li>Restart both Rstudio and Apache servers</li>
+</ul>
+
+<h4 id="step1enablemodulesonapachetohelpsetupproxy">Step 1: Enable modules on Apache to help set up proxy</h4>
+
+<p>There is guidance on how to do this on <a href="https://support.rstudio.com/hc/en-us/articles/200552326-Running-RStudio-Server-with-a-Proxy">Rstudio Support</a>. However, there was a bit of hair pulling and head scratching involved to get all the steps above work together so stick with me but keep that link in back pocket for variations or when you are stuck.</p>
+
+<p>With head scratching and hair pulling I mean that I encountered errors such as these - <code class="language-plaintext highlighter-rouge">AH01102 error reading status line from remote server</code>, <code class="language-plaintext highlighter-rouge">Rstudio Proxy redirect changing the URL to localhost</code> and many others which can be avoided by following steps as explained below. Anyway so we need to enable <code class="language-plaintext highlighter-rouge">mod_proxy</code> and <code class="language-plaintext highlighter-rouge">mod_proxy_wstunnel</code> modules. As Apache is already installed and mod_proxy already enabled I did not have to install the module itself, but if it needs to be done the commands are:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>libapache2-mod-proxy-html
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>libxml2-dev
+</code></pre></div></div>
+
+<p>Issuing the following commands should enable the relevant modules:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>a2enmod proxy
+<span class="nb">sudo </span>a2enmod proxy_http
+<span class="nb">sudo </span>a2enmod proxy_wstunnel
+</code></pre></div></div>
+
+<h4 id="step2configureaproxytocontrolaccesstorstudioserver">Step 2: Configure a proxy to control access to RStudio Server</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Change directory to sites-available</span>
+<span class="nb">cd</span> /etc/apache2/sites-available
+<span class="c"># create a rstudio conf file</span>
+<span class="nb">sudo </span>nano rstudio.conf
+</code></pre></div></div>
+
+<p>Paste the following in the conf file but make sure to change details relevant to your set-up for each entry (line numbers 2, 3, 4, 15 and 16 below):</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;VirtualHost</span> <span class="na">*:80</span><span class="nt">&gt;</span>;
+        ServerAdmin user@yoursite.com
+        ServerName yoursite.com
+        ServerAlias whatever.yoursite.com
+
+#Specify path for Logs
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+        RewriteEngine on
+
+#Rewrite the url supplied to ensure https is applied
+        RewriteCond %{SERVER_NAME} =yoursite.com [OR]
+        RewriteCond %{SERVER_NAME} =whatever.yoursite.com
+        RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,QSA,R=permanent]
+
+# Following lines should open rstudio directly from the url
+        RewriteCond %{HTTP:Upgrade} =websocket
+        RewriteRule /(.*)     ws://localhost:8787/$1  [P,L]
+        RewriteCond %{HTTP:Upgrade} !=websocket
+        RewriteRule /(.*)     http://localhost:8787/$1 [P,L]
+        ProxyPass / http://localhost:8787/
+        ProxyPassReverse / http://localhost:8787/
+
+<span class="nt">&lt;/VirtualHost&gt;</span>;
+
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+</code></pre></div></div>
+
+<p>Press <code class="language-plaintext highlighter-rouge">Ctrl+x</code> and save the file.</p>
+
+<p class="notice-info">TIP: If you just want reverse proxy and no SSL, you can just comment out line 15, 16 and 17 in above conf file and you are all set. If you do want to enable SSL, enabling the site with commands below won’t probably work just yet and subsequent steps will need to be completed.</p>
+
+<p>Now enable the new site by issuing the commands:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>a2ensite rstudio.conf
+<span class="nb">sudo </span>service apache2 restart
+</code></pre></div></div>
+
+<h4 id="step3useletsencrypttoenablessl">Step 3: Use LetsEncrypt to enable SSL</h4>
+
+<p>Follow the instructions <a href="https://certbot.eff.org/">here</a> for specific usecase but one way or the other using Certbot you will be able to obtain the LetsEncrypt SSL certificate and enable it on your server.</p>
+
+<p>Once certbot has completed doing it’s thing you would find an additional conf file in <code>/etc/apache2/sites-available</code> named <code class="language-plaintext highlighter-rouge">rstudio-le-ssl.conf</code>. It will be pretty much same content as in rstudio.conf with very minor changes. The first line will be listening on 443 instead of 80 and the ssl certificates will be included. Normally you would not need to tweak anything in the resultant file but just for reference the contenst of this file will look as below:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;IfModule</span> <span class="na">mod_ssl.c</span><span class="nt">&gt;</span>
+<span class="nt">&lt;VirtualHost</span> <span class="na">*:443</span><span class="nt">&gt;</span>
+
+        ServerAdmin user@yoursite.com
+        ServerName yoursite.com
+        ServerAlias whatever.yoursite.com
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+RewriteEngine on
+# Following lines should open rstudio directly from the url
+        RewriteCond %{HTTP:Upgrade} =websocket
+        RewriteRule /(.*)     ws://localhost:8787/$1  [P,L]
+        RewriteCond %{HTTP:Upgrade} !=websocket
+        RewriteRule /(.*)     http://localhost:8787/$1 [P,L]
+        ProxyPass / http://localhost:8787/
+        ProxyPassReverse / http://localhost:8787/
+
+SSLCertificateFile /etc/letsencrypt/live/whatever.yoursite.com/fullchain.pem
+SSLCertificateKeyFile /etc/letsencrypt/live/whatever.yoursite.com/privkey.pem
+Include /etc/letsencrypt/options-ssl-apache.conf
+<span class="nt">&lt;/VirtualHost&gt;</span>
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+<span class="nt">&lt;/IfModule&gt;</span>
+</code></pre></div></div>
+
+<h4 id="restrictaccesstorstudioserveronlythroughproxy">Restrict access to Rstudio server only through proxy</h4>
+<p>Finally, we want to ensure that access to the Rstudio server is only through the proxy we configured and to do that we just need to specify this in the rstudio server configuration the attribute that tells it to only serve requests from localhost.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>nano /etc/rstudio/rserver.conf
+</code></pre></div></div>
+
+<p>Now on the opened file type <code class="language-plaintext highlighter-rouge">www-address=127.0.0.1</code> and press <code class="language-plaintext highlighter-rouge">Ctrl+x</code> and save the file.</p>
+
+<h4 id="restartbothrstudioandapacheservers">Restart both Rstudio and Apache servers</h4>
+
+<p>Finally issue the following commands to restart both the servers:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl restart rstudio-server.service
+<span class="nb">sudo </span>service apache2 restart
+</code></pre></div></div>
+
+<p>This is it. Now your new Rstudio server is ready to be used through secure socket layer.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-03-29">March 29, 2018</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Rstudio+Server+Setup+with+SSL+behind+Apache+proxy+server%20https%3A%2F%2Fmgw.dumatics.com%2Frstudio-server-setup-with-ssl-behind-apache-proxy-server%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmgw.dumatics.com%2Frstudio-server-setup-with-ssl-behind-apache-proxy-server%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fmgw.dumatics.com%2Frstudio-server-setup-with-ssl-behind-apache-proxy-server%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/markdown-and-gantt-charts/" class="pagination--pager" title="Markdown and Gantt Charts
+">Previous</a>
+    
+    
+      <a href="/ghost-v1-0-upgrade-related-quirks-and-fixes/" class="pagination--pager" title="Ghost V1.0 Upgrade on Apache stack, related quirks and fixes
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/logseq-customisation-for-project-management-teamplate/" rel="permalink">Logseq Customisations for Project Management Template
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          20 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Notes to create a functional project logs template for Logseq graphs.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/read-excel-csv-recursive/" rel="permalink">Python Function read excel / csv files from a given directory and its subdirectories
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Reading multiple excel and csv files recursively in directory and subdirectories
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git-jargon/" rel="permalink">Git Jargon
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Familiarisation with some Git jargon
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git-basics/" rel="permalink">Git Basics
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">What is GIT, how is it used and where to begin
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+<form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term...">
+  </form>
+  <div id="results" class="results"></div>
+</div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<div id="scroll-to-top">
+    <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-angle-double-up fa-stack-1x fa-inverse up-arrow"></i>
+    </span>
+</div>
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2024 Ankit Mittal. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://mgw.dumatics.com/rstudio-server-setup-with-ssl-behind-apache-proxy-server/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/rstudio-server-setup-with-ssl-behind-apache-proxy-server"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://makegadgetswork.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+
+  
+
+
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  
+    <script src="/assets/js/clipboardrouge.js"></script>
+  
+
+
+
+  </body>
+</html>

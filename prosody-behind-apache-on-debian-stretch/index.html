@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.23.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+--><html lang="en" class="no-js">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Prosody behind Apache on Debian Stretch with Conversations - Make Gadgets Work</title>
+<meta name="description" content="Complete walk-through to set-up a self-hosted instant messaging">
+
+
+  <meta name="author" content="Ankit Mittal">
+  
+  <meta property="article:author" content="Ankit Mittal">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Make Gadgets Work">
+<meta property="og:title" content="Prosody behind Apache on Debian Stretch with Conversations">
+<meta property="og:url" content="https://mgw.dumatics.com/prosody-behind-apache-on-debian-stretch/">
+
+
+  <meta property="og:description" content="Complete walk-through to set-up a self-hosted instant messaging">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2018-06-15T12:36:19+00:00">
+
+
+
+  <meta property="article:modified_time" content="2020-05-21T11:56:42+00:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://mgw.dumatics.com/prosody-behind-apache-on-debian-stretch/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Ankit Mittal",
+      "url": "https://mgw.dumatics.com/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Make Gadgets Work Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+    <script src="/assets/js/scroll-to-top.js"></script>
+  
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Make Gadgets Work
+          <span class="site-subtitle">I give what I take and then I try giving a bit more - My payback to the helpful open source community !!!</span>
+        </a>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/"><i class="fas fa-home"></i></a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li>
+</ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile_pix/profile_1.jpg" alt="Ankit Mittal" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Ankit Mittal</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Programme Manager by profession, Developer at heart !!!</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">United Kingdom</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:mr.ankitmittal@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Prosody behind Apache on Debian Stretch with Conversations">
+    <meta itemprop="description" content="A detailed step by step guide for a self-hosted instant messaging">
+    <meta itemprop="datePublished" content="2018-06-15T12:36:19+00:00">
+    <meta itemprop="dateModified" content="2020-05-21T11:56:42+00:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Prosody behind Apache on Debian Stretch with Conversations
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+			  <aside class="sidebar__right sticky">
+				<nav class="toc">
+				  <header><h4 class="nav__title">
+<i class="fas fa-file-alt"></i> On this page</h4></header>
+				  <ul class="toc__menu">
+<li><a href="#genrealguidance">Genreal Guidance</a></li>
+<li>
+<a href="#networksetup">Network Setup:</a><ul>
+<li><a href="#obtaintheipaddress">Obtain the IP address</a></li>
+<li><a href="#portforwardingonrouterifhostingfromhome">Port Forwarding on router if hosting from home.</a></li>
+<li><a href="#createasubdomainrecord">Create a sub-domain record</a></li>
+<li><a href="#ensureyouhavesomesortofdynamicdnsupdatesetupinplace">Ensure you have some sort of Dynamic DNS update set-up in place</a></li>
+</ul>
+</li>
+<li>
+<a href="#serversetup">Server Setup:</a><ul>
+<li>
+<a href="#apachewithreverseproxyenabled">Apache with reverse Proxy enabled</a><ul><li><a href="#ensurecertbotisrenewingautomatically">Ensure certbot is renewing automatically</a></li></ul>
+</li>
+<li>
+<a href="#prosodyxmppserver">Prosody XMPP server</a><ul>
+<li><a href="#install">Install</a></li>
+<li><a href="#installpluginsmodules">Install plugins / modules</a></li>
+<li><a href="#importsslusingcertbot">Import SSL using certbot</a></li>
+<li><a href="#configure">Configure</a></li>
+<li><a href="#adduser">Add User</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="#clientssetup">Clients Setup:</a><ul>
+<li>
+<a href="#conversationsonandroid">Conversations on Android</a><ul><li><a href="#openpgpusingopenkeychain">OpenPGP using OpenKeyChain</a></li></ul>
+</li>
+<li><a href="#conversejsorgonweb">Conversejs.org on web</a></li>
+<li><a href="#chatsecureonios">ChatSecure on iOS</a></li>
+<li><a href="#desktopclient">Desktop Client</a></li>
+</ul>
+</li>
+<li><a href="#maintenance">Maintenance</a></li>
+</ul>
+
+				</nav>
+			  </aside>
+		
+        <h1 id="genrealguidance">Genreal Guidance</h1>
+
+<p>This how-to assumes that:</p>
+
+<ul>
+  <li>User has access to a registered domain - <code class="language-plaintext highlighter-rouge">domain.name</code>. Any reference to <code class="language-plaintext highlighter-rouge">domain.name</code> throughout the tutorial therefore, must be replaced with your own domain name.</li>
+  <li>If stuck anywhere, please do get in touch with <a href="https://chat.prosody.im/">prosody support chat</a> - They are a very helpful lot and are very kind too.</li>
+</ul>
+
+<h1 id="networksetup">Network Setup:</h1>
+
+<p>It is not mandatory to follow the flow of this how-to but if you do, please do it till the end before you try and access the IM server from any client to save yourself some pain.</p>
+
+<h2 id="obtaintheipaddress">Obtain the IP address</h2>
+
+<p>.… of the machine where your XMPP server will be installed using following command on the terminal <code class="language-plaintext highlighter-rouge">ip -a address</code> On the result shown, IP address against inet family is the one we are interested in as can be seen in screenshot below:
+<img src="../assets/images/2018/06/PUTTY_2018-06-15_12-49-42.png" alt="PUTTY_2018-06-15_12-49-42"></p>
+
+<p><strong>Copy this ip address, we will need it in next step.</strong></p>
+
+<h2 id="portforwardingonrouterifhostingfromhome">Port Forwarding on router if hosting from home.</h2>
+
+<p>You have to ensure that following ports are opened and directed to above IP address from your router. <code class="language-plaintext highlighter-rouge">5222, 5269, 5280, 5281</code> On DD-WRT this can be done as shown in screenshot below. This will, ofcourse, vary based on router you are using.
+<img src="../assets/images/2018/06/chrome_2018-06-15_11-34-57.png" alt="chrome_2018-06-15_11-34-57">
+Use the IP address from previous step to fill the IP address field. Basically this set-up is informing your router that if a request comes to you asking for one of the above mentioned ports direct that request to this IP address on the same port.</p>
+
+<h2 id="createasubdomainrecord">Create a sub-domain record</h2>
+
+<div class="notify--danger">
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Please note that the official Prosody Documentation recommends using Server Record and even the experts on their chat support strongly recommend that approach.
+
+I did not have that option unfortunately - read I was being lazy / adventurous - anyway the C-Name set-up has worked fine for me and hence the guide follows this route.
+
+You have been warned !!!
+</code></pre></div></div>
+</div>
+
+<p>This step will vary based on the domain name registrar you use. I use Namecheap for which you could do it as shown in screenshot below:
+<img src="../assets/images/2018/06/chrome_2018-06-15_11-43-31.png" alt="chrome_2018-06-15_11-43-31"></p>
+
+<h2 id="ensureyouhavesomesortofdynamicdnsupdatesetupinplace">Ensure you have some sort of Dynamic DNS update set-up in place</h2>
+
+<p>You can create an account here -&gt; <a href="https://dnsomatic.com/">DNSOMATIC</a> If you are going to use DNSOMATIC which allows you to update several places like so:
+<img src="../assets/images/2018/06/chrome_2018-06-15_11-53-35.png" alt="chrome_2018-06-15_11-53-35">
+For namecheap in order to get the value for password, login to Namecheap dashboard, go to Advanced DNS and scroll down to "Dynamic DNS" section and copy the value in front of the field named "Dynamic DNS Password” as shown below:
+<img src="../assets/images/2018/06/chrome_2018-06-15_17-02-32.png" alt="chrome_2018-06-15_17-02-32.png">
+The setting to update DNSOMATIC on DD-WRT are as shown below: 
+DYDNS Server:<code class="language-plaintext highlighter-rouge">updates.dnsomatic.com</code> 
+Hostname: <code class="language-plaintext highlighter-rouge">all.dnsomatic.com</code> 
+URL: <code class="language-plaintext highlighter-rouge">https://updates.dnsomatic.com/nic/update?hostname=</code>
+<img src="../assets/images/2018/06/chrome_2018-06-15_11-48-32.png" alt="chrome_2018-06-15_11-48-32">
+For all other Dynamic DNS set-ups ensure that your subdomain will always get updated with latest IP address to ensure continuity of service.</p>
+
+<h1 id="serversetup">Server Setup:</h1>
+
+<p>Normally the XMPP clients on phone directly access port 5222 or 5269 for MUC (Multi User Chats aka Group Chats) but to make sure image uploads work and for being able to access IM from web we need to enable reverse proxy using Apache server. As this is fairly straight forward, lets get that out of the way.</p>
+
+<h2 id="apachewithreverseproxyenabled">Apache with reverse Proxy enabled</h2>
+
+<p>Make directory for subdomain:</p>
+
+<p><code class="language-plaintext highlighter-rouge">sudo mkdir /var/www/html/im</code></p>
+
+<p>Then create a server conf file and open for editing in nano using following command:\</p>
+
+<p><code class="language-plaintext highlighter-rouge">sudo nano /etc/apache2/sites-available/prosody.conf</code></p>
+
+<p>Paste the following in conf file:</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">VirtualHost</span> <span class="o">*</span><span class="p">:</span><span class="mi">80</span><span class="o">&gt;</span>
+    <span class="nx">ServerName</span> <span class="nx">im</span><span class="p">.</span><span class="nx">domain</span><span class="p">.</span><span class="nx">name</span>
+    <span class="nx">ServerAlias</span> <span class="nx">im</span><span class="p">.</span><span class="nx">domain</span><span class="p">.</span><span class="nx">name</span>
+    <span class="nx">DocumentRoot</span> <span class="o">/</span><span class="kd">var</span><span class="sr">/www/</span><span class="nx">html</span><span class="o">/</span><span class="nx">im</span>
+
+    <span class="nx">ErrorLog</span> <span class="nx">$</span><span class="p">{</span><span class="nx">APACHE_LOG_DIR</span><span class="p">}</span><span class="sr">/error_im.lo</span><span class="err">g
+</span>    <span class="nx">CustomLog</span> <span class="nx">$</span><span class="p">{</span><span class="nx">APACHE_LOG_DIR</span><span class="p">}</span><span class="sr">/access_im.log combine</span><span class="err">d
+</span>
+    <span class="nx">ProxyPass</span> <span class="o">/</span><span class="nx">http</span><span class="o">-</span><span class="nx">bind</span><span class="o">/</span> <span class="nx">http</span><span class="p">:</span><span class="c1">//im.domain.name:5280/http-bind/</span>
+    <span class="nx">ProxyPassReverse</span> <span class="o">/</span><span class="nx">http</span><span class="o">-</span><span class="nx">bind</span><span class="o">/</span> <span class="nx">http</span><span class="p">:</span><span class="c1">//im.domain.name:5280/http-bind/</span>
+
+
+<span class="nx">RewriteEngine</span> <span class="nx">on</span>
+<span class="nx">RewriteCond</span> <span class="o">%</span><span class="p">{</span><span class="nx">SERVER_NAME</span><span class="p">}</span> <span class="o">=</span><span class="nx">im</span><span class="p">.</span><span class="nx">domain</span><span class="p">.</span><span class="nx">name</span>
+<span class="nx">RewriteRule</span> <span class="o">^</span> <span class="nx">https</span><span class="p">:</span><span class="c1">//%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]</span>
+<span class="o">&lt;</span><span class="sr">/VirtualHost</span><span class="err">&gt;
+</span></code></pre></div></div>
+<p>Save the file with <code class="language-plaintext highlighter-rouge">Ctrl+x</code>, <code class="language-plaintext highlighter-rouge">y</code> and <code class="language-plaintext highlighter-rouge">Enter</code>. Finally enable site and reload server.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nb">sudo </span>a2ensite prosody.conf
+    <span class="nb">sudo </span>systemctl reload apache2
+</code></pre></div></div>
+<p>Enable SSL set-up using Let’s Encrypt {#enablesslsetupusingletsencrypt}
+————————————–</p>
+
+<p>It is assumed at this point that certbot is already installed but if not, follow the tutorial <a href="https://certbot.eff.org/lets-encrypt/debianstretch-apache">here</a> On terminal give the command <code class="language-plaintext highlighter-rouge">sudo certbot</code>
+<img src="../assets/images/2018/06/PUTTY_2018-06-15_12-08-21.png" alt="PUTTY_2018-06-15_12-08-21">
+Then follow the wizard and once completed check that an additional conf file named prosody-le-ssl.conf is created. If not something did not go well so check again and repeat but if yes move to next step.</p>
+
+<h3 id="ensurecertbotisrenewingautomatically">Ensure certbot is renewing automatically</h3>
+
+<p>Debian stretch gets the service certbot.timer already on it which when enabled will try to autorenew twice a day ensuring a continuous certificate availability. To locate and edit the <code class="language-plaintext highlighter-rouge">certbot.timer</code>following commands are helpful:<br>
+<img src="../assets/images/2018/06/PUTTY_2018-06-15_12-19-30.png" alt="PUTTY_2018-06-15_12-19-30"></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>locate certbot.timer
+nano /etc/systemd/system/timers.target.wants/certbot.timer
+</code></pre></div></div>
+<p>The certbot.timer entry on my system is as below:
+<img src="../assets/images/2018/06/PUTTY_2018-06-15_17-23-18.png" alt="PUTTY_2018-06-15_17-23-18"></p>
+
+<p>Once edited, make sure it is enabled using following commands:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl <span class="nb">enable </span>certbot.timer
+<span class="nb">sudo </span>systemctl start certbot.timer
+</code></pre></div></div>
+
+<h2 id="prosodyxmppserver">Prosody XMPP server</h2>
+<p class="notice--warning">Assumption - Apache 2.4 web server is already installed and functioning.</p>
+
+<h3 id="install">Install</h3>
+
+<p><strong>Option 1</strong> (Not Recommended):</p>
+
+<p><code class="language-plaintext highlighter-rouge">sudo nano /etc/apt/sources.list</code>
+Then add this -&gt; <code class="language-plaintext highlighter-rouge">deb http://packages.prosody.im/debian stretch main</code>on the last line.</p>
+
+<p><strong>Option 2</strong> (Recommended):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>echo deb http://packages.prosody.im/debian \$\(lsb\_release -sc) main | sudo tee -a /etc/apt/sources.list
+</code></pre></div></div>
+
+<p>Above command is recommended because it takes the release of your installed version and adds it directly rather than the hard coded “stretch” in Option 1 which must be changes specific to the version of debian. Now add the key, update repository, upgrade for good measure and then install using the following commands:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    wget https://prosody.im/files/prosody-debian-packages.key <span class="nt">-O-</span> | <span class="nb">sudo </span>apt-key add
+    <span class="nb">sudo </span>apt-get update
+    <span class="nb">sudo </span>apt-get upgrade
+    <span class="nb">sudo </span>apt-get <span class="nb">install </span>prosody
+</code></pre></div></div>
+<h3 id="installpluginsmodules">Install plugins / modules</h3>
+
+<p>Latest updated documentation is ofcourse on <a href="https://prosody.im/doc/installing_modules.html">project website</a> but at the time of writing these are the instructions that were followed:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /usr/lib/prosody/
+<span class="nb">sudo </span>hg clone https://hg.prosody.im/prosody-modules/ prosody-modules
+</code></pre></div></div>
+<p>To update:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /usr/lib/prosody/prosody-modules/
+<span class="nb">sudo </span>hg pull <span class="nt">--update</span>
+</code></pre></div></div>
+
+<h3 id="importsslusingcertbot">Import SSL using certbot</h3>
+
+<p>Issue following commands to get the SSL activated for Prosody:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>certbot renew <span class="nt">--deploy-hook</span> <span class="s2">"prosodyctl --root cert import /etc/letsencrypt/live"</span>
+<span class="nb">sudo </span>prosodyctl <span class="nt">--root</span> cert import /etc/letsencrypt/live
+<span class="nb">sudo </span>prosodyctl cert generate localhost 
+</code></pre></div></div>
+
+<h3 id="configure">Configure</h3>
+
+<p>The configuration file for prosody is very well documented and only needs minor tweaks. However, it is lot of commenting and to keep this readable, I have put my configuration here that can either be directly pasted or can be compared to update the default conf file. Either way, first you would need to open the config file:</p>
+
+<p><code class="language-plaintext highlighter-rouge">sudo nano /etc/prosody/prosody.cfg.lua</code></p>
+
+<p>Now the working config file for me is as shown below and can be compared to amend or can be directly copy pasted.</p>
+
+<p>Bear in mind that all references to <code class="language-plaintext highlighter-rouge">domain.name</code> must be replaced with your registered domain name.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>admins = {"admin1@im.domain.name"}
+
+plugin_paths = {"/usr/lib/prosody/prosody-modules" }
+consider_bosh_secure = true
+cross_domain_bosh = true
+modules_enabled = {
+
+        -- Generally required
+                "roster"; -- Allow users to have a roster. Recommended ;)
+                "saslauth"; -- Authentication for clients and servers. Recommended if you want to log in.
+                "tls"; -- Add support for secure TLS on c2s/s2s connections
+                "dialback"; -- s2s dialback support
+                "disco"; -- Service discovery
+
+        -- Not essential, but recommended
+                "carbons"; -- Keep multiple clients in sync
+                "pep"; -- Enables users to publish the1ir mood, activity, playing music and more
+                "omemo_all_access"; -- xep-0060 for enabling omemo access to non subscribers
+                "private"; -- Private XML storage (for room bookmarks, etc.)
+                "blocklist"; -- Allow users to block communications with other users
+                "vcard"; -- Allow users to set vCards
+
+        -- Nice to have
+                "version"; -- Replies to server version requests
+                "uptime"; -- Report how long server has been running
+                "time"; -- Let others know the time here on this server
+                "ping"; -- Replies to XMPP pings with pongs
+                "register"; -- Allow users to register on this server using a client and change passwords
+                "mam"; -- Store messages in an archive and allow users to access it
+                --"mam_muc"; -- store group chat messages
+
+        -- Admin interfaces
+                "admin_adhoc"; -- Allows administration via an XMPP client that supports ad-hoc commands
+                --"admin_telnet"; -- Opens telnet console interface on localhost port 5582
+
+        -- HTTP modules
+                "bosh"; -- Enable BOSH clients, aka "Jabber over HTTP"
+                "websocket"; -- XMPP over WebSockets
+                "http_files"; -- Serve static files from a directory over HTTP
+                "http_upload"; -- module to enable file upload in group chat
+
+        -- Other specific functionality
+                "groups"; -- Shared roster support
+                "proxy65"; -- Enables a file transfer proxy service which clients behind NAT can use
+                "smacks";
+                "csi";
+                "cloud_notify";
+                "conversejs";
+}
+
+modules_disabled = {
+        -- "offline"; -- Store offline messages
+        -- "c2s"; -- Handle client connections
+        -- "s2s"; -- Handle server-to-server connections
+        -- "posix"; -- POSIX functionality, sends server to background, enables syslog, etc.
+}
+
+allow_registration = false
+
+c2s_require_encryption = false
+
+s2s_require_encryption = true
+
+s2s_secure_auth = true
+
+s2s_secure_domains = { "domain.name" }
+
+pidfile = "/var/run/prosody/prosody.pid"
+
+authentication = "internal_hashed"
+
+archive_expires_after = "1w" -- Remove archived messages after 1 week
+
+log = {
+        info = "/var/log/prosody/prosody.log"; -- Change 'info' to 'debug' for verbose logging
+        error = "/var/log/prosody/prosody.err";
+        -- "*syslog"; -- Uncomment this for logging to syslog
+        -- "*console"; -- Log to the console, useful for debugging with daemonize=false
+}
+
+certificates = "certs"
+
+----------- Virtual hosts -----------
+-- You need to add a VirtualHost entry for each domain you wish Prosody to serve.
+-- Settings under each VirtualHost entry apply *only* to that host.
+
+VirtualHost "localhost"
+
+VirtualHost "im.domain.name"
+
+------ Components ------
+---Set up a MUC (multi-user chat) room server on conference.example.com:
+   Component "conference.im.domain.name" "muc"
+     restrict_room_creation = "local"
+</code></pre></div></div>
+
+<p>Once completed, save it and proceed to next steps.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo service prosody start
+sudo service prosody stop
+sudo service prosody start -v
+sudo service prosody stop
+
+## Enable prosody as a service so it restarts each time after system reboot
+
+sudo systemctl is-enabled prosody.service
+sudo service prosody restart
+</code></pre></div></div>
+<h3 id="adduser">Add User</h3>
+
+<p>Use <code class="language-plaintext highlighter-rouge">prosodyctl</code> command to add user like so:</p>
+
+<p><code class="language-plaintext highlighter-rouge">sudo prosodyctl adduser admin1@im.domain.name</code></p>
+
+<p>and then provide password for the user. Ofcourse you must add as many users as you need and bear in mind the conf file above has registration switched-off so the users must be manually added using this step. Check the manpage using <code class="language-plaintext highlighter-rouge">man prosodyctl</code> to see how to update password for an existing user and to delete a user.</p>
+
+<h1 id="clientssetup">Clients Setup:</h1>
+
+<h2 id="conversationsonandroid">Conversations on Android</h2>
+
+<p>Conversations is the best client for XMPP on Android and is available on playstore for a small amount or it can be installed from f-droid for free. The free version has some limitations with regards to push but I have been using it with no issues what-so-ever.</p>
+
+<h3 id="openpgpusingopenkeychain">OpenPGP using OpenKeyChain</h3>
+
+<p>Install the OpenKeyChain app, create the key pair and trigger Conversations to start from OpenKeyChain. The other person must also have OpenPGP Key pair and you should have the public key of other person added on openkeychain instaled on your phone. Do bear in mind Conversations developer says it is an experimental feature. Although it did work perfectly fine for me while I tested with about 4 or 5 users.</p>
+
+<h2 id="conversejsorgonweb">Conversejs.org on web</h2>
+
+<p>Go to the web root we defined initially and create an index.html:</p>
+
+<p><code class="language-plaintext highlighter-rouge">sudo nano /var/www/html/im/index.html</code></p>
+
+<p>Then add following html code in there:</p>
+
+<p>Bear in mind that all references to <code class="language-plaintext highlighter-rouge">domain.name</code> must be replaced with your registered domain name.</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="cp">&lt;!doctype html&gt;</span>
+    <span class="nt">&lt;html</span> <span class="na">class=</span><span class="s">"no-js"</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;head&gt;</span>
+        <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;title&gt;</span>Converse<span class="nt">&lt;/title&gt;</span>
+        <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"shortcut icon"</span> <span class="na">type=</span><span class="s">"image/ico"</span> <span class="na">href=</span><span class="s">"css/images/favicon.ico"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;link</span> <span class="na">type=</span><span class="s">"text/css"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">media=</span><span class="s">"screen"</span> <span class="na">href=</span><span class="s">"https://cdn.conversejs.org/3.3.4/css/converse.min.css"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;link</span> <span class="na">type=</span><span class="s">"text/css"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">media=</span><span class="s">"screen"</span> <span class="na">href=</span><span class="s">"https://cdn.conversejs.org/3.3.4/css/mobile.min.css"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.conversejs.org/3.3.4/dist/converse.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;/head&gt;</span>
+    <span class="nt">&lt;body</span> <span class="na">class=</span><span class="s">"reset"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"content"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"inner-content"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"brand-heading"</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">"icon-conversejs"</span><span class="nt">&gt;&lt;/i&gt;</span> Converse<span class="nt">&lt;/h1&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;script&gt;</span>
+        <span class="nx">converse</span><span class="p">.</span><span class="nx">initialize</span><span class="p">({</span>
+            <span class="na">authentication</span><span class="p">:</span> <span class="dl">'</span><span class="s1">login</span><span class="dl">'</span><span class="p">,</span>
+            <span class="na">auto_away</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
+            <span class="na">auto_reconnect</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="na">bosh_service_url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://im.domain.name/http-bind/</span><span class="dl">'</span><span class="p">,</span>
+            <span class="na">show_controlbox_by_default</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="na">message_archiving</span><span class="p">:</span> <span class="dl">'</span><span class="s1">always</span><span class="dl">'</span><span class="p">,</span>
+            <span class="na">allow_logout</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="na">allow_dragresize</span><span class="p">:</span> <span class="kc">true</span>
+        <span class="p">});</span>
+    <span class="nt">&lt;/script&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+    <span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+<p>Save the file with <code class="language-plaintext highlighter-rouge">Ctrl+x</code>, <code class="language-plaintext highlighter-rouge">y</code> and <code class="language-plaintext highlighter-rouge">Enter</code>. Once done restart the webserver as well as prosody for good measure:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl restart apache2.service
+<span class="nb">sudo </span>prosodyctl restart
+</code></pre></div></div>
+
+<h2 id="chatsecureonios">ChatSecure on iOS</h2>
+
+<p>Now I do not have an iphone but a few of my friends do. They were able to use ChatSecure which is also an opensource app. Unfortunately ChatSecure is unable to get the images on group chat from Conversations but I am hoping that developer of ChatSecure will fix this issue sooner rather than later.</p>
+
+<h2 id="desktopclient">Desktop Client</h2>
+
+<p>For desktop I found Gajim to be most polished and it can be downloaded for your OS from <a href="https://gajim.org">here</a> All works great on it except for the http_upload which seems to fail for transferring images with an error “Unsecured”. I am not sure what the issue is a search results did not help much - I left it because I dont really need this feature from desktop. However if someone has any ideas on how to fix this, please do leave it in the comments. The plugins on Gajim that I have applied and activated can be seen below:
+<img src="../assets/images/2018/06/Gajim_2018-06-15_17-10-11.png" alt="Gajim_2018-06-15_17-10-11.png"></p>
+
+<h1 id="maintenance">Maintenance</h1>
+
+<p>The service does generate a lot of logs and it will serve you well to delete generated logs daily using Cronjob like so</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>crontab <span class="nt">-e</span>
+</code></pre></div></div>
+<p>Then add the following on the cronjob:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">############## DELETE PROSODY LOG FILE ARCHIVES ###########################</span>
+<span class="nv">MAILTO</span><span class="o">=</span><span class="s2">"your@email.com"</span>
+0 0 <span class="k">*</span> <span class="k">*</span> 0-6 <span class="nb">rm</span>  /var/log/prosody/<span class="k">*</span>.gz
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-05-21">May 21, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Prosody+behind+Apache+on+Debian+Stretch+with+Conversations%20https%3A%2F%2Fmgw.dumatics.com%2Fprosody-behind-apache-on-debian-stretch%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmgw.dumatics.com%2Fprosody-behind-apache-on-debian-stretch%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fmgw.dumatics.com%2Fprosody-behind-apache-on-debian-stretch%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/home-networking/" class="pagination--pager" title="Home Networking
+">Previous</a>
+    
+    
+      <a href="/metabase-a-bi-solution-that-just-works/" class="pagination--pager" title="Metabase - A BI solution that just works
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/logseq-customisation-for-project-management-teamplate/" rel="permalink">Logseq Customisations for Project Management Template
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          20 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Notes to create a functional project logs template for Logseq graphs.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/read-excel-csv-recursive/" rel="permalink">Python Function read excel / csv files from a given directory and its subdirectories
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Reading multiple excel and csv files recursively in directory and subdirectories
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git-jargon/" rel="permalink">Git Jargon
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Familiarisation with some Git jargon
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git-basics/" rel="permalink">Git Basics
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">What is GIT, how is it used and where to begin
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+<form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term...">
+  </form>
+  <div id="results" class="results"></div>
+</div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<div id="scroll-to-top">
+    <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-angle-double-up fa-stack-1x fa-inverse up-arrow"></i>
+    </span>
+</div>
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2024 Ankit Mittal. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://mgw.dumatics.com/prosody-behind-apache-on-debian-stretch/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/prosody-behind-apache-on-debian-stretch"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://makegadgetswork.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+
+  
+
+
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  
+    <script src="/assets/js/clipboardrouge.js"></script>
+  
+
+
+
+  </body>
+</html>

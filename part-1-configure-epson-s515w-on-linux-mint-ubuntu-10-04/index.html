@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.23.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+--><html lang="en" class="no-js">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Part 1 - Configure Epson S515W on Linux Mint / Ubuntu 10.04 - Make Gadgets Work</title>
+<meta name="description" content="Part 1 - Configure Epson S515W on Linux Mint / Ubuntu 10.04">
+
+
+  <meta name="author" content="Ankit Mittal">
+  
+  <meta property="article:author" content="Ankit Mittal">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Make Gadgets Work">
+<meta property="og:title" content="Part 1 - Configure Epson S515W on Linux Mint / Ubuntu 10.04">
+<meta property="og:url" content="https://mgw.dumatics.com/part-1-configure-epson-s515w-on-linux-mint-ubuntu-10-04/">
+
+
+  <meta property="og:description" content="Part 1 - Configure Epson S515W on Linux Mint / Ubuntu 10.04">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2010-11-13T14:50:00+00:00">
+
+
+
+  <meta property="article:modified_time" content="2010-11-13T14:50:00+00:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://mgw.dumatics.com/part-1-configure-epson-s515w-on-linux-mint-ubuntu-10-04/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Ankit Mittal",
+      "url": "https://mgw.dumatics.com/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Make Gadgets Work Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+    <script src="/assets/js/scroll-to-top.js"></script>
+  
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Make Gadgets Work
+          <span class="site-subtitle">I give what I take and then I try giving a bit more - My payback to the helpful open source community !!!</span>
+        </a>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/"><i class="fas fa-home"></i></a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li>
+</ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile_pix/profile_1.jpg" alt="Ankit Mittal" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Ankit Mittal</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Programme Manager by profession, Developer at heart !!!</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">United Kingdom</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:mr.ankitmittal@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Part 1 - Configure Epson S515W on Linux Mint / Ubuntu 10.04">
+    <meta itemprop="description" content='UPDATEWhile this tutorial will get your printer up and running, you should also follow Part 2 to ensure that it continues to work even after you have restarted your printer.-AnkitLately I have not done much experiments and hence a stable system. I did not require any changes and all was well and then recently I changed over to Linux Mint which by the way is a UBUNTU derivative, very slick and very cool. Now after this reinstall I was able to get back all my previous installs and everything the usual way but scanning using Epson S515W was not out of the box and below are the steps I followed to get it working:Step 1: Configure PrinterStep 2: Test Print a pageStep 3 - Install drivers and software for scannerStep 4 - Test ScannerStep 1: Configure PrinterThis really works quite easily in all Ubuntu installs. Goto System &gt; Administration &gt; PrinterNow you can see my printer configured but when you will get this window, you wil only see Print_to_PDF. You should then Click on arrow next to ADD and select Printer. It will open the window below:Again under Network Printer it may not show anything initially but if your printer is on and configured to your wireless router it will identify in a moment or two. If it does not, click on Find Network Printer.Once your printer appears, click on it and then click on "Forward".Step 2: Print a test PageOpen the Printer window again from System&gt;Administration&gt;Printer and double click on printer. It should open the following window:Click on "Print Test Page". If it prints the ubuntu test page correctly your printer is configured. Mine was so I will not go more in details of alternative option. If you do want to know more let me know and I will put a post.However if now you will try to scan you will find that scanner either is not identified or if it is it does not complete the scanning and printer gets hanged, so over to next steps then.Step 3 - Install drivers and software for scannerGoto the avasys site that provides downloads and navigate for your model or if you have the same as mine just click on the link below and then goto Downloads and select All In One Printers. On the next page scroll down all the way and select the radio button for your printer.http://avasys.jp/eng/Now these installs need to happen in a sequence and we don’t need all deb files on the next page anyway so I will mention download and install in sequence as it should be done.From the section "Download for Epson Stylus NX510/NX515/SX510W/SX515W/TX550W data package" download the data package iscan-data_1.4.0-1_all.deb.Install this package now.From the section "Download for Epson Stylus NX510/NX515/SX510W/SX515W/TX550W core package" download iscan_2.26.0-3.ltdl7_i386.deb.Install this package nowFrom the section "Download for Epson Stylus NX510/NX515/SX510W/SX515W/TX550W network plugin package" download iscan-network-nt_1.1.0-2_i386.debInstall this package now.Now on your printer(actual machine not on laptop / computer) goto Settings (Press the button with Wrench and Screwdriver symbol as shown in the image Printer Control).Using left arrow navigate to Network Settings (Computer and Printer icon)Click OK button.Using Down Arrow select "Confirm Settings" and click OK button.Press Down Arrow twice and it should show the Printer IP Address. Note it Down. It will be something like 192.168.1.60.Now back on your laptop open terminal and type gksudo nautilus. You will be asked your superuser password. Provide that. It will open the file explorer with admin privileges. Be extremely careful now, you do not want to delete anything in this privilege mode.In the file explorer, click on "File System" and browse to the file path etc&gt;sane.d and open the file named epkowa.conf. (Screenshot below)In the file below usb and scsi add the line net 1865 so for our example this will be  net 192.168.1.60 1865. (In gedit it was line 12 for me.)Save and close the file.Close all windows.Step 4 - Test ScannerNow open Menu&gt;All Applications&gt;Graphics&gt;Image Scan! for Linux.This should open the software window. Now click on preview to see that a document preview is produced. If it does you are all set. If not you must check the configuration of epkowa.conf and try again.The preview of my 3.5 year olds drawing from scanner :and the final scan is shown below:'>
+    <meta itemprop="datePublished" content="2010-11-13T14:50:00+00:00">
+    <meta itemprop="dateModified" content="2010-11-13T14:50:00+00:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Part 1 - Configure Epson S515W on Linux Mint / Ubuntu 10.04
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <hr>
+
+<p><strong>UPDATE</strong>
+While this tutorial will get your printer up and running, you should also follow <a href="/part-2-configure-epson-s515w-on-linux-mint-ubuntu-10-04/">Part 2</a> to ensure that it continues to work even after you have restarted your printer.
+-Ankit</p>
+<hr>
+
+<p>Lately I have not done much experiments and hence a stable system. I did not require any changes and all was well and then recently I changed over to Linux Mint which by the way is a UBUNTU derivative, very slick and very cool. Now after this reinstall I was able to get back all my previous installs and everything the usual way but scanning using Epson S515W was not out of the box and below are the steps I followed to get it working:</p>
+<pre><code>Step 1: Configure Printer
+Step 2: Test Print a page
+Step 3 - Install drivers and software for scanner
+Step 4 - Test Scanner
+</code></pre>
+<h3 id="step1configureprinter">Step 1: Configure Printer</h3>
+<p>This really works quite easily in all Ubuntu installs. Goto System &gt; Administration &gt; Printer
+<img src="../assets/images/2016/07/201011_Fig_1.png" alt="Alt Text" style="width:40%;height:40%;">
+Now you can see my printer configured but when you will get this window, you wil only see Print_to_PDF. You should then Click on arrow next to ADD and select Printer. It will open the window below:
+<img src="../assets/images/2016/07/201011_Fig_2.png" alt="Alt Text" style="width:40%;height:40%;">
+Again under Network Printer it may not show anything initially but if your printer is on and configured to your wireless router it will identify in a moment or two. If it does not, click on Find Network Printer.
+<img src="../assets/images/2016/07/201011_Fig_3.png" alt="Alt Text" style="width:40%;height:40%;">
+Once your printer appears, click on it and then click on "Forward".</p>
+<h3 id="step2printatestpage">Step 2: Print a test Page</h3>
+<p>Open the Printer window again from System&gt;Administration&gt;Printer and double click on printer. It should open the following window:
+<img src="../assets/images/2016/07/201011_Fig_4.png" alt="Alt Text" style="width:40%;height:40%;">
+Click on "Print Test Page". If it prints the ubuntu test page correctly your printer is configured. Mine was so I will not go more in details of alternative option. If you do want to know more let me know and I will put a post.
+However if now you will try to scan you will find that scanner either is not identified or if it is it does not complete the scanning and printer gets hanged, so over to next steps then.</p>
+<h3 id="step3installdriversandsoftwareforscanner">Step 3 - Install drivers and software for scanner</h3>
+<p>Goto the avasys site that provides downloads and navigate for your model or if you have the same as mine just click on the link below and then goto Downloads and select All In One Printers. On the next page scroll down all the way and select the radio button for your printer.
+<a href="http://avasys.jp/eng/">http://avasys.jp/eng/</a></p>
+<iframe width="425" height="344" src="https://www.youtube.com/embed/fUDZE6rcYTw" frameborder="0" allowfullscreen=""></iframe>
+<p><img src="../assets/images/2016/07/201011_Fig_5.png" alt="Alt Text" style="width:40%;height:40%;">
+Now these installs need to happen in a sequence and we don’t need all deb files on the next page anyway so I will mention download and install in sequence as it should be done.</p>
+<ol>
+<li>From the section "Download for Epson Stylus NX510/NX515/SX510W/SX515W/TX550W data package" download the data package iscan-data_1.4.0-1_all.deb.</li>
+</ol>
+<ul>
+<li>Install this package now.</li>
+<li>From the section "Download for Epson Stylus NX510/NX515/SX510W/SX515W/TX550W core package" download iscan_2.26.0-3.ltdl7_i386.deb.</li>
+<li>Install this package now</li>
+<li>From the section "Download for Epson Stylus NX510/NX515/SX510W/SX515W/TX550W network plugin package" download iscan-network-nt_1.1.0-2_i386.deb</li>
+<li>Install this package now.</li>
+<li>Now on your printer(actual machine not on laptop / computer) goto Settings (Press the button with Wrench and Screwdriver symbol as shown in the image Printer Control).</li>
+</ul>
+<p><img src="../assets/images/2016/07/201011_Fig_6.png" alt="Alt Text" style="width:10%;height:5%;"></p>
+<ul>
+<li>Using left arrow navigate to Network Settings (Computer and Printer icon)</li>
+<li>Click OK button.</li>
+<li>Using Down Arrow select "Confirm Settings" and click OK button.</li>
+<li>Press Down Arrow twice and it should show the Printer IP Address. Note it Down. It will be something like 192.168.1.60.</li>
+<li>Now back on your laptop open terminal and type gksudo nautilus. You will be asked your superuser password. Provide that. It will open the file explorer with admin privileges. Be extremely careful now, you do not want to delete anything in this privilege mode.</li>
+<li>In the file explorer, click on "File System" and browse to the file path etc&gt;sane.d and open the file named epkowa.conf. (Screenshot below)</li>
+<li>In the file below usb and scsi add the line net 1865 so for our example this will be  net 192.168.1.60 1865. (In gedit it was line 12 for me.)</li>
+<li>Save and close the file.</li>
+<li>Close all windows.</li>
+</ul>
+<p><img src="../assets/images/2016/07/201011_Fig_7.png" alt="Alt Text" style="width:40%;height:40%;"></p>
+<h3 id="step4testscanner">Step 4 - Test Scanner</h3>
+<p>Now open Menu&gt;All Applications&gt;Graphics&gt;Image Scan! for Linux.
+<img src="../assets/images/2016/07/201011_Fig_8.png" alt="Alt Text" style="width:40%;height:40%;">
+This should open the software window. Now click on preview to see that a document preview is produced. If it does you are all set. If not you must check the configuration of epkowa.conf and try again.
+<img src="../assets/images/2016/07/201011_Fig_9.png" alt="Alt Text" style="width:40%;height:40%;">
+The preview of my 3.5 year olds drawing from scanner :
+<img src="../assets/images/2016/07/201011_Fig_10.png" alt="Alt Text" style="width:40%;height:40%;">
+and the final scan is shown below:
+<img src="../assets/images/2016/07/2011_Fig_11.jpg" alt="Alt Text" style="width:40%;height:40%;"></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2010-11-13">November 13, 2010</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Part+1+-+Configure+Epson+S515W+on+Linux+Mint+%2F+Ubuntu+10.04%20https%3A%2F%2Fmgw.dumatics.com%2Fpart-1-configure-epson-s515w-on-linux-mint-ubuntu-10-04%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmgw.dumatics.com%2Fpart-1-configure-epson-s515w-on-linux-mint-ubuntu-10-04%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fmgw.dumatics.com%2Fpart-1-configure-epson-s515w-on-linux-mint-ubuntu-10-04%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/jagannath-hora-on-linux-play-on-linux-magic/" class="pagination--pager" title="Jagannath Hora on Linux - Play on Linux Magic
+">Previous</a>
+    
+    
+      <a href="/call-us-and-several-other-countries-free-using-android/" class="pagination--pager" title="Call US and several other countries free using Android
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/logseq-customisation-for-project-management-teamplate/" rel="permalink">Logseq Customisations for Project Management Template
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          20 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Notes to create a functional project logs template for Logseq graphs.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/read-excel-csv-recursive/" rel="permalink">Python Function read excel / csv files from a given directory and its subdirectories
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Reading multiple excel and csv files recursively in directory and subdirectories
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git-jargon/" rel="permalink">Git Jargon
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Familiarisation with some Git jargon
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git-basics/" rel="permalink">Git Basics
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">What is GIT, how is it used and where to begin
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+<form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term...">
+  </form>
+  <div id="results" class="results"></div>
+</div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<div id="scroll-to-top">
+    <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-angle-double-up fa-stack-1x fa-inverse up-arrow"></i>
+    </span>
+</div>
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2024 Ankit Mittal. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://mgw.dumatics.com/part-1-configure-epson-s515w-on-linux-mint-ubuntu-10-04/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/part-1-configure-epson-s515w-on-linux-mint-ubuntu-10-04"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://makegadgetswork.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+
+  
+
+
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  
+    <script src="/assets/js/clipboardrouge.js"></script>
+  
+
+
+
+  </body>
+</html>

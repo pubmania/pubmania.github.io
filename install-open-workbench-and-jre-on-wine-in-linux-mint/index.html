@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.23.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+--><html lang="en" class="no-js">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Install Open Workbench and JRE on Wine in Linux Mint - Make Gadgets Work</title>
+<meta name="description" content="Install Open Workbench and JRE on Wine in Linux Mint">
+
+
+  <meta name="author" content="Ankit Mittal">
+  
+  <meta property="article:author" content="Ankit Mittal">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Make Gadgets Work">
+<meta property="og:title" content="Install Open Workbench and JRE on Wine in Linux Mint">
+<meta property="og:url" content="https://mgw.dumatics.com/install-open-workbench-and-jre-on-wine-in-linux-mint/">
+
+
+  <meta property="og:description" content="Install Open Workbench and JRE on Wine in Linux Mint">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2011-06-04T15:55:00+00:00">
+
+
+
+  <meta property="article:modified_time" content="2011-06-04T15:55:00+00:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://mgw.dumatics.com/install-open-workbench-and-jre-on-wine-in-linux-mint/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Ankit Mittal",
+      "url": "https://mgw.dumatics.com/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Make Gadgets Work Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+    <script src="/assets/js/scroll-to-top.js"></script>
+  
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Make Gadgets Work
+          <span class="site-subtitle">I give what I take and then I try giving a bit more - My payback to the helpful open source community !!!</span>
+        </a>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/"><i class="fas fa-home"></i></a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li>
+</ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile_pix/profile_1.jpg" alt="Ankit Mittal" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Ankit Mittal</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Programme Manager by profession, Developer at heart !!!</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">United Kingdom</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:mr.ankitmittal@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Install Open Workbench and JRE on Wine in Linux Mint">
+    <meta itemprop="description" content='What is Open Workbench?Open Workbench is a Project Planning Software comparable to Microsoft Project. There are mixed views on whether it is truly open source or not but as it is considered a very good alternative for Microsoft Project and it is free to download, it is something I as a Project Manager would want to know about. After all some of my clients are going to be using this. :)Now then, as of writing this article Open Workbench is not available from the well publicised site www.openworkbench.org which seems to be down. Instead it is available for download fromhttp://www.itdesign.de/en/products-solutions/open-workbench.htmlAs you will find that the installer is an exe and the product is made for Windows platform and requires Java Runtime Environment, we will need to either use Windows in virtualbox or Wine. I am going to cover below the steps for installing the software on Linux using Wine.Steps to install Open Workbench and JRE on Wine V1.2.2 in Linux Mint:Install JRE in wineInstall Open Workbench in wineConfigure wine to play well with Open WorkbenchConfigure icon to launch Open WorkbenchWhat do we need?We will need to download the installer exe file from http://www.itdesign.de/en/products-solutions/open-workbench.htmlAs the product requires Java Runtime Environment, we will need to download the JRE for windows.We will need access to system32 folder of a WindowsXP machine or in Virtualbox.Step 1: Install JRE in wineYou can download the JRE file from http://www.oracle.com/technetwork/java/javase/downloads/index.html . Remember, we only need JRE not JDK so click the download button in second column.This will open another page for you to select which JRE package you want to download.Click on the radio-button to accept license agreement and then select Windows x86 Offline for download.I am assuming that your hardware is 32 bit, if not please select Windows x64 but it will not have the offline version and I have no way of checking if it will work or not; so please leave a comment either way as it will help others.a)      Copy the downloaded (jre-6u25-windows-i586.exe) file into .wine/drive_C/Program Files. You can do this using GUI on Linux Mint using steps below:Goto MENU-ALL APPLICATIONS-WINE and click on BROWSE C: DRIVEClick on Program Files folder.Paste the copied exe file here.b)      Right click on the exe file and select "open with wine windows program loader".c)      Follow the installation wizard.Once completed move on to next step.Step 2: Install Open Workbench in winea)      Download the “Open Workbench” installer file(Open_Workbench_Setup_1.1.6.exe) and copy it into .wine/drive_C/Program Files.TIP: You can use Step 1 bullet "a" to reach drive_c and then click on windows folder and then on system32 folder.b)      Right click on the exe file and select "open with wine windows program loader".TIP: You can use Step 1 bullet "b" to reach drive_c and then click on windows folder and then on system32 folder.c)      Follow the installation wizard.Step 3: Configure wine to play well with Open WorkbenchDue to some bug identified in Wine V1.2 the odbc32.dll file does not work and gives the error “err:module:attach_process_dlls “odbc32.dll” failed to initialize, aborting” if you try to run file from Terminal.The following workaround is one suggested on Launchpad (https://bugs.launchpad.net/ubuntu/+source/wine1.2/+bug/572393) and does solve the problem.I have just tried to make it easier to follow the instructions by providing screenshots and explaining each step.On the WindowsXP machine / virtualbox goto following location – C:\WINDOWS\system32Now copy odbc32.dll and odbcint.dll files onto the Linux machine at this location - .wine/drive_c/windows/system32 .TIP: You can use Step 1 bullet "a" to reach drive_c and then click on windows folder and then on system32 folder.Now goto wine configuration (On Linux Mint: MENU-ALL APPLICATIONS-WINE-CONFIGURE WINE)Click on Libraries tab.From the dropdown select odbc32 and click add.Click OKStep 4: Configure Open Workbench icon to launch the applicationOpen terminal (MENU - TERMINAL)Type: wine ~/.wine/drive_c/Program\ Files/Open\ Workbench/bin/npWBench.exeOnce Open Workbench is opened we are sure the command works. Select this command and right click and select copy.TIP: You can also press Ctrl+Shift+C to copy the selected text from terminalClose "Open Workbench" and goto icon in  MENU-ALL APPLICATIONS-WINE.Right click the "Open Workbench" icon and click on "Edit Properties".In Command click on browse and navigate to following location: .wine/drive_c/Program Files/Open Workbench/bin/ and select the file npWBench.exe.Now click "OK"This is it. You are ready to use Open workbench on Linux using wine.'>
+    <meta itemprop="datePublished" content="2011-06-04T15:55:00+00:00">
+    <meta itemprop="dateModified" content="2011-06-04T15:55:00+00:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Install Open Workbench and JRE on Wine in Linux Mint
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h2 id="whatisopenworkbench">What is Open Workbench?</h2>
+<p>Open Workbench is a Project Planning Software comparable to Microsoft Project. There are mixed views on whether it is truly open source or not but as it is considered a very good alternative for Microsoft Project and it is free to download, it is something I as a Project Manager would want to know about. After all some of my clients are going to be using this. :)
+Now then, as of writing this article Open Workbench is not available from the well publicised site www.openworkbench.org which seems to be down. Instead it is available for download fromhttp://www.itdesign.de/en/products-solutions/open-workbench.html
+As you will find that the installer is an exe and the product is made for Windows platform and requires Java Runtime Environment, we will need to either use Windows in virtualbox or Wine. I am going to cover below the steps for installing the software on Linux using Wine.
+Steps to install Open Workbench and JRE on Wine V1.2.2 in Linux Mint:</p>
+<ol>
+<li>Install JRE in wine</li>
+<li>Install Open Workbench in wine</li>
+<li>Configure wine to play well with Open Workbench</li>
+<li>Configure icon to launch Open Workbench</li>
+</ol>
+<h2 id="whatdoweneed">What do we need?</h2>
+<ol>
+<li>We will need to download the installer exe file from <a href="http://www.itdesign.de/en/products-solutions/open-workbench.html">http://www.itdesign.de/en/products-solutions/open-workbench.html</a>
+</li>
+<li>As the product requires Java Runtime Environment, we will need to download the JRE for windows.</li>
+<li>We will need access to system32 folder of a WindowsXP machine or in Virtualbox.</li>
+</ol>
+<h3 id="step1installjreinwine">Step 1: Install JRE in wine</h3>
+<p>You can download the JRE file from <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a> . Remember, we only need JRE not JDK so click the download button in second column.
+This will open another page for you to select which JRE package you want to download.<br>
+<img src="../assets/images/2016/07/20110604_Fig_2.png" alt="Alt Text" style="width:40%;height:40%;">
+Click on the radio-button to accept license agreement and then select Windows x86 Offline for download.</p>
+<div class="boxed">I am assuming that your hardware is 32 bit, if not please select Windows x64 but it will not have the offline version and I have no way of checking if it will work or not; so please leave a comment either way as it will help others.</div>
+<p><img src="../assets/images/2016/07/20110604_Fig_3.png" alt="Alt Text" style="width:40%;height:40%;">
+a)      Copy the downloaded (jre-6u25-windows-i586.exe) file into .wine/drive_C/Program Files. You can do this using GUI on Linux Mint using steps below:</p>
+<ul>
+<li>Goto MENU-ALL APPLICATIONS-WINE and click on BROWSE C: DRIVE</li>
+<li>Click on Program Files folder.</li>
+<li>Paste the copied exe file here.</li>
+</ul>
+<p><img src="../assets/images/2016/07/20110604_Fig_4.png" alt="Alt Text" style="width:40%;height:40%;">
+b)      Right click on the exe file and select "open with wine windows program loader".<br>
+c)      Follow the installation wizard.<br>
+<img src="../assets/images/2016/07/20110604_Fig_5.png" alt="Alt Text" style="width:40%;height:40%;"><br>
+Once completed move on to next step.</p>
+<h3 id="step2installopenworkbenchinwine">Step 2: Install Open Workbench in wine</h3>
+<p>a)      Download the “Open Workbench” installer file(Open_Workbench_Setup_1.1.6.exe) and copy it into .wine/drive_C/Program Files.</p>
+<div class="boxed">TIP: You can use Step 1 bullet "a" to reach drive_c and then click on windows folder and then on system32 folder.</div>
+<p>b)      Right click on the exe file and select "open with wine windows program loader".</p>
+<div class="boxed">TIP: You can use Step 1 bullet "b" to reach drive_c and then click on windows folder and then on system32 folder.</div>
+<p>c)      Follow the installation wizard.
+Step 3: Configure wine to play well with Open Workbench
+Due to some bug identified in Wine V1.2 the odbc32.dll file does not work and gives the error “err:module:attach_process_dlls “odbc32.dll” failed to initialize, aborting” if you try to run file from Terminal.
+The following workaround is one suggested on Launchpad (<a href="https://bugs.launchpad.net/ubuntu/+source/wine1.2/+bug/572393">https://bugs.launchpad.net/ubuntu/+source/wine1.2/+bug/572393</a>) and does solve the problem.
+I have just tried to make it easier to follow the instructions by providing screenshots and explaining each step.</p>
+<ol>
+<li>
+On the WindowsXP machine / virtualbox goto following location – C:\WINDOWS\system32<br>
+<img src="../assets/images/2016/07/20110604_Fig_6.png" alt="Alt Text" style="width:40%;height:40%;">
+</li>
+<li>
+Now copy odbc32.dll and odbcint.dll files onto the Linux machine at this location - .wine/drive_c/windows/system32 .
+</li>
+</ol>
+<div class="boxed">TIP: You can use Step 1 bullet "a" to reach drive_c and then click on windows folder and then on system32 folder.</div>
+<ol start="3">
+<li>
+Now goto wine configuration (On Linux Mint: MENU-ALL APPLICATIONS-WINE-CONFIGURE WINE)
+</li>
+<li>
+Click on Libraries tab.
+</li>
+<li>
+From the dropdown select odbc32 and click add.
+</li>
+<li>
+Click OK
+</li>
+</ol>
+<h3 id="step4configureopenworkbenchicontolaunchtheapplication">Step 4: Configure Open Workbench icon to launch the application</h3>
+<ol>
+<li>
+Open terminal (MENU - TERMINAL)
+</li>
+<li>
+Type: <code>wine ~/.wine/drive_c/Program\ Files/Open\ Workbench/bin/npWBench.exe</code>
+</li>
+<li>
+Once Open Workbench is opened we are sure the command works. Select this command and right click and select copy.
+</li>
+</ol>
+<div class="boxed">TIP: You can also press Ctrl+Shift+C to copy the selected text from terminal</div>
+<ol start="4">
+<li>
+Close "Open Workbench" and goto icon in  MENU-ALL APPLICATIONS-WINE.
+</li>
+<li>
+Right click the "Open Workbench" icon and click on "Edit Properties".
+</li>
+<li>
+In Command click on browse and navigate to following location: <code>.wine/drive_c/Program Files/Open Workbench/bin/ and select the file npWBench.exe</code>.
+</li>
+</ol>
+<p><img src="../assets/images/2016/07/20110604_Fig_7.png" alt="Alt Text" style="width:40%;height:40%;"></p>
+<ol start="7">
+<li>Now click "OK"</li>
+</ol>
+<p>This is it. You are ready to use Open workbench on Linux using wine.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2011-06-04">June 4, 2011</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Install+Open+Workbench+and+JRE+on+Wine+in+Linux+Mint%20https%3A%2F%2Fmgw.dumatics.com%2Finstall-open-workbench-and-jre-on-wine-in-linux-mint%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmgw.dumatics.com%2Finstall-open-workbench-and-jre-on-wine-in-linux-mint%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fmgw.dumatics.com%2Finstall-open-workbench-and-jre-on-wine-in-linux-mint%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/how-to-edit-pdf-in-linux-the-easy-way/" class="pagination--pager" title="How to edit PDF in Linux - The easy way.
+">Previous</a>
+    
+    
+      <a href="/visio-alternative-on-linux-business-process-model-and-notation-tool/" class="pagination--pager" title="Visio Alternative on Linux - Business Process Model and Notation Tool
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/logseq-customisation-for-project-management-teamplate/" rel="permalink">Logseq Customisations for Project Management Template
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          20 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Notes to create a functional project logs template for Logseq graphs.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/read-excel-csv-recursive/" rel="permalink">Python Function read excel / csv files from a given directory and its subdirectories
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Reading multiple excel and csv files recursively in directory and subdirectories
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git-jargon/" rel="permalink">Git Jargon
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Familiarisation with some Git jargon
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git-basics/" rel="permalink">Git Basics
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">What is GIT, how is it used and where to begin
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+<form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term...">
+  </form>
+  <div id="results" class="results"></div>
+</div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<div id="scroll-to-top">
+    <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-angle-double-up fa-stack-1x fa-inverse up-arrow"></i>
+    </span>
+</div>
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2024 Ankit Mittal. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://mgw.dumatics.com/install-open-workbench-and-jre-on-wine-in-linux-mint/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/install-open-workbench-and-jre-on-wine-in-linux-mint"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://makegadgetswork.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+
+  
+
+
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  
+    <script src="/assets/js/clipboardrouge.js"></script>
+  
+
+
+
+  </body>
+</html>

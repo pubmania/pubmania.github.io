@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.23.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+--><html lang="en" class="no-js">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Markdown and Gantt Charts - Make Gadgets Work</title>
+<meta name="description" content="Markdown and Gantt Charts">
+
+
+  <meta name="author" content="Ankit Mittal">
+  
+  <meta property="article:author" content="Ankit Mittal">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Make Gadgets Work">
+<meta property="og:title" content="Markdown and Gantt Charts">
+<meta property="og:url" content="https://mgw.dumatics.com/markdown-and-gantt-charts/">
+
+
+  <meta property="og:description" content="Markdown and Gantt Charts">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2017-02-13T15:55:00+00:00">
+
+
+
+  <meta property="article:modified_time" content="2018-03-29T15:37:53+00:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://mgw.dumatics.com/markdown-and-gantt-charts/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Ankit Mittal",
+      "url": "https://mgw.dumatics.com/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Make Gadgets Work Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+    <script src="/assets/js/scroll-to-top.js"></script>
+  
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Make Gadgets Work
+          <span class="site-subtitle">I give what I take and then I try giving a bit more - My payback to the helpful open source community !!!</span>
+        </a>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/"><i class="fas fa-home"></i></a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li>
+</ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile_pix/profile_1.jpg" alt="Ankit Mittal" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Ankit Mittal</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Programme Manager by profession, Developer at heart !!!</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">United Kingdom</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:mr.ankitmittal@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Markdown and Gantt Charts">
+    <meta itemprop="description" content="For a fairly long time, I have been looking for a simple markdown type of solution to be able to quickly draw Gantt charts but never came across what one would call a quick option. It has always been an involved process.">
+    <meta itemprop="datePublished" content="2017-02-13T15:55:00+00:00">
+    <meta itemprop="dateModified" content="2018-03-29T15:37:53+00:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Markdown and Gantt Charts
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>For a fairly long time, I have been looking for a simple markdown type of solution to be able to quickly draw Gantt charts but never came across what one would call a quick option. It has always been an involved process.</p>
+
+<p>To my simplistic mind, a simple solution would just be an option where I can type the action, a start date and an end date for the action line after line and it get’s displayed in the Gantt chart.</p>
+
+<p>The latest edition of Linux Format (Issue 221, Page 52) had <a href="https://knsv.github.io/mermaid/">mermaid</a> as one of the hotpicks and highlighted the availability of Gantt charts which piqued my interest, I tried the solution and it is indeed what I was looking for. There are a few rough edges but it is a working solution and in normal circumstances will save considerable time and hence will become my tool of choice.
+There are few ways of using it and because it has been made to work with MarkDown syntax, it can work on a number of tools too. I found CuteMarkEd to be the easiest one to use but the various ways to use it are listed below and their usage explained in following sections:</p>
+
+<ol>
+<li><a href="#installcutemarked">CuteMarkEd</a></li>
+<li><a href="#installmermaidcli">Install Mermaid CLI</a></li>
+<li><a href="#installmarkdownplus">Install Markdown Plus</a></li>
+<li><a href="#mermaidliveeditor">Mermaid Live Editor</a></li>
+</ol>
+
+<h4 id="installcutemarked">Install CuteMarkEd</h4>
+<p>CuteMarkEd is not available in debian repositories nor does it have a binary for debian. Although it does have an rpm binary. As I have been playing with Debian / Ubuntu based Elementary OS lately, instead of my regular Fedora install, I figured might as well compile from source code. Steps are as below and are also available on the <a href="https://github.com/cloose/CuteMarkEd/wiki/Build-Instructions#ubuntu-1404">github page for CuteMarkEd</a>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#Prepare the environment for building from source code.</span>
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>build-essential checkinstall git
+
+<span class="c">#Get the code from github</span>
+git clone <span class="nt">--recursive</span> https://github.com/cloose/CuteMarkEd.git
+
+<span class="c">#Install dependencies for CuteMarkEd</span>
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>libqt5webkit5-dev qttools5-dev-tools qt5-default discount libmarkdown2-dev libhunspell-dev
+
+<span class="c">#Compile and install CuteMarkEd</span>
+qmake CuteMarkEd.pro
+<span class="nb">cd </span>CuteMarkEd/
+qmake CuteMarkEd.pro
+make
+<span class="nb">echo</span> <span class="s1">'A Qt-based Markdown editor with live HTML preview and syntax highlighting of markdown document.'</span> <span class="o">&gt;</span> description-pak
+<span class="nb">sudo </span>checkinstall <span class="nt">--requires</span> <span class="s1">'libqt5webkit5, libmarkdown2, libhunspell-1.3-0, discount'</span>
+<span class="nb">sudo ln</span> <span class="nt">-s</span> /usr/lib/x86_64-linux-gnu/qt5/bin/cutemarked /usr/local/bin/
+<span class="nb">sudo mkdir</span> <span class="nt">-p</span> /usr/local/share/icons
+<span class="nb">sudo cp </span>app/icons/scalable/cutemarked.svg /usr/local/share/icons/cutemarked.svg
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>fcitx-libs-qt5
+</code></pre></div></div>
+
+<p>Now there is a <a href="https://github.com/cloose/CuteMarkEd/issues/241">bug</a> in the tool which makes the Gantt charts appear as monochrome but fear not for there is a workaround for it.Once installed, open CuteMarkEd and add a snippet in the tool to ensure Gantt charts display properly. Steps below:</p>
+<ol>
+<li>Enable diagram support by clicking <code>Extras-&gt;Options-&gt;Diagram Support</code><br>
+<img src="../assets/images/2017/02/CuteMarkEd-2017-02-12-20-02-02.png" alt="image" loading="lazy">
+</li>
+<li>Add the snippet for quick creation by clicking <code>Extras-&gt;Options-&gt;Snippets-&gt;Add</code>
+</li>
+<li>Then type <code>~~~gantt</code> and in description something to the effect of <code>Adds the codeblock for mermaid with the necessary javascript</code>
+</li>
+<li>Now in the snippet box add the following code.</li>
+<li>To invoke the snippet simply type in editor <code>~~~gantt</code> followed by pressing the <code>Ctrl+Space</code> keys.</li>
+</ol>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">~~~</span><span class="nx">mermaid</span>
+<span class="nx">gantt</span>  
+        <span class="nx">dateFormat</span>  <span class="nx">YYYY</span><span class="o">-</span><span class="nx">MM</span><span class="o">-</span><span class="nx">DD</span>
+        <span class="nx">title</span> <span class="o">&lt;</span><span class="nx">Name</span> <span class="k">of</span> <span class="nx">the</span> <span class="nx">project</span><span class="o">&gt;</span>
+
+<span class="o">%%</span>	<span class="o">&lt;</span><span class="nx">Name</span> <span class="k">of</span> <span class="nx">Activity</span><span class="o">&gt;</span>		<span class="p">:</span> <span class="nx">crit</span> <span class="k">if</span> <span class="nx">critical</span> <span class="k">else</span> <span class="nx">empty</span><span class="p">,</span><span class="nx">done</span><span class="p">,</span> <span class="nx">active</span> <span class="nx">or</span> <span class="nx">empty</span><span class="p">,</span> <span class="nx">reference</span> <span class="nx">name</span> <span class="nx">or</span> <span class="nx">empty</span><span class="p">,</span> <span class="nx">Start</span> <span class="nb">Date</span> <span class="nx">or</span> <span class="nx">dependency</span><span class="p">,</span> <span class="nx">End</span> <span class="nb">Date</span> <span class="nx">or</span> <span class="nx">Duration</span>
+        <span class="nx">section</span> <span class="nx">Phase</span> <span class="mi">1</span> <span class="nx">Name</span>
+        <span class="nx">Activity</span> <span class="mi">1</span>			<span class="p">:</span>	 <span class="nx">done</span><span class="p">,</span>    <span class="nx">des1</span><span class="p">,</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">06</span><span class="p">,</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">08</span>
+        <span class="nx">Activity</span> <span class="mi">2</span>               	<span class="p">:</span>	 <span class="nx">active</span><span class="p">,</span>  <span class="nx">des2</span><span class="p">,</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">09</span><span class="p">,</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">12</span>
+        <span class="nx">Activity</span> <span class="mi">3</span>               	<span class="p">:</span>        	  <span class="nx">des3</span><span class="p">,</span> <span class="mi">2017</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="nx">d</span>
+        <span class="nx">Activity</span> <span class="mi">4</span>              	<span class="p">:</span>         	  <span class="nx">des4</span><span class="p">,</span> <span class="nx">after</span> <span class="nx">des3</span><span class="p">,</span> <span class="mi">5</span><span class="nx">d</span>
+
+        <span class="nx">section</span> <span class="nx">Phase</span> <span class="mi">2</span> <span class="nx">Name</span>
+        <span class="nx">Activity</span> <span class="mi">5</span> 			<span class="p">:</span> <span class="nx">crit</span><span class="p">,</span> <span class="nx">done</span><span class="p">,</span>		<span class="mi">2017</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">06</span><span class="p">,</span> <span class="mi">24</span><span class="nx">h</span>
+        <span class="nx">Activity</span> <span class="mi">6</span>		        <span class="p">:</span> <span class="nx">crit</span><span class="p">,</span> <span class="nx">done</span><span class="p">,</span> 		<span class="nx">after</span> <span class="nx">des1</span><span class="p">,</span> <span class="mi">2</span><span class="nx">d</span>
+        <span class="nx">Activity</span> <span class="mi">7</span>		        <span class="p">:</span> <span class="nx">crit</span><span class="p">,</span> <span class="nx">active</span><span class="p">,</span> 		    <span class="mi">3</span><span class="nx">d</span>
+        <span class="nx">Activity</span> <span class="mi">8</span>			<span class="p">:</span> <span class="nx">crit</span><span class="p">,</span>			 	    <span class="mi">5</span><span class="nx">d</span>
+        <span class="nx">Activity</span> <span class="mi">9</span>			<span class="p">:</span>			 	    <span class="mi">2</span><span class="nx">d</span>
+        <span class="nx">Activity</span> <span class="mi">10</span>			<span class="p">:</span> 			 	    <span class="mi">1</span><span class="nx">d</span>
+
+        <span class="nx">section</span> <span class="nx">Phase</span> <span class="mi">3</span> <span class="nx">Name</span>
+        <span class="nx">Activity</span> <span class="mi">11</span>			<span class="p">:</span> 	<span class="nx">active</span><span class="p">,</span>   <span class="nx">a1</span><span class="p">,</span>	<span class="nx">after</span> <span class="nx">des1</span><span class="p">,</span> <span class="mi">3</span><span class="nx">d</span>
+        <span class="nx">Activity</span> <span class="mi">12</span>			<span class="p">:</span>			<span class="nx">after</span> <span class="nx">a1</span>  <span class="p">,</span> <span class="mi">20</span><span class="nx">h</span>
+        <span class="nx">Activity</span> <span class="mi">13</span>			<span class="p">:</span>		 <span class="nx">doc1</span><span class="p">,</span> 	<span class="nx">after</span> <span class="nx">a1</span>  <span class="p">,</span> <span class="mi">48</span><span class="nx">h</span>
+
+        <span class="nx">section</span> <span class="nx">Phase</span> <span class="mi">4</span> <span class="nx">Name</span>
+        <span class="nx">Activity</span> <span class="mi">12</span>			<span class="p">:</span>			<span class="nx">after</span> <span class="nx">doc1</span><span class="p">,</span> <span class="mi">3</span><span class="nx">d</span>
+        <span class="nx">Activity</span> <span class="mi">15</span>			<span class="p">:</span> 	  			    <span class="mi">20</span><span class="nx">h</span>
+        <span class="nx">Activity</span> <span class="mi">16</span>			<span class="p">:</span> 			   	    <span class="mi">48</span><span class="nx">h</span>
+<span class="o">~~~</span>
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>  
+            <span class="nx">mermaid</span><span class="p">.</span><span class="nx">ganttConfig</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="na">titleTopMargin</span><span class="p">:</span><span class="mi">25</span><span class="p">,</span>
+                <span class="na">barHeight</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span>
+                <span class="na">barGap</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span>
+                <span class="na">topPadding</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span>
+                <span class="na">sidePadding</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span>
+                <span class="na">gridLineStartPadding</span><span class="p">:</span><span class="mi">35</span><span class="p">,</span>
+                <span class="na">fontSize</span><span class="p">:</span><span class="mi">11</span><span class="p">,</span>
+                <span class="na">numberSectionStyles</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span>
+                <span class="na">axisFormatter</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="c1">// Within a day</span>
+                    <span class="p">[</span><span class="dl">'</span><span class="s1">%I:%M</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getHours</span><span class="p">();</span>
+                    <span class="p">}],</span>
+                    <span class="c1">// Monday a week</span>
+                    <span class="p">[</span><span class="dl">'</span><span class="s1">w. %U</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getDay</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">;</span>
+                    <span class="p">}],</span>
+                    <span class="c1">// Day within a week (not monday)</span>
+                    <span class="p">[</span><span class="dl">'</span><span class="s1">%a %d</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getDay</span><span class="p">()</span> <span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getDate</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">;</span>
+                    <span class="p">}],</span>
+                    <span class="c1">// within a month</span>
+                    <span class="p">[</span><span class="dl">'</span><span class="s1">%b %d</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getDate</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">;</span>
+                    <span class="p">}],</span>
+                    <span class="c1">// Month</span>
+                    <span class="p">[</span><span class="dl">'</span><span class="s1">%m-%y</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">();</span>
+                    <span class="p">}]</span>
+                <span class="p">]</span>
+            <span class="p">};</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<p>This will then show in the preview pane following Gantt Chart and we can edit, add and modify the data as per the requirements:
+<img src="../assets/images/2017/02/GanttChartCuteMarkEd-2.PNG" alt="" loading="lazy"></p>
+
+<div class="notice">
+<p>TIP: You can make as many snippets as you want and for the simple solution that I mentioned right at the top, I made one snippet called dategantt replacing the code between line 3 to line 29 of the snippet above
+	dateFormat  DD/MM/YY
+	title Project Name</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Section Pre-condition
+Activity 1			:21/12/16, 22/12/16
+Activity 2 		:21/12/16, 22/12/16
+Activity 3 	:16/01/17, 02/02/17
+Activity 4 		:01/02/17, 02/02/17
+
+Section Kick-off
+Activity 5	:01/02/17, 03/02/17
+Activity 6	:01/02/17, 03/02/17
+Project Initiated		:01/02/17, 03/02/17
+
+Section Tech Design
+Technical Design		:crit, active, T1, 06/02/17, 21/03/17
+
+Section Delivery	
+Activity 7		:06/02/17, 10/02/17
+Activity 8			:10/02/17, 14/02/17
+Order				:15/02/17, 14/03/17
+Deployment			:crit, 15/03/17, 21/03/17
+Activity 9			:crit,T2, after T1, 23/03/17
+Project Close-Down		:after T2, 24/03/17 ``` Once done, just type dategantt followed by ctrl+space and you will have the framework to enter activities, start dates and end dates. Gantt Chart will be ready just like the one as cover image of this post right at the top !!!
+</code></pre></div></div>
+</div>
+
+<h4 id="installmermaidcli">Install Mermaid CLI</h4>
+<p>One of the drawbacks of the CuteMarkEd is that the pdf export there just does not work and you will need to rely on a screenshot. Now if the Gantt chart is really huge a screen shot wont cut it and mermaid does offer the ability to generate svg file for your effort. It is ofcourse a command line tool but is actually fairly easy to use once installed.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#check if nodejs is installed. If command below results in nothing then you need to install nodejs</span>
+nodejs <span class="nt">-v</span>
+
+<span class="c"># Instal nodejs</span>
+<span class="nb">sudo </span>apt <span class="nb">install </span>nodejs
+<span class="c">#On Ubuntu there is some link issue where node is </span>
+<span class="c">#referenced as nodejs which results in issues </span>
+<span class="c">#while installing npm modules. This can be avoided </span>
+<span class="c">#by creating a symlink using following command.</span>
+<span class="nb">sudo ln</span> <span class="nt">-s</span> /usr/bin/nodejs /usr/bin/node
+
+<span class="c">#Install npm</span>
+<span class="nb">sudo </span>apt <span class="nb">install </span>npm
+
+<span class="c">#In order to install npm modules without sudo,</span>
+<span class="c">#As explained in one of [my previous posts](http://mgw.dumatics.com/ghost-on-fedora-24/#step3installnpmmodules), </span>
+<span class="c">#it requires fixing the permissions using following steps.</span>
+<span class="c">#This needs to be done only once so if you have </span>
+<span class="c">#done this in past, then there is no need to repeat.</span>
+
+<span class="nb">mkdir</span> ~/.npm-global
+npm config <span class="nb">set </span>prefix <span class="s1">'~/.npm-global'</span>
+nano ~/.profile
+<span class="nb">source</span> ~/.profile
+
+<span class="c">#Install Mermaid and phantomjs on which mermaid depends.</span>
+
+npm <span class="nb">install</span> <span class="nt">-g</span> phantomjs
+npm <span class="nb">install</span> <span class="nt">-g</span> mermaid
+
+<span class="c">#Check if mermaid is installed by issuing the command</span>
+mermaid <span class="nt">--h</span>
+
+<span class="c">#Generate a png using following command</span>
+mermaid <span class="nt">-p</span> path/to/markdown file with .md or .mmd extension.
+</code></pre></div></div>
+<h4 id="installmarkdownplus">Install Markdown-plus</h4>
+<p>MarkdownPlus is a good markdown editor and can be used on their <a href="http://mdp.tylingsoft.com/">hosted solution</a> or for offline use it can be installed as a local copy and accessed from the browser by pointing the browser to the index.html. The bug from CuteMarkEd is not present here.
+To access offline, you can clone it from github using following command.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone <span class="nt">--recursive</span> https://github.com/tylingsoft/markdown-plus.git
+</code></pre></div></div>
+
+<p>Then open the folder markdown-plus and right click on the index.html file and open it using your browser of choice. Alternatively, in the browser enter <code>file:///home/path/to/markdown-plus//index.html</code>.</p>
+
+<h4 id="mermaidliveeditor">Mermaid Live Editor</h4>
+
+<p>While Markdown Plus is quite a versatile browser based editor, I did not like the fact that there is no easy way to save the file you have created and all I could work out was that you will have to copy paste your text and save it using another text editor.
+I felt, for this reason that the <a href="http://knsv.github.io/mermaid/live_editor/">Mermaid Live editor</a> was better compared to this option and the live editor is quite basic to be honest and can’t be used offline.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-03-29">March 29, 2018</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Markdown+and+Gantt+Charts%20https%3A%2F%2Fmgw.dumatics.com%2Fmarkdown-and-gantt-charts%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmgw.dumatics.com%2Fmarkdown-and-gantt-charts%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fmgw.dumatics.com%2Fmarkdown-and-gantt-charts%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/dd-wrt-firmware-on-tp-link-tl-wr841n-v11/" class="pagination--pager" title="DD-WRT firmware on TP-LINK TL-WR841N v11
+">Previous</a>
+    
+    
+      <a href="/rstudio-server-setup-with-ssl-behind-apache-proxy-server/" class="pagination--pager" title="Rstudio Server Setup with SSL behind Apache proxy server
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/logseq-customisation-for-project-management-teamplate/" rel="permalink">Logseq Customisations for Project Management Template
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          20 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Notes to create a functional project logs template for Logseq graphs.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/read-excel-csv-recursive/" rel="permalink">Python Function read excel / csv files from a given directory and its subdirectories
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Reading multiple excel and csv files recursively in directory and subdirectories
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git-jargon/" rel="permalink">Git Jargon
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Familiarisation with some Git jargon
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git-basics/" rel="permalink">Git Basics
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">What is GIT, how is it used and where to begin
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+<form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term...">
+  </form>
+  <div id="results" class="results"></div>
+</div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<div id="scroll-to-top">
+    <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-angle-double-up fa-stack-1x fa-inverse up-arrow"></i>
+    </span>
+</div>
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2024 Ankit Mittal. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://mgw.dumatics.com/markdown-and-gantt-charts/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/markdown-and-gantt-charts"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://makegadgetswork.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+
+  
+
+
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  
+    <script src="/assets/js/clipboardrouge.js"></script>
+  
+
+
+
+  </body>
+</html>

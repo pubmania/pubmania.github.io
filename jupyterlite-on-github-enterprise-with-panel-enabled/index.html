@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.23.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+--><html lang="en" class="no-js">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>JupyterLite on Github Enterprise with Panel enabled - Make Gadgets Work</title>
+<meta name="description" content="JupyterLite on Github Enterprise with Panel enabled">
+
+
+  <meta name="author" content="Ankit Mittal">
+  
+  <meta property="article:author" content="Ankit Mittal">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Make Gadgets Work">
+<meta property="og:title" content="JupyterLite on Github Enterprise with Panel enabled">
+<meta property="og:url" content="https://mgw.dumatics.com/jupyterlite-on-github-enterprise-with-panel-enabled/">
+
+
+  <meta property="og:description" content="JupyterLite on Github Enterprise with Panel enabled">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-01-25T17:50:00+00:00">
+
+
+
+  <meta property="article:modified_time" content="2023-01-25T17:50:00+00:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://mgw.dumatics.com/jupyterlite-on-github-enterprise-with-panel-enabled/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Ankit Mittal",
+      "url": "https://mgw.dumatics.com/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Make Gadgets Work Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+  
+    <script src="/assets/js/scroll-to-top.js"></script>
+  
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Make Gadgets Work
+          <span class="site-subtitle">I give what I take and then I try giving a bit more - My payback to the helpful open source community !!!</span>
+        </a>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="/"><i class="fas fa-home"></i></a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li>
+<li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li>
+</ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/profile_pix/profile_1.jpg" alt="Ankit Mittal" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Ankit Mittal</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Programme Manager by profession, Developer at heart !!!</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">United Kingdom</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:mr.ankitmittal@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="JupyterLite on Github Enterprise with Panel enabled">
+    <meta itemprop="description" content="Steps to build JupyterLite on windows powershell with Panel and local file access and to host it on restricted Github Enterprise.">
+    <meta itemprop="datePublished" content="2023-01-25T17:50:00+00:00">
+    <meta itemprop="dateModified" content="2023-01-25T17:50:00+00:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">JupyterLite on Github Enterprise with Panel enabled
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+			  <aside class="sidebar__right sticky">
+				<nav class="toc">
+				  <header><h4 class="nav__title">
+<i class="fas fa-file-alt"></i> On this page</h4></header>
+				  <ul class="toc__menu"><li>
+<a href="#jupyterlite-on-github-enterprise-with-panel-enabled">JupyterLite on Github Enterprise with Panel enabled</a><ul>
+<li><a href="#create-and-activate-jupyterlite-environment">Create and activate Jupyterlite Environment</a></li>
+<li><a href="#install-jupyterlite-and-other-extensions">Install jupyterlite and other extensions</a></li>
+<li><a href="#prepare-build-directory">Prepare build directory</a></li>
+<li><a href="#make-a-record-of-all-that-you-have-installed">Make a record of all that you have installed.</a></li>
+<li><a href="#including-any-existing-notebooks">Including any existing notebooks</a></li>
+<li><a href="#build-jupyterlite-and-serve-locally-to-test">Build Jupyterlite and serve locally to test</a></li>
+<li><a href="#push-it-to-github-enterprise">Push it to Github Enterprise</a></li>
+<li><a href="#host-jupyterlite-as-github-pages">Host Jupyterlite as Github pages</a></li>
+<li><a href="#finally-open-the-url-to-access-jupyterlite">Finally open the URL to access JupyterLite</a></li>
+</ul>
+</li></ul>
+
+				</nav>
+			  </aside>
+		
+        <h1 id="jupyterlite-on-github-enterprise-with-panel-enabled">JupyterLite on Github Enterprise with Panel enabled</h1>
+
+<p>Recently I found myself in a scenario where I had access to Github Enterprise but was limited to a windows machine. Now I wanted to host JupyterLite on Github Enterprise so it can be used by some other people on my team. Challenge was the “Actions” on this instance of Github enterprise were disabled and so I had to build Jupyterlite locally and push it on Github. I figured while at it, I might as well enable the “Panel” and few other dependencies. The steps that worked for me are documented here. This is ofcourse assuming that Python is already installed on the device.</p>
+
+<p>The final hosted JupyterLite can be seen in action <a href="https://mgw.dumatics.com/jupyterlite_panel_dist/lab/index.html">here</a>.</p>
+
+<p>The steps below created a Jupyterlite instance that allows use of Panel using the <code class="language-plaintext highlighter-rouge">%pip install panel</code> magic command, and if used on Chrome or its derivatives it also allows exploring local file system.</p>
+
+<h2 id="create-and-activate-jupyterlite-environment">Create and activate Jupyterlite Environment</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>panel_lite
+<span class="nb">cd</span> .<span class="se">\p</span>anel_lite<span class="se">\</span>
+py <span class="nt">-m</span> venv panel_v
+.<span class="se">\p</span>anel_v<span class="se">\S</span>cripts<span class="se">\a</span>ctivate
+pip <span class="nb">install</span> <span class="nt">--upgrade</span> pip
+</code></pre></div></div>
+
+<h2 id="install-jupyterlite-and-other-extensions">Install jupyterlite and other extensions</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install</span> <span class="nt">--pre</span> jupyterlite
+pip <span class="nb">install </span>jupyter-bokeh ipython ipywidgets jupyterlab-drawio jupyterlab-markup jupyterlab-myst jupyterlab-pygments jupyterlite-p5-kernel jupyterlite-xeus-sqlite libarchive-c matplotlib matplotlib-inline matplotlib-venn myst-nb myst-parser nbconvert numpy openpyxl pandas pandocfilters pkginfo pyopenssl python-dateutil python-dotenv pyviz-comms pyxlsb scipy sql SQLAlchemy sqlparse tornado widgetsnbextension xlrd XlsxWriter zipp jupyterlab-filesystem-access
+</code></pre></div></div>
+
+<h2 id="prepare-build-directory">Prepare build directory</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>jupyterlite_panel
+<span class="nb">cd</span> .<span class="se">\j</span>upyterlite_panel<span class="se">\</span>
+<span class="nb">mkdir </span>pypi
+<span class="nb">cd</span> .<span class="se">\p</span>ypi<span class="se">\</span>
+wget <span class="s2">"https://cdn.holoviz.org/panel/0.14.2/dist/wheels/bokeh-2.4.3-py3-none-any.whl"</span> <span class="nt">-outfile</span> <span class="s2">"bokeh-2.4.3-py3-none-any.whl"</span>
+wget <span class="s2">"https://cdn.holoviz.org/panel/0.14.2/dist/wheels/panel-0.14.2-py3-none-any.whl"</span> <span class="nt">-outfile</span> <span class="s2">"panel-0.14.2-py3-none-any.whl"</span>
+</code></pre></div></div>
+
+<h2 id="make-a-record-of-all-that-you-have-installed">Make a record of all that you have installed.</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip freeze <span class="o">&gt;</span> requirements.txt
+</code></pre></div></div>
+
+<h2 id="including-any-existing-notebooks">Including any existing notebooks</h2>
+
+<p>If you have some existing notebooks or files you would want to include on the hosted version of Jupyterlite, you must create a directory and name it <code class="language-plaintext highlighter-rouge">files</code></p>
+
+<h2 id="build-jupyterlite-and-serve-locally-to-test">Build Jupyterlite and serve locally to test</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jupyter lite build <span class="nt">--output-dir</span> ./dist
+<span class="nb">cd</span> .<span class="se">\d</span>ist<span class="se">\</span>
+py <span class="nt">-m</span> http.server 8000
+deactivate
+</code></pre></div></div>
+
+<p>The folder structure after build should look somewhat like below:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>panel_lite:.
+├───.cache
+├───dist
+│   ├───api
+│   ├───build
+│   ├───doc
+│   ├───extensions
+│   ├───files
+│   ├───kernelspecs
+│   ├───lab
+│   ├───pypi
+│   ├───repl
+│   ├───retro
+│   └───tree
+├───files
+│   ├───data
+│   └───sample.ipynb
+├───pypi
+└───panel_v
+</code></pre></div></div>
+
+<p><img src="../assets/images/2023/01/3.png" alt="Directory Structure Overall">
+<img src="../assets/images/2023/01/4.png" alt="Directory Structure of built dist folder"></p>
+
+<h2 id="push-it-to-github-enterprise">Push it to Github Enterprise</h2>
+
+<p>Github Desktop is the easiest way to do it.</p>
+
+<p>Open Github desktop and create new reporsitory:</p>
+
+<p><img src="../assets/images/2023/01/1.png" alt="Create New Repository"></p>
+
+<p>On Github desktop point the Local Path field to <code class="language-plaintext highlighter-rouge">\panel_lite\jupyterlite_panel\dist</code> and do the initial commit and push to origin.</p>
+
+<p><img src="../assets/images/2023/01/2.png" alt="Provide Local Path"></p>
+
+<h2 id="host-jupyterlite-as-github-pages">Host Jupyterlite as Github pages</h2>
+
+<ul>
+  <li>Click on button <code class="language-plaintext highlighter-rouge">View on Github</code> on Github Desktop.</li>
+</ul>
+
+<p><img src="../assets/images/2023/01/5.png" alt="Open Github Enterprise"></p>
+
+<ul>
+  <li>Github Enterprise will open in browser to the created repository</li>
+</ul>
+
+<p><img src="../assets/images/2023/01/6.png" alt="Enable Pages on Github Enterprise"></p>
+
+<ul>
+  <li>Click on Settings &gt;  Pages</li>
+  <li>select Branch: master (or main) and root as source.</li>
+  <li>Click Save and the message should be displayed in green box with the URL to access Jupyterlite.</li>
+</ul>
+
+<h2 id="finally-open-the-url-to-access-jupyterlite">Finally open the URL to access JupyterLite</h2>
+
+<p><img src="../assets/images/2023/01/7.png" alt="JupyterLite hosted on Github Enterprise"></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2023-01-25">January 25, 2023</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=JupyterLite+on+Github+Enterprise+with+Panel+enabled%20https%3A%2F%2Fmgw.dumatics.com%2Fjupyterlite-on-github-enterprise-with-panel-enabled%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmgw.dumatics.com%2Fjupyterlite-on-github-enterprise-with-panel-enabled%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fmgw.dumatics.com%2Fjupyterlite-on-github-enterprise-with-panel-enabled%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/tech-for-diabetics/" class="pagination--pager" title="Tech for Diabetics
+">Previous</a>
+    
+    
+      <a href="/git-basics/" class="pagination--pager" title="Git Basics
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/logseq-customisation-for-project-management-teamplate/" rel="permalink">Logseq Customisations for Project Management Template
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          20 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Notes to create a functional project logs template for Logseq graphs.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/read-excel-csv-recursive/" rel="permalink">Python Function read excel / csv files from a given directory and its subdirectories
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Reading multiple excel and csv files recursively in directory and subdirectories
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git-jargon/" rel="permalink">Git Jargon
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Familiarisation with some Git jargon
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git-basics/" rel="permalink">Git Basics
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">What is GIT, how is it used and where to begin
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap">
+<form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term...">
+  </form>
+  <div id="results" class="results"></div>
+</div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+<div id="scroll-to-top">
+    <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-angle-double-up fa-stack-1x fa-inverse up-arrow"></i>
+    </span>
+</div>
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/pubmania" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2024 Ankit Mittal. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://mgw.dumatics.com/jupyterlite-on-github-enterprise-with-panel-enabled/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/jupyterlite- on-github-enterprise-with-panel-enabled"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://makegadgetswork.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+
+
+  
+
+
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  
+    <script src="/assets/js/clipboardrouge.js"></script>
+  
+
+
+
+  </body>
+</html>
