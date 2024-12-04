@@ -1,0 +1,99 @@
+site_name: Make Gadgets Work 
+site_description: I give what I take and then I try giving a bit more - My payback to the helpful open source community !!!
+repo_url: !ENV [REPO_URL, 'https://github.com/pubmania/pubmania.github.io']
+edit_uri: !ENV [EDIT_URL,'edit/main/docs/']
+site_url: !ENV [SITE_URL,'https://mgw.dumatics.com']
+use_directory_urls: False
+theme:
+  name: material
+  
+  custom_dir: overrides
+  
+  features:
+  - content.code.annotate
+  - content.code.copy
+  - content.tabs.link
+  - content.tooltips
+  - content.action.edit
+  - content.action.view
+  - navigation.indexes
+  - navigation.tabs
+  - navigation.top
+  - navigation.tracking
+  - search.highlight
+  - search.share
+  - search.suggest
+  
+  palette:
+      # Palette toggle for light mode
+    - scheme: default
+      primary: orange
+      accent: deep orange
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: orange
+      accent: deep orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - footnotes
+  - md_in_html
+  - meta
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.details
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.snippets:
+      base_path: '.'
+      check_paths: false
+      auto_append:  ["includes/abbreviations.md"]
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+      clickable_checkbox: true
+  - pymdownx.keys
+  - pymdownx.blocks.caption
+  - toc:
+      permalink: true
+  - plantuml_markdown:
+      server: http://www.plantuml.com/plantuml  # PlantUML server, for remote rendering
+      format: svg_inline                               # default diagram image format
+
+  # Plugin information
+plugins:
+  - search
+  - awesome-pages
+  - include-markdown
+  - blog:
+      enabled: true
+      blog_dir: .
+      blog_toc: false
+      pagination_if_single_page: true 
+  - glightbox
+  - social:
+      cards_dir: assets/images/social
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+extra:
+  disqus: makegadgetswork
