@@ -96,4 +96,4 @@ extra_css:
   - assets/stylesheets/extra.css
 
 extra:
-  disqus: makegadgetswork
+  disqus: !ENV [DISQUS_CODE,'']
