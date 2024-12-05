@@ -8,6 +8,10 @@ date:
   created: 2010-11-13 14:50:00
   updated: 2010-11-13 14:50:00
 comments: true
+categories:
+  - Linux
+  - Troubleshooting
+  - Printer
 ---
 
 !!! site-abstract "UPDATE"

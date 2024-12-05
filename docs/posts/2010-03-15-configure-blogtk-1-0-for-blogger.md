@@ -8,6 +8,10 @@ date:
   created: 2010-03-15 12:39:00
   updated: 2010-03-15 12:39:00
 comments: true
+categories:
+  - Blogging
+  - Software
+  - Linux
 ---
 
 Right so I am happy with Blogilo, then why BlogTK?

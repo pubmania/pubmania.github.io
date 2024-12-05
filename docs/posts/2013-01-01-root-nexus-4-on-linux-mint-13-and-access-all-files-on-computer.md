@@ -8,6 +8,12 @@ date:
   created: 2013-01-01 12:38:00
   updated: 2013-01-01 12:38:00
 comments: true
+categories:
+  - Linux
+  - Software
+  - Troubleshooting
+  - Phone
+  - Android
 ---
 ## Background
 

@@ -9,6 +9,15 @@ date:
 draft: false
 description: Complete walk-through to set-up a self-hosted instant messaging
 comments: true
+categories:
+  - Linux
+  - Software
+  - Network Setup
+  - Server Setup
+  - Development
+  - Phone
+  - Android
+  - Router
 ---
 
 ## Genreal Guidance

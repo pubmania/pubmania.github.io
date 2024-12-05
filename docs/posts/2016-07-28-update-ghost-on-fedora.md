@@ -8,6 +8,12 @@ draft: False
 description: Update Ghost on Fedora
 authors: ['ankit']
 comments: true
+categories:
+  - Linux
+  - Software
+  - Troubleshooting
+  - Development
+  - Blogging
 ---
 
 While the guidance on [Ghost website](http://support.ghost.org/how-to-upgrade/#command-guide) is very clear, I did get issues that required steps in troubleshooting. Something to do with lodash and npm version 2 stuff (<mark>node_modules/knex requires lodash@'^3.7.0'</mark>) that I read on one of the [forums](https://github.com/tgriesser/bookshelf/issues/1264) specifically the comment from ErisDS on 13/06.

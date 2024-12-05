@@ -8,6 +8,10 @@ date:
   created: 2012-10-15 22:20:00
   updated: 2012-10-15 22:20:00
 comments: true
+categories:
+  - Software
+  - Phone
+  - Android
 ---
 
 I had an old Samsung Galaxy S which was still on stock ROM hence it only ever got to gingerbread and then Samsung just decided not to upgrade and I upgraded the phone so this little gadget was till yesterday destined to live with the old gingerbread.

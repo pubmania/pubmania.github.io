@@ -8,6 +8,9 @@ date:
   created: 2011-04-24 17:06:00
   updated: 2018-03-29 15:37:53
 comments: true
+categories:
+  - Keyboard
+  - Troubleshooting
 ---
 
 Today for some unknown reason suddenly my Logitech Wireless Keyboard and Mouse - Model Number EX100 (*Logitech Cordless Desktop EX100 (920-000879)*) stopped working and very stubbornly denied to work despite my repeated attempts on all obvious and logical steps - resets, battery change and such.

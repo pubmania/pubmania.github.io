@@ -8,6 +8,9 @@ date:
   created: 2009-09-16 17:10:00
   updated: 2009-09-16 17:10:00
 comments: true
+categories:
+  - Linux
+  - Operating System
 ---
 
 !!! important "UPDATE for 9.10"

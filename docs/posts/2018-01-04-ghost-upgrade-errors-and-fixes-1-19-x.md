@@ -8,6 +8,11 @@ draft: False
 description: Ghost Upgrade errors and fixes (1.19.x)
 authors: ['ankit']
 comments: true
+categories:
+  - Linux
+  - Software
+  - Troubleshooting
+  - Blogging
 ---
 
 I have found the recent ghost upgrades quite painless but there have been few hiccups for last two times so I kept a record of what helped and it is as listed below:

@@ -8,6 +8,11 @@ date:
   created: 2013-03-01 13:30:00
   updated: 2013-03-01 13:30:00
 comments: true
+categories:
+  - Linux
+  - Software
+  - Python
+  - Development
 ---
 
 Right, I have decided to play around a little with the most loved language of open source a. k. a. Python.

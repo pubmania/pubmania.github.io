@@ -8,6 +8,11 @@ date:
 draft: false
 description: Metabase - A BI solution that just works
 comments: true
+categories:
+  - Linux
+  - Software
+  - Troubleshooting
+  - Server Setup
 ---
 
 I like exploring new solutions and anything to do with data always piques my interest. I came across this nice tool through the [list of free self hosted software](https://github.com/Kickball/awesome-selfhosted).

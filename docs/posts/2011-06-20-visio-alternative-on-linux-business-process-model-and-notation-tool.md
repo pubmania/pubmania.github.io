@@ -8,6 +8,10 @@ date:
   created: 2011-06-20 17:41:00
   updated: 2011-06-20 17:41:00
 comments: true
+categories:
+  - Linux
+  - Development
+  - Software
 ---
 !!! site-abstract "UPDATE"
     [PENCIL](http://pencil.evolus.vn/) is an opensource software which is a pretty good alternative as well with a smaller learning curve and is Opensource.

@@ -8,6 +8,10 @@ date:
   created: 2010-03-19 12:43:00
   updated: 2010-03-19 12:43:00
 comments: true
+categories:
+  - Linux
+  - Software
+  - Troubleshooting
 ---
 I was trying to install spotify on linux which used to work perfectly on Gnome and when I tried on KDE it was giving error box. I wrote winecfg on terminal and got following error:
 

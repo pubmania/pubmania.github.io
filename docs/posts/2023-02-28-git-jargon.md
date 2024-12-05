@@ -8,6 +8,11 @@ authors: [ankit]
 draft: false
 description: Recap on Git basics and explanation of some git jargon
 comments: true
+categories:
+  - Linux
+  - Software
+  - Development
+  - Git
 ---
 
 ## Git Jargon

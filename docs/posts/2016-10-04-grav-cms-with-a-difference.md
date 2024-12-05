@@ -8,6 +8,13 @@ draft: False
 description: Grav - CMS with a difference
 authors: ['ankit']
 comments: true
+categories:
+  - Linux
+  - Troubleshooting
+  - Network Setup
+  - Server Setup
+  - Development
+  - Blogging
 ---
 
 While I love Ghost as a blogging platform, it is not best placed for things other than blogs - after all that is the basic idea behind creation of this wonderful tool.

@@ -8,6 +8,10 @@ date:
   created: 2011-02-20 15:32:00
   updated: 2011-02-20 15:32:00
 comments: true
+categories:
+  - Software
+  - Phone
+  - Android
 ---
 ## Background
 

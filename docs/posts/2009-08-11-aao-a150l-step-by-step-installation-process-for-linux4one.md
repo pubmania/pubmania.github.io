@@ -8,6 +8,9 @@ date:
   created: 2009-08-11 22:02:00
   updated: 2009-08-11 22:02:00
 comments: true
+categories:
+  - Linux
+  - Operating System
 ---
 Linux4one is the only Linux distro other than pre-installed Linpus that worked out of the box on my and two other Acer aspire one A150L which belonged to my friends. With the GUI same as that for Ubuntu Netbook Remix, it is a fantastic OS to have on your machine. The only downside I felt was that the icons looked little washed out compared to those on actual UNR but that is not so much of an issue. Everything pretty much worked out of the box which matters the most. I did find the splash screen at the time of start-up a little childish but again these are not major issues.
 

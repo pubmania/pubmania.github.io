@@ -8,6 +8,11 @@ date:
 draft: false
 description: Tech for Diabetics - As a diabetic there are a number of things we are not able to control but one thing we can do is keep tabs on our data.
 comments: true
+categories:
+  - Linux
+  - Software
+  - Server Setup
+  - Android
 ---
 
 ## Background

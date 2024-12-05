@@ -8,6 +8,9 @@ draft: False
 description: MySQL Function to calculate closing WorkDay date given elapsed working time
 authors: ['ankit']
 comments: true
+categories:
+  - SQL
+  - Development
 ---
 
 On my post [MySQL function to calculate elapsed working time](./2016-07-19-mysql-function-to-calculate-elapsed-working-time.md) I was asked in comments if the assumptions can be reversed such that given start date, starting time and closing time of site and the elapsed working hours, function should return the closed date. I was convinced that it will be possible to achieve this with minor tweaks to original logic and so I only concentrated on original code and how to tweak it to achieve the result. It is very likely that there might exist a more elegant solution but ~~frankly I did not have a usecase~~ I did find a [usecase](#example-of-problem) afterall - Clue was in redefining the problem description for this. Presented below is the function that with my minimal testing seems to give correct results. Feel free to try it and as always any feedback is welcome. :smile:

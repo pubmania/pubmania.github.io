@@ -9,7 +9,10 @@ draft: False
 description: Crossover
 authors: ['ankit']
 comments: true
+categories:
+  - Software
 ---
+
 There are technologies that I can use in my personal life, that I am proud of and those that I play around with but reality is that as a Senior Project Manager, there aren't very many times when I get the opportunity to influence the choice of software to be used.
 
 As a principle, my personal choices are driven by opensource and professional choices are driven by client needs. However, listed below are opensource technologies that crossed over from my personal to professional realm.

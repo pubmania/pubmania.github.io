@@ -8,6 +8,12 @@ date:
 draft: false
 description: Notes to create a functional project logs template for Logseq graphs.
 comments: true
+categories:
+  - Software
+  - Troubleshooting
+  - Development
+  - Logseq
+  - Project Management
 ---
 
 ## Background

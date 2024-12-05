@@ -8,6 +8,11 @@ date:
   created: 2011-11-04 11:03:00
   updated: 2011-11-04 11:03:00
 comments: true
+categories:
+  - Linux
+  - Software
+  - Troubleshooting
+  - Network Setup
 ---
 
 ![Fig-1](../assets/images/2016/07/20111104_Fig_1.png){ width=50% }

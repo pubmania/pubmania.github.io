@@ -8,6 +8,9 @@ draft: False
 description: Windows 10 - a bucket load of pain
 authors: ['ankit']
 comments: true
+categories:
+  - Linux
+  - Operating System
 ---
 
 > As Windows 10 is a commercial offering, one would think it will be working as expected and it does so long as like me one has come to expect pain from Microsoft in general and Windows in particular - because pain is what you get when you use Windows 10.

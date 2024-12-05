@@ -8,6 +8,11 @@ draft: False
 description: Tomcat 8.5.4 on Fedora behind Nginx
 authors: ['ankit']
 comments: true
+categories:
+  - Linux
+  - Software
+  - Server Setup
+  - Development
 ---
 
 ## Install Oracle Java

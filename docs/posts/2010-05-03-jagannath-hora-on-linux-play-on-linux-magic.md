@@ -8,6 +8,9 @@ date:
   created: 2010-05-03 12:57:00
   updated: 2010-05-03 12:57:00
 comments: true
+categories:
+  - Linux
+  - Software
 ---
 
 ## Background

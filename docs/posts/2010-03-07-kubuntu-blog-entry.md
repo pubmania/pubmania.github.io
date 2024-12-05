@@ -8,30 +8,18 @@ date:
   created: 2010-03-07 10:22:00
   updated: 2010-03-07 10:22:00
 comments: true
+categories:
+  - Software
+  - Linux
 ---
 
 This is how my love for Kubuntu has started....and growing by the minute...
 
 I was experimenting with different Linux distros and then I went ahead with Linux Mint – which is quite popular and is know as “ubuntu done right”. I liked it and started dwelling more and played around with themes and such before I figured it is becoming kind of prescriptive and thought will actually play with the a distro with KDE not too far from Ubuntu – Kubuntu and boy was I surprised with the difference … all to their own opinion but mine is KDE is one helluva beautiful thing....the stuff that is done here is simply amazing …. alright once I was done with dropping my jaw at every step I figured there is a bit of learning curve right from the word go and so before I start forgetting what all I have learnt I felt it will be safe jotting it all down and thus this post.
 
-<!-- more -->
-
-* How to upgrade Ubuntu 9.10 to Kubuntu 9.10
-
-* Restoring the default panel at bottom of the screen?
-
-* Problems with system audio, you-tube audio and how it all finally started working for me.
-
-* Change the theme.
-
-* Change the splash screen
-
-* How I managed to change the Log-in Screen (KDM Screen)
-
-* Finally, change boot splash screen
-
-
 Right so if any of this catches your fancy, please be my guest... :smile:
+
+<!-- more -->
 
 ## How to upgrade Ubuntu 9.10 to Kubuntu 9.10
 

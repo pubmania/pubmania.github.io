@@ -8,6 +8,10 @@ date:
   created: 2012-03-16 22:39:00
   updated: 2012-03-16 22:39:00
 comments: true
+categories:
+  - Linux
+  - Software
+  - Troubleshooting
 ---
 
 ## Background

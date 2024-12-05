@@ -8,6 +8,9 @@ date:
   created: 2009-09-15 17:00:00
   updated: 2009-09-15 17:00:00
 comments: true
+categories:
+  - Linux
+  - Operating System
 ---
 
 Alright friends not a huge tip but still I, being new fan of Ubuntu, installed it on my media laptop...Sony VAIO...

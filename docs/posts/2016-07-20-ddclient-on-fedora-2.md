@@ -8,6 +8,11 @@ draft: False
 description: DDCLIENT set-up on Fedora for Namecheap
 authors: ['ankit']
 comments: true
+categories:
+  - Linux
+  - Software
+  - Troubleshooting
+  - Network Setup
 ---
 
 ## Configure Namecheap

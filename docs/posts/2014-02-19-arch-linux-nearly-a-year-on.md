@@ -8,6 +8,8 @@ draft: False
 description: Arch Linux - nearly a year on....
 authors: ['ankit']
 comments: true
+categories:
+  - Linux
 ---
 
 I have been dwelling in the world of Arch Linux for just under a year now and must admit the experience is nothing less than liberating. Granted that the barrier to entry was big when I dived in, as a pure Arch install takes some reading and learning but the rewards are worth the pain.

@@ -8,6 +8,9 @@ draft: False
 description: MySQL function to calculate elapsed working time
 authors: ['ankit']
 comments: true
+categories:
+  - SQL
+  - Development
 ---
 
 I wrote this function to cater for a [specific requirement](#problem-statement) and I don't know if there are better ways of doing it but this saved tremendous amount of time and might have real time application elsewhere.

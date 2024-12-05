@@ -8,6 +8,10 @@ date:
   created: 2012-02-20 18:50:00
   updated: 2012-02-20 18:50:00
 comments: true
+categories:
+  - Linux
+  - Software
+  - Troubleshooting
 ---
 
 I have an old Sony VAIO which is not in it's best of health and has long been really a companion for my telly, faithfully streaming media from bbc iplayer, youtube, dailymotion and likes. Internet enabled TV arrived in my home long long back :).

@@ -8,6 +8,9 @@ draft: False
 description: Note 7 to OnePlus 3
 authors: ['ankit']
 comments: true
+categories:
+  - Phone
+  - Android
 ---
 
 I was a super excited owner of Note 7 in September this year and then in few

@@ -8,6 +8,13 @@ draft: False
 description: Seafile Server behind nginx on Fedora 24 Security Lab Spin
 authors: ['ankit']
 comments: true
+categories:
+  - Linux
+  - Software
+  - Troubleshooting
+  - Network Setup
+  - Server Setup
+  - SQL
 ---
 
 I have recently been intrigued by the idea of replacing the likes of “Dropbox” and “Google Drive” with a cloud set-up of my own. I had "Owncloud" set-up for nearly a year but was not happy with it. There were minor niggles aside form speed and thumbnails and then “Owncloud” had a recent split leading to creation of “Nextcloud”.

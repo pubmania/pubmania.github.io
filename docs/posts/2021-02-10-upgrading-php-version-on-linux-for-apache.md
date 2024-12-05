@@ -8,6 +8,9 @@ date:
 draft: false
 description: Upgrading PHP version on Linux for Apache
 comments: true
+categories:
+  - Linux
+  - Troubleshooting
 ---
 
 1.  Install the Apache module for specific php version
@@ -17,7 +20,7 @@ comments: true
 	```
 <!-- more -->
 	
-2.  Copy the php.ini from previous version to newer version after making
+1.  Copy the php.ini from previous version to newer version after making
     a backup of the original php.ini for new version.
 
 	```bash linenums="1"
@@ -25,7 +28,7 @@ comments: true
 	sudo cp /etc/php/7.2/apache2/php.ini /etc/php/7.3/apache2/php.ini
 	```
 
-3.  Install specific php modules for Apache and enable the php modules
+2.  Install specific php modules for Apache and enable the php modules
     on new version of php.
 
 	```bash linenums="1"
@@ -33,7 +36,7 @@ comments: true
 	sudo phpenmod -v 7.3 pdo_mysql soap wddx xmlreader xmlrpc xsl zip intl gd dom curl mysqlnd gmp simplexml mysqli mbstring
 	```
 
-4.  Disable old php version, enable new version and restart Apache
+3.  Disable old php version, enable new version and restart Apache
     server.
 
 	```bash linenums="1"

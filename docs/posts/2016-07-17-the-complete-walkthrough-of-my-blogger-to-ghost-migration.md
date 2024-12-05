@@ -8,6 +8,14 @@ draft: False
 description: The complete walkthrough of my blogger to ghost migration
 authors: ['ankit']
 comments: true
+categories:
+  - Linux
+  - Software
+  - Troubleshooting
+  - Network Setup
+  - Server Setup
+  - Development
+  - Blogging
 ---
 
 ## The 7 Year Itch

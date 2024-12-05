@@ -8,6 +8,9 @@ date:
   created: 2012-03-04 22:25:00
   updated: 2012-03-04 22:25:00
 comments: true
+categories:
+  - Linux
+  - Software
 ---
 
 If you read my last post you will know I have been playing with Bodhi Linux lately. One of the selling point for this distro is it's minimalistic approach. However, that also means it doesn't come with some of the media packages that help stream all type of media - stagevu (DivX) included.

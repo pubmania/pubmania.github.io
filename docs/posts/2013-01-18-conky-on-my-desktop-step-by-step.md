@@ -8,6 +8,9 @@ date:
   created: 2013-01-18 13:09:00
   updated: 2013-01-18 13:09:00
 comments: true
+categories:
+  - Linux
+  - Software
 ---
 
 ![Fig-1](../assets/images/2016/07/20130118_Fig_1.png)

@@ -8,6 +8,12 @@ date:
   created: 2011-11-06 10:26:00
   updated: 2011-11-06 10:26:00
 comments: true
+categories:
+  - Linux
+  - Software
+  - Troubleshooting
+  - Network Setup
+  - Server Setup
 ---
 <hr>
 !!! site-abstract "UPDATE"

@@ -88,6 +88,26 @@ plugins:
       blog_dir: .
       blog_toc: false
       pagination_if_single_page: true 
+      categories_allowed:
+        - Linux
+        - Operating System
+        - Software
+        - Troubleshooting
+        - Network Setup
+        - Server Setup
+        - SQL
+        - Python
+        - Development
+        - Blogging
+        - Phone
+        - Android
+        - Keyboard
+        - Printer
+        - Router
+        - Github Hosting
+        - Git
+        - Logseq
+        - Project Management
   - glightbox
   - social:
       cards_dir: assets/images/social

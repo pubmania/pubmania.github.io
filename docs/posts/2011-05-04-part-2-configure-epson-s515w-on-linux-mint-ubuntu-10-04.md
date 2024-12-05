@@ -8,6 +8,10 @@ date:
   created: 2011-05-04 15:12:00
   updated: 2011-05-04 15:12:00
 comments: true
+categories:
+  - Linux
+  - Troubleshooting
+  - Printer
 ---
 
 While the majority of settings are covered in my previous post here I found that each time I switched off my printer, it used to change it's IP address and I had to repeat Steps 7 to 16 each time. My printing and scanning needs are pretty limited so I never bothered working out a solution until today and knowing what I now know, it was quite a simple and quick solution I should have done this on the first place. Anyway as they say better late than never. :smile:

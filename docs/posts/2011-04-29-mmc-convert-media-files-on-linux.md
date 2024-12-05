@@ -8,6 +8,9 @@ date:
   created: 2011-04-29 14:48:00
   updated: 2011-04-29 14:48:00
 comments: true
+categories:
+  - Linux
+  - Software
 ---
 
 I have been using Mobile Media Converter for almost a year now and it is such a great tool. I think it is a must have at-least on Linux.

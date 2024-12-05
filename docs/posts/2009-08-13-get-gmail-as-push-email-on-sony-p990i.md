@@ -8,6 +8,8 @@ date:
   created: 2009-08-13 16:52:00
   updated: 2009-08-13 16:52:00
 comments: true
+categories:
+  - Phone
 ---
 While I have moved on from P990i which is now in safe hands of my dear wife, I remember doing some good amount of web searching and still had no idea how to set up push-mail on P990i.
 

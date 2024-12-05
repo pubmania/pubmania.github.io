@@ -9,6 +9,8 @@ draft: False
 description: Markdown and Gantt Charts
 authors: ['ankit']
 comments: true
+categories:
+  - Software
 ---
 
 For a fairly long time, I have been looking for a simple markdown type of solution to be able to quickly draw Gantt charts but never came across what one would call a quick option. It has always been an involved process.

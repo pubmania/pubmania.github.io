@@ -8,6 +8,11 @@ date:
 draft: false
 description: Home Networking
 comments: true
+categories:
+  - Linux
+  - Network Setup
+  - Server Setup
+  - Router
 ---
 
 ## Network routing

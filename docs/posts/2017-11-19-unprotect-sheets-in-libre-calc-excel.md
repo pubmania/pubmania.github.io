@@ -8,6 +8,9 @@ draft: False
 description: Unprotect Sheets in Libre Calc, Excel
 authors: ['ankit']
 comments: true
+categories:
+  - Software
+  - Troubleshooting
 ---
 
 A friend of mine today had an issue. He had created a template for some really complex calculations and to ensure he does not mess up with the forumlae by mistake he had password protected sheets and cells. He had done this back in 2012 and now he wanted change something in there but he had forgotten the password so he asked me if I can help.

@@ -9,6 +9,10 @@ draft: False
 description: Swap File to create extra memory
 authors: ['ankit']
 comments: true
+categories:
+  - Linux
+  - Operating System
+  - Troubleshooting
 ---
 
 While renewing my LetsEncrypt certificate, I found myself in a strange situation where the certbot won't run asking me to update pip and then each time I tried updating pip it failed with the error `error: command 'x86_64-linux-gnu-gcc' failed with exit status 4.`

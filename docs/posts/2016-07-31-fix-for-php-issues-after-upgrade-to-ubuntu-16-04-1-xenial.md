@@ -8,6 +8,9 @@ draft: False
 description: Fix for PHP Issues after upgrade to Ubuntu 16.04.1 (Xenial)
 authors: ['ankit']
 comments: true
+categories:
+  - Linux
+  - Troubleshooting
 ---
 After updating from Ubuntu 14.04, the php and Apache stopped being friends and one of the WordPress site I maintain went all white and admin page was just showing php code.
 This is apparently because of a known issue in 16.04 with upgrade to php7 as shown on the ubuntu forum [here](http://askubuntu.com/questions/756181/installing-php-5-6-on-xenial-16-04).

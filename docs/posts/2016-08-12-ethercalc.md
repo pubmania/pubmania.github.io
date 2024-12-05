@@ -8,6 +8,9 @@ draft: False
 description: Ethercalc
 authors: ['ankit']
 comments: true
+categories:
+  - Linux
+  - Software
 ---
 
 Ethercalc is good tool which can be selfhosted. It is fairly simple to do so. Though it will be available for anyone who has the URL because there is no inbuilt login mechanism.

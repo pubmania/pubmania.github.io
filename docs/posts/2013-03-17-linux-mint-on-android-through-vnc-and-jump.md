@@ -8,6 +8,14 @@ draft: False
 description: Linux Mint on Android through VNC and Jump
 authors: ['ankit']
 comments: true
+categories:
+  - Linux
+  - Software
+  - Troubleshooting
+  - Network Setup
+  - Server Setup
+  - Phone
+  - Android
 ---
 
 Today "Jump" was available for free on Amazon as the app of the day and since it's nearly 7 quids on google play store, I grabbed it. For windows and Mac users, they have a pretty straight forward set-up but as usual for Linux it means some work but, in the end, it leaves you with a set-up you can trust and feel secure about. 

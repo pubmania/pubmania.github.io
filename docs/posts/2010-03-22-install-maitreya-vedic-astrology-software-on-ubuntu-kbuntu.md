@@ -8,6 +8,9 @@ date:
   created: 2010-03-22 13:38:00
   updated: 2010-03-22 13:38:00
 comments: true
+categories:
+  - Linux
+  - Software
 ---
 
 First I must thank the Maitreya developers for coming up with such a wonderful Vedic Astrology software that works on Linux. I am not aware of any other vedic astrology software that works on Linux.

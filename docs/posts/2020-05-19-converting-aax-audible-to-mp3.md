@@ -8,6 +8,9 @@ date:
 draft: false
 description: Converting AAX (Audible) to mp3
 comments: true
+categories:
+  - Linux
+  - Software
 ---
 
 Lately I have been a bit frustrated because while I subscribe to Audible services, Amazon and Google do not play nice with each other limiting me - *the owner of books with rights to listen my purchase on any device* - in my options on where I can listen. Now I am yet to find a good solution that can get my files playing on google home and not just Alexa, I guess first step was to free my audiobooks from Amazon jail. That as it turns out is rather simple to do.I must at this point mention [OpenAudible](https://openaudible.org/) which is one fine tool. However, their latest version (2.0.7 at the time of writing) added some limitations whereby you can get it to download the AAX files but not convert them to mp3 without purchasing their license. However,converting AAX to mp3 is accomplished using `ffmpeg` and I do not believe a nice GUI wrapper is what I need and hence I do not believe my money is well spent in getting a license just to achieve from a graphical user interface what I can achieve for free from the terminal with a single line.There are 3 steps in the conversion process:

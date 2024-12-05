@@ -8,6 +8,14 @@ draft: False
 description: Ghost on Fedora 24
 authors: ['ankit']
 comments: true
+categories:
+  - Linux
+  - Software
+  - Troubleshooting
+  - Network Setup
+  - Server Setup
+  - Development
+  - Blogging
 ---
 
 To install Ghost as my blogging platform, I had to go through a number of hoops and one of them was to get the nodejs working and what not. I figured this might as well be worth documenting in case I have to do this all over again. It might also be helpful for some other inquisitive minds. :smile:
@@ -166,8 +174,9 @@ nano /etc/nginx/conf.d/yourblog.conf
 ```
 
 On the file that opens copy and paste the following code.
+
 !!! note
-    Replace `your.blog.com` on line number 6 below with alias for localhost for this blog you added to the host file above.</div>
+    Replace `your.blog.com` on line number 6 below with alias for localhost for this blog you added to the host file above.
 
 ```bash linenums="1"
 upstream ghost {

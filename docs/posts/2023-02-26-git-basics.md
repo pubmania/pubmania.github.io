@@ -8,6 +8,10 @@ date:
 draft: false
 description: Basic overview of what GIT is and how to use it
 comments: true
+categories:
+  - Software
+  - Development
+  - Git
 ---
 
 ## Basics of Git 

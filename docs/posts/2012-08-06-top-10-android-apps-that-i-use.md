@@ -8,6 +8,10 @@ date:
   created: 2012-08-06 22:05:00
   updated: 2012-08-06 22:05:00
 comments: true
+categories:
+  - Software
+  - Phone
+  - Android
 ---
 
 I have been using Android Phones and Tablets for quite some time now and have
