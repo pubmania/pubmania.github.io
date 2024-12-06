@@ -35,8 +35,8 @@ When binary install is not possible, one can still use logseq from browser by na
 ### Option 1
 * Select the directory where your notes (or graphs in logseq speak) will be saved.
 * Grant permission for local file access when asked by the browser.
-* Now if you will press ++ctrl+k++ it will open search box but the cusrsor goes to the omnibox (where you type the url for the page) and then you will have to either manually click into the logseq search or press `esc` key three times to be able to get the cursor back in the search box. It may be easier to just click on `Search` icon in left hand navigation at top of the screen (next to the hamburger menu).
-    * Alternatively configure the keyboard shortcut to `Alt+k` as that does not conflict with any other keyboard shortcut.
+* Now if you will press ++ctrl+k++ it will open search box but the cusrsor goes to the omnibox (where you type the url for the page) and then you will have to either manually click into the logseq search or press ++esc++ key three times to be able to get the cursor back in the search box. It may be easier to just click on `Search` icon in left hand navigation at top of the screen (next to the hamburger menu).
+    * Alternatively configure the keyboard shortcut to +alt+k++ as that does not conflict with any other keyboard shortcut.
     * To add custom shortcuts, you can navigate to the shortcuts page with g s. Press the blue button corresponding to a given shortcut and a modal should pop up. Press the keybinding you want and then press Save.
 * Now search for `logseq/custom.css` and add the whole css from this [gist](https://gist.github.com/pubmania/a1a84430ab0b6ef48b0760cd128550e0).
 * Then search for `logseq/config.edn` and add the whole edn from this [gist](https://gist.github.com/pubmania/200b6da0e3c5eaf4505c559b7f99e555)
@@ -582,7 +582,7 @@ a) Search for:
       ;; Example usage:
       ;; Change the :macros value below to:
       ;; {"poem" "Rose is $1, violet's $2. Life's ordered: Org assists you."}
-      {% raw %};; input "{{poem red,blue}}"{% endraw %}
+      ;; input "{{poem red,blue}}"
       ;; becomes
       ;; Rose is red, violet's blue. Life's ordered: Org assists you.
       :macros {}
@@ -594,12 +594,12 @@ b) and replace above with:
       ;; Example usage:
       ;; Change the :macros value below to:
       ;; {"poem" "Rose is $1, violet's $2. Life's ordered: Org assists you."}
-      {% raw %};; input "{{poem red,blue}}"{% endraw %}
+      ;; input "{{poem red,blue}}"
       ;; becomes
       ;; Rose is red, violet's blue. Life's ordered: Org assists you.
       :macros {
-       ">" "<blockquote class='$1'>$2</blockquote>" ;;usage {% raw %}{{ > orange,Text to be presented in the blockquote }}{% endraw %}
-       "==" "<mark class='$1'>$2</mark>" ;;usage {% raw %}{{ == red,Text to be highlighted without linebreak }}{% endraw %}
+       ">" "<blockquote class='$1'>$2</blockquote>" ;;usage {{ > orange,Text to be presented in the blockquote }}
+       "==" "<mark class='$1'>$2</mark>" ;;usage {{ == red,Text to be highlighted without linebreak }}
       }
       ```
   
@@ -620,11 +620,11 @@ d) and replace above with:
       ;; Add custom commands to the command palette
       ;; To quickly call these commands, just type / (backslash) followed by characters in square bracket
       :commands [
-                  ["bookmark                                        [.b]" [[:editor/input "{% raw %}{{ renderer :template, Bookmark}}{% endraw %}" ]]],
-                  ["date_today                                      [dt]" [[:editor/input "{% raw %}{{renderer :template, Date Today}}{% endraw %}" ]]],
-                  ["issue_table                                     [.it]" [[:editor/input "{% raw %}{{renderer :template, Issue_table}}{% endraw %}" ]]],
-                  ["issue                                           [.is]" [[:editor/input "{% raw %}{{renderer :template, Issue}}{% endraw %}" ]]],
-                  ["circle                                          [.c]" [[:editor/input "{% raw %}{{renderer :template-view, circle-template, :color orange}}{% endraw %}" ]]],          
+                  ["bookmark                                        [.b]" [[:editor/input "{{ renderer :template, Bookmark}}" ]]],
+                  ["date_today                                      [dt]" [[:editor/input "{{renderer :template, Date Today}}" ]]],
+                  ["issue_table                                     [.it]" [[:editor/input "{{renderer :template, Issue_table}}" ]]],
+                  ["issue                                           [.is]" [[:editor/input "{{renderer :template, Issue}}" ]]],
+                  ["circle                                          [.c]" [[:editor/input "{{renderer :template-view, circle-template, :color orange}}" ]]],          
                   ["Blue Highlighter                                [=b]" [[:editor/input "<mark class='blue'></mark>" {:backward-pos 7}]]],
                   ["Green Highlighter                               [=g]" [[:editor/input "<mark class='green'></mark>" {:backward-pos 7}]]],
                   ["Gray Highlighter                                [=gra]" [[:edior/input "<mark class='gray'></mark>" {:backward-pos 7}]]],
@@ -978,13 +978,13 @@ d) and replace above with:
 ### Create Project
 - To create a CARDIO Log for a project, first create a new page and give it name of the Project.
 - Next, open the newly created `project page`.
-- Once opened, press `Ctrl+t` and select `project page` template and press `enter`.
+- Once opened, press ++ctrl+t++ and select `project page` template and press ++enter++.
 - This will create all relevant sections for the Project.
 
 ### Create User Page
 - Create a new page with the user / resource name.
 - Open the newly created page.
-- Once opened, press `Ctrl+t` and select `people page` template and press enter.
+- Once opened, press ++ctrl+t++ and select `people page` template and press ++enter++.
 - This will create all relevant sections to track actions for this resource.
 
 ### Create New Issues
@@ -1004,7 +1004,7 @@ d) and replace above with:
         |#Closed|🔵|
         |#no-go|🚫|
 
-- Circles with additional colours can be created using the template. To do so, press `/.c` and press `enter`. This should then put following text on the editor: `{% raw %} {{renderer :template-view, circle-template, :color orange}} {% endraw %}`
+- Circles with additional colours can be created using the template. To do so, press `/.c` and press ++enter++. This should then put following text on the editor: `{{renderer :template-view, circle-template, :color orange}}`
 
 - Now just replace `orange` in above with the colour desired.
 
@@ -1018,15 +1018,15 @@ d) and replace above with:
 
 #### Blockquotes
 - As we added css for different coloured borders of blockquotes and also created shortcode and keyboard shortcut we can do this in multiple ways:
-    - Type `/>b`and press enter. This will place `<blockquote class='blue'></blockquote>` and the quote can be written between the tags.
+    - Type `/>b`and press ++enter++. This will place `<blockquote class='blue'></blockquote>` and the quote can be written between the tags.
     - Type the following, replacing yellow with one of the predefined colours: yellow, pink, blue, green, red, grey, gray, orange or purple.
-      {% raw %} {{> yellow,Some yellow quote}} {% endraw %}
+       {{> yellow,Some yellow quote}} 
 
       ![image](../assets/images/2024/358212031-4caa35b9-9c71-4862-9dc1-a0c0c111fe23.png)
 
 #### Coloured Highlight
-- Type `/=y`, select `Yellow Highlighter` from pop-up menu and press enter. This will place `<mark class='yellow'></mark>` and text to be highlighted can be written between the tags. It will be presented as <mark>Yellow Highlight</mark>
+- Type `/=y`, select `Yellow Highlighter` from pop-up menu and press ++enter++. This will place `<mark class='yellow'></mark>` and text to be highlighted can be written between the tags. It will be presented as <mark>Yellow Highlight</mark>
 - Type the following and it will be presented as <span style="background-color: pink">This text is highlighted.</span>
-  {% raw %} {{== pink,pink highlight}} {% endraw %}
+   {{== pink,pink highlight}} 
 
   ![image](../assets/images/2024/358212180-a00cb3b5-497a-4401-810b-1276e7012641.png)
