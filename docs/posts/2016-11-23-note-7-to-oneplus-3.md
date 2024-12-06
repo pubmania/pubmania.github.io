@@ -7,7 +7,7 @@ date:
 draft: False
 description: Note 7 to OnePlus 3
 authors: ['ankit']
-comments: true
+comments: false
 categories:
   - Phone
   - Android

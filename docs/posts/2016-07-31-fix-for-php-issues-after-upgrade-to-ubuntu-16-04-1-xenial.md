@@ -7,7 +7,8 @@ date:
 draft: False
 description: Fix for PHP Issues after upgrade to Ubuntu 16.04.1 (Xenial)
 authors: ['ankit']
-comments: true
+comments: false
+comments_archived: true
 categories:
   - Linux
   - Troubleshooting

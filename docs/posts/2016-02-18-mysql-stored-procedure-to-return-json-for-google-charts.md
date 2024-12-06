@@ -7,7 +7,7 @@ date:
 draft: False
 description: MySQL Stored Procedure to return JSON for google charts on BIRT
 authors: ['ankit']
-comments: true
+comments: false
 categories:
   - SQL
   - Development

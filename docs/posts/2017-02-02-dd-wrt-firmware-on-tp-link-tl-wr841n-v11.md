@@ -7,7 +7,8 @@ date:
 draft: False
 description: Apply Unlocked stock firmware, download all the three files from... Follow these steps... 1. Connect the power supply to the TP-Link router and switch it on. 2. Connect the ethernet cable in one of the yellow LAN slots of the router. ...
 authors: ['ankit']
-comments: true
+comments: false
+comments_archived: true
 categories:
   - Linux
   - Operating System

@@ -8,7 +8,7 @@ date:
 draft: False
 description: Ghost V1.0 Upgrade on Apache stack, related quirks and fixes
 authors: ['ankit']
-comments: true
+comments: false
 categories:
   - Linux
   - Software

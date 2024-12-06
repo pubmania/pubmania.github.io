@@ -7,7 +7,7 @@ authors: ['ankit']
 date: 
   created: 2011-02-19 15:30:00
   updated: 2011-02-19 15:30:00
-comments: true
+comments: false
 categories:
   - Software
   - Phone

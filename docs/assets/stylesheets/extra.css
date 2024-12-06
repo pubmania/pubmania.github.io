@@ -27,6 +27,29 @@
     --md-color-skyblue: #05aaf7;
     --md-color-lightyellow: #ffc971;
     --md-color-lightpurple: #392f5a;
+
+        /* Default Bluesky commenting*/
+        --bluesky-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        --bluesky-font-size: 16px;
+        --bluesky-text-color: #333;
+        --bluesky-handle-color: #888;
+        --bluesky-footer-text-color: rgb(111, 134, 159);
+        --bluesky-bg-color: #fff;
+        --bluesky-hover-bg: #f0f0f0;
+        --bluesky-spacing-xs: 6px;
+        --bluesky-spacing-sm: 10px;
+        --bluesky-spacing-md: 14px;
+        --bluesky-spacing-lg: 19px;
+        --bluesky-avatar-size: 36px;
+        --bluesky-avatar-bg: #e0e0e0;
+    
+        /* Comments Structure */
+        --bluesky-reply-border-width: 2px;
+    
+        /* Footer */
+        --bluesky-footer-font-size: 15px;
+        --bluesky-icon-size: 18px;
+        --bluesky-border-color: var(--md-hr-color);
 }
 
 [data-md-color-primary=orange]:not([data-md-color-scheme=slate]) {
@@ -58,6 +81,24 @@
     --md-color-skyblue: #8ecae6;
     --md-color-lightyellow: #ffc971;
     --md-color-lightpurple: #e76ef7;
+
+    /* For bluesky comments */
+    --bluesky-bg-color: hsla(var(--md-hue),15%,14%,1);
+    --bluesky-font-family: system-ui, sans-serif;
+    --bluesky-font-size: 16px;
+    --bluesky-text-color: #cdd6f4;
+    --bluesky-handle-color: #a6adc8;
+    --bluesky-footer-text-color: #7f849c;
+    --bluesky-border-color: var(--md-hr-color);
+    --bluesky-hover-bg: #181825;
+    --bluesky-spacing-xs: 6px;
+    --bluesky-spacing-sm: 10px;
+    --bluesky-spacing-md: 14px;
+    --bluesky-avatar-size: 36px;
+    --bluesky-avatar-bg: #313244;
+    --bluesky-reply-border-width: 2px;
+    --bluesky-footer-font-size: 15px;
+    --bluesky-icon-size: 18px;
 }
 
 /* search input */
@@ -70,6 +111,14 @@
     .md-search__inner {
         width: 2.2rem;
     }
+}
+
+[data-md-color-scheme=slate]::part(comment-header) {
+    background: hsla(var(--md-hue),15%,14%,1);
+}
+
+[data-md-color-scheme=slate]::part(avatar) {
+    border: 1px solid #45475a;
 }
 
 /* main content */

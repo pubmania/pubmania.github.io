@@ -7,7 +7,8 @@ date:
 draft: False
 description: Rstudio Server Setup with SSL behind Apache proxy server
 authors: ['ankit']
-comments: true
+comments: false
+comments_archived: true
 categories:
   - Linux
   - Software

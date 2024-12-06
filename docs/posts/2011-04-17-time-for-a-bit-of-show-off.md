@@ -7,7 +7,7 @@ authors: ['ankit']
 date: 
   created: 2011-04-17 15:02:00
   updated: 2011-04-17 15:02:00
-comments: true
+comments: false
 categories:
   - Development
   - Software

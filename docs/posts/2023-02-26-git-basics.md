@@ -7,7 +7,7 @@ date:
     updated: 2023-02-26 17:50:00
 draft: false
 description: Basic overview of what GIT is and how to use it
-comments: true
+comments: false
 categories:
   - Software
   - Development

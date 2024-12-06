@@ -7,7 +7,7 @@ date:
 draft: False
 description: Update Ghost on Fedora
 authors: ['ankit']
-comments: true
+comments: false
 categories:
   - Linux
   - Software

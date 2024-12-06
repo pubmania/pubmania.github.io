@@ -7,7 +7,7 @@ date:
 draft: False
 description: Grav - CMS with a difference
 authors: ['ankit']
-comments: true
+comments: false
 categories:
   - Linux
   - Troubleshooting

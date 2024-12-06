@@ -7,7 +7,7 @@ authors: ['ankit']
 date: 
   created: 2009-10-07 17:44:00
   updated: 2009-10-07 17:44:00
-comments: true
+comments: false
 categories:
   - Phone
 ---

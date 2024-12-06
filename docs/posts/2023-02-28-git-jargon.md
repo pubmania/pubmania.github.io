@@ -7,7 +7,7 @@ date:
 authors: [ankit]
 draft: false
 description: Recap on Git basics and explanation of some git jargon
-comments: true
+comments: false
 categories:
   - Linux
   - Software

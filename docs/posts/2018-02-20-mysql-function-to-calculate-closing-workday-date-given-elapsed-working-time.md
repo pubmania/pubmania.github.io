@@ -7,7 +7,7 @@ date:
 draft: False
 description: MySQL Function to calculate closing WorkDay date given elapsed working time
 authors: ['ankit']
-comments: true
+comments: false
 categories:
   - SQL
   - Development

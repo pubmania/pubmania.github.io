@@ -7,7 +7,7 @@ authors: ['ankit']
 date: 
   created: 2009-09-15 17:00:00
   updated: 2009-09-15 17:00:00
-comments: true
+comments: false
 categories:
   - Linux
   - Operating System

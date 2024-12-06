@@ -7,7 +7,7 @@ date:
 draft: False
 description: Ethercalc
 authors: ['ankit']
-comments: true
+comments: false
 categories:
   - Linux
   - Software

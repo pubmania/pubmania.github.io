@@ -7,7 +7,7 @@ date:
   updated: 2024-08-13 08:15:00
 draft: false
 description: Notes to create a functional project logs template for Logseq graphs.
-comments: true
+bsky: https://bsky.app/profile/geekyank.bsky.social/post/3lcoceyl7dc2m
 categories:
   - Software
   - Troubleshooting

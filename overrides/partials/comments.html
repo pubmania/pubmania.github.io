@@ -1,3 +1,13 @@
+{% if page.meta.comments_archived %}
+<details class="site-note">
+    <summary>Comments from Disqus</summary>
+    <p>As I plan to move away from disqus comment system, I am just including the screenshots of comments just so any information shared by or to the readers is retained.</p>
+    <p>
+      <a class="glightbox" href="../../../assets/images/disqus_comments/{{ page.meta.slug }}-dark.png#only-dark" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Disqus Comments" src="../../../assets/images/disqus_comments/{{ page.meta.slug }}-dark.png#only-dark"></a>
+    <a class="glightbox" href="../../../assets/images/disqus_comments/{{ page.meta.slug }}-light.png#only-light" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Disqus Comments" src="../../../assets/images/disqus_comments/{{ page.meta.slug }}-light.png#only-light"></a></p>
+</details>
+{% endif %}
+<!-- DISQUS SECTION -->
 {% if page.meta.comments %}
 <h2 id="__comments">
   <span class="twemoji" style="margin-right: 10px;">
@@ -31,4 +41,18 @@
     });
   }
 </script>
+{% endif %}
+<!-- BLUESKY SECTION -->
+{% elif page.meta.comments and page.meta.bsky %}
+<h2 id="__comments">
+  <span class="twemoji" style="margin-right: 10px;">
+    {% include ".icons/fontawesome/brands/square-bluesky.svg" %}
+  </span>
+  {{ lang.t("meta.comments") }}
+</h2>
+<p><a href="{{ page.meta.bsky }}">Join the conversation on Bluesky.... </a></p>
+<script type="module" src="{{ '/assets/js/bluesky-comments.mjs' }}"></script>
+<!-- Use the element -->
+<bluesky-comments url={{ page.meta.bsky }}>
+</bluesky-comments>
 {% endif %}

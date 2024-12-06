@@ -7,7 +7,7 @@ date:
 draft: False
 description: Ghost Upgrade errors and fixes (1.19.x)
 authors: ['ankit']
-comments: true
+comments: false
 categories:
   - Linux
   - Software

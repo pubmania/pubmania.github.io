@@ -7,7 +7,7 @@ date:
 draft: False
 description: Linux Mint on Android through VNC and Jump
 authors: ['ankit']
-comments: true
+comments: false
 categories:
   - Linux
   - Software

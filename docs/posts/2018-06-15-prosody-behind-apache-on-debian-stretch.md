@@ -8,7 +8,8 @@ date:
     updated: 2020-05-21 11:56:42
 draft: false
 description: Complete walk-through to set-up a self-hosted instant messaging
-comments: true
+comments: false
+comments_archived: true
 categories:
   - Linux
   - Software

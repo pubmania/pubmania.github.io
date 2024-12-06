@@ -7,7 +7,7 @@ date:
       updated: 2018-11-10T08:59:05
 draft: false
 description: Home Networking
-comments: true
+comments: false
 categories:
   - Linux
   - Network Setup

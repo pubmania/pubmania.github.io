@@ -7,7 +7,8 @@ authors: ['ankit']
 date: 
   created: 2011-04-24 17:06:00
   updated: 2018-03-29 15:37:53
-comments: true
+comments: false
+comments_archived: true
 categories:
   - Keyboard
   - Troubleshooting

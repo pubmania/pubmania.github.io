@@ -115,5 +115,8 @@ plugins:
 extra_css:
   - assets/stylesheets/extra.css
 
+extra_javascript:
+  - assets/js/bluesky-comments.mjs
+  
 extra:
   disqus: !ENV [DISQUS_CODE,'']

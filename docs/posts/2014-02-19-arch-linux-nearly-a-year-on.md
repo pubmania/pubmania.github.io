@@ -7,7 +7,7 @@ date:
 draft: False
 description: Arch Linux - nearly a year on....
 authors: ['ankit']
-comments: true
+comments: false
 categories:
   - Linux
 ---

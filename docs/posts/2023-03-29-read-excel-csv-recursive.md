@@ -7,7 +7,7 @@ date:
     updated: 2023-04-18 20:26:00
 draft: false
 description: A function written in Python that allows user to provide parameters and then checks all excel and csv files to extract data where conditions are met.
-comments: true
+comments: false
 categories:
   - Software
   - Python

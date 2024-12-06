@@ -7,7 +7,7 @@ authors: ['ankit']
 date: 
   created: 2011-05-04 15:12:00
   updated: 2011-05-04 15:12:00
-comments: true
+comments: false
 categories:
   - Linux
   - Troubleshooting

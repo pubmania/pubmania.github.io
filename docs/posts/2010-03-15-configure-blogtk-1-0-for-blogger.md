@@ -7,7 +7,7 @@ authors: ['ankit']
 date: 
   created: 2010-03-15 12:39:00
   updated: 2010-03-15 12:39:00
-comments: true
+comments: false
 categories:
   - Blogging
   - Software

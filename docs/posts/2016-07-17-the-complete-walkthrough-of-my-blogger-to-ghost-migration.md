@@ -7,7 +7,7 @@ date:
 draft: False
 description: The complete walkthrough of my blogger to ghost migration
 authors: ['ankit']
-comments: true
+comments: false
 categories:
   - Linux
   - Software

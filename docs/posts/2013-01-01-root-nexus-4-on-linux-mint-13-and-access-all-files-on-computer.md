@@ -7,7 +7,7 @@ authors: ['ankit']
 date: 
   created: 2013-01-01 12:38:00
   updated: 2013-01-01 12:38:00
-comments: true
+comments: false
 categories:
   - Linux
   - Software

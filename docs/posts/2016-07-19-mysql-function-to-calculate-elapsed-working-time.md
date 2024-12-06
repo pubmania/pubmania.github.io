@@ -7,7 +7,8 @@ date:
 draft: False
 description: MySQL function to calculate elapsed working time
 authors: ['ankit']
-comments: true
+comments: false
+comments_archived: true
 categories:
   - SQL
   - Development

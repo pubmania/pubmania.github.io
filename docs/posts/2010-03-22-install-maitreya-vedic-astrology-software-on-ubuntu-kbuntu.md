@@ -7,7 +7,8 @@ authors: ['ankit']
 date: 
   created: 2010-03-22 13:38:00
   updated: 2010-03-22 13:38:00
-comments: true
+comments: false
+comments_archived: true
 categories:
   - Linux
   - Software
@@ -126,3 +127,8 @@ The software should now be installed and you can test it by clicking the file na
 To create a desktop icon goto the folder `/usr/local/src/maitreya/maitreya6/trunk` and copy the file `maitreya6.desktop` and paste in on desktop.
 
 This is it you have now installed the Maitreya software !!!
+
+As I plan to move away from disqus comment system, I am just including the screenshots of comments just so any information shared by or to the readers is retained.
+
+![Image title](../assets/images/disqus_comments/install-maitreya-vedic-astrology-software-on-ubuntu-kbuntu-dark.png#only-dark)
+![Image title](../assets/images/disqus_comments/install-maitreya-vedic-astrology-software-on-ubuntu-kbuntu-light.png#onlylight)

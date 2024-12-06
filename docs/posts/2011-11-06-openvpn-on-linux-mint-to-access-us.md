@@ -7,7 +7,7 @@ authors: ['ankit']
 date: 
   created: 2011-11-06 10:26:00
   updated: 2011-11-06 10:26:00
-comments: true
+comments: false
 categories:
   - Linux
   - Software
@@ -63,7 +63,7 @@ gksudo nautilus /etc/openvpn/
 You will be asked for root password and the File Explorer will be opened with root access. This is necessary as /opt directory only gives write access to root and as you wil see next step requires some files to be extracted in this directory. This extracted directory will be some long number.
 
 !!! site-tip "Tip"
-    Please be extremely careful now, as you are accessing your file system as root.</div>
+    Please be extremely careful now, as you are accessing your file system as root.
 
 Now copy the zip file downloaded from Hostizzle in Step 2, to this directory and extract it here.
 

@@ -7,7 +7,7 @@ date:
 draft: False
 description: Windows 10 - a bucket load of pain
 authors: ['ankit']
-comments: true
+comments: false
 categories:
   - Linux
   - Operating System

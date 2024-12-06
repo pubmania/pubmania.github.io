@@ -7,7 +7,7 @@ date:
 draft: False
 description: Ghost on Fedora 24
 authors: ['ankit']
-comments: true
+comments: false
 categories:
   - Linux
   - Software

@@ -7,7 +7,7 @@ date:
 draft: False
 description: Seafile Server behind nginx on Fedora 24 Security Lab Spin
 authors: ['ankit']
-comments: true
+comments: false
 categories:
   - Linux
   - Software

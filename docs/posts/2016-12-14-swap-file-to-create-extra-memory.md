@@ -8,7 +8,7 @@ date:
 draft: False
 description: Swap File to create extra memory
 authors: ['ankit']
-comments: true
+comments: false
 categories:
   - Linux
   - Operating System

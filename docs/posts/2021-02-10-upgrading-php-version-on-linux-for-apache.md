@@ -7,7 +7,7 @@ date:
   updated: 2021-02-10 00:14:40
 draft: false
 description: Upgrading PHP version on Linux for Apache
-comments: true
+comments: false
 categories:
   - Linux
   - Troubleshooting

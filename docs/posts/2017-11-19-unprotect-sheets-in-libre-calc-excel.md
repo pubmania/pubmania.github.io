@@ -7,7 +7,7 @@ date:
 draft: False
 description: Unprotect Sheets in Libre Calc, Excel
 authors: ['ankit']
-comments: true
+comments: false
 categories:
   - Software
   - Troubleshooting

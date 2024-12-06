@@ -7,7 +7,8 @@ date:
 draft: False
 description: Tomcat 8.5.4 on Fedora behind Nginx
 authors: ['ankit']
-comments: true
+comments: false
+comments_archived: true
 categories:
   - Linux
   - Software

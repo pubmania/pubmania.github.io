@@ -7,7 +7,7 @@ date:
     updated: 2019-04-08 17:36:09
 draft: false
 description: Metabase - A BI solution that just works
-comments: true
+comments: false
 categories:
   - Linux
   - Software

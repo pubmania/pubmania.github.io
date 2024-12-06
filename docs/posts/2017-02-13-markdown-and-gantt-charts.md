@@ -8,7 +8,7 @@ date:
 draft: False
 description: Markdown and Gantt Charts
 authors: ['ankit']
-comments: true
+comments: false
 categories:
   - Software
 ---
