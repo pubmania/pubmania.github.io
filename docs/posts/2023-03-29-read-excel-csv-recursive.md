@@ -8,6 +8,7 @@ date:
 draft: false
 description: A function written in Python that allows user to provide parameters and then checks all excel and csv files to extract data where conditions are met.
 comments: false
+bsky: https://bsky.app/profile/ankitmittal.bsky.social/post/3lcof2npzsm2e
 categories:
   - Software
   - Python
