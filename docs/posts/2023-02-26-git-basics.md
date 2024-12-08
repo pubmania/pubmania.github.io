@@ -8,6 +8,7 @@ date:
 draft: false
 description: Basic overview of what GIT is and how to use it
 comments: false
+bsky: https://bsky.app/profile/ankitmittal.bsky.social/post/3lcse7yabrd2x
 categories:
   - Software
   - Development
