@@ -199,7 +199,7 @@ export class BlueskyComments extends HTMLElement {
         this.#displayReplies(replies);
       } catch (e) {
         this.shadowRoot.querySelector(".comments").innerHTML =
-          `<p>Error loading comments.</p>`;
+          `<p>No Bluesky Comments thread found for this post.</p>`;
       }
     } else {
       this.shadowRoot.querySelector(".comments").innerHTML =
