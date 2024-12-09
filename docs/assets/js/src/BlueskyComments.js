@@ -187,14 +187,18 @@ export class BlueskyComments extends HTMLElement {
     if (!blueskyUrl) {
       blueskyUrl = this.getAttribute("url");
     }
-    this.shadowRoot.querySelector(".comments").innerHTML = 
-    `<p class="conversation"><a href="${blueskyUrl}" target="_blank">Join the conversation on Bluesky.... </a></p>`;
+    
     if (blueskyUrl) {
       try {
         const atUri = await this.#resolvePostUrl(blueskyUrl);
         if (!atUri) {
           throw new Error("Failed to resolve AT URI");
         }
+        const urlParts = (atUri).split("/");
+        const postId = urlParts[4];
+        console.log(postId)
+        this.shadowRoot.querySelector(".comments").innerHTML = 
+        `<p class="conversation"><a href="https://bsky.app/profile/ankit.dumatics.com/post/${postId}" target="_blank">Join the conversation on Bluesky.... </a></p>`;
         const replies = await this.#fetchReplies(atUri);
         this.#displayReplies(replies);
       } catch (e) {
