@@ -8,6 +8,7 @@ date:
 draft: false
 description: JupyterLite on Github Enterprise with Panel enabled - Steps to build JupyterLite on windows powershell with Panel and local file access and to host it on restricted Github Enterprise.
 comments: false
+bsky: true
 categories:
   - Github Hosting
   - Python
