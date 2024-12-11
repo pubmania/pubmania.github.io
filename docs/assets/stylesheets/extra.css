@@ -178,7 +178,8 @@
 /*Custom Site admonitions*/
 /*---------------------note----------------------------*/
 .md-typeset .admonition.site-note,.md-typeset details.site-note {
-    border-color: #ff9100
+    border-color: #ff9100;
+    margin: 1.5rem;
 }
 
 .md-typeset .admonition.site-note:focus-within,.md-typeset details.site-note:focus-within {
@@ -200,7 +201,8 @@
 }
 /*---------------------info-----------------*/
 .md-typeset .admonition.site-info,.md-typeset details.site-info {
-    border-color: #ff9100
+    border-color: #ff9100;
+    margin: 1.5rem;
 }
 
 .md-typeset .admonition.site-info:focus-within,.md-typeset details.site-info:focus-within {
@@ -222,7 +224,8 @@
 }
 /*-----------------abstract-----------------*/
 .md-typeset .admonition.site-abstract,.md-typeset details.site-abstract {
-    border-color: #ff9100
+    border-color: #ff9100;
+    margin: 1.5rem;
 }
 
 .md-typeset .admonition.site-abstract:focus-within,.md-typeset details.site-abstract:focus-within {
@@ -244,7 +247,8 @@
 }
 /*------------------tip---------------*/
 .md-typeset .admonition.site-tip,.md-typeset details.site-tip {
-    border-color: #ff9100
+    border-color: #ff9100;
+    margin: 1.5rem;
 }
 
 .md-typeset .admonition.site-tip:focus-within,.md-typeset details.site-tip:focus-within {
@@ -266,7 +270,8 @@
 }
 /*---------------------quote----------------------------*/
 .md-typeset .admonition.site-quote,.md-typeset details.site-quote {
-    border-color: #ff9100
+    border-color: #ff9100;
+    margin: 1.5rem;
 }
 
 .md-typeset .admonition.site-quote:focus-within,.md-typeset details.site-quote:focus-within {
@@ -288,7 +293,8 @@
 }
 /*---------------------tag----------------------------*/
 .md-typeset .admonition.site-tag,.md-typeset details.site-tag {
-    border-color: #ff9100
+    border-color: #ff9100;
+    margin: 1.5rem;
 }
 
 .md-typeset .admonition.site-tag:focus-within,.md-typeset details.site-tag:focus-within {
@@ -362,7 +368,7 @@
     padding: .9375em 1.25em;
     vertical-align: top;
     min-width: 0;
-}}
+}
 /******************header display on mobile for previous and next page***************************/
 .md-header__nav {
     float: right;
