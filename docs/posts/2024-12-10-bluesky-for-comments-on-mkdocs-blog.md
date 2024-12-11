@@ -76,7 +76,7 @@ For the comments to appear on the blog, the bluesky post url needs to be added t
     @enduml
     ```
 
-=== "Problem 1 Flow"
+=== "Problem Flow"
 
     ```plantuml
     @startuml
@@ -217,9 +217,20 @@ js
  |-- custom-elements.json
 ```
 
+### What does this script do?
+
+1. The function `loadComments` is where bulk of the magic happens.
+2. This function first obtains the URL of the webpage and extracts `pathname` and discards the `#` part.
+3. It then creates an assembled URL which concatenates my blog domain with the pathname.
+4. It then searches on bluesky URL against my DID for the oldest post that has the URL for this blog post on it.
+5. If it finds one, it passes it further to then get the thread and replies etc.
+6. If it does not find any post, it checks if the bsky value from frontmatter is a valid bluesky URL and if so it tries using that to obtain thread.
+7. If neither value was available, it displays `No Comments thread found for this post` under comments section until such time that a post is created on bluesky by the account being used to host comments.
+
+
 ### Modify javascript
 
-Now step 2 of algorithm `Search on bluesky for the oldest post created by the author containing this URL` meant I have done some bit of hardcoding. I can do away with it in due course but for the moment, anyone planning to reuse [the code](https://github.com/pubmania/pubmania.github.io/blob/e23e07a787c567c999db2de550be0ac3f43fa4ab/docs/assets/js/src/BlueskyComments.js#L156), must modify it, specifically the highlighted lines below:
+Now, in order to achieve step 2 of algorithm `Search on bluesky for the oldest post created by the author containing this URL` I have done some bit of hardcoding. I can do away with it in due course but for the moment, anyone planning to reuse [the code](https://github.com/pubmania/pubmania.github.io/blob/e23e07a787c567c999db2de550be0ac3f43fa4ab/docs/assets/js/src/BlueskyComments.js#L156), must modify it, specifically the highlighted lines below:
 
 ```javascript linenums="156" hl_lines="9 13" title="/docs/assets/js/src/BlueskyComments.js"
 async #loadComments() {      
@@ -242,7 +253,7 @@ async #loadComments() {
 
 ## CSS
 
-Make sure you update your `extra.css` so the comments match your theme colours. The css rules associated with bluesky comment are ,clearly marked in `docs/assets/stylesheets/extra.css` on [my repo](https://github.com/pubmania/pubmania.github.io/blob/main/docs/assets/stylesheets/extra.css). However, specifically following rules must be added to ensure light and dark theme work well:
+Make sure you update your `extra.css` so the comments match your theme colours. The css rules associated with bluesky comment are ,clearly marked in `docs/assets/stylesheets/extra.css` on [my repo](https://github.com/pubmania/pubmania.github.io/blob/main/docs/assets/stylesheets/extra.css). However, specifically following rules must be added / adjusted to ensure light and dark theme work well:
 
 === "Light Theme"
 
@@ -297,7 +308,7 @@ Make sure you update your `extra.css` so the comments match your theme colours. 
     ```
 
 
-There are also some css rules specified in [BlueskyComments.js](https://github.com/pubmania/pubmania.github.io/blob/e23e07a787c567c999db2de550be0ac3f43fa4ab/docs/assets/js/src/BlueskyComments.js#L14) that can be seen by clicking on the link and may need to be modified depending on the theme in use.
+There are also some css rules specified in `BlueskyComments.js` that can be seen by clicking on [this link](https://github.com/pubmania/pubmania.github.io/blob/e23e07a787c567c999db2de550be0ac3f43fa4ab/docs/assets/js/src/BlueskyComments.js#L14) and will need to be modified depending on the theme in use.
 
 ## Comments Template
 
@@ -321,7 +332,9 @@ Now, my comments template currently has some code that ensures the comments from
 ```
 
 !!! tip
-    This ofcourse means that in your frontmatter of the post there must be an entry for `bsky`. For example, frontmatter of this post is:
+    This ofcourse means that in your frontmatter of the post, there must be an entry for `bsky`. 
+    
+    For example, frontmatter of this post is:
 
     ```yaml title="post fronmatter"
     title: "Bluesky for comments on mkdocs blog"
