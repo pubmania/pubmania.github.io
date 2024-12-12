@@ -29,38 +29,13 @@ For the comments to appear on the blog, the bluesky post url needs to be added t
 
     ```plantuml
     @startuml
-    !theme sketchy-outline	
-    !startsub activity
-        skinparam activity {
-          $primary_scheme()
-          BarColor #orangered
-          StartColor #orangered
-          EndColor #orangered
-          BorderColor #orangered
-          BackgroundColor #white
-          ArrowColor #orangered
-          ArrowThickness 1.25
-          ArrowFontColor #maroon
-          FontColor #maroon                
-                ''
-                DiamondBackgroundColor #darkgreen
-                DiamondLineColor #white
-                DiamondFontColor #white
-        }
-    !endsub
-    !startsub note
-        skinparam note {
-            BorderThickness 1.25
-            BackgroundColor #ffe4b5
-            BorderColor #orangered
-            FontColor #maroon
-        }
-    !endsub    
+    --8<-- "puml_custom_theme.txt"
     start
-    :create a blog post;
-    :publish the blog post;
-    :create a bluesky post;
-    :comments thread activated on blog post;
+    :Open Blogpost in browser;
+    :Copy the BlogPost URL;
+    partition "Reduced but still additional steps" {
+    :Open Bluesky website;
+    :Login and create a new post;
     floating note right
     //Algorithm//
 
@@ -72,6 +47,10 @@ For the comments to appear on the blog, the bluesky post url needs to be added t
    
       4. If no such URL is found, display the message: `No Bluesky Comments thread found for this post.`
     end note
+    :Paste the copied Blogpost URL in this post;
+    :Publish the post;
+    }
+    :Comment Section is activated;
     end
     @enduml
     ```
@@ -80,55 +59,28 @@ For the comments to appear on the blog, the bluesky post url needs to be added t
 
     ```plantuml
     @startuml
-    !theme sketchy-outline	
-    !startsub activity
-        skinparam activity {
-          $primary_scheme()
-          BarColor #orangered
-          StartColor #orangered
-          EndColor #orangered
-          BorderColor #orangered
-          BackgroundColor #white
-          ArrowColor #orangered
-          ArrowThickness 1.25
-          ArrowFontColor #maroon
-          FontColor #maroon                
-          ''
-          DiamondBackgroundColor #darkgreen
-          DiamondLineColor #white
-          DiamondFontColor #white
-        }
-    !endsub
-    !startsub note
-        skinparam note {
-            BorderThickness 1.25
-            BackgroundColor #ffe4b5
-            BorderColor #orangered
-            FontColor #maroon
-        }
-    !endsub
-    !startsub partition
-        skinparam partition {
-            BorderThickness 1.25
-            BackgroundColor white
-            BorderColor #orangered
-            FontColor #maroon
-        }
-    !endsub        
+    --8<-- "puml_custom_theme.txt"
     start
-    :create a blog post;
-    :publish the blog post;
-    :create a bluesky post;
+    :Create Blogpost;
+    :Publish;
     partition "Additional Steps" {
     floating note right
     This becomes all too cumbersome and I would much rather 
-    the comments were visible once the post was published 
-    and if the bluesky post existed for that blog post URL.
-    for that blog post URL.
+    the comments were visible after the blog post was published 
+    and if the bluesky post existed for that blog post URL 
+    without the need for all these additional steps.
     end note    
-    :copy the bluesky post url;
-    :paste it in the frontmatter of blog post;
-    :republish the blog post;
+    :Open Blogpost in browser;
+    :Copy the BlogPost URL;
+    :Open Bluesky website;
+    :Login and create a new post;
+    :Paste the copied Blogpost URL in this post;
+    :Publish the post;
+    :Copy the Bluesky Post URL;
+    :Open Blogpost file;
+    :Paste the Bluesky Post URL in frontmatter;
+    :Republish the Blogpost;
+    :Comment Section is activated;
     }
     :comments thread activated on blog post;
     end
@@ -137,29 +89,11 @@ For the comments to appear on the blog, the bluesky post url needs to be added t
 
 === "Aimed Final Flow (WIP)"
 
-    **Second part of the problem is that solving the above while removes need to republish, it still means that unless the author has created a bluesky post, comments are not open for that blog post. I am working on a way to automate that using blusky API but it is still very much work in progress.**
+    **Second part of the problem is that while the 'acceptable flow' removes need to republish the blogpost, it still means that unless the author has created a bluesky post, comments are not open for that blog post. I am working on a way to automate that using blusky API but it is still very much work in progress.**
 
     ```plantuml
     @startuml
-    !theme sketchy-outline	
-    !startsub activity
-        skinparam activity {
-          $primary_scheme()
-          BarColor #orangered
-          StartColor #orangered
-          EndColor #orangered
-          BorderColor #orangered
-          BackgroundColor #white
-          ArrowColor #orangered
-          ArrowThickness 1.25
-          ArrowFontColor #maroon
-          FontColor #maroon                
-          ''
-          DiamondBackgroundColor #darkgreen
-          DiamondLineColor #white
-          DiamondFontColor #white
-        }
-    !endsub
+    --8<-- "puml_custom_theme.txt"
     start
     :create a blog post;
     :publish the blog post;
