@@ -46,13 +46,11 @@ def process_file_yaml(file_path, yaml_regex,access_token,at_client,image_directo
                 title_value = value
             if key == 'description':
                 description_value = value
-        print(f"created_date: {created_date} and slug_value: {slug_value}")
+        
         yyyy = created_date.year
         mm = f"{created_date.month:02}"
         dd = f"{created_date.day:02}"
-        #print(f"url: https://mgw.dumatics.com/{yyyy}/{mm}/{dd}/{slug_value}.html")
-        print(f"url: {site_url}/{yyyy}/{mm}/{dd}/{slug_value}.html")
-        print(f"img_path: {image_directory}/{file_path.split('/')[-1].split('.')[0]}.png")
+        
         url = f"{site_url}/{yyyy}/{mm}/{dd}/{slug_value}.html"
         image_path = f"{image_directory}/{file_path.split('/')[-1].split('.')[0]}.png"
         
@@ -67,7 +65,9 @@ def process_file_yaml(file_path, yaml_regex,access_token,at_client,image_directo
         # Calculate the difference in days
         difference = (current_date - created_date).days
         if difference <= 5:
-            
+            print(f"created_date: {created_date} and slug_value: {slug_value}")
+            print(f"url: {site_url}/{yyyy}/{mm}/{dd}/{slug_value}.html")
+            print(f"img_path: {image_directory}/{file_path.split('/')[-1].split('.')[0]}.png")
             #####################################################################################
             ################### skip posting if url is already posted on bluesky#################
             #####################################################################################
