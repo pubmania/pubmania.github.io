@@ -109,8 +109,8 @@ def process_file_yaml(file_path, yaml_regex,access_token,at_client,image_directo
                 "external": card,
                 }
                 
-                #text = 'Check out a new post on my blog.'
-                text = 'Testing automated Bsky post creation'
+                text = 'Check out the latest post on my blog.'
+                #text = 'Testing automated Bsky post creation'
                 post_with_link_card_from_website = at_client.send_post(text=text, embed=embed_post)
                 print(post_with_link_card_from_website.uri)
     else:
