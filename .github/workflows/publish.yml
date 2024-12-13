@@ -32,3 +32,10 @@ jobs:
           EDIT_URL: ${{ vars.EDIT_URL }}
           SITE_URL: ${{ vars.SITE_URL }}
           DISQUS_CODE: ${{ vars.DISQUS_CODE }}
+      - name: Run Post-Deployment Script
+        run: python post_deploy.py
+        env:
+          BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
+          BSKY_APP_PWD: ${{ secrets.BSKY_APP_PWD }}
+          GITHUB_WORKSPACE: ${{ github.workspace }}
+          SITE_URL: ${{ vars.SITE_URL }}          
