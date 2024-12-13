@@ -1,0 +1,1764 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Basic overview of what GIT is and how to use it">
+      
+      
+      
+        <link rel="canonical" href="https://mgw.dumatics.com/2023/02/26/git-basics.html">
+      
+      
+        <link rel="prev" href="../../01/25/jupyterlite-on-github-enterprise-with-panel-enabled.html">
+      
+      
+        <link rel="next" href="../28/git-jargon.html">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.48">
+    
+    
+      
+        <title>Git Basics - Make Gadgets Work</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Git Basics - Make Gadgets Work" >
+      
+        <meta  property="og:description"  content="Basic overview of what GIT is and how to use it" >
+      
+        <meta  property="og:image"  content="https://mgw.dumatics.com/assets/images/social/posts/2023-02-26-git-basics.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://mgw.dumatics.com/2023/02/26/git-basics.html" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Git Basics - Make Gadgets Work" >
+      
+        <meta  name="twitter:description"  content="Basic overview of what GIT is and how to use it" >
+      
+        <meta  name="twitter:image"  content="https://mgw.dumatics.com/assets/images/social/posts/2023-02-26-git-basics.png" >
+      
+    
+    
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#basics-of-git" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="header.title">
+    <a href="../../../index.html" title="Make Gadgets Work" class="md-header__button md-logo" aria-label="Make Gadgets Work" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Make Gadgets Work
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Git Basics
+            
+          </span>
+        </div>
+    </div>
+    </div>
+    
+    <!--style>
+        .md-header__nav {
+            float: right;
+        }
+        .md-header__nav__inner:not([hidden]) {
+            display: flex;
+        }
+    </style-->
+    <div class="md-header__nav">
+      
+      <nav class="md-header__nav__inner">
+        
+        
+        <a href="../../01/25/jupyterlite-on-github-enterprise-with-panel-enabled.html" aria-label="Previous: JupyterLite on Github Enterprise with Panel enabled" rel="prev">
+        <div class="md-footer__button md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+        </div>
+        </a>
+        
+        
+        
+        <a href="../28/git-jargon.html" aria-label="Next: Git Jargon Explained" rel="next">
+        <div class="md-footer__button md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+        </div>
+        </a>
+        
+      </nav>
+    </div>
+    
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="orange" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+    <label class="md-header__button md-icon" for="__search">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/pubmania/pubmania.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="../../../index.html" class="md-tabs__link">
+        
+  
+    
+  
+  All Articles
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../about/index.html" class="md-tabs__link">
+          
+  
+    
+  
+  About
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../archive/2024.html" class="md-tabs__link">
+          
+  
+    
+  
+  Archive
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../category/android.html" class="md-tabs__link">
+          
+  
+    
+  
+  Categories
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../index.html" title="Make Gadgets Work" class="md-nav__button md-logo" aria-label="Make Gadgets Work" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Make Gadgets Work
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/pubmania/pubmania.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    All Articles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../about/index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            About
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Archive
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2024.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2024
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2023.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2021.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2021
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2020.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2020
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2018.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2018
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2017.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2017
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2016.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2016
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2014.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2014
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2013.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2013
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2012.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2012
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2011.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2011
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2010.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2010
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2009.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2009
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Categories
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Categories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/android.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/blogging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blogging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/development.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/git.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/github-hosting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Github Hosting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/keyboard.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Keyboard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/linux.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/logseq.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logseq
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/network-setup.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Network Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/operating-system.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Operating System
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/phone.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Phone
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/printer.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Printer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/project-management.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Project Management
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/python.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/router.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Router
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/sql.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/server-setup.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Server Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/software.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Software
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/troubleshooting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basics-of-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basics of Git
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basics of Git">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#version-control-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version Control System
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#working-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Working Directory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initiatlise" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initiatlise
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Status
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#revert" class="md-nav__link">
+    <span class="md-ellipsis">
+      Revert
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../index.html" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="../../../assets/images/profile_pix/profile_1.jpg" alt="Ankit">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>
+                        
+                          <a href="https://github.com/pubmania">Ankit</a>
+                        
+                      </strong>
+                      <br>
+                      Creator
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2023-02-26 17:50:00+00:00" class="md-ellipsis">February 26, 2023</time>
+                      </div>
+                    </li>
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 13h1.5v2.82l2.44 1.41-.75 1.3L15 16.69zm4-5H5v11h4.67c-.43-.91-.67-1.93-.67-3a7 7 0 0 1 7-7c1.07 0 2.09.24 3 .67zM5 21a2 2 0 0 1-2-2V5c0-1.11.89-2 2-2h1V1h2v2h8V1h2v2h1a2 2 0 0 1 2 2v6.1c1.24 1.26 2 2.99 2 4.9a7 7 0 0 1-7 7c-1.91 0-3.64-.76-4.9-2zm11-9.85A4.85 4.85 0 0 0 11.15 16c0 2.68 2.17 4.85 4.85 4.85A4.85 4.85 0 0 0 20.85 16c0-2.68-2.17-4.85-4.85-4.85"/></svg>
+                          <time datetime="2023-02-26 17:50:00+00:00" class="md-ellipsis">February 26, 2023</time>
+                        </div>
+                      </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../category/software.html">Software</a>, 
+                              <a href="../../../category/development.html">Development</a>, 
+                              <a href="../../../category/git.html">Git</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              6 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+
+  
+    <a href="https://github.com/pubmania/pubmania.github.io/edit/main/docs/posts/2023-02-26-git-basics.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/pubmania/pubmania.github.io/raw/main/docs/posts/2023-02-26-git-basics.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+  <h1>Git Basics</h1>
+
+<h2 id="basics-of-git">Basics of Git<a class="headerlink" href="#basics-of-git" title="Permanent link">&para;</a></h2>
+<p>Recently, I was asked to help people understand what is this whole business with GIT and I ran a few sessions on the topic specifically keeping in mind that my audience consisted of tech enthusiasts with minimal tech background. The content below is how I explained and as it went down well, I figured it may be helpful to someone else too; hence this post. <img alt="😄" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f604.svg" title=":smile:" /></p>
+<!-- more -->
+
+<h3 id="version-control-system">Version Control System<a class="headerlink" href="#version-control-system" title="Permanent link">&para;</a></h3>
+<p>To understand the tool git lets first start by understanding what problem does it actually solve. At the most basic level git is a version control system. What this means is that it allows automated control of maintaining different versions of a digital asset such as a text file, CV, or indeed code files for a software. Now for simpler things like CV or text file one may not need something as sophisticated and complex as git but when it comes to maintaining assets for a software it is indeed a very useful tool.</p>
+<p>To understand how significant this is, lets put it in perspective of a typical business operations scenario completely unrelated to software development:</p>
+<ul>
+<li>Say there was an RFP response on which multiple people from Sales, Marketing, Pursuit and Technical team were helping prepare a response.</li>
+<li>Each team will complete one section of the response document relevant to their area.</li>
+<li>This will then all need to be integrated into the final response and reviewed by the Sales Lead.</li>
+<li>Any changes that Sales Lead identifies will need further changes which will then again need to be amended on the document.</li>
+</ul>
+<p>Even with change tracking enabled in MS Word, we all know how painful this entire exercise is. So much so that at times we try doing it together so all changes can be done once or we opt for the approach of making changes sequentially where one section is completed by one team before another can be started by another team. This when we have one document!!! </p>
+<p>Now imagine if we had 1000s of such documents - that is a real scenario for software developers as each software has multiple files that may need input from multiple people. So having an automated version control helps save time because it, at the most basic level, saves time on integrating changes carried out by different people or teams that were carried out in parallel.</p>
+<p>Now when it comes to version control there are two main ways in which it can be achieved:</p>
+<ul>
+<li>
+<p><strong>Centralised Version Control System</strong>: In our RFP example, the approach where everyone gathers together to carry out change on the main version will be a good simulation of centralised version control. What this means is that the changes to digital asset are done at one central location which is tightly controlled. This might as well be right approach for a smaller undertaking such as our RFP example but when it comes to software development it is not considered to be the best.</p>
+</li>
+<li>
+<p><strong>Distributed Version Control System</strong>: This is loosely what would have been the approach in our RFP example if people were to carry out changes on their copy of document which will then be merged by Sales Lead to prepare the final response. Basically a distributed version control system works on the principle that each contributor to the change of digital asset will make change on their local copy and then submit the change for version maintenance to the version controller. Git as a system shines in this approach of distributed version control.</p>
+</li>
+</ul>
+<h3 id="working-directory">Working Directory<a class="headerlink" href="#working-directory" title="Permanent link">&para;</a></h3>
+<p>Directory is technically correct name for what are called folders in Windows Operating System and <strong>Working Directory</strong> is the directory in which the user is currently working. For example, let's say I create a folder called "Project_1" in windows on path "C:/Documents" and save a python script in that folder, then the working directory will be "Project_1" and working directory path will be "C:/Documents/Project_1".</p>
+<p>In order to version control this file, one can use git but this will include understanding the steps of how to go about it as explained in following sections.</p>
+<h3 id="initiatlise">Initiatlise<a class="headerlink" href="#initiatlise" title="Permanent link">&para;</a></h3>
+<p>Now when let's say the script file script.py is created by developer. It is not being tracked by git at this time. Now if we want it tracked by git, we need to first initiate git on the working directory. This is done using the command: <code>git init</code> but before typing this on command line, one needs to first get into the working directory on command line or terminal.</p>
+<p>In our example this will be done like so:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>C:/Documents/Project_1
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>git<span class="w"> </span>init
+</span></code></pre></div>
+<p>This will create a <code>.git</code> directory (folder) inside the working directory.</p>
+<p>This is equivalent of git software saying it is now ready to start tracking but it will still need to know what exactly we want it to track. This is what <code>git add</code> does. </p>
+<h3 id="add">Add<a class="headerlink" href="#add" title="Permanent link">&para;</a></h3>
+<p>To tell git what we want it to track, we have to use the command <code>git add &lt;filenames / foldernames&gt;</code>. However, if there are 100 script files in directory it will be very cumbersome to type every single filename and as a shortcut one can use dot notation for current working directory which is dot(.) and the command can be issued as:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">## To add all content of the working directory</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>git<span class="w"> </span>add<span class="w"> </span>.
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1">## To add specific file say script.py</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>git<span class="w"> </span>add<span class="w"> </span>script.py
+</span></code></pre></div>
+<p>This tells git that we want all files and directories (folders) in the current working directory to be tracked.</p>
+<p>At this point, git is basically aware that it has to monitor changes on these files but it will not assume that every change we have made needs to be applied to maintained version so when we have added these files, we have basically also just said prepare these files for finalising their version - In other words we have asked git to <strong>stage</strong>. </p>
+<p>In order to finalise the versioning, we have to now tell this specifically to git which is done using <code>commit</code>. This will also be reflected in the tracking status which can be checked using <code>status</code></p>
+<h3 id="status">Status<a class="headerlink" href="#status" title="Permanent link">&para;</a></h3>
+<p>One can check current tracking status of various files and directories on the git initialised working directory by using the command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>status
+</span></code></pre></div>
+<h3 id="commit">Commit<a class="headerlink" href="#commit" title="Permanent link">&para;</a></h3>
+<p>So we have got git to stage the files and now we want it to label the latest changes as a new version and this is achieved using the command:</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span>&lt;Comment<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>commit&gt;
+</span></code></pre></div>
+This command ensures that git now makes the latest changes baseline and still keep record of previous changes. This is especially useful if in case we want to revert to a previous version for some reason - say we found that in latest version there were quite a few mistakes which will need to be rewworked and until then previous version is what we want to keep as baseline for anyone who wants to refer and make changes to. This reverting can be achieved using <code>revert</code></p>
+<h3 id="revert">Revert<a class="headerlink" href="#revert" title="Permanent link">&para;</a></h3>
+<p>Now reverting to a previous version requires that we know the commit id that git applied to previous commits and then identify the exact commit id to which we want git to revert to. This can be achieved by checking git logs, so the sequence to git revert will be like so:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">## Find the commit id to revert to</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>git<span class="w"> </span>log
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1">## Copy the commit id of the version to revert to and issue following command</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>git<span class="w"> </span>revert<span class="w"> </span>&lt;commit<span class="w"> </span>id<span class="w"> </span>to<span class="w"> </span>revert<span class="w"> </span>to&gt;
+</span></code></pre></div>
+<p>Now at this point, all changes are being tracked on the local machine of the user, so how can this help with collboration. This is achieved by synchronising the latest version on local machine to a central server. This could be a server hosted by an organisation or it can be something public like Github, Gitlab and such. As GitHub is most frequently used in enterprise environment, lets see how that works.</p>
+<p>Github basically is a web based utility which acts as a remote location where we can push our finalised version to be saved in what is called a <strong>github repository</strong> for other collborators to then download (clone) as their local copy and work on. Once each poarty has made changes, the can each push their changes to the github with help of git and the version control will be applied automagically or in some instance with minimal manual intervention from the maintaining or one pushing the changes.</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" data-diagram-type="DESCRIPTION" preserveAspectRatio="xMaxYMax meet" style="background:#FFFFFF" version="1.1" viewBox="0 0 970 778" width="100%" zoomAndPan="magnify" class="uml" alt="uml diagram" title=""><defs /><g><g id="cluster_OnDevice"><rect fill="none" height="632.25" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:1;stroke-dasharray:7.0,7.0;" width="510" x="40" y="140.63" /><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="90.9453" x="249.5273" y="157.4816">On Device</text><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="59.4551" x="265.2725" y="172.3937">[system]</text></g><g id="cluster_folder"><rect fill="#85BBF0" height="533.25" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:1;" width="446" x="72" y="207.63" /><image height="48" width="48" x="271" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABGUlEQVR4Xu2YMQrCQBBFt7UQxE5srOwEb2Aj2FpqK3Y2egDBxsbKytobaG/jATyER/AGkRGyJPtjodGdfJjiweSzJPPIZCHrtpeHYwYCNiBgAwI2IGADAjYgYAOC9ek+nK6PyWi++Zjxap+E9/s3uQtpwDlXit5gHFXCF4vD9RY28y0xJXwhDw0bKUMsCV80Wx1ooiwxJHzxDwFBJGRjKEPYdFSBXyH9ye5IK5Ai2zW1gJAdK0qB2e7s3wKlQPZbMAENTEAbE9DGBLQxAW1MQBsT0MYEtDEBbQoF2t0+LKwqhf/EclwRLqwqac85AZYxCo/wcwLCYLJ8nYLV6o1KISOeHZ23AmxAwAYEbEDABgRsQMAGBGxAwMYTHKP5WXLRzUYAAAAASUVORK5CYII=" y="209.63" /><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="165.0234" x="212.4883" y="272.4816">Working Directory</text></g><g id="cluster_git_tracker"><rect fill="#85BBF0" height="400.25" rx="2.5" ry="2.5" style="stroke:#78A8D8;stroke-width:1;" width="170" x="308" y="308.63" /><image height="48" width="48" x="369" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAACE0lEQVR4XtWWLU4EQRCFxyJICI5gEARHQhDYRZAgMCvBEYLDwAE2wWBWodDcADyGA3AIjsANlrxNmlTqddf0T+2SFp/g207Pe5Omeoanj5+hZ0j0BoneINEbJHqDRG+Q6A0SnkwfnhdAe09IeDB7+z7b3tlbDMOwZPfgaAGn13lAohUdftUlSLSQCr/KEiRauJq9UmiNdwkSNchA6y5BopRwbE4urv+mzTpLkChBn/n/KEEiFx0+ViJwfvtI67xKkMghFT4wubynEiim13mUIDHGWPhUgbEjVVuChEVOeLB/fEoFbubvtE5TU4JEitzwAZx7vQe+i/Q6TWkJEjFKwwdCEPlB512ChKY2PAghEEhOJ88SJCQt4YEsgL9lCfwGWkcsCcnhZEqblqALgNiEskYsMuj1EhKSlrcPcgtYIxYZ9HoJCQkepjcsIVYgNmKt58RudgkJDR6oN80lVgDIEWvdD7GyGhIxakukCoCNza0l2gdywgMSKWpKWAUssF4/PwUJi5IScnpYo1KT++YDJMbIKRF7gzkjuTQ8IJHDWInYqBy7fWvCAxK5WCVil481KmvDAxIlWCXkB1zrqLQgUYpVAmPSus1bwwMSNVglUsT+0WsgUUtJCa/wgEQLOSU8wwMSrVglvMMDEh7ESqwiPCDhhbx5PaZNChKe3L18fgHtPSHRGyR6g0RvkOgNEr1Bojd+ARh1a82b13tWAAAAAElFTkSuQmCC" y="310.63" /><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="104.0391" x="340.9805" y="373.4816">GIT Tracker</text></g><g id="cluster_Remote_Repository"><rect fill="none" height="153.62" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:1;stroke-dasharray:7.0,7.0;" width="144" x="608" y="555.26" /><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="60.5" x="649.75" y="572.1116">Github</text><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="59.4551" x="650.2725" y="587.0237">[system]</text></g><g id="elem_file"><rect fill="#1168BD" height="86.625" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="133.8203" x="96.09" y="393.63" /><image height="48" width="48" x="139.0002" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAB0UlEQVR4Xu2YMUoDQRiFvYI38AgewcIDeARLS7G2sBI7rW1srLW1EVGwkaCFoIWFKWwURASxsFl5RcLPe9Gdf3Zmh9F98DUPZvN/yW4mmbn5tdO5mpGiNqRg1g/vm5vxe/P48tmJraOHZnLN49FzAxY2zpf59bxIYVnavho1ibJ7Mp4K4A1BINZVQgoL3v1UmSWAdJWQwtKHANJFQgpLXwJIrIQUlj4FkBgJKSx9CyBeCSksJQQQj4QUllICSKiEFJaSAsjZ3et0zU9IYcklgMHePr6C4JkYKSy5BFIihSWlAG4bvn4KpLCkFEBw66zu37rgmRgpcgrEhGdipBgEEodnYqQYBBKHZ2Kk8Ahgo1ncvNzBlh9D2/URnomRwiMQstX/BiT4mhxew0hhaRNA8F29sncdBXbntvBMjBRegdzhmRgp/p0AbgOc+cSAZ6gtPBMjhUeg+ocY/5p4jYeQgzNew0hhaRNAsBfwMWIoIeGZGCm8ArnDMzFSeAWq/gQwBK/xUPwZqP5bCKl6H+gjPBMjxSCQODwTI8UgkDg8EyPFIJA4PBMjxZ8SwP/d0uGZGCks2OrxY61UDi6euglMwAkCnxrnBj/0eI5ZSFEbUtTGNyx549ZB8XK0AAAAAElFTkSuQmCC" y="403.63" /><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="75.5" x="106.09" y="466.4816">Working</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="5.5703" x="181.59" y="466.4816">&#160;</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="32.75" x="187.1603" y="466.4816">File</text></g><g id="elem_a_file"><rect fill="#FF0000" height="86.625" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="93.6094" x="368.2" y="393.63" /><image height="48" width="48" x="391.0047" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABjklEQVR4Xu2Yf40CMRSE1wIWsIAFLGABC1hYC1jAAhawgAUslBuSO/JmuOuPfdumuU7y/fOSLvPBLoVOYZqmnpFBb8hAOB5DuN1CuN+XcTqFn2teLuHFZrOX18tEBobd7qu5U+b5LYA3BIHYQgkZGPDue+WTALJQQgaGGgLIAgkZGGoJIIUSMjDUFEAKJGRgqC2AZErIwNBCAMmQkIGhlQCSKCEDQ0sB5Hp9r/kFGRjWEkCxxyMN7kTIwLCWgCMyMHgK4Lbh6zsgA4OnAIJb53DIgzs1FSgJdxoCtcOdhkDtcCdXAWw02+382vJLiF0f4U6uAglb/Z9AIhZeQ8jAEBNA8F2935eB3TkW7uQusHa40xDg4DbAmU8JeIZi4U6uAt0/xPjXxGtySDk44zWEDAwxAQR7AR8jppIS7uQusHa4k7tA158ASvCaHJo/A91/CyFd7wM1wp2GQO1wpyFQO9xpCNQOd/pfAvi/2zrcKUsAWz1+rLXK+bxQ4BucIPCp8drghx73+IAMekMGvfEEhSjvaHGK+nwAAAAASUVORK5CYII=" y="403.63" /><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="35.2891" x="378.2" y="466.4816">Add</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="5.5703" x="413.4891" y="466.4816">&#160;</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="32.75" x="419.0594" y="466.4816">File</text></g><g id="elem_c_file"><rect fill="#FF0000" height="86.625" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="127.5313" x="324.23" y="606.26" /><image height="48" width="48" x="363.9956" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABjklEQVR4XtWWAY3CQBBFawELZwELWMACFrCABSxgAQtYwAIWevlHmpR5u21n25D7P3lJ89gOu8uwbdd3XecMhBsQbkC4AeEGhBsQbkC4AeEGhBsQbkC4AeEGhBsQm7LbHf6IfkMgVqHJns99/3j0iJw+23hBEM2cTnHK5bxefX889ri/EYgmLpc4zfnonlinAYg0aovW6N5YLwlEip+f+tarVe73N7quRTVi3QQQKTS5Uko9XvuP3G4cmwBiMTpNStnvHxg7cCjfsuZkgvigdBxOZcluakwmmkOsMQLig+wCSq0T0ZhMvrqAqfYZ0JhMvrqAf/cLXK/vAiWez/hV7yMz1oiUTi7VivUHNIdYYwREilKmfoXa7sdxCSBSaHdK0WvC+GjUde11Y2aH54BIUXsWDFFrlFptnBXPAAGRptYWSzLVbguBaKL2mjAV3RPrNADRjM73uXZRNGbJ82IhEKtRW+h1YbwYXctt0DIRCDcg3IBwA8INCDcg3IBwA8INCDcg3IBwA8INCDcg3PgF2htsCiv/1OQAAAAASUVORK5CYII=" y="616.26" /><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="69.2109" x="334.23" y="679.1116">Commit</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="5.5703" x="403.4409" y="679.1116">&#160;</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="32.75" x="409.0113" y="679.1116">File</text></g><g id="elem_repo"><rect fill="#1168BD" height="86.625" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="111.1016" x="624.45" y="606.26" /><image height="48" width="48" x="656.0008" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAC2klEQVR4XtWZMYoWQRSE9wrewCN4BAMP4BE23FCMDYzEzI1NNtlYUxMRBRNZ3EDQwMANTFwQEcTAZKQWeyir+nW//n9ncAo+cKun/36v53VPz3hw7ej5wZYxY2uYsTXM2BpmbA0zMhw+fjc9PfsynV98v+LRs4vp+t2Xt/S6NTCjx4v3X6dISEyvXxozWrSCL7r54M2Z9lsSMyJuH7+dg/z249eEv+GjdFBORSgp7bskZkScvPo8B1krlU+XP+f2NdeDGRFcPtoGsJCLsmWE63Anb9x7/VDbspgRwWVSG7DXznCyRSi9bOKMGRF3Tj/Mg+FucJuuD+3LINCWytrKYkYLBFeEf2PWdWdCotqvoDOPdXX/ycer2WeNrCEzWuAWcxIqBKR9GL5Wy4xLEElp3wgzemB2KI5ZveARcLkWwY62R5iRoQzEQnnodQzuXrm2lixPjK6xFmZkKAOxeglwgHhmaDtvEr3fYszIMI9EygzKdY5Zxl1B6XDwkK6PFmZk+Gu0P8okgLvQ2gSgzO8wZmTQQaHswJhdPnawsr/BmJFBB4ZGBtfnQZFel8GMDDowNJIAHwyLek/wCDMy6ODQSAK1Etr1GG5GBh0cyibA5yZWtr9iRgYdHMoEgF2oNvvQ6CGuYEYGHRzqJYC9PtpCaw+2LGZk0AAgJIAZxtsaFikeVKjrKGhW6wTbw4wMGgAUlUZPI+eeGmZk0CB2FZIeOfvXMCODBrKLUF77Bg/MyKDBjAizvk/NK2Zk0KBqQqCob5xAsagR9C4v7T3M6MEvJjWhNEaOw/tiRovoKcrSPktjRoSe5THTePnWg1nvgfavMSMCwRbpSze/kEPad0nMiOh9eeu1L4UZEfwBq7Z/cyktsdtEmBHBAdb28f/+67Run0gCpQKfPw3ue7YZxYwWuuPUtGb9AzN6RElgi12z9gtmZMAsY78vx4Ta/9ishRlbw4ytYcbWMGNr/AbUMZ1PduDblgAAAABJRU5ErkJggg==" y="616.26" /><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="44.3438" x="634.45" y="679.1116">main</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="5.5703" x="678.7938" y="679.1116">&#160;</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="41.1875" x="684.3641" y="679.1116">repo</text></g><g id="elem_dev"><rect fill="#08427B" height="86.625" rx="2.5" ry="2.5" style="stroke:#073B6F;stroke-width:0.5;" width="68" x="7" y="7" /><image height="48" width="48" x="17" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAACMElEQVR4Xu2YvUrFQBCFb+kj+Ai+gq3Y2PgA+gCCtZ2V2AhqaSNiqY1gYWMjaCvXykoEKy21sLCNfELgMscksz8mWfDAB3Kuye7sTmYnmcwtbU9KRozSECOVla3T6uTqvrqZPlcPT68/XNw+VtvH19XC+sGe/f9UxIhl8/Cy+vj8qrpEYIsbR1N7fSxihDK/urvMKoeKHbH3ikGMEJi8Z9WbtH92lxyEGCHErLwVqWfvG4IYXkiBXGIn7f29iOGBAe0kUkTVsmN4EcMD255bdgwvYnigFOYW54cdx4MYHlIqT5Niy6oYHuzgORRbUsXwYAfPoV4DeHl7t+MnK/Y8EMMDzVlu9foQ5y6jFAU7hhcxvOSsRLH5D2J4KbqVqMlxoK3tnEevPogRAiuXUpFiD69ZxIghZidSV75GjFiYkGc3KMEpOW8RIxXed0kNJsrOAO0ypTfnxGvEKA0xSkMMD3zfIedJFQ4hCPlUwrX1daQWbURseonRBhNue1D5rc53JkVQwN9c21Wt+D20JxLjN7hpztahSwTi3RExLDlbhhCxm55PkWLMkrvrDBW73rUTYtSQu/aGQ4h0snNzBdD1wPWptrZDDBjL6tfiebBzbA2AUjg2NT3QYkBbrR9KTS/9YoC9eAxqeu0UI/eH21yiu7VzLSqApnIqxn8Af6TiA3A/A9Bn5+lV0xcMMWDoJs6qrakTo4a6OwZxqLa97YkxC1HzMkMzNQRtE3cFUAJilMY3OGTNL0NDLqIAAAAASUVORK5CYII=" y="17" /><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="41.2578" x="20.3711" y="79.8516">User</text></g><g id="elem_laptop"><rect fill="#1168BD" height="86.625" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="132.9063" x="207.55" y="7" /><image height="48" width="48" x="250.0031" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAB1klEQVR4Xu2YPUoEQRCF9wrewCN4BAMP4BEMDcXYwEjMNDYxMdbURETBRBYNBA0M3MBEQUQQA5ORF9RQ86p3bGd7u6dkHnyw1Pb01Jua/pvRwvrZyDMm4A0T8IYJeMMEvGEC3jABZmnranfj6KHaPn7MytrBXcW5hDABzd7ppCqpp9evCg+Q84oysLxzPeYOS+j8/q21EiYgoIx9EecWZSD0+qCk8+b985tvm8bA7eSjtaNUrO7fNO4LcRuNCQiDgY4UNYCbY83gOMB0iImB40wxA1h4RIeXz422SF4GJ/pZ3LxY4euFIgZ08hCS1f+jKlptJrIb4OQhJMHtsCBpTTOR1UBs8kLIBLfJagALjxau4TYML1S8actqwH0FQKyJmORBdgOATcTMQtyHUMQA0CZ4LPA6wNdqihkAOEO4XYlTMRgQ/p0BiE9P84AXOohz62yglDi3wUBucW5RBjCn89eyUnBuUQa8UP+Qb6Cz8NtnQMDX/BXeftc/MM/PqpPxS2u5edPXVXq3W3eOOTiFcKDHDTCGNHh6oTm+i3QVklYgl4IVwGj3ID5rNN5RD1WYOogFvMN9FB5u6KhqDAj4ZtMXOLcoA14wAW+YgDdMwBsm4A0T8MYPMtzH0e6wNt4AAAAASUVORK5CYII=" y="17" /><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="46.9531" x="217.55" y="79.8516">Local</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="5.5703" x="264.5031" y="79.8516">&#160;</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="60.3828" x="270.0734" y="79.8516">Device</text></g><g id="elem_git"><rect fill="#1168BD" height="86.625" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="186.1563" x="474.92" y="7" /><image height="48" width="48" x="543.9981" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAACEUlEQVR4XtWWPUoEQRCFvYI38CgGHsAjGBqKJzAy1djExFhTExENZdFA0MDADUwURAQxMFl5Qi9Fve7qv9qVfvAln81OvWGsmZXV7YuVkSExGiRGg8RokBgNEqNBYjRIeLJz8jgD2ntCwoO13auN57fvWcjd9HMGp895QKIXPfyiS5DoITV8yCJKkOhh6+hez0zxLkGiBTnQskuQqCU8NsfXL/Nts8wSJGrQz/x/lCBRih4+RJYI7J0+6WPz9JYgUUJq+JCD8ymVQLFUekqQyJEbHokVyD1SrSVIWJQMj1w+vFOBzcNbfYzSUoJEitLhQ/Dc69/Ad1EutSVIxKgdPiQMIj/ovEuQ0LQOj4QhMJDcTp4lSEh6hkdkAUSWwN9A74olITmbvOrfrIougMQ2lLViMYM+LyEh6bn7SGkBa8ViBn1eQkKCi/UkViC2Yq3rxN7sEhIaXLA1sQKIXLHW+yFWVkMiRmuJVAHk4+vnj1RKhgckUrSUsApYwXl9/RQkLGpKyO1hrUqd0jsfIJGjpETsDpas5NrhAYkSciViqzL39m0ZHpAoxSoRe/lYq7J1eECiBquE/IDrXZUWJGqxSmBNWm/z3uEBiRasEqnE/tFbINFKTQmv4QGJHkpKeA4PSPRilfAeHpDwIFZiEcMDEl7IN6/HtklBwpP1/ZsJ0N4TEqNBYjRIjAaJ0SAxGiRG4xdul8uBBpH0QAAAAABJRU5ErkJggg==" y="17" /><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="26.2656" x="484.92" y="79.8516">Git</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="5.5703" x="511.1856" y="79.8516">&#160;</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="22.3828" x="516.7559" y="79.8516">on</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="5.5703" x="539.1388" y="79.8516">&#160;</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="42.2422" x="544.7091" y="79.8516">local</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="5.5703" x="586.9513" y="79.8516">&#160;</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="58.5547" x="592.5216" y="79.8516">device</text></g><g id="elem_github"><rect fill="#1168BD" height="86.625" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="172.0313" x="791.98" y="7" /><image height="48" width="48" x="853.9956" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAADHklEQVR4XtWYMYoVQRCG9wrewCN4BAMP4BE2NBRjAyMxc2MTE2NNTUQUTGRxA0EDAzcwURARxMDkud9CLfX+v3qmZ+YlXfDBvL9runu6q6pn3tG1O6+ORsaE0TBhNEwYDRNGw4TRMGE0TDgE1++9uXXz4fvT2ycfdsA1mvodAhPWcvzk4+7F6ffdrz//di2jDR989f61mLCUxy/PdZ5dxsNwr/a3FBN6YRWnVrvX6GPLjpjQw9O333QeVxZhgs+D518u4XouvPDRcXowYQ4mUhk6Cav+Cj5Tfaj/HCZMUQ18dv77ssqo7xzcw71qSx/ChBaEgtrSwSqqRbn77HN3vyZU3Lj/7pEOsjZmK6qcYkz1qzCh4vWnn3ud81t9trJ2DBMUYnWv5wvTU5UySIipXoEPIaKlE13H6cktExSNUSaqPjkZq/Yg5xH3TLVjPTlmgrLX44Vpe+VDvf/64+/Vb66rM0D7qfrSdsWEDDU7W2tF9pwWWBVyuuNzYWRCRrdU4xaqHOm1anKMkW0qJMGEjJa3qrRVh1GvVXmgJXuuXJuQ0dKmW66DrTFdFK1Gc+XUhIw+gLZX201YMKn4mIkPmoASmq0Ky9y+6QE0oXQH8gPERJh8FdvxYFzn4qAPoDvQKhyBCRnNAZ1YTuDQolzm0IhQoy20uG+qT2xTDmgVql6yok1/54nlFQ8tHlT70xCrxsyYkNHVqOIxdilWnM/Eyg8tPiFjR6pPSs073SHFBEVPUM0DoBxC1abgE/5VWx4rh1wLExTNg2rVsh8rSOjFCxtwjRar24prHavllzFBqWq91u6AFSTe41uYh4X4TVtrl5aMkzGhQsspL2fqs5X88ofNlc/AhAqNTaxK1LVo4mKtnVJMaKGnLtabuC0iodX0cJvChCmqf+HW/jHV+mOsVSRamDBH9RAYK0m1mdoR2vDReA9bOnkwoQc9LdWYIHFNGQSuW5MOmztxW5jQCydkFb9Lbe0fY4EJSyGW51a3Mu5ZkzuKCWthFYnhqV2hDZ8tK66YcChIWE5SmErsrZgwGiaMhgmjYcJomDAaJozGf8R2hgjnYPsZAAAAAElFTkSuQmCC" y="17" /><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="62.5" x="801.98" y="79.8516">GitHub</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="5.5703" x="864.48" y="79.8516">&#160;</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="83.9609" x="870.0503" y="79.8516">(Remote)</text></g><g id="link_dev_laptop"><path d="M75.38,50.32 C109.94,50.32 156.11,50.32 199.16,50.32 " fill="none" id="dev-to-laptop" style="stroke:#666666;stroke-width:1;" /><polygon fill="#666666" points="207.16,50.32,199.16,47.32,199.16,53.32,207.16,50.32" style="stroke:#666666;stroke-width:1;" /><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="36.1582" x="93.27" y="44.4587">Make</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="4.1777" x="129.4282" y="44.4587">&#160;</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="56.168" x="133.6059" y="44.4587">changes</text></g><g id="link_laptop_git"><path d="M340.71,50.32 C380.27,50.32 423.02,50.32 466.53,50.32 " fill="none" id="laptop-to-git" style="stroke:#666666;stroke-width:1;" /><polygon fill="#666666" points="474.53,50.32,466.53,47.32,466.53,53.32,474.53,50.32" style="stroke:#666666;stroke-width:1;" /><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="54.0234" x="358.69" y="44.4587">Tracked</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="4.1777" x="412.7134" y="44.4587">&#160;</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="16.4121" x="416.8912" y="44.4587">by</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="4.1777" x="433.3033" y="44.4587">&#160;</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="19.6992" x="437.481" y="44.4587">Git</text></g><g id="link_git_github"><path d="M661.43,50.32 C702.79,50.32 743.13,50.32 783.64,50.32 " fill="none" id="git-to-github" style="stroke:#666666;stroke-width:1;" /><polygon fill="#666666" points="791.64,50.32,783.64,47.32,783.64,53.32,791.64,50.32" style="stroke:#666666;stroke-width:1;" /><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="33.0234" x="679.53" y="44.4587">Push</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="4.1777" x="712.5534" y="44.4587">&#160;</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="57.3574" x="716.7312" y="44.4587">commits</text></g><g id="link_a_file_c_file"><path d="M409.54,480.57 C404.85,517.11 399.1566,561.5449 394.4766,598.0749 " fill="none" id="a_file-to-c_file" style="stroke:#666666;stroke-width:1;" /><polygon fill="#666666" points="393.46,606.01,397.4523,598.4561,391.5009,597.6936,393.46,606.01" style="stroke:#666666;stroke-width:1;" /><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="18.4395" x="407" y="522.3987">git</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="4.1777" x="425.4395" y="522.3987">&#160;</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="50.2148" x="429.6172" y="522.3987">commit</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="4.1777" x="479.832" y="522.3987">&#160;</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="17.4844" x="484.0098" y="522.3987">-m</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="79.8633" x="414.3154" y="536.3674">&lt;message&gt;</text></g><g id="link_file_a_file"><path d="M230.2,436.94 C273.65,436.94 321.12,436.94 359.91,436.94 " fill="none" id="file-to-a_file" style="stroke:#666666;stroke-width:1;" /><polygon fill="#666666" points="367.91,436.94,359.91,433.94,359.91,439.94,367.91,436.94" style="stroke:#666666;stroke-width:1;" /><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="18.4395" x="248.05" y="431.0787">git</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="4.1777" x="266.4895" y="431.0787">&#160;</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="25.2773" x="270.6672" y="431.0787">add</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="4.1777" x="295.9445" y="431.0787">&#160;</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="50.6367" x="300.1223" y="431.0787">./&lt;file&gt;</text></g><g id="link_c_file_repo"><path d="M452.08,649.57 C503.45,649.57 566.83,649.57 615.95,649.57 " fill="none" id="c_file-to-repo" style="stroke:#666666;stroke-width:1;" /><polygon fill="#666666" points="623.95,649.57,615.95,646.57,615.95,652.57,623.95,649.57" style="stroke:#666666;stroke-width:1;" /><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="18.4395" x="470.11" y="643.7087">git</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="4.1777" x="488.5495" y="643.7087">&#160;</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="32.8184" x="492.7272" y="643.7087">push</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="4.1777" x="525.5455" y="643.7087">&#160;</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="39.5215" x="529.7233" y="643.7087">origin</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="4.1777" x="569.2448" y="643.7087">&#160;</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="33.2578" x="573.4225" y="643.7087">main</text></g></g></svg></p>
+<p>There is lots going on in this last bit so lets break it down to digestable chunks of information in next session.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+<!-- DISQUS SECTION -->
+
+<!-- BLUESKY SECTION -->
+
+<h2 id="__comments">
+  <span class="twemoji" style="margin-right: 10px;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M64 32C28.7 32 0 60.7 0 96v320c0 35.3 28.7 64 64 64h320c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64zm160 215.4c14.5-30 54-85.8 90.7-113.3 26.5-19.9 69.3-35.2 69.3 13.7 0 9.8-5.6 82.1-8.9 93.8-11.4 40.8-53 51.2-90 44.9 64.7 11 81.2 47.5 45.6 84-67.5 69.3-97-17.4-104.6-39.6l-.3-.9c-.9-2.6-1.4-4.1-1.8-4.1s-.9 1.5-1.8 4.1l-.3.9c-7.6 22.2-37.1 108.8-104.6 39.6-35.5-36.5-19.1-73 45.6-84-37 6.3-78.6-4.1-90-44.9-3.3-11.7-8.9-84-8.9-93.8 0-48.9 42.9-33.5 69.3-13.7 36.7 27.5 76.2 83.4 90.7 113.3"/></svg>
+  </span>
+  Comments
+</h2>
+<!--p><a href="https://bsky.app/profile/ankitmittal.bsky.social/post/3lcse7yabrd2x">Join the conversation on Bluesky.... </a></p-->
+<script type="module" src="/assets/js/bluesky-comments.mjs"></script>
+<!-- Use the element -->
+<bluesky-comments url=https://bsky.app/profile/ankitmittal.bsky.social/post/3lcse7yabrd2x>
+</bluesky-comments>
+
+      
+    </article>
+  </div>
+
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "content.tooltips", "content.action.edit", "content.action.view", "navigation.indexes", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../../assets/js/bluesky-comments.mjs" type="module"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
