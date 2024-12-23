@@ -14,7 +14,7 @@ categories:
 
 ## Background
 
-This post is basically continuation of the [previous post](./2024-12-10-bluesky-for-comments-on-mkdocs-blog%20copy.md) and outlines the steps taken to achieve the following flow:
+This post is basically continuation of the [previous post](./2024-12-10-bluesky-for-comments-on-mkdocs-blog.md) and outlines the steps taken to achieve the following flow:
 
 ```plantuml
 @startuml
@@ -30,7 +30,7 @@ end
 @enduml
 ```
 
-Once the steps of previous post are completed, basically following additional steps will ensure that a new post will trigger creation of a bluesky post which in turn will enable bluesky comments on the post on the site.
+Once the steps of [previous post](./2024-12-10-bluesky-for-comments-on-mkdocs-blog.md) are completed, basically following additional steps will ensure that a new post will trigger creation of a bluesky post which in turn will enable bluesky comments on the post on the site.
 
 ## Create environment secrets
 
