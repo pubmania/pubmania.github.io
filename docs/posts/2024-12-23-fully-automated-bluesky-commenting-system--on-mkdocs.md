@@ -30,7 +30,7 @@ end
 @enduml
 ```
 
-Once the steps of [previous post](./2024-12-10-bluesky-for-comments-on-mkdocs-blog.md) are completed, basically following additional steps will ensure that a new post will trigger creation of a bluesky post which in turn will enable bluesky comments on the post on the site.
+Once the steps of [previous post](./2024-12-10-bluesky-for-comments-on-mkdocs-blog.md) are completed, basically following additional steps will ensure that a new post will trigger creation of a bluesky post which in turn will enable bluesky comments on the post on the site. <!-- more -->
 
 ## Create environment secrets
 
