@@ -4,7 +4,7 @@ slug: "bluesky-for-comments-on-mkdocs-blog"
 authors: [ankit]
 date: 
   created: 2024-12-10 21:57:00
-  updated: 2024-12-11 12:15:00
+  updated: 2024-12-23 21:30:00
 draft: false
 description: Step by step notes to enable bluesky comment system on mkdocs blog.
 bsky: true

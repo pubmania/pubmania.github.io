@@ -4,6 +4,7 @@ slug: "fully-automated-bluesky-commenting-system--on-mkdocs"
 authors: [ankit]
 date: 
   created: 2024-12-23 21:57:00
+  updated: 2024-12-23 21:30:00
 draft: false
 description: Step by step notes to enable fully automated bluesky comment system on mkdocs site.
 bsky: true
