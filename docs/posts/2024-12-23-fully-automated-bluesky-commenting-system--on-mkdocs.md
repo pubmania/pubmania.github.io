@@ -5,7 +5,7 @@ authors: [ankit]
 date: 
   created: 2024-12-23 21:57:00
 draft: false
-description: Step by step notes to enable fully automatged bluesky comment system on mkdocs site.
+description: Step by step notes to enable fully automated bluesky comment system on mkdocs site.
 bsky: true
 categories:
   - Blogging
