@@ -104,7 +104,7 @@ elimination of barriers and teamwork skills.
 ------------------------------------------------------------------------
 
 ### Client: Unilever, UK through CloudTalent.
-***Role: Senior Project Manager, 05/2014 = 10/2014***
+***Role: Senior Project Manager, 05/2014 - 10/2014***
 
 -   Engaged to manage a vendor selection and procurement project aimed
     at delivering a new infrastructure, PaaS and SaaS contract for its
