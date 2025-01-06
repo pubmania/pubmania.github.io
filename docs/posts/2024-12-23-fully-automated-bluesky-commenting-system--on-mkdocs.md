@@ -227,11 +227,11 @@ if __name__ == "__main__":
 
 The script does the following:
 
-1. Runs through all `.md` files in 'docs/posts'
+1. Runs through all `.md` files in `docs/posts`
 2. Calls `get_yaml_frontmatter` function which checks if the path is a file or a directory.
 3. As it is a directory, it cycles through all files with `.md` extension and for each file extracts the yaml frontmatter.
 4. It then passes it to the function `process_file_yaml` which in turn checks if the post is within last 5 days and if so it checks the `slug` for the post and creates the url from it and checks if a bluesky post exists for that url.
-5. If the bluesky post foes not exist for this post, it creates one and if it does then it skips this file and returns to `get_yaml_frontmatter` and cycle continues until all `.md` files have been checked.
+5. If the bluesky post does not exist for this post, it creates one and if it does then it skips this file and returns to `get_yaml_frontmatter` and cycle continues until all `.md` files have been checked.
 
 ## Update requirements.txt
 

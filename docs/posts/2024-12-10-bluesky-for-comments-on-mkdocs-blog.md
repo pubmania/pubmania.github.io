@@ -89,7 +89,7 @@ For the comments to appear on the blog, the bluesky post url needs to be added t
 
 === "Aimed Final Flow (WIP)"
 
-    **Second part of the problem is that while the 'acceptable flow' removes need to republish the blogpost, it still means that unless the author has created a bluesky post, comments are not open for that blog post. ~~I am working on a way to automate that using blusky API but it is still very much work in progress.~~ This is now done and can be achieved by following steps on the [next post](./2024-12-23-fully-automated-bluesky-commenting-system--on-mkdocs.md)**
+    **Second part of the problem is that while the 'acceptable flow' removes need to republish the blogpost, it still means that unless the author has created a bluesky post, comments are not open for that blog post.** ~~I am working on a way to automate that using blusky API but it is still very much work in progress.~~ **This is now done and can be achieved by following steps on the [next post](./2024-12-23-fully-automated-bluesky-commenting-system--on-mkdocs.md)**
 
     ```plantuml
     @startuml
