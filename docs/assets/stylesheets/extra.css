@@ -406,3 +406,46 @@
     margin-left: 1.5rem;
     margin-right: 1.5rem;
   }
+
+/******************************Poem Block style************************************************/
+.parent {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr; /* Auto-width center column */
+    padding: 1.5rem 0; /* Replace poem margins */
+  }
+  
+  .poem {
+    grid-column: 2; /* Middle column */
+    padding: 0.5rem; /* Use padding instead of margins */
+    background-color: var(--md-accent-fg-color--transparent);
+    box-shadow: 0 0 0 1rem var(--md-accent-fg-color--transparent);
+    border-radius: 0.5rem;
+    font-family: Baskerville;
+    font-size: 14px;
+    text-align: center;
+    width: auto;
+  }
+
+/* Add spacing to each stanza. */
+
+.poem p {
+margin-bottom: 15px;
+line-height: 1.45em;
+}
+
+.poem p:first-line {
+font-variant: small-caps;
+letter-spacing: 1px;
+}
+
+/* Add margin and padding at end of the poem. */
+
+.poem p:last-child {
+margin-bottom: 15px;
+padding-bottom: 15px;
+}
+
+.md-content--post>.md-content__inner {
+    min-width: 0;
+    width: 100%;
+}  

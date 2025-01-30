@@ -108,6 +108,11 @@ plugins:
         - Git
         - Logseq
         - Project Management
+  - blog:
+      enabled: true
+      blog_dir: poems
+      archive_name: Poems Archive
+      blog_toc: false
   - glightbox
   - social:
       cards_dir: assets/images/social
@@ -120,3 +125,6 @@ extra_javascript:
   
 extra:
   disqus: !ENV [DISQUS_CODE,'']
+
+hooks:
+  - poem_parser.py
