@@ -116,6 +116,8 @@ plugins:
   - glightbox
   - social:
       cards_dir: assets/images/social
+      cards_layout_options:
+        font_family: Hind      
 
 extra_css:
   - assets/stylesheets/extra.css
