@@ -145,7 +145,7 @@
     color: var(--md-hr-color);
     text-align: center;
     font-size: 2em;
-    margin: 0 0 0.5em 2em;
+    margin: 0 0 0.5em 1em;
 }
 .md-typeset h2 {
     color: var(--md-hr-color);

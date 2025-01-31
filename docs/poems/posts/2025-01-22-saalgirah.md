@@ -5,7 +5,6 @@ date:
 authors: ['ankit']
 categories: 
   - "कवितायेँ"
-tags: 
   - "प्रेम-रस"
 ---
 

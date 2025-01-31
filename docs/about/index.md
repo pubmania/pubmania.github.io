@@ -11,6 +11,8 @@ toc: true
 hide: navigation
 ---
 
+<h1 style="margin-left: 2.5em;">Ankit Mittal</h1>
+
 ------------------------------------------------------------------------
 <div align="center">
     <span class="md-author" style="width:10rem;height:10rem">
