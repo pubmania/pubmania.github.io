@@ -1,5 +1,6 @@
 ---
 title: Calculator Page Generator
+type: pyscript
 hide:
     - toc
 ---
