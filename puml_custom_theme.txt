@@ -1,4 +1,5 @@
-!theme sketchy-outline	
+!theme cerulean-outline
+!option handwritten true	
 !startsub activity
     skinparam activity {
         $primary_scheme()

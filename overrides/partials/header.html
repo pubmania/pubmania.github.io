@@ -3,7 +3,12 @@
   {% set class = class ~ " md-header--lifted" %}
 {% endif %}
 <header class="{{ class }}" data-md-component="header">
-  <script src="/mini-coi.js"></script>
+  <!--script src="/mini-coi.js"></script-->
+  {% if page and page.meta and page.meta.type %}
+    {% if  "pyscript" in page.meta.type %}
+      <script src="/mini-coi.js" scope="./"></script> 
+    {% endif %}
+  {% endif %}
   <nav class="md-header__inner md-grid" aria-label="{{ lang.t('header.title') }}">
     <a href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}" title="{{ config.site_name | e }}" class="md-header__button md-logo" aria-label="{{ config.site_name }}" data-md-component="logo">
       {% include "partials/logo.html" %}
