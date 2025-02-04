@@ -7,6 +7,8 @@ categories:
   - "कवितायेँ"
   - "ज़िन्दगी"
   - "दार्शनिक"
+bsky: true
+slug: jeevan-shakti
 ---
 
 ```poem

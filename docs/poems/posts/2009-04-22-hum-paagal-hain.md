@@ -7,6 +7,8 @@ categories:
   - "कवितायेँ"
   - "दो-चार-लाइना"
   - "हास्य-रस"
+bsky: true
+slug: hum-paagal-hain
 ---
 
 ```poem

@@ -6,6 +6,8 @@ authors: ['ankit']
 categories: 
   - "कवितायेँ"
   - "ज़िन्दगी"
+bsky: true
+slug: kaisi-jindagi
 ---
 
 ```poem

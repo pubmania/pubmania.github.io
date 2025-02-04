@@ -5,6 +5,8 @@ date:
 authors: ['ankit']
 categories: 
   - "कवितायेँ"
+bsky: true
+slug: shubh-deepavali
 ---
 
 ```poem

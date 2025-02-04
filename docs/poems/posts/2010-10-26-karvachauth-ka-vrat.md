@@ -7,6 +7,8 @@ categories:
   - "कवितायेँ"
   - "दो-चार-लाइना"
   - "प्रेम-रस"
+bsky: true
+slug: karvachauth-ka-vrat
 ---
 
 ```poem

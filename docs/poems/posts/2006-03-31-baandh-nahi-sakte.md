@@ -6,6 +6,8 @@ authors: ['ankit']
 categories: 
   - "कवितायेँ"
   - "दार्शनिक"
+bsky: true
+slug: baandh-nahi-sakte
 ---
 
 ```poem

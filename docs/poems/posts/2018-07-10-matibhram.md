@@ -7,6 +7,8 @@ categories:
   - "कवितायेँ"
   - "दार्शनिक"
   - "भावनात्मक"
+bsky: true
+slug: matibhram
 ---
 
 ```poem

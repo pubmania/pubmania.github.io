@@ -6,6 +6,8 @@ authors: ['ankit']
 categories: 
   - "कवितायेँ"
   - "हास्य-रस"
+bsky: true
+slug: mister-universe
 ---
 
 ```poem

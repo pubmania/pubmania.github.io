@@ -7,6 +7,8 @@ categories:
   - "कवितायेँ"
   - "हास्य-रस"
   - "दोस्ती"
+bsky: true
+slug: humaare-dost-rajneesh
 ---
 
 ```poem

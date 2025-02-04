@@ -9,6 +9,8 @@ categories:
   - "ज़िन्दगी"
   - "प्रेम-रस"
   - "हास्य-रस"
+bsky: true
+slug: khushnuma-jindagi
 ---
 
 ```poem

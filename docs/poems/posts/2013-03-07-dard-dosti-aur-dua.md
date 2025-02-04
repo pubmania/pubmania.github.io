@@ -7,6 +7,8 @@ categories:
   - "कवितायेँ"
   - "भावनात्मक"
   - "दोस्ती"
+bsky: true
+slug: dard-dosti-aur-dua
 ---
 
 ```poem

@@ -7,6 +7,8 @@ categories:
   - "कवितायेँ"
   - "भावनात्मक"
   - "प्रेम-रस"
+bsky: true
+slug: ye-khabar-lagti-hai
 ---
 
 ```poem

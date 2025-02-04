@@ -6,6 +6,8 @@ authors: ['ankit']
 categories: 
   - "कवितायेँ"
   - "मेरी-बिटिया"
+bsky: true
+slug: meri-nanhi-pari
 ---
 
 ```poem

@@ -7,6 +7,8 @@ categories:
   - "कवितायेँ"
   - "दो-चार-लाइना"
   - "राजनीती"
+bsky: true
+slug: laghu-panktiyan
 ---
 
 ```poem
