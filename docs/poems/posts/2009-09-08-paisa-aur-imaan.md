@@ -8,6 +8,7 @@ categories:
   - "दार्शनिक"
 bsky: true
 slug: paisa-aur-imaan
+description: paisa aur imaan is hindi for Money and integrity
 ---
 
 ```poem

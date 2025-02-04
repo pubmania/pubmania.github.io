@@ -9,6 +9,7 @@ categories:
   - "भावनात्मक"
 bsky: true
 slug: pooch-lo-quazi-se
+description: pooch lo quazi se is hindi for Ask the clergyman
 ---
 
 ```poem

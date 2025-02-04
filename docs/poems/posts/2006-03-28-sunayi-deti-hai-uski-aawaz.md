@@ -8,6 +8,7 @@ categories:
   - "दार्शनिक"
 bsky: true
 slug: sunayi-deti-hai-uski-aawaz
+description: sunayi deti hai uski aawaaz is hindi for his (God's) voice is audible
 ---
 
 ```poem

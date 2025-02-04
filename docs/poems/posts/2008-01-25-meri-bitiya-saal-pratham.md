@@ -8,6 +8,7 @@ categories:
   - "मेरी-बिटिया"
 bsky: true
 slug: meri-bitiya-saal-pratham
+description: meri bitiya saal pratham is hindi for My Daughter Year One
 ---
 
 ```poem

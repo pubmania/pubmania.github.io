@@ -8,6 +8,7 @@ categories:
   - "प्रेम-रस"
 bsky: true
 slug: saalgirah
+description: saalgirah is hindi for Anniversary
 ---
 
 ```poem

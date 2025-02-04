@@ -8,6 +8,7 @@ categories:
   - "दार्शनिक"
 bsky: true
 slug: bhalaa-karenge-tumhaara-sai
+description: bhala karenge tumhara sai is hindi for Sai (God) will do good for you
 ---
 
 ```poem

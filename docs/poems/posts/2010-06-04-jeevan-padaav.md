@@ -8,6 +8,7 @@ categories:
   - "ज़िन्दगी"
 bsky: true
 slug: jeevan-padaav
+description: jeevan padaav is hindi for Stage of life
 ---
 
 ```poem

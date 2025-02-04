@@ -8,6 +8,7 @@ categories:
   - "दार्शनिक"
 bsky: true
 slug: naya-jahan
+description: naya jahan is hindi for New World
 ---
 
 ```poem

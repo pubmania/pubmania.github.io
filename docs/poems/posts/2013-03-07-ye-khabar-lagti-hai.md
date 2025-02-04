@@ -9,6 +9,7 @@ categories:
   - "प्रेम-रस"
 bsky: true
 slug: ye-khabar-lagti-hai
+description: ye khabar lagti hai is hindi for This news sounds like
 ---
 
 ```poem

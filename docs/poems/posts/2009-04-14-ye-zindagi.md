@@ -8,6 +8,7 @@ categories:
   - "ज़िन्दगी"
 bsky: true
 slug: ye-zindagi
+description: ye zindagi is hindi for This Life
 ---
 
 ```poem

@@ -9,6 +9,7 @@ categories:
   - "दोस्ती"
 bsky: true
 slug: muskuraahat
+description: muskuraahat is hindi for Smile
 ---
 
 ```poem

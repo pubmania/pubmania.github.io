@@ -8,6 +8,7 @@ categories:
   - "दार्शनिक"
 bsky: true
 slug: to-kya-kijiyega
+description: to kya kijiyega is hindi for Then what will you do
 ---
 
 ```poem

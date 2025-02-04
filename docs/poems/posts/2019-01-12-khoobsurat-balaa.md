@@ -8,6 +8,7 @@ categories:
   - "दार्शनिक"
 bsky: true
 slug: khoobsurat-balaa
+description: khoobsurat balaa is hindi for Beautiful Problem
 ---
 
 ```poem

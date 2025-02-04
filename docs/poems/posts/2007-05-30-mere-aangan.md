@@ -8,6 +8,7 @@ categories:
   - "मेरी-बिटिया"
 bsky: true
 slug: mere-aangan
+description: mere aangan is hindi for in my courtyard
 ---
 
 ```poem

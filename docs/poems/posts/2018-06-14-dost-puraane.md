@@ -9,6 +9,7 @@ categories:
   - "दोस्ती"
 bsky: true
 slug: dost-puraane
+description: dost puraane is hindi for Old Friends
 ---
 
 ```poem

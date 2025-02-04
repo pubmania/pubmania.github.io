@@ -9,6 +9,7 @@ categories:
   - "प्रेम-रस"
 bsky: true
 slug: hanseen-lamha
+description: hanseen lamha is hindi for Beautiful moment
 ---
 
 ```poem

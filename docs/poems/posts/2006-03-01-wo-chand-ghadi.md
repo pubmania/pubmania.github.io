@@ -8,6 +8,7 @@ categories:
   - "प्रेम-रस"
 bsky: true
 slug: wo-chand-ghadi
+description: wo chand ghadi is hindi for those few moments
 ---
 
 ```poem

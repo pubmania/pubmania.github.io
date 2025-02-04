@@ -8,6 +8,7 @@ categories:
   - "दार्शनिक"
 bsky: true
 slug: nahin-milta
+description: nahi milta is hindi for Isn't Found
 ---
 
 ```poem

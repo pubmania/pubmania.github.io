@@ -8,6 +8,7 @@ categories:
   - "मेरी-बिटिया"
 bsky: true
 slug: meri-bitiya-varsh-ashtam
+description: meri bitiya varsh ashtam is hindi for My daughter year eight.
 ---
 
 ```poem

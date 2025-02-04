@@ -8,6 +8,7 @@ categories:
   - "दार्शनिक"
 bsky: true
 slug: baandh-nahi-sakte
+description: baandh nahi sakte is hindi for cannot be tied.
 ---
 
 ```poem

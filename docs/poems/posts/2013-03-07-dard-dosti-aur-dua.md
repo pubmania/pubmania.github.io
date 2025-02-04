@@ -9,6 +9,7 @@ categories:
   - "दोस्ती"
 bsky: true
 slug: dard-dosti-aur-dua
+description: dard, dosti aur dua is hindi for Pain, Friendship and Prayer
 ---
 
 ```poem

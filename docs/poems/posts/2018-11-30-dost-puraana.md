@@ -8,6 +8,7 @@ categories:
   - "दोस्ती"
 bsky: true
 slug: dost-puraana
+description: dost puraana is hindi for Old Friend
 ---
 
 ```poem

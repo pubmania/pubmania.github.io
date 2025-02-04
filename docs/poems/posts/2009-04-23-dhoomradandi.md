@@ -8,6 +8,7 @@ categories:
   - "हास्य-रस"
 bsky: true
 slug: dhoomradandi
+description: dhoomradandi is hindi for Cigarette
 ---
 
 ```poem

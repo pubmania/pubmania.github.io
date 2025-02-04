@@ -8,6 +8,7 @@ categories:
   - "मेरी-बिटिया"
 bsky: true
 slug: meri-nanhi-pari
+description: meri nanhi pari is hindi for My Little Fairy
 ---
 
 ```poem

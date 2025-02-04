@@ -10,6 +10,7 @@ categories:
   - "दोस्ती"
 bsky: true
 slug: tumhari-yaad
+description: tumhaari yaad is hindi for Your memory
 ---
 
 ```poem

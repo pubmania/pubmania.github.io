@@ -9,6 +9,7 @@ categories:
   - "राजनीती"
 bsky: true
 slug: laghu-panktiyan
+description: This is a collection of small couplets written on random occassions in response to some event or another.
 ---
 
 ```poem

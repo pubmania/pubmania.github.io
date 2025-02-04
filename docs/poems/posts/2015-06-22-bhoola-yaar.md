@@ -9,6 +9,7 @@ categories:
   - "दोस्ती"
 bsky: true
 slug: bhoola-yaar
+description: bhoola yaar is hindi for Forgotten friend
 ---
 
 ```poem

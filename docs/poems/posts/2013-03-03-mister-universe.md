@@ -8,6 +8,7 @@ categories:
   - "हास्य-रस"
 bsky: true
 slug: mister-universe
+description: Just a funny poem with play of words with names and events of the time.
 ---
 
 ```poem

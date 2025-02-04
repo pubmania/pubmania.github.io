@@ -11,6 +11,7 @@ categories:
   - "हास्य-रस"
 bsky: true
 slug: khushnuma-jindagi
+description: khushnuma jindagi is hindi for happy life. It is a light hearted take on how changes in life may sound difficult but still contribute towards a happy fulfilling life.
 ---
 
 ```poem

@@ -9,6 +9,7 @@ categories:
   - "दोस्ती"
 bsky: true
 slug: janmadin-par-doston-ki-yaad
+description: janmdin par doston ki yaadein is hindi for momories of friends on birthday
 ---
 
 ```poem

@@ -9,6 +9,7 @@ categories:
   - "प्रेम-रस"
 bsky: true
 slug: karvachauth-ka-vrat
+description: karvachauth ka vrat is a fasting done by wife for long life of her husband in Hindu customs. I am clearly not a big fan of this.
 ---
 
 ```poem

@@ -8,6 +8,7 @@ categories:
   - "प्रेम-रस"
 bsky: true
 slug: tum-bin-priye
+description: tum bin priye is hindi for Without you my love
 ---
 
 ```poem

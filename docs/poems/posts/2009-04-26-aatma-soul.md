@@ -8,6 +8,7 @@ categories:
   - "दार्शनिक"
 bsky: true
 slug: aatma-soul
+description: aatma is hindi for Soul
 ---
 
 शिव कभी भी गर्भ से जन्म नहीं लेते, इसलिए अपनी भूमिका निभाने के लिए शंकर के शरीर में दिव्य जन्म लेते हैं।

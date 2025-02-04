@@ -8,6 +8,7 @@ categories:
   - "ज़िन्दगी"
 bsky: true
 slug: kaisi-jindagi
+description: kaisi jindagi is hindi for what life
 ---
 
 ```poem

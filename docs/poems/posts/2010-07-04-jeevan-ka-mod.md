@@ -8,6 +8,7 @@ categories:
   - "ज़िन्दगी"
 bsky: true
 slug: jeevan-ka-mod
+description: jeevan ka mod is hindi for turn on the road of Life
 ---
 
 ```poem

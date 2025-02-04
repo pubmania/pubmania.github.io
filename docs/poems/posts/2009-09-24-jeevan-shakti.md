@@ -9,6 +9,7 @@ categories:
   - "दार्शनिक"
 bsky: true
 slug: jeevan-shakti
+description: jeevan shakti is hindi for Life Force
 ---
 
 ```poem

@@ -9,6 +9,7 @@ categories:
   - "दार्शनिक"
 bsky: true
 slug: jeevan-katha
+description: jeevan katha is hindi for Life Story
 ---
 
 ```poem

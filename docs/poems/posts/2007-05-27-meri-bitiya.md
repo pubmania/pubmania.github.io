@@ -8,6 +8,7 @@ categories:
   - "मेरी-बिटिया"
 bsky: true
 slug: meri-bitiya
+description: meri bitiya is hindi for my daughter
 ---
 
 ```poem

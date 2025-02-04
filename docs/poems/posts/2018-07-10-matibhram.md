@@ -9,6 +9,7 @@ categories:
   - "भावनात्मक"
 bsky: true
 slug: matibhram
+description: matibhram is hindi for Confusion
 ---
 
 ```poem

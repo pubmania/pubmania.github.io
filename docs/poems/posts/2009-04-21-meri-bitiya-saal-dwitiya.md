@@ -8,6 +8,7 @@ categories:
   - "मेरी-बिटिया"
 bsky: true
 slug: meri-bitiya-saal-dwitiya
+description: meri bitiya saal dwitiya is hindi for My daughter year two
 ---
 
 ```poem
