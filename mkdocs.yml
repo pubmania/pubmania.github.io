@@ -1,4 +1,4 @@
-site_name: Make Gadgets Work 
+site_name: Mindful Growth Workspace 
 site_description: I give what I take and then I try giving a bit more - My payback to the helpful open source community !!!
 repo_url: !ENV [REPO_URL, 'https://github.com/pubmania/pubmania.github.io']
 edit_uri: !ENV [EDIT_URL,'edit/main/docs/']
