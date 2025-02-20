@@ -89,8 +89,10 @@ Her heart and soul, she pours into her quest.
 Once reached, she moves, with zest and thrill,  
 A new challenge, she embraces with her best.
 
-She's strong, she's brave, she's gentle, she's a gem, She's playful, innocent, and capable too,  
-The heartbeat of our lives, she's our little woman, My value, my pride, my smile, my love so true.
+She's strong, she's brave, she's gentle, she's a gem,  
+She's playful, innocent, and capable too,  
+The heartbeat of our lives, she's our little woman,  
+My value, my pride, my smile, my love so true.
 
 She is my joy, my pride, she brings me light,  
 She is the mirror of us, our tiny life.  
