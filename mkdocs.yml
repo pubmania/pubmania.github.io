@@ -108,6 +108,8 @@ plugins:
         - Git
         - Logseq
         - Project Management
+        - Programme Management
+        - Humour
   - blog:
       enabled: true
       blog_dir: poems
