@@ -48,8 +48,13 @@ def process_file_yaml(file_path, yaml_regex, access_token, at_client, image_dire
         frontmatter_content = match.group(1)
         frontmatter_dict = yaml.safe_load(frontmatter_content.split('---')[1].strip())
         
+        # Skip if bsky flag is not there or is set to false
+        if not frontmatter_dict.get('bsky'):
+            print(f"Skipping {file_path} - Bluesky flag does not exist or is set to false")
+            return False
+        
         # Skip if Bluesky URL already exists (existing logic)
-        if 'bluesky_url' in frontmatter_dict and frontmatter_dict['bluesky_url']:
+        if frontmatter_dict.get('bluesky_url'):
             print(f"Skipping {file_path} - Bluesky URL already exists")
             return False
 
@@ -115,7 +120,7 @@ def create_bluesky_post(url, title, description, image_path, access_token, at_cl
         }
         
         embed_post = {"$type": "app.bsky.embed.external", "external": card}
-        post_response = at_client.send_post(text='Check out the latest post on my blog.', embed=embed_post)
+        post_response = at_client.send_post(text=f'Check out the latest post on my blog.\n{title}\n{description}', embed=embed_post)
         
         # Extract post ID and return full URL
         post_id = post_response.uri.split('/')[-1]
@@ -146,18 +151,31 @@ def main():
     # Bluesky client setup
     at_client = Client()
     at_client.login(BLUESKY_HANDLE, BLUESKY_APP_PASSWORD)
+    access_token = requests.Session().post(
+                           "https://bsky.social/xrpc/com.atproto.server.createSession",
+                           json={"identifier": BLUESKY_HANDLE, "password": BLUESKY_APP_PASSWORD}
+                       ).json()["accessJwt"]
     
-    # Get other parameters
+    # Get blog post parameters
     path = 'docs/posts'
     image_directory = os.path.join(os.environ['GITHUB_WORKSPACE'], 'site', 'assets', 'images', 'social', 'posts')
     site_url = os.environ['SITE_URL']
     
     # Process posts
     get_yaml_frontmatter(path, 
-                       requests.Session().post(
-                           "https://bsky.social/xrpc/com.atproto.server.createSession",
-                           json={"identifier": BLUESKY_HANDLE, "password": BLUESKY_APP_PASSWORD}
-                       ).json()["accessJwt"],
+                       access_token,
+                       at_client,
+                       image_directory,
+                       site_url,
+                       repo)
+    
+    # Get poem parameters
+    path = 'docs/poems/posts'
+    image_directory = os.path.join(os.environ['GITHUB_WORKSPACE'], 'site', 'assets', 'images', 'social', 'poems', 'posts')
+    
+    # Process poems
+    get_yaml_frontmatter(path, 
+                       access_token,
                        at_client,
                        image_directory,
                        site_url,
