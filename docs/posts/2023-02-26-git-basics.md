@@ -9,7 +9,7 @@ draft: false
 description: Basic overview of what GIT is and how to use it
 comments: false
 bsky: true
-bluesky_url: https://bsky.app/profile/ankitmittal.bsky.social/post/3lcse7yabrd2x
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lcse7yabrd2x
 categories:
   - Software
   - Development

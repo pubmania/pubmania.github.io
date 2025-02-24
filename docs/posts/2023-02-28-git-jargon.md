@@ -9,7 +9,7 @@ draft: false
 description: Recap on Git basics and explanation of some git jargon
 comments: false
 bsky: true
-bluesky_url: https://bsky.app/profile/ankitmittal.bsky.social/post/3lcseb7wdel2x
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lcseb7wdel2x
 categories:
   - Linux
   - Software
