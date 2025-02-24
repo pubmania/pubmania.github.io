@@ -7,6 +7,7 @@ categories:
   - "कवितायेँ"
   - "ज़िन्दगी"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe7j4buqc2s
 slug: jeevan-padaav
 description: jeevan padaav is hindi for Stage of life
 ---

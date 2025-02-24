@@ -8,6 +8,7 @@ categories:
   - "दार्शनिक"
   - "भावनात्मक"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe7hhedes2s
 slug: pooch-lo-quazi-se
 description: pooch lo quazi se is hindi for Ask the clergyman
 ---

@@ -7,6 +7,7 @@ categories:
   - "कवितायेँ"
   - "दोस्ती"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe6r4beik2s
 slug: dost-puraana
 description: dost puraana is hindi for Old Friend
 ---

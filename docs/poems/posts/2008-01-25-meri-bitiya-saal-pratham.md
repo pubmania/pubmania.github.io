@@ -7,6 +7,7 @@ categories:
   - "कवितायेँ"
   - "मेरी-बिटिया"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe7rj3dsk2s
 slug: meri-bitiya-saal-pratham
 description: meri bitiya saal pratham is hindi for My Daughter Year One
 ---

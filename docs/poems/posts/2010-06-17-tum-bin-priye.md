@@ -7,6 +7,7 @@ categories:
   - "कवितायेँ"
   - "प्रेम-रस"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe7hurfts2s
 slug: tum-bin-priye
 description: tum bin priye is hindi for Without you my love
 ---

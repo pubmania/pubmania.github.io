@@ -8,6 +8,7 @@ categories:
   - "ज़िन्दगी"
   - "दार्शनिक"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe7ejnnek2s
 slug: jeevan-katha
 description: jeevan katha is hindi for Life Story
 ---

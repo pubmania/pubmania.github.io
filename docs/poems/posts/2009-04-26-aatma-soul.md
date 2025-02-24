@@ -7,6 +7,7 @@ categories:
   - "कवितायेँ"
   - "दार्शनिक"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe7nvg7bs2s
 slug: aatma-soul
 description: aatma is hindi for Soul
 ---

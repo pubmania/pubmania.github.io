@@ -7,6 +7,7 @@ categories:
   - "कवितायेँ"
   - "दार्शनिक"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe7ngx2xs2s
 slug: naya-jahan
 description: naya jahan is hindi for New World
 ---

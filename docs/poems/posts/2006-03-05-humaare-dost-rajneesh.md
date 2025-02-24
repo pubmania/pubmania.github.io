@@ -7,7 +7,6 @@ categories:
   - "कवितायेँ"
   - "हास्य-रस"
   - "दोस्ती"
-bsky: true
 slug: humaare-dost-rajneesh
 description: humaare dost rajneesh is hindi for my friend rajneesh
 ---

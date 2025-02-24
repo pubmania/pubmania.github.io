@@ -7,6 +7,7 @@ categories:
   - "कवितायेँ"
   - "मेरी-बिटिया"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe7oji5bk2s
 slug: meri-bitiya-saal-dwitiya
 description: meri bitiya saal dwitiya is hindi for My daughter year two
 ---

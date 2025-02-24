@@ -11,31 +11,54 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
       - name: Configure Git Credentials
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+      
+      - name: Install Devanagari font
+        run: |
+          sudo mkdir -p /usr/share/fonts/truetype/hind
+          sudo cp fonts/Hind-Regular.ttf /usr/share/fonts/truetype/hind/
+          sudo fc-cache -f -v
+
       - uses: actions/setup-python@v5
         with:
           python-version: 3.x
+      
       - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
+      
       - uses: actions/cache@v4
         with:
           key: mkdocs-material-${{ env.cache_id }}
           path: .cache
           restore-keys: |
             mkdocs-material-
-      - run: pip install -r requirements.txt 
-      - run: mkdocs gh-deploy --force
-        env:
-          REPO_URL: ${{ vars.REPO_URL }}
-          EDIT_URL: ${{ vars.EDIT_URL }}
-          SITE_URL: ${{ vars.SITE_URL }}
-          DISQUS_CODE: ${{ vars.DISQUS_CODE }}
+      
+      - run: pip install -r requirements.txt
+      
+      # Build temporary site for image paths
+      - name: Build Temp Site
+        run: mkdocs build
+      
+      # Run Bluesky posting and frontmatter update
       - name: Run Post-Deployment Script
         run: python post_deploy.py
         env:
           BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
           BSKY_APP_PWD: ${{ secrets.BSKY_APP_PWD }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          SITE_URL: ${{ vars.SITE_URL }}
           GITHUB_WORKSPACE: ${{ github.workspace }}
-          SITE_URL: ${{ vars.SITE_URL }}          
+      
+      # Commit updated Markdown files
+      - name: Commit Metadata Changes
+        run: |
+          git add docs/posts/*.md
+          git commit -m "Update Bluesky URLs in frontmatter" || echo "No changes to commit"
+          git push origin main
+      
+      # Rebuild site with updated metadata
+      - name: Final Build and Deploy
+        run: mkdocs gh-deploy --force

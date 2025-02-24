@@ -8,6 +8,7 @@ categories:
   - "ज़िन्दगी"
   - "दार्शनिक"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe7lpinps2s
 slug: jeevan-shakti
 description: jeevan shakti is hindi for Life Force
 ---

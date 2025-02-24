@@ -8,6 +8,7 @@ categories:
   - "भावनात्मक"
   - "दोस्ती"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe73vlf3c2s
 slug: dard-dosti-aur-dua
 description: dard, dosti aur dua is hindi for Pain, Friendship and Prayer
 ---

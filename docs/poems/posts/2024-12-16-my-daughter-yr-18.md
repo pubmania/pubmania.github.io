@@ -7,6 +7,7 @@ categories:
   - "कवितायेँ"
   - "मेरी-बिटिया"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe6f5wbzs2s
 slug: my-daughter-yr-18
 description: meri bitiya varsh aththarah is hindi for My daughter year eighteen
 ---

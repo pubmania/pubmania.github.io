@@ -8,6 +8,7 @@ categories:
   - "दार्शनिक"
   - "भावनात्मक"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe6s5xcn22s
 slug: matibhram
 description: matibhram is hindi for Confusion
 ---

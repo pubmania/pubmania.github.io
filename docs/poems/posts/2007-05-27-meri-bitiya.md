@@ -7,6 +7,7 @@ categories:
   - "कवितायेँ"
   - "मेरी-बिटिया"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe7uawpoc2s
 slug: meri-bitiya
 description: meri bitiya is hindi for my daughter
 ---

@@ -7,6 +7,7 @@ categories:
   - "कवितायेँ"
   - "दार्शनिक"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe7wzyrt22s
 slug: sunayi-deti-hai-uski-aawaz
 description: sunayi deti hai uski aawaaz is hindi for his (God's) voice is audible
 ---

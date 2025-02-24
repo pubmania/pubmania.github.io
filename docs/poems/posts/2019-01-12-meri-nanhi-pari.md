@@ -7,6 +7,7 @@ categories:
   - "कवितायेँ"
   - "मेरी-बिटिया"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe6qn2r7c2s
 slug: meri-nanhi-pari
 description: meri nanhi pari is hindi for My Little Fairy
 ---

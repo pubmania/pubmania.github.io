@@ -7,6 +7,7 @@ categories:
   - "कवितायेँ"
   - "दार्शनिक"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe7ptantc2s
 slug: to-kya-kijiyega
 description: to kya kijiyega is hindi for Then what will you do
 ---

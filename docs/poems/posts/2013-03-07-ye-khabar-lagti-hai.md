@@ -8,6 +8,7 @@ categories:
   - "भावनात्मक"
   - "प्रेम-रस"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe74gflqc2s
 slug: ye-khabar-lagti-hai
 description: ye khabar lagti hai is hindi for This news sounds like
 ---

@@ -8,7 +8,6 @@ categories:
   - "दो-चार-लाइना"
   - "प्रेम-रस"
   - "दोस्ती"
-bsky: true
 slug: tumhari-yaad
 description: tumhaari yaad is hindi for Your memory
 ---

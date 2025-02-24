@@ -7,6 +7,7 @@ categories:
   - "कवितायेँ"
   - "मेरी-बिटिया"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe6xzkqyc2s
 slug: meri-bitiya-varsh-ashtam
 description: meri bitiya varsh ashtam is hindi for My daughter year eight.
 ---

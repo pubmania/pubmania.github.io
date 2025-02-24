@@ -7,6 +7,7 @@ categories:
   - "कवितायेँ"
   - "ज़िन्दगी"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe7peo26s2s
 slug: ye-zindagi
 description: ye zindagi is hindi for This Life
 ---

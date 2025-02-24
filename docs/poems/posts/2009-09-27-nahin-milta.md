@@ -7,6 +7,7 @@ categories:
   - "कवितायेँ"
   - "दार्शनिक"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe7lcp4as2s
 slug: nahin-milta
 description: nahi milta is hindi for Isn't Found
 ---

@@ -8,6 +8,7 @@ date:
 draft: false
 description: Step by step notes to enable bluesky comment system on mkdocs blog.
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lcyks5upbe2e
 categories:
   - Blogging
   - Development

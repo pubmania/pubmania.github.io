@@ -44,15 +44,15 @@
 {% endif %}
 <!-- BLUESKY SECTION -->
 {% if page.meta.bsky %}
-<h2 id="__comments">
-  <span class="twemoji" style="margin-right: 10px;">
-    {% include ".icons/fontawesome/brands/square-bluesky.svg" %}
-  </span>
-  {{ lang.t("meta.comments") }}
-</h2>
-<!--p><a href="{{ page.meta.bsky }}">Join the conversation on Bluesky.... </a></p-->
-<script type="module" src="{{ '/assets/js/bluesky-comments.mjs' }}"></script>
-<!-- Use the element -->
-<bluesky-comments url={{ page.meta.bsky }}>
-</bluesky-comments>
+  {% if page.meta.bluesky_url %}
+  <h2 id="__comments">
+    <span class="twemoji" style="margin-right: 10px;">
+      {% include ".icons/fontawesome/brands/square-bluesky.svg" %}
+    </span>
+    {{ lang.t("meta.comments") }}
+  </h2>
+  <script type="module" src="{{ '/assets/js/bluesky-comments.mjs' }}"></script>
+  <bluesky-comments url={{ page.meta.bluesky_url }}>
+  </bluesky-comments>
+  {% endif %}
 {% endif %}

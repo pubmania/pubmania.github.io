@@ -5,7 +5,6 @@ date:
 authors: ['ankit']
 categories: 
   - "कवितायेँ"
-bsky: true
 slug: shubh-deepavali
 description: A poem to give best wishes on the festival of lights.
 ---

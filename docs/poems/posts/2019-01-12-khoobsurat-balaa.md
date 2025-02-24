@@ -7,6 +7,7 @@ categories:
   - "कवितायेँ"
   - "दार्शनिक"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe6q3zc4s2s
 slug: khoobsurat-balaa
 description: khoobsurat balaa is hindi for Beautiful Problem
 ---

@@ -7,6 +7,7 @@ categories:
   - "कवितायेँ"
   - "मेरी-बिटिया"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe7tedy6s2s
 slug: mere-aangan
 description: mere aangan is hindi for in my courtyard
 ---

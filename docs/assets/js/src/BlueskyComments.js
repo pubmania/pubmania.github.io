@@ -1,8 +1,7 @@
 export class BlueskyComments extends HTMLElement {
   static properties = {
     /** The URL of the Bluesky post to use as the parent */
-    //get url from search api of bluesky
-      url: { type: String },
+    url: { type: String },
   };
 
   #observer;
@@ -12,7 +11,7 @@ export class BlueskyComments extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.shadowRoot.innerHTML = /*html*/ `
     <style>
-      /* Bluesky Comments CSS */
+            /* Bluesky Comments CSS */
 
       /* Container Styles */
       .comments {
@@ -156,61 +155,37 @@ export class BlueskyComments extends HTMLElement {
   async #loadComments() {      
     // Get the current URL
     const currentUrl = window.location.href;
-    // Create a URL object
     const deconstructedurl = new URL(currentUrl);
-    // Extract the pathname and hash
-    const extractedPart = deconstructedurl.pathname //+ deconstructedurl.hash;
-    console.log(extractedPart); // Output: "/2023/03/29/read-excel-csv-recursive.html#displays-extracted-output"
-    const assembledUrl = "https://mgw.dumatics.com"+extractedPart
-    console.log(assembledUrl)
+    const extractedPart = deconstructedurl.pathname;
+    const assembledUrl = "https://mgw.dumatics.com" + extractedPart;
 
-    const query = encodeURIComponent(assembledUrl);
-    const author = encodeURIComponent("did:plc:y24b7ow3kvvkm6lpgcbh2j2o");
-    const limit = 1;
-    const apiUrl = `https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts?q=${query}&author=${author}&sort=oldest&limit=${limit}`;    
-  
-    const response = await fetch(apiUrl, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-  
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-  
-    const data = await response.json();
-    let blueskyUrl = data.posts[0]?.uri; // Use optional chaining to safely access uri
-    console.log(blueskyUrl);
-    // Check if blueskyUrl is not found from API, assign it from the attribute
-    if (!blueskyUrl) {
-      blueskyUrl = this.getAttribute("url");
-    }
-    
-    if (blueskyUrl) {
-      try {
+    try {
+      const blueskyUrl = this.getAttribute("url");
+      if (blueskyUrl) {
         const atUri = await this.#resolvePostUrl(blueskyUrl);
         if (!atUri) {
           throw new Error("Failed to resolve AT URI");
         }
-        const urlParts = (atUri).split("/");
+        
+        const urlParts = atUri.split("/");
         const postId = urlParts[4];
-        console.log(postId)
+        
         this.shadowRoot.querySelector(".comments").innerHTML = 
-        `<p class="conversation"><a href="https://bsky.app/profile/ankit.dumatics.com/post/${postId}" target="_blank">Join the conversation on Bluesky.... </a></p>`;
+          `<p class="conversation"><a href="https://bsky.app/profile/ankit.dumatics.com/post/${postId}" target="_blank">Join the conversation on Bluesky.... </a></p>`;
+        
         const replies = await this.#fetchReplies(atUri);
         this.#displayReplies(replies);
-      } catch (e) {
+      } else {
         this.shadowRoot.querySelector(".comments").innerHTML =
           `<p>No Bluesky Comments thread found for this post.</p>`;
       }
-    } else {
+    } catch (e) {
+      console.error("Comments loading failed:", e);
       this.shadowRoot.querySelector(".comments").innerHTML =
-        `<p>No Bluesky Comments thread found for this post.</p>`;
+        `<p>Error loading comments. <a href="https://bsky.app/profile/ankit.dumatics.com" target="_blank">Visit our Bluesky profile</a></p>`;
     }
   }
-  
+
 
   async #resolvePostUrl(postUrl) {
     let atUri;

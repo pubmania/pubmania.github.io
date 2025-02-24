@@ -4,10 +4,11 @@ slug: "fully-automated-bluesky-commenting-system--on-mkdocs"
 authors: [ankit]
 date: 
   created: 2024-12-23 21:57:00
-  updated: 2024-12-23 21:30:00
+  updated: 2025-02-24 18:20:00
 draft: false
 description: Step by step notes to enable fully automated bluesky comment system on mkdocs site.
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3ldy6rycetk2d
 categories:
   - Blogging
   - Development
@@ -15,7 +16,7 @@ categories:
 
 ## Background
 
-This post is basically continuation of the [previous post](./2024-12-10-bluesky-for-comments-on-mkdocs-blog.md) and outlines the steps taken to achieve the following flow:
+This post was basically continuation of the [previous post](./2024-12-10-bluesky-for-comments-on-mkdocs-blog.md) and outlined the steps taken to achieve the following flow, however there was an announcement recently which stops bluesky search as means of automation so I had to modify the flow:
 
 ```plantuml
 @startuml
@@ -31,7 +32,54 @@ end
 @enduml
 ```
 
-Once the steps of [previous post](./2024-12-10-bluesky-for-comments-on-mkdocs-blog.md) are completed, basically following additional steps will ensure that a new post will trigger creation of a bluesky post which in turn will enable bluesky comments on the post on the site. <!-- more -->
+The modified flow that I applied, is as shown below and I will update this post in due course to provide documentation on code changes but code can also see the code [here](https://github.com/pubmania/test-github-action)
+
+<!-- more -->
+
+```plantuml
+@startuml
+--8<-- "puml_custom_theme.txt"
+start
+:GitHub Action Trigger;
+
+if (Last commit by script?) then (yes)
+  :Exit: Prevent Cycle;
+  stop
+else (no)
+  :Process Markdown Files;
+  
+  while (For each file) is (Next File)
+    if (File has bluesky_url?) then (yes)
+      :Skip File;
+    else (no)
+      if (Post older than 5 days?) then (yes)
+        :Skip File;
+      else (no)
+        :Create Bluesky Post;
+        if (Post Created?) then (yes)
+          :Update Frontmatter;
+          :Add to Modified Files;
+        else (no)
+          :Log Error;
+          :Exit with Error;
+        endif
+      endif
+    endif
+  endwhile
+  
+  if (Any modified files?) then (yes)
+    :Atomic Commit All Changes;
+    :Push to GitHub;
+  else (no)
+    :No changes to commit;
+  endif
+  stop
+endif
+
+@enduml
+```
+
+~~Once the steps of [previous post](./2024-12-10-bluesky-for-comments-on-mkdocs-blog.md) are completed, basically following additional steps will ensure that a new post will trigger creation of a bluesky post which in turn will enable bluesky comments on the post on the site.~~ 
 
 ## Create environment secrets
 

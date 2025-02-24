@@ -6,7 +6,6 @@ authors: ['ankit']
 categories: 
   - "कवितायेँ"
   - "दार्शनिक"
-bsky: true
 slug: prashn-barabari-ka
 description: prashn barabari ka is hindi for Question of equality
 ---

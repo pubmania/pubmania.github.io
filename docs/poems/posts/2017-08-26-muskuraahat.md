@@ -8,6 +8,7 @@ categories:
   - "भावनात्मक"
   - "दोस्ती"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe6tjbuqs2s
 slug: muskuraahat
 description: muskuraahat is hindi for Smile
 ---

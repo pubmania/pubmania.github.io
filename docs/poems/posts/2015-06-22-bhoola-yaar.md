@@ -8,6 +8,7 @@ categories:
   - "दो-चार-लाइना"
   - "दोस्ती"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe6xcwfcc2s
 slug: bhoola-yaar
 description: bhoola yaar is hindi for Forgotten friend
 ---

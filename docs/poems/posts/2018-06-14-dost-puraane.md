@@ -8,6 +8,7 @@ categories:
   - "भावनात्मक"
   - "दोस्ती"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe6sznxok2s
 slug: dost-puraane
 description: dost puraane is hindi for Old Friends
 ---

@@ -7,6 +7,7 @@ categories:
   - "कवितायेँ"
   - "ज़िन्दगी"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe7z5ep3c2s
 slug: kaisi-jindagi
 description: kaisi jindagi is hindi for what life
 ---

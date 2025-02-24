@@ -7,7 +7,6 @@ categories:
   - "कवितायेँ"
   - "दो-चार-लाइना"
   - "हास्य-रस"
-bsky: true
 slug: hum-paagal-hain
 description: hum paagal hain is hindi for I am mad
 ---

@@ -7,6 +7,7 @@ categories:
   - "कवितायेँ"
   - "दार्शनिक"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe7mkm5ic2s
 slug: paisa-aur-imaan
 description: paisa aur imaan is hindi for Money and integrity
 ---

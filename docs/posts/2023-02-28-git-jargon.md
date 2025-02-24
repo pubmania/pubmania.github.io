@@ -8,7 +8,8 @@ authors: [ankit]
 draft: false
 description: Recap on Git basics and explanation of some git jargon
 comments: false
-bsky: https://bsky.app/profile/ankitmittal.bsky.social/post/3lcseb7wdel2x
+bsky: true
+bluesky_url: https://bsky.app/profile/ankitmittal.bsky.social/post/3lcseb7wdel2x
 categories:
   - Linux
   - Software

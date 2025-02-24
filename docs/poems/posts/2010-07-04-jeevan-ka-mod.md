@@ -7,6 +7,7 @@ categories:
   - "कवितायेँ"
   - "ज़िन्दगी"
 bsky: true
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lhe7gvcqxc2s
 slug: jeevan-ka-mod
 description: jeevan ka mod is hindi for turn on the road of Life
 ---
