@@ -1,17 +1,20 @@
 ---
-title: "Programme vs. Project Initiation"
-slug: "pgm-vs-pm-initiation"
-authors: [ankit]
-date: 
-  created: 2025-02-24 21:30:00
-  updated: 2025-02-25 00:15:00
-draft: false
-description: Part 2 of an explainer of the differences between Project Management and Programme Management with a dash of humour.
+authors:
+- ankit
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lixmnblq7m2o
 bsky: true
 categories:
-  - Project Management
-  - Programme Management
-  - Humour
+- Project Management
+- Programme Management
+- Humour
+date:
+  created: 2025-02-24 21:30:00
+  updated: 2025-02-25 00:15:00
+description: Part 2 of an explainer of the differences between Project Management
+  and Programme Management with a dash of humour.
+draft: false
+slug: pgm-vs-pm-initiation
+title: Programme vs. Project Initiation
 ---
 
 ## Sequel: The Caffeine Chronicles - *Starring the Pigeon Dynasty*  
@@ -106,4 +109,4 @@ A sticky-note-covered desk in *Sainsbury's* cafe. **Pigeon Jr.** (🕊️💻) s
 *Both require caffeine. Only one requires bribing Pigeon Sr. with Costa loyalty points.*  
 
 !!! site-tip "Final Thought"  
-    If you see a programme manager laughing maniacally in the car park, don't panic. They've just learnt that Pigeon Jr. 🕊️💻 is promoted and is in charge of the *vision statement* now.  
+    If you see a programme manager laughing maniacally in the car park, don't panic. They've just learnt that Pigeon Jr. 🕊️💻 is promoted and is in charge of the *vision statement* now.
