@@ -11,24 +11,80 @@ export class BlueskyComments extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.shadowRoot.innerHTML = /*html*/ `
     <style>
-            /* Bluesky Comments CSS */
+      /* Bluesky Comments CSS */
 
       /* Container Styles */
       .comments {
         font-family: var(--bluesky-font-family);
         font-size: var(--bluesky-font-size);
         background-color: var(--bluesky-bg-color);
-        /*border: 1px solid var(--bluesky-border-color);*/
         color: var(--bluesky-text-color);
       }
       
       .conversation a {
         color: var(--md-typeset-a-color)
       }
+      /* Parent Metrics*/
+      .parent-metrics {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin: 2rem 0;
+        padding: 1rem;
+        border-top: 1px solid var(--bluesky-border-color);
+        border-bottom: 1px solid var(--bluesky-border-color);
+      }
 
+      .parent-metrics .metric {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .parent-metrics .count {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: var(--bluesky-text-color);
+      }
+
+      .parent-metrics .label {
+        font-size: 0.9em;
+        color: var(--bluesky-handle-color);
+        text-transform: uppercase;
+      }
+
+      .comments-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--md-hr-color);
+      }
+
+      #__comments {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--md-hr-color);
+        font-size: 1.6em;
+        margin: 0 0 0 0;
+      }
+
+      .twemoji {
+        display: inline-flex;
+        width: 1em;
+        height: 1em;
+        font-size: 1.6em;
+      }
+
+      .twemoji svg {
+        width: 1em;
+        height: 1em;
+        fill: var(--md-hr-color);
+      }
+    
       /* Comment Structure */
       .comment {
-        /*border-bottom: 1px solid var(--bluesky-border-color);*/
         border: 1px solid var(--bluesky-border-color);
         border-radius: 1rem;
         padding-top: var(--bluesky-spacing-lg);
@@ -36,14 +92,9 @@ export class BlueskyComments extends HTMLElement {
       }
 
       .comment.reply {
-        /*border-left: var(--bluesky-reply-border-width) solid var(--bluesky-border-color);*/
         margin-left: var(--bluesky-spacing-lg);
         padding-top: var(--bluesky-spacing-xs);
       }
-
-      /*.comment:last-child {
-        border-bottom: none;
-      }*/
 
       .comment-content {
         padding: var(--bluesky-spacing-xs) 0;
@@ -70,7 +121,6 @@ export class BlueskyComments extends HTMLElement {
         gap: var(--bluesky-spacing-md);
         padding: 0 var(--bluesky-spacing-lg);
       }
-
 
       .comment-footer {
         display: flex;
@@ -99,7 +149,7 @@ export class BlueskyComments extends HTMLElement {
 
       .profile-link {
         color: var(--bluesky-text-color);
-          font-weight: 600;
+        font-weight: 600;
         text-decoration: none;
       }
 
@@ -116,7 +166,7 @@ export class BlueskyComments extends HTMLElement {
       }
 
       .profile-link:hover {
-          text-decoration: underline;
+        text-decoration: underline;
       }
 
       .handle {
@@ -127,6 +177,45 @@ export class BlueskyComments extends HTMLElement {
         width: var(--bluesky-icon-size);
         height: var(--bluesky-icon-size);
         color: var(--bluesky-footer-text-color);
+      }
+
+      /* New media styles */
+      .media-container {
+        margin: 1rem 0;
+        display: grid;
+        gap: 0.5rem;
+      }
+
+      .image-wrapper {
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .image-wrapper img {
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+        object-fit: contain;
+        border-radius: 8px;
+      }
+
+      .external-card {
+        border-radius: 8px;
+        padding: 0.5rem;
+        display: flex;
+        gap: 1rem;
+      }
+
+      .external-card img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 4px;
+      }
+
+      .external-card div {
+        flex: 1;
       }
     </style>
     <div class="comments"></div>`;
@@ -153,39 +242,79 @@ export class BlueskyComments extends HTMLElement {
   }
 
   async #loadComments() {      
-    // Get the current URL
     const currentUrl = window.location.href;
     const deconstructedurl = new URL(currentUrl);
     const extractedPart = deconstructedurl.pathname;
     const assembledUrl = "https://mgw.dumatics.com" + extractedPart;
 
     try {
-      const blueskyUrl = this.getAttribute("url");
-      if (blueskyUrl) {
-        const atUri = await this.#resolvePostUrl(blueskyUrl);
-        if (!atUri) {
-          throw new Error("Failed to resolve AT URI");
+        const blueskyUrl = this.getAttribute("url");
+        if (blueskyUrl) {
+            const atUri = await this.#resolvePostUrl(blueskyUrl);
+            if (!atUri) {
+                throw new Error("Failed to resolve AT URI");
+            }
+            
+            const urlParts = atUri.split("/");
+            const postId = urlParts[4];
+            
+            // Fetch the thread data first
+            const thread = await this.#fetchReplies(atUri);
+            
+            // Create parent metrics HTML
+            const parentMetrics = this.#createParentMetrics(thread.post);
+            
+            // Update DOM with new structure
+            this.shadowRoot.querySelector(".comments").innerHTML = `
+                ${parentMetrics}
+                <div class="comments-header">
+                  <h2 id="__comments">
+                      <span class="twemoji" style="margin-right: 10px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M64 32C28.7 32 0 60.7 0 96v320c0 35.3 28.7 64 64 64h320c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64zm160 215.4c14.5-30 54-85.8 90.7-113.3 26.5-19.9 69.3-35.2 69.3 13.7 0 9.8-5.6 82.1-8.9 93.8-11.4 40.8-53 51.2-90 44.9 64.7 11 81.2 47.5 45.6 84-67.5 69.3-97-17.4-104.6-39.6l-.3-.9c-.9-2.6-1.4-4.1-1.8-4.1s-.9 1.5-1.8 4.1l-.3.9c-7.6 22.2-37.1 108.8-104.6 39.6-35.5-36.5-19.1-73 45.6-84-37 6.3-78.6-4.1-90-44.9-3.3-11.7-8.9-84-8.9-93.8 0-48.9 42.9-33.5 69.3-13.7 36.7 27.5 76.2 83.4 90.7 113.3"></path></svg>
+                      </span>
+                      Comments
+                  </h2>
+                </div>
+                <p class="conversation">
+                    <a href="https://bsky.app/profile/ankit.dumatics.com/post/${postId}" target="_blank">
+                        Join the conversation on Bluesky....
+                    </a>
+                </p>`;
+            
+            // Display replies
+            this.#displayReplies(thread, this.shadowRoot.querySelector(".comments"));
+        } else {
+            this.shadowRoot.querySelector(".comments").innerHTML =
+                `<p>No Bluesky Comments thread found for this post.</p>`;
         }
-        
-        const urlParts = atUri.split("/");
-        const postId = urlParts[4];
-        
-        this.shadowRoot.querySelector(".comments").innerHTML = 
-          `<p class="conversation"><a href="https://bsky.app/profile/ankit.dumatics.com/post/${postId}" target="_blank">Join the conversation on Bluesky.... </a></p>`;
-        
-        const replies = await this.#fetchReplies(atUri);
-        this.#displayReplies(replies);
-      } else {
-        this.shadowRoot.querySelector(".comments").innerHTML =
-          `<p>No Bluesky Comments thread found for this post.</p>`;
-      }
     } catch (e) {
-      console.error("Comments loading failed:", e);
-      this.shadowRoot.querySelector(".comments").innerHTML =
-        `<p>Error loading comments. <a href="https://bsky.app/profile/ankit.dumatics.com" target="_blank">Visit our Bluesky profile</a></p>`;
+        console.error("Comments loading failed:", e);
+        this.shadowRoot.querySelector(".comments").innerHTML =
+            `<p>Error loading comments. <a href="https://bsky.app/profile/ankit.dumatics.com" target="_blank">Visit our Bluesky profile</a></p>`;
     }
-  }
+}
 
+#createParentMetrics(post) {
+    const likeCount = post.likeCount || 0;
+    const repostCount = post.repostCount || 0;
+    const replyCount = post.replyCount || 0;
+
+    return `
+        <div class="parent-metrics">
+            <div class="metric">
+                <span class="count">${repostCount}</span>
+                <span class="label">Reposts</span>
+            </div>
+            <div class="metric">
+                <span class="count">${likeCount}</span>
+                <span class="label">Likes</span>
+            </div>
+            <div class="metric">
+                <span class="count">${replyCount}</span>
+                <span class="label">Replies</span>
+            </div>
+        </div>`;
+}
 
   async #resolvePostUrl(postUrl) {
     let atUri;
@@ -327,6 +456,7 @@ export class BlueskyComments extends HTMLElement {
       } else {
         avatarElement = `<div class="default-avatar" part="avatar"></div>`;
       }
+
       commentDiv.innerHTML = `
         <div class="comment-header" part="comment-header">
           ${avatarElement}
@@ -340,7 +470,18 @@ export class BlueskyComments extends HTMLElement {
           <a href="${postUrl}" target="_blank" rel="nofollow noopener" class="comment-link">
             <div class="comment-content" part="comment-content">
               ${this.#sanitizeText(thread.post.record.text)}
-            </div>
+            </div>`;
+
+      // Add media embeds
+      if (thread.post.embed) {
+        const mediaContainer = document.createElement("div");
+        mediaContainer.classList.add("media-container");
+        this.#renderEmbed(thread.post.embed, mediaContainer);
+        commentDiv.querySelector(".comment-body").appendChild(mediaContainer);
+      }
+
+      // Add footer
+      commentDiv.querySelector(".comment-body").innerHTML += `
             <div class="comment-footer" part="comment-footer">
               <div>
                 <svg viewBox="0 0 24 24">
@@ -362,8 +503,7 @@ export class BlueskyComments extends HTMLElement {
               </div>
             </div>
           </a>
-        </div>
-      `;
+        </div>`;
 
       container.appendChild(commentDiv);
 
@@ -381,7 +521,67 @@ export class BlueskyComments extends HTMLElement {
     }
   }
 
-  #getAbbreviatedTime(date) {
+  #renderEmbed(embed, container) {
+    if (embed?.$type === 'app.bsky.embed.images#view') {
+      this.#renderImages(embed.images, container);
+    } else if (embed?.$type === 'app.bsky.embed.external#view') {
+      this.#renderExternal(embed.external, container);
+    } else if (embed?.$type === 'app.bsky.embed.recordWithMedia#view') {
+      this.#renderRecordWithMedia(embed, container);
+    }
+  }
+
+  #renderImages(images, container) {
+    images.forEach(image => {
+      const imgWrapper = document.createElement("div");
+      imgWrapper.classList.add("image-wrapper");
+      
+      const img = document.createElement("img");
+      img.src = image.fullsize;
+      img.alt = image.alt || 'Bluesky post image';
+      img.loading = 'lazy';
+      
+      imgWrapper.appendChild(img);
+      container.appendChild(imgWrapper);
+    });
+  }
+
+  #renderExternal(external, container) {
+    const link = document.createElement("a");
+    link.href = external.uri;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    
+    const card = document.createElement("div");
+    card.classList.add("external-card");
+    
+    if (external.thumb) {
+      const img = document.createElement("img");
+      img.src = external.thumb;
+      img.alt = external.title || 'External content preview';
+      card.appendChild(img);
+    }
+    
+    const text = document.createElement("div");
+    text.innerHTML = `
+      <strong>${this.#sanitizeText(external.title)}</strong>
+      <p>${this.#sanitizeText(external.description)}</p>
+      <small>${new URL(external.uri).hostname}</small>
+    `;
+    
+    card.appendChild(text);
+    link.appendChild(card);
+    container.appendChild(link);
+  }
+
+  #renderRecordWithMedia(embed, container) {
+    if (embed.media?.$type === 'app.bsky.embed.images#view') {
+      this.#renderImages(embed.media.images, container);
+    }
+    // Add handling for other media types if needed
+  }
+  
+    #getAbbreviatedTime(date) {
     const now = new Date().getTime();
     const diffMs = now - date;
     const diffSeconds = Math.floor(diffMs / 1000);

@@ -45,12 +45,6 @@
 <!-- BLUESKY SECTION -->
 {% if page.meta.bsky %}
   {% if page.meta.bluesky_url %}
-  <h2 id="__comments">
-    <span class="twemoji" style="margin-right: 10px;">
-      {% include ".icons/fontawesome/brands/square-bluesky.svg" %}
-    </span>
-    {{ lang.t("meta.comments") }}
-  </h2>
   <script type="module" src="{{ '/assets/js/bluesky-comments.mjs' }}"></script>
   <bluesky-comments url={{ page.meta.bluesky_url }}>
   </bluesky-comments>
