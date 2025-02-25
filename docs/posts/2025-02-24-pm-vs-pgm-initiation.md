@@ -86,7 +86,7 @@ A sticky-note-covered desk in *Sainsbury's* cafe. **Pigeon Jr.** (🕊️💻) s
 
 ---
 
-#### **The Takeaway**
+### **The Takeaway**
 
 **Programme Initiation** is like planning a *national coffee revolution* – abstract, political, and haunted by pigeons who quote **Sir Humphrey** (of the *Yes, Minister* fame) during risk assessments.
 
