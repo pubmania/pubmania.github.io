@@ -20,7 +20,7 @@ title: Programme vs. Project Initiation
 ## Sequel: The Caffeine Chronicles - *Starring the Pigeon Dynasty*  
 
 *In a world where coffee is currency, and pigeons have strong opinions about your agile workflow...*  
-
+<!-- more -->
 ### Scene 1: Programme Initiation – "The Great Cafe Makeover"  
 
 **Setting:**  
