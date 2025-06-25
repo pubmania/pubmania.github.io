@@ -172,13 +172,13 @@ def main():
     # Get poem parameters
     path = 'docs/poems/posts'
     image_directory = os.path.join(os.environ['GITHUB_WORKSPACE'], 'site', 'assets', 'images', 'social', 'poems', 'posts')
-    
+    poem_site_url = f"{site_url}/poems"
     # Process poems
     get_yaml_frontmatter(path, 
                        access_token,
                        at_client,
                        image_directory,
-                       site_url,
+                       poem_site_url,
                        repo)
 
 if __name__ == "__main__":
