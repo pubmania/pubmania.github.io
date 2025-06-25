@@ -1,6 +1,5 @@
 ---
-authors:
-- ['ankit']
+authors: ['ankit']
 bsky: true
 categories:
 - कवितायेँ
