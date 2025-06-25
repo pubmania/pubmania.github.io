@@ -1,16 +1,18 @@
 ---
-title: अनकहा साथ
-date: 
-  created: 2025-06-20
-authors: ['ankit']
-categories: 
-  - "कवितायेँ"
-  - "प्रेम-रस"
-  - "भावनात्मक"
-  - "ज़िन्दगी"
-slug: ankahaa-saath
-description: ankahaa saath is hindi for unspoken companionship.
+authors:
+- ankit
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lshbe5ri3o2b
 bsky: true
+categories:
+- कवितायेँ
+- प्रेम-रस
+- भावनात्मक
+- ज़िन्दगी
+date:
+  created: 2025-06-20
+description: ankahaa saath is hindi for unspoken companionship.
+slug: ankahaa-saath
+title: अनकहा साथ
 ---
 
 ```poem
