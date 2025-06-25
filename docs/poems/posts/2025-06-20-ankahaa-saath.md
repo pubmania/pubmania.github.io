@@ -1,5 +1,7 @@
 ---
-authors: ['ankit']
+authors:
+- ankit
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3lshfjyu33m2x
 bsky: true
 categories:
 - कवितायेँ
