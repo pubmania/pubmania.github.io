@@ -75,7 +75,9 @@ markdown_extensions:
   - toc:
       permalink: true
   - plantuml_markdown:
-      server: http://www.plantuml.com/plantuml  # PlantUML server, for remote rendering
+      servers: 
+        - url: http://www.plantuml.com/plantuml # PlantUML server, for remote rendering
+          kroki: false
       format: svg_inline                               # default diagram image format
 
   # Plugin information
