@@ -136,16 +136,11 @@ The loyalty app launched on time (a minor miracle) but immediately started behav
 ---
 
 !!! site-tip **Final Thought**
-
-    If you see a programme manager and a project manager sharing a bottle of something stronger than coffee in the car park at 11am on a Tuesday, don't judge them.
-
-They've just learnt that Pigeon Jr. has been promoted again—this time to **Chief Transformation Officer**—and his first initiative is rebranding Brewtopia as *"Brewtopia 2.0: Now With More Synergy."*
-
-Pigeon Sr., meanwhile, has dropped the NHS lawsuit after discovering the app was actually tracking *a different pigeon* with a similar postcode.
-
-Gavin's still trying to integrate blockchain.
-
-And somewhere, a Subject Matter Expert is updating their CV.
+   If you see a programme manager and a project manager sharing a bottle of something stronger than coffee in the car park at 11am on a Tuesday, don't judge them.  
+   They've just learnt that Pigeon Jr. has been promoted again—this time to **Chief Transformation Officer**—and his first initiative is rebranding Brewtopia as *"Brewtopia 2.0: Now With More Synergy."*  
+   Pigeon Sr., meanwhile, has dropped the NHS lawsuit after discovering the app was actually tracking *a different pigeon* with a similar postcode.  
+   Gavin's still trying to integrate blockchain.  
+   And somewhere, a Subject Matter Expert is updating their CV.
 
 ---
 
