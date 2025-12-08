@@ -33,19 +33,16 @@ Brewtopia's 12 interdependent projects are executing simultaneously. Which is co
 **Programme Manager's Execution Challenges:**
 
 1. **Benefit Realisation (Or: "Where's the Bloody ROI?")**
-
    - **Original Promise:** *"Carbon-neutral cafés = 30% more customers who care about the planet!"*
    - **Current Reality:** *"Carbon-neutral cafés = 30% higher costs, and customers still just want cheap flat whites."*
    - **Pigeon Jr.'s Take:** *"According to Sun Tzu, 'All warfare is based on deception.' Perhaps we've simply been *too honest* about our bean tariffs?"*
 
 2. **Inter-Project Dependencies (Or: "Everything Breaks At Once")**
-
    - **The Anti-Pigeon Laser Defence System** can't launch because the **Carbon-Neutral Beans Project** redirected the budget to fund Pigeon Sr.'s legal fees.
    - **The Loyalty App** keeps crashing because **Gavin's Re-education Programme** hasn't started yet, so Gavin's still deploying code with comments like `// YOLO this works trust me`.
    - **Marketing's Ex-GBBO Barista Campaign** collapsed when Mary Berry, patron saint of sponge cakes and GBBO royalty, politely declined, citing "concerns about workplace pigeon harassment."
 
 3. **Change Management (Or: "Why Is Everyone Crying?")**
-
    - **Cafés 1-50:** *"We like the new system!"*
    - **Cafés 51-100:** *"We're boycotting oat milk until you reinstate the old tills!"*
    - **Cafés 101-200:** *"We've unionised with the pigeons. Demands: shorter queues, longer breaks, and recognition that *decaf* is a valid lifestyle choice."*
@@ -54,7 +51,6 @@ Brewtopia's 12 interdependent projects are executing simultaneously. Which is co
    - **Programme Manager:** *"Pigeon Jr., I'm going to need you to stop talking and start filing the quarterly benefits report."*
 
 4. **Governance Theatre**
-
    - **Monthly Steering Committee Meeting:**
      - Finance asks why we're £2 million over budget.
      - Programme Manager blames Brexit, inflation, and "unforeseen pigeon-related litigation."
@@ -74,7 +70,6 @@ The loyalty app launched on time (a minor miracle) but immediately started behav
 **Project Manager's Execution Challenges:**
 
 1. **Scope Creep: The Revenge**
-
    - **Week 1 Post-Launch:** App awards points. Users happy.
    - **Week 2:** Marketing demands a "Share Your Latte on Instagram" feature.
    - **Week 3:** Finance wants real-time spend analytics "because the pigeons might be committing VAT fraud."
@@ -82,7 +77,6 @@ The loyalty app launched on time (a minor miracle) but immediately started behav
    - **Week 5:** Pigeon Jr. claims the NHS app data proves his father's lawsuit has merit and demands the loyalty app display a "GDPR solidarity banner."
 
 2. **Quality Control (Or: "It Works On My Machine")**
-
    - **Bug #1:** App crashes when users order "extra hot" beverages.  
      *Fix:* Remove temperature options. Blame climate change.
    - **Bug #2:** Loyalty points randomly multiply by 7 on Thursdays.  
@@ -91,7 +85,6 @@ The loyalty app launched on time (a minor miracle) but immediately started behav
      *Fix:* Disable location services. Marketing livid. Pigeon Sr. still suspicious.
 
 3. **Resource Management (Or: "Where's the Subject Matter Expert?")**
-
    - **Original Plan:** 1 developer, 2 testers (1 SME), deploy smoothly.
    - **Current Reality:**
      - Developer quit to become a potter in Devon.
@@ -100,7 +93,6 @@ The loyalty app launched on time (a minor miracle) but immediately started behav
      - Gavin reappears, offers to "help," accidentally deletes the staging environment.
 
 4. **Stakeholder Appeasement**
-
    - **Marketing:** *"Why isn't Mary Berry promoting us on Instagram?"*
    - **Finance:** *"Why are Thirsty Thursdays™ bankrupting us?"*
    - **Legal:** *"Why is Pigeon Sr. CCing me on emails titled 'Data Rights and My Inalienable Right to Soya Milk'?"*
