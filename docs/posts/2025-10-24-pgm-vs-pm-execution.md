@@ -33,29 +33,32 @@ Brewtopia's 12 interdependent projects are executing simultaneously. Which is co
 **Programme Manager's Execution Challenges:**
 
 1. **Benefit Realisation (Or: "Where's the Bloody ROI?")**
-   - **Original Promise:** *"Carbon-neutral cafés = 30% more customers who care about the planet!"*
-   - **Current Reality:** *"Carbon-neutral cafés = 30% higher costs, and customers still just want cheap flat whites."*
-   - **Pigeon Jr.'s Take:** *"According to Sun Tzu, 'All warfare is based on deception.' Perhaps we've simply been *too honest* about our bean tariffs?"*
+
+    - **Original Promise:** *"Carbon-neutral cafés = 30% more customers who care about the planet!"*
+    - **Current Reality:** *"Carbon-neutral cafés = 30% higher costs, and customers still just want cheap flat whites."*
+    - **Pigeon Jr.'s Take:** *"According to Sun Tzu, 'All warfare is based on deception.' Perhaps we've simply been *too honest* about our bean tariffs?"*
 
 2. **Inter-Project Dependencies (Or: "Everything Breaks At Once")**
-   - **The Anti-Pigeon Laser Defence System** can't launch because the **Carbon-Neutral Beans Project** redirected the budget to fund Pigeon Sr.'s legal fees.
-   - **The Loyalty App** keeps crashing because **Gavin's Re-education Programme** hasn't started yet, so Gavin's still deploying code with comments like `// YOLO this works trust me`.
-   - **Marketing's Ex-GBBO Barista Campaign** collapsed when Mary Berry, patron saint of sponge cakes and GBBO royalty, politely declined, citing "concerns about workplace pigeon harassment."
+
+    - **The Anti-Pigeon Laser Defence System** can't launch because the **Carbon-Neutral Beans Project** redirected the budget to fund Pigeon Sr.'s legal fees.
+    - **The Loyalty App** keeps crashing because **Gavin's Re-education Programme** hasn't started yet, so Gavin's still deploying code with comments like `// YOLO this works trust me`.
+    - **Marketing's Ex-GBBO Barista Campaign** collapsed when Mary Berry, patron saint of sponge cakes and GBBO royalty, politely declined, citing "concerns about workplace pigeon harassment."
 
 3. **Change Management (Or: "Why Is Everyone Crying?")**
-   - **Cafés 1-50:** *"We like the new system!"*
-   - **Cafés 51-100:** *"We're boycotting oat milk until you reinstate the old tills!"*
-   - **Cafés 101-200:** *"We've unionised with the pigeons. Demands: shorter queues, longer breaks, and recognition that *decaf* is a valid lifestyle choice."*
-   - **Programme Manager:** *"I need to get all 200 cafés aligned on—"*
-   - **Pigeon Jr.:** *"Sun Tzu says, 'In the midst of chaos, there is also opportunity.' May I suggest a *pigeon-mediated conflict resolution summit*?"*
-   - **Programme Manager:** *"Pigeon Jr., I'm going to need you to stop talking and start filing the quarterly benefits report."*
+
+    - **Cafés 1-50:** *"We like the new system!"*
+    - **Cafés 51-100:** *"We're boycotting oat milk until you reinstate the old tills!"*
+    - **Cafés 101-200:** *"We've unionised with the pigeons. Demands: shorter queues, longer breaks, and recognition that *decaf* is a valid lifestyle choice."*
+    - **Programme Manager:** *"I need to get all 200 cafés aligned on—"*
+    - **Pigeon Jr.:** *"Sun Tzu says, 'In the midst of chaos, there is also opportunity.' May I suggest a *pigeon-mediated conflict resolution summit*?"*
+    - **Programme Manager:** *"Pigeon Jr., I'm going to need you to stop talking and start filing the quarterly benefits report."*
 
 4. **Governance Theatre**
-   - **Monthly Steering Committee Meeting:**
-     - Finance asks why we're £2 million over budget.
-     - Programme Manager blames Brexit, inflation, and "unforeseen pigeon-related litigation."
-     - Pigeon Sr. (🕊️👔) appears via Zoom from his solicitor's office, pecks aggressively at the camera, and demands the minutes reflect his "concerns regarding systematic oat milk profiling by state-funded health tracking systems."
-     - Legal sighs. Audibly.
+    - **Monthly Steering Committee Meeting:**
+        - Finance asks why we're £2 million over budget.
+        - Programme Manager blames Brexit, inflation, and "unforeseen pigeon-related litigation."
+        - Pigeon Sr. (🕊️👔) appears via Zoom from his solicitor's office, pecks aggressively at the camera, and demands the minutes reflect his "concerns regarding systematic oat milk profiling by state-funded health tracking systems."
+        - Legal sighs. Audibly.
 
 ---
 
@@ -70,35 +73,38 @@ The loyalty app launched on time (a minor miracle) but immediately started behav
 **Project Manager's Execution Challenges:**
 
 1. **Scope Creep: The Revenge**
-   - **Week 1 Post-Launch:** App awards points. Users happy.
-   - **Week 2:** Marketing demands a "Share Your Latte on Instagram" feature.
-   - **Week 3:** Finance wants real-time spend analytics "because the pigeons might be committing VAT fraud."
-   - **Week 4:** Gavin suggests integrating blockchain. Everyone pretends not to hear him.
-   - **Week 5:** Pigeon Jr. claims the NHS app data proves his father's lawsuit has merit and demands the loyalty app display a "GDPR solidarity banner."
+
+    - **Week 1 Post-Launch:** App awards points. Users happy.
+    - **Week 2:** Marketing demands a "Share Your Latte on Instagram" feature.
+    - **Week 3:** Finance wants real-time spend analytics "because the pigeons might be committing VAT fraud."
+    - **Week 4:** Gavin suggests integrating blockchain. Everyone pretends not to hear him.
+    - **Week 5:** Pigeon Jr. claims the NHS app data proves his father's lawsuit has merit and demands the loyalty app display a "GDPR solidarity banner."
 
 2. **Quality Control (Or: "It Works On My Machine")**
-   - **Bug #1:** App crashes when users order "extra hot" beverages.  
-     *Fix:* Remove temperature options. Blame climate change.
-   - **Bug #2:** Loyalty points randomly multiply by 7 on Thursdays.  
-     *Fix:* Rebrand as "Thirsty Thursdays™." Finance livid.
-   - **Bug #3:** Pigeon Sr. claims the app is "tracking his movements across Greater London" because it sent him a push notification when he was near a Costa.  
-     *Fix:* Disable location services. Marketing livid. Pigeon Sr. still suspicious.
+    - **Bug #1:** App crashes when users order "extra hot" beverages.  
+      *Fix:* Remove temperature options. Blame climate change.
+    - **Bug #2:** Loyalty points randomly multiply by 7 on Thursdays.  
+      *Fix:* Rebrand as "Thirsty Thursdays™." Finance livid.
+    - **Bug #3:** Pigeon Sr. claims the app is "tracking his movements across Greater London" because it sent him a push notification when he was near a Costa.  
+      *Fix:* Disable location services. Marketing livid. Pigeon Sr. still suspicious.
 
 3. **Resource Management (Or: "Where's the Subject Matter Expert?")**
-   - **Original Plan:** 1 developer, 2 testers (1 SME), deploy smoothly.
-   - **Current Reality:**
-     - Developer quit to become a potter in Devon.
-     - SME tester stuck writing affidavits for Pigeon Sr.'s lawsuit.
-     - Non-SME tester promoted to developer, now frantically Googling "what is API."
-     - Gavin reappears, offers to "help," accidentally deletes the staging environment.
+
+    - **Original Plan:** 1 developer, 2 testers (1 SME), deploy smoothly.
+    - **Current Reality:**
+        - Developer quit to become a potter in Devon.
+        - SME tester stuck writing affidavits for Pigeon Sr.'s lawsuit.
+        - Non-SME tester promoted to developer, now frantically Googling "what is API."
+        - Gavin reappears, offers to "help," accidentally deletes the staging environment.
 
 4. **Stakeholder Appeasement**
-   - **Marketing:** *"Why isn't Mary Berry promoting us on Instagram?"*
-   - **Finance:** *"Why are Thirsty Thursdays™ bankrupting us?"*
-   - **Legal:** *"Why is Pigeon Sr. CCing me on emails titled 'Data Rights and My Inalienable Right to Soya Milk'?"*
-   - **Project Manager:** *"I just need everyone to calm down for—"*
-   - **Gavin:** *"What if we made the app NFT-compatible?"*
-   - **Everyone:** *"GAVIN, NO."*
+
+    - **Marketing:** *"Why isn't Mary Berry promoting us on Instagram?"*
+    - **Finance:** *"Why are Thirsty Thursdays™ bankrupting us?"*
+    - **Legal:** *"Why is Pigeon Sr. CCing me on emails titled 'Data Rights and My Inalienable Right to Soya Milk'?"*
+    - **Project Manager:** *"I just need everyone to calm down for—"*
+    - **Gavin:** *"What if we made the app NFT-compatible?"*
+    - **Everyone:** *"GAVIN, NO."*
 
 ---
 
