@@ -77,7 +77,11 @@ def process_file_yaml(file_path, yaml_regex, access_token, at_client, image_dire
         description_value = frontmatter_dict.get('description', '')
         url = f"{site_url}/{yyyy}/{mm}/{dd}/{slug_value}.html"
         #image_path = f"{image_directory}/{file_path.split('/')[-1].split('.')[0]}.png"
-        image_path = f"{image_directory}/{yyyy}/{mm}/{dd}/{slug_value}.png"
+        image_path = f"{image_path}/{yyyy}/{mm}/{dd}/{slug_value}.png"
+        if os.path.exists(file_path):
+            print("The directory exists")
+        else:
+            print("The directory does not exist")
 
         # Existing Bluesky post creation (unchanged)
         bluesky_url = create_bluesky_post(url, title_value, description_value, image_path, access_token, at_client)
@@ -159,7 +163,8 @@ def main():
     
     # Get blog post parameters
     path = 'docs/posts'
-    image_directory = os.path.join(os.environ['GITHUB_WORKSPACE'], 'site', 'assets', 'images', 'social', 'posts')
+    #image_directory = os.path.join(os.environ['GITHUB_WORKSPACE'], 'site', 'assets', 'images', 'social', 'posts')
+    image_directory = os.path.join(os.environ['GITHUB_WORKSPACE'], 'site', 'assets', 'images', 'social')
     site_url = os.environ['SITE_URL']
     
     # Process posts
@@ -172,7 +177,7 @@ def main():
     
     # Get poem parameters
     path = 'docs/poems/posts'
-    image_directory = os.path.join(os.environ['GITHUB_WORKSPACE'], 'site', 'assets', 'images', 'social', 'poems', 'posts')
+    image_directory = os.path.join(os.environ['GITHUB_WORKSPACE'], 'site', 'assets', 'images', 'social', 'poems')
     poem_site_url = f"{site_url}/poems"
     # Process poems
     get_yaml_frontmatter(path, 
