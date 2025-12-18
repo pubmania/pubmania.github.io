@@ -77,11 +77,11 @@ def process_file_yaml(file_path, yaml_regex, access_token, at_client, image_dire
         description_value = frontmatter_dict.get('description', '')
         url = f"{site_url}/{yyyy}/{mm}/{dd}/{slug_value}.html"
         #image_path = f"{image_directory}/{file_path.split('/')[-1].split('.')[0]}.png"
-        image_path = f"{image_path}/{yyyy}/{mm}/{dd}/{slug_value}.png"
-        if os.path.exists(file_path):
-            print("The directory exists")
+        image_path = f"{image_directory}/{yyyy}/{mm}/{dd}/{slug_value}.png"
+        if os.path.exists(image_path):
+            print("File exists")
         else:
-            print("The directory does not exist")
+            print("File does not exist")
 
         # Existing Bluesky post creation (unchanged)
         bluesky_url = create_bluesky_post(url, title_value, description_value, image_path, access_token, at_client)
