@@ -15,7 +15,6 @@ slug: umra-ka-hisaab
 title: उम्र का हिसाब
 ---
 
-<!-- more -->
 
 ```poem
 ## उम्र का हिसाब
@@ -61,6 +60,8 @@ title: उम्र का हिसाब
   
 -अंकित।
 ```
+
+<!-- more -->
 
 ```poem
 ## The Tide of Time
