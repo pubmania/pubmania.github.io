@@ -76,7 +76,8 @@ def process_file_yaml(file_path, yaml_regex, access_token, at_client, image_dire
         title_value = frontmatter_dict['title']
         description_value = frontmatter_dict.get('description', '')
         url = f"{site_url}/{yyyy}/{mm}/{dd}/{slug_value}.html"
-        image_path = f"{image_directory}/{file_path.split('/')[-1].split('.')[0]}.png"
+        #image_path = f"{image_directory}/{file_path.split('/')[-1].split('.')[0]}.png"
+        image_path = f"{image_directory}/{yyyy}/{mm}/{dd}/{slug_value}.png"
 
         # Existing Bluesky post creation (unchanged)
         bluesky_url = create_bluesky_post(url, title_value, description_value, image_path, access_token, at_client)
