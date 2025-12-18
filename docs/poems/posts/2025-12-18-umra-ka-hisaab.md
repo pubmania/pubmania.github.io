@@ -66,40 +66,40 @@ description: umra ka hisaab is hindi for Accounts of age.
 This rising tide of age brings a flood of memories to view,  
 A brand new stage, yet the same old accounts to settle anew.  
 
-The weight of every feeling leaves the eyes a weary sight,
+The weight of every feeling leaves the eyes a weary sight,  
 There is no lack of love, yet the heart puts up a lonely fight.  
 
-Everything is fine, just the cravings have begun to fade,
+Everything is fine, just the cravings have begun to fade,  
 The hope is just as bright, but the call is softer in the shade.
 
-The paths remain the same, but restlessness now walks beside,
+The paths remain the same, but restlessness now walks beside,  
 The desires are just as deep, but the arms have lost their stride.  
 
-The breath remains the same, but the sighs are burning slow,
+The breath remains the same, but the sighs are burning slow,  
 The books remain the same, but the stories have a gentler flow.
 
-The passion is just as fierce, but the wandering has slowed its pace,
+The passion is just as fierce, but the wandering has slowed its pace,  
 The poetry is just as sweet, but the evenings leave a shorter trace.  
 
-The pride remains the same, but the fame is fading from the tongue,
+The pride remains the same, but the fame is fading from the tongue,  
 The world remains the same, but humanity is left unstrung.
 
-The joys remain the same, but the smiles are spread a little thin,
+The joys remain the same, but the smiles are spread a little thin,  
 The clocks remain the same, but the moments feel hollow within.  
 
-The success remains the same, but the cheers have lost their ring,
+The success remains the same, but the cheers have lost their ring,  
 The friendship is just as true, but it’s you all who are missing.
 
-Once, we never stopped to think before we took a chance,
+Once, we never stopped to think before we took a chance,  
 Today, we only sit and think, lost in a hesitant trance.  
 
-Once, we were the duty kept; now the duties are ours to bear,
+Once, we were the duty kept; now the duties are ours to bear,  
 Once, we were the "tomorrow"; now a new "tomorrow" needs our care.
 
-But when we meet, we’ll seize the day and turn the "then" to "now,"
+But when we meet, we’ll seize the day and turn the "then" to "now,"  
 The style might be a little different, but we’ll find a way somehow.  
 
-We’ll laugh until the faded colors of our lives begin to glow,
+We’ll laugh until the faded colors of our lives begin to glow,  
 And gather ‘round to curse and jest, just like the friends we used to know.  
 
 -Ankit.
