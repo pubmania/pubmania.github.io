@@ -1,16 +1,18 @@
 ---
-title: "उम्र का हिसाब"
-date: 
-  created: 2025-12-18
-authors: ['ankit']
-categories: 
-  - "कवितायेँ"
-  - "भावनात्मक"
-  - "दोस्ती"
-  - "ज़िन्दगी"
-slug: umra-ka-hisaab
+authors:
+- ankit
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3mabs5ipiq52j
 bsky: true
+categories:
+- कवितायेँ
+- भावनात्मक
+- दोस्ती
+- ज़िन्दगी
+date:
+  created: 2025-12-18
 description: umra ka hisaab is hindi for Accounts of age.
+slug: umra-ka-hisaab
+title: उम्र का हिसाब
 ---
 
 <!-- more -->
