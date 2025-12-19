@@ -21,7 +21,7 @@ When I shared these lines, some felt a sense of sadness in them - perhaps even a
 
 In our culture, we often feel that admitting we miss someone or something is a sign of being "low." We think that acknowledging a "muffled call" or a "shorter evening" means we aren't happy with the present, but for me, it is the exact opposite.
 
-I am able to look back at our colorful past only because my "today" is stable and secure. My home, my wife’s grace, my daughter’s growing light, my parent's blessings, my brother's happiness are the anchors that give me the courage to be this honest. I don't write these lines because I am depressed; I write them because I am whole.
+I am able to look back at our colourful past only because my "today" is stable and secure. My home, my wife’s grace, my daughter’s growing light, my parent's blessings, my brother's happiness are the anchors that give me the courage to be this honest. I don't write these lines because I am depressed; I write them because I am whole.
 
 This poem is a Tribute. It is a salute to the friends who taught me the "art of living" and the memories that decorate my current life. It is my way of saying that the passion hasn't died — it has simply matured.
 
