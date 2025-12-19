@@ -23,7 +23,7 @@ In our culture, we often feel that admitting we miss someone or something is a s
 
 I am able to look back at our colourful past only because my "today" is stable and secure. My home, my wife’s grace, my daughter’s growing light, my parent's blessings, my brother's happiness are the anchors that give me the courage to be this honest. I don't write these lines because I am depressed; I write them because I am whole.
 
-This poem is a Tribute. It is a salute to the friends who taught me the "art of living" and the memories that decorate my current life. It is my way of saying that the passion hasn't died — it has simply matured.
+This poem is a Tribute. It is a salute to the friends who taught me the "art of living" and the memories that decorate my current life. It is my way of saying that the passion hasn't died - it has simply matured.
 
 So, don’t read these words and feel sorry for me. Read them and know that I am enamoured with this journey. I am not stuck in the past; I am just carrying it with me as a source of strength. And when we meet again - whenever and wherever that may be - we won't just be "remembering" the old days. We will be bringing that same fire into a brand new chapter.
 
