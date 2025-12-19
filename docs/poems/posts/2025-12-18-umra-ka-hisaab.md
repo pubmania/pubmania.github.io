@@ -17,7 +17,7 @@ title: उम्र का हिसाब
 
 ## Prologue
 
-When I shared these lines, some felt a sense of sadness in them — perhaps even a mourning for what has passed, but as I look at these words, I see something very different. I see gratitude.
+When I shared these lines, some felt a sense of sadness in them - perhaps even a mourning for what has passed, but as I look at these words, I see something very different. I see gratitude.
 
 In our culture, we often feel that admitting we miss someone or something is a sign of being "low." We think that acknowledging a "muffled call" or a "shorter evening" means we aren't happy with the present, but for me, it is the exact opposite.
 
@@ -25,7 +25,7 @@ I am able to look back at our colorful past only because my "today" is stable an
 
 This poem is a Tribute. It is a salute to the friends who taught me the "art of living" and the memories that decorate my current life. It is my way of saying that the passion hasn't died — it has simply matured.
 
-So, don’t read these words and feel sorry for me. Read them and know that I am enamored with this journey. I am not stuck in the past; I am just carrying it with me as a source of strength. And when we meet again — whenever and wherever that may be — we won't just be "remembering" the old days. We will be bringing that same fire into a brand new chapter.
+So, don’t read these words and feel sorry for me. Read them and know that I am enamored with this journey. I am not stuck in the past; I am just carrying it with me as a source of strength. And when we meet again - whenever and wherever that may be - we won't just be "remembering" the old days. We will be bringing that same fire into a brand new chapter.
 
 
 ```poem
