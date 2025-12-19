@@ -25,7 +25,7 @@ I am able to look back at our colorful past only because my "today" is stable an
 
 This poem is a Tribute. It is a salute to the friends who taught me the "art of living" and the memories that decorate my current life. It is my way of saying that the passion hasn't died — it has simply matured.
 
-So, don’t read these words and feel sorry for me. Read them and know that I am enamored with this journey. I am not stuck in the past; I am just carrying it with me as a source of strength. And when we meet again - whenever and wherever that may be - we won't just be "remembering" the old days. We will be bringing that same fire into a brand new chapter.
+So, don’t read these words and feel sorry for me. Read them and know that I am enamoured with this journey. I am not stuck in the past; I am just carrying it with me as a source of strength. And when we meet again - whenever and wherever that may be - we won't just be "remembering" the old days. We will be bringing that same fire into a brand new chapter.
 
 
 ```poem
@@ -77,7 +77,7 @@ So, don’t read these words and feel sorry for me. Read them and know that I am
 कि तुम सबके साथ से ही, मैं आज इतना बेमिसाल हूँ।  
 
 न हो जाना कहीं दुखी ये मेरी शब्दावली पढ़ कर,  
-किया है हमारे बंधन इजहार मैने, ये श्रद्धांजलि गढ़ कर।  
+किया है हमारे बंधन का इजहार मैने, ये श्रद्धांजलि गढ़ कर।  
 
 मिलोगे जब तो, साथ मिल कर, कल को आज कर देंगे,  
 शायद तरीका पहला सा न हो, कुछ नया अंदाज कर लेंगे।  
