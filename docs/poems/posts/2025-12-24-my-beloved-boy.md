@@ -66,10 +66,12 @@ Has returned now as "Music" - a little devil in every way.
 He has traded his quiet peace for naughtiness and for play,  
 A treasure of chatter and energy, sent back by God today.  
 
-He’s not silent, nor wordless; he is aware, not at all blind,  
+He is not silent, nor wordless; he is aware, not at all blind,  
 He speaks his heart and tells his tale, in ways only he can find.  
-With a cute head tilt, a different bark,
-With a gentle nudge from his wet nose,a happy wag of his feathery tail, or some drama on cue,  
+
+With a cute head tilt, a different bark,  
+With a gentle nudge from his wet nose,  
+A happy wag of his feathery tail, or some drama on cue,  
 By any mischief necessary, he makes sure his point gets through.  
 
 A master at reading every mood, he shows love without a cost,  
