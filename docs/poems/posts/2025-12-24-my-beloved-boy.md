@@ -22,13 +22,13 @@ title: मेरा लाडला
 
 वही रूह है, वही वफ़ा, पर अंदाज़ ज़रा मस्ताना है,  
 आंखों में नादानी वही, भोलापन वही पुराना है,  
-कल का संत "Magic" था जो, आज "Music" बन के आया शैताना है।  
+कल का संत "Magic" मेरा, आज बना "Music" शैताना है।  
 
-वो शांत सौम्यता छोड़ अब, शरारत साथ में लाया है,  
-मुखरता, चंचलता का भंडार बना, ईश्वर ने लौटाया है।  
+वो शांत सौम्यता छोड़ कर अब, शरारत साथ में लाया है,  
+मुखरता, चंचलता का भंडार बना उसको, स्वयं ईश्वर ने लौटाया है।  
 
 मौन नहीं, बेज़ुबान नहीं, अवगत है, अंजान नहीं, वो अपनी बात बोलता और बताता है,  
-कभी मटकते सर, कभी अलग भौंक से, नौटंकी कुछ भी करके, बस अपनी बात मनवाता है।  
+कभी मटकते सर, कभी अलग भौंक से, कभी गीली नाक और कभी हर्षाती दुम, नौटंकी कुछ भी करके, बस अपनी बात मनवाता है।  
 
 है माहिर हर भाव को पढ़ने में वो, बस निस्वार्थ प्यार दर्शाता है,  
 मानवों से अधिक समझदार वो, नित नई भाषा मुझे सिखाता है।  
@@ -68,7 +68,8 @@ A treasure of chatter and energy, sent back by God today.
 
 He’s not silent, nor wordless; he is aware, not at all blind,  
 He speaks his heart and tells his tale, in ways only he can find.  
-With a bobbing head, a different bark, or some drama on cue,  
+With a cute head tilt, a different bark,
+With a gentle nudge from his wet nose,a happy wag of his feathery tail, or some drama on cue,  
 By any mischief necessary, he makes sure his point gets through.  
 
 A master at reading every mood, he shows love without a cost,  
