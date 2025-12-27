@@ -41,3 +41,36 @@ description: meri bitiya is hindi for my daughter
   
 -अंकित ।
 ```
+
+<!-- more -->
+
+```poem
+## My Little Daughter
+
+Sometimes she laughs, sometimes she cries,  
+In the language of the gods, her playful chirps rise.
+
+My heart swells with joy as her expressions daily unfold,  
+Vain and whimsical with her toys, a sight to behold.
+
+No malice in her heart, only love’s shimmering light,  
+No guile in her soul, just trust—pure and bright.
+
+Hearing her mother’s footsteps, her round eyes dance with glee,  
+Raising her tiny arms, she charms her mother, wild and free.
+
+Finding me near, she glows with a smile so sweet,  
+Then yearns for my arms, making my joy complete.
+
+Pressing her tongue beneath her lips, her mischief starts to show,  
+To catch our eye, she raises a clamorous flow.
+
+When things don't go her way, false tears begin to fall,  
+With such clever whims, she manages to win us all.
+
+No words leave her lips yet, but her eyes tell a whole tale,  
+And while sharing these stories, my little daughter drifts beyond the veil.
+
+−Ankit।
+
+```
