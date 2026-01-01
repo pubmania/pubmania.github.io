@@ -5,11 +5,9 @@ bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3maqtbfs33722
 bsky: true
 categories:
 - कवितायेँ
-- प्रेम-रस
 - भावनात्मक
 - दोस्ती
 - हास्य-रस
-- ज़िन्दगी
 date:
   created: 2025-12-24
 description: mera laadla is hindi for my beloved boy
