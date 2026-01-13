@@ -20,8 +20,10 @@ def get_yaml_frontmatter(path, access_token, at_client, image_directory, site_ur
 
     if os.path.isdir(path):
         for filename in os.listdir(path):
+            print(f"filename is ---> {filename}")
             if filename.endswith('.md'):
                 file_path = os.path.join(path, filename)
+                print(f"file_path is ---> {file_path}")
                 if process_file_yaml(file_path, yaml_regex, access_token, at_client, image_directory, site_url, modified_files):
                     modified_files.append(file_path)
     elif os.path.isfile(path) and path.endswith('.md'):
