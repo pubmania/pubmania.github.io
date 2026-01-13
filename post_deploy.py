@@ -15,7 +15,7 @@ def is_last_commit_by_script(repo):
 
 def get_yaml_frontmatter(path, access_token, at_client, image_directory, site_url, repo):
     """Process all Markdown files in the given path."""
-    yaml_regex = re.compile(r'^(---\n.*?\n---\n)', re.DOTALL)
+    yaml_regex = re.compile(r'^(---\n.*?\n---\s*\n)', re.DOTALL)
     modified_files = []
 
     if os.path.isdir(path):
@@ -32,13 +32,9 @@ def get_yaml_frontmatter(path, access_token, at_client, image_directory, site_ur
     else:
         print("Provided path is neither a valid directory nor a .md file.")
 
-    # Commit all changes at once if any files were modified
+    # Commit logic removed - handled by GitHub Action
     if modified_files:
-        repo.index.add(modified_files)
-        repo.index.commit("Update Bluesky URLs in frontmatter")
-        origin = repo.remote(name="origin")
-        origin.push()
-        print(f"Committed updates for {len(modified_files)} posts")
+        print(f"Updates prepared for {len(modified_files)} posts")
 
 def process_file_yaml(file_path, yaml_regex, access_token, at_client, image_directory, site_url, modified_files):
     """Process a single Markdown file. Returns True if modified."""
@@ -53,8 +49,7 @@ def process_file_yaml(file_path, yaml_regex, access_token, at_client, image_dire
         
         # Skip if bsky flag is not there or is set to false
         if not frontmatter_dict.get('bsky'):
-            #print(f"Skipping {file_path} - Bluesky flag does not exist or is set to false")
-            bdky_flag_does_not_exist.append(file_path)
+            print(f"Skipping {file_path} - Bluesky flag does not exist or is set to false")
             return False
         
         # Skip if Bluesky URL already exists (existing logic)
@@ -68,9 +63,8 @@ def process_file_yaml(file_path, yaml_regex, access_token, at_client, image_dire
         created_date_str = f"{created_date}"
         created_date = datetime.datetime.fromisoformat(created_date_str)
         current_date = datetime.datetime.now()
-        difference = (current_date - created_date).days
-        if difference > 5:        
-            print(f"Skipping {file_path} - Post is older than 5 days")
+        if difference > 30:        
+            print(f"Skipping {file_path} - Post is older than 30 days")
             return False
 
         # Existing URL generation and Bluesky posting (unchanged)
@@ -102,6 +96,8 @@ def process_file_yaml(file_path, yaml_regex, access_token, at_client, image_dire
         
         print(f"Updated {file_path} with Bluesky URL: {bluesky_url}")
         return True
+    else:
+        print(f"Skipping {file_path} - No frontmatter match found.")
     return False
 
 def create_bluesky_post(url, title, description, image_path, access_token, at_client):
