@@ -44,7 +44,8 @@ def process_file_yaml(file_path, yaml_regex, access_token, at_client, image_dire
     """Process a single Markdown file. Returns True if modified."""
     with open(file_path, 'r', encoding='utf-8') as file:
         content = file.read()
-    
+    bdky_flag_does_not_exist = []
+    bsky_url_already_exists = []
     match = yaml_regex.search(content)
     if match:
         frontmatter_content = match.group(1)
@@ -52,12 +53,14 @@ def process_file_yaml(file_path, yaml_regex, access_token, at_client, image_dire
         
         # Skip if bsky flag is not there or is set to false
         if not frontmatter_dict.get('bsky'):
-            print(f"Skipping {file_path} - Bluesky flag does not exist or is set to false")
+            #print(f"Skipping {file_path} - Bluesky flag does not exist or is set to false")
+            bdky_flag_does_not_exist.append(file_path)
             return False
         
         # Skip if Bluesky URL already exists (existing logic)
         if frontmatter_dict.get('bluesky_url'):
-            print(f"Skipping {file_path} - Bluesky URL already exists")
+            bsky_url_already_exists.append(file_path)
+            #print(f"Skipping {file_path} - Bluesky URL already exists")
             return False
 
         # Existing date handling (unchanged)
