@@ -63,6 +63,7 @@ def process_file_yaml(file_path, yaml_regex, access_token, at_client, image_dire
         created_date_str = f"{created_date}"
         created_date = datetime.datetime.fromisoformat(created_date_str)
         current_date = datetime.datetime.now()
+        difference = (current_date - created_date).days
         if difference > 30:        
             print(f"Skipping {file_path} - Post is older than 30 days")
             return False
