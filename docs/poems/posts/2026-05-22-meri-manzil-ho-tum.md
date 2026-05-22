@@ -1,6 +1,7 @@
 ---
 authors:
 - ankit
+bluesky_url: https://bsky.app/profile/ankit.dumatics.com/post/3mmhjyrrtfr26
 bsky: true
 categories:
 - कवितायेँ
@@ -12,7 +13,6 @@ description: meri manzil ho tum is hindi for you are my destination.
 slug: meri-manzil-ho-tum
 title: मेरी मंजिल हो तुम
 ---
-
 
 ```poem
 ## मेरी मंजिल हो तुम
